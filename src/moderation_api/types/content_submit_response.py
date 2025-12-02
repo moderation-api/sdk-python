@@ -6,7 +6,7 @@ from typing_extensions import Literal, TypeAlias
 from .._models import BaseModel
 
 __all__ = [
-    "ModerateAnalyzeResponse",
+    "ContentSubmitResponse",
     "Author",
     "AuthorBlock",
     "AuthorTrustLevel",
@@ -235,7 +235,7 @@ class Error(BaseModel):
     message: str
 
 
-class ModerateAnalyzeResponse(BaseModel):
+class ContentSubmitResponse(BaseModel):
     author: Optional[Author] = None
     """The author of the content if your account has authors enabled.
 

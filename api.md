@@ -82,17 +82,17 @@ Methods:
 - <code title="post /actions/execute">client.actions.execute.<a href="./src/moderation_api/resources/actions/execute.py">execute</a>(\*\*<a href="src/moderation_api/types/actions/execute_execute_params.py">params</a>) -> <a href="./src/moderation_api/types/actions/execute_execute_response.py">ExecuteExecuteResponse</a></code>
 - <code title="post /actions/{actionId}/execute">client.actions.execute.<a href="./src/moderation_api/resources/actions/execute.py">execute_by_id</a>(action_id, \*\*<a href="src/moderation_api/types/actions/execute_execute_by_id_params.py">params</a>) -> <a href="./src/moderation_api/types/actions/execute_execute_by_id_response.py">ExecuteExecuteByIDResponse</a></code>
 
-# Moderate
+# Content
 
 Types:
 
 ```python
-from moderation_api.types import ModerateAnalyzeResponse
+from moderation_api.types import ContentSubmitResponse
 ```
 
 Methods:
 
-- <code title="post /moderate">client.moderate.<a href="./src/moderation_api/resources/moderate.py">analyze</a>(\*\*<a href="src/moderation_api/types/moderate_analyze_params.py">params</a>) -> <a href="./src/moderation_api/types/moderate_analyze_response.py">ModerateAnalyzeResponse</a></code>
+- <code title="post /moderate">client.content.<a href="./src/moderation_api/resources/content.py">submit</a>(\*\*<a href="src/moderation_api/types/content_submit_params.py">params</a>) -> <a href="./src/moderation_api/types/content_submit_response.py">ContentSubmitResponse</a></code>
 
 # Account
 

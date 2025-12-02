@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import moderate_analyze_params
+from ..types import content_submit_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -19,35 +19,35 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.moderate_analyze_response import ModerateAnalyzeResponse
+from ..types.content_submit_response import ContentSubmitResponse
 
-__all__ = ["ModerateResource", "AsyncModerateResource"]
+__all__ = ["ContentResource", "AsyncContentResource"]
 
 
-class ModerateResource(SyncAPIResource):
+class ContentResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ModerateResourceWithRawResponse:
+    def with_raw_response(self) -> ContentResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/moderation-api-python#accessing-raw-response-data-eg-headers
         """
-        return ModerateResourceWithRawResponse(self)
+        return ContentResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ModerateResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ContentResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/moderation-api-python#with_streaming_response
         """
-        return ModerateResourceWithStreamingResponse(self)
+        return ContentResourceWithStreamingResponse(self)
 
-    def analyze(
+    def submit(
         self,
         *,
-        content: moderate_analyze_params.Content,
+        content: content_submit_params.Content,
         author_id: str | Omit = omit,
         channel: str | Omit = omit,
         content_id: str | Omit = omit,
@@ -62,7 +62,7 @@ class ModerateResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ModerateAnalyzeResponse:
+    ) -> ContentSubmitResponse:
         """
         Args:
           content: The content sent for moderation
@@ -103,39 +103,39 @@ class ModerateResource(SyncAPIResource):
                     "metadata": metadata,
                     "meta_type": meta_type,
                 },
-                moderate_analyze_params.ModerateAnalyzeParams,
+                content_submit_params.ContentSubmitParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ModerateAnalyzeResponse,
+            cast_to=ContentSubmitResponse,
         )
 
 
-class AsyncModerateResource(AsyncAPIResource):
+class AsyncContentResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncModerateResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncContentResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/moderation-api-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncModerateResourceWithRawResponse(self)
+        return AsyncContentResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncModerateResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncContentResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/moderation-api-python#with_streaming_response
         """
-        return AsyncModerateResourceWithStreamingResponse(self)
+        return AsyncContentResourceWithStreamingResponse(self)
 
-    async def analyze(
+    async def submit(
         self,
         *,
-        content: moderate_analyze_params.Content,
+        content: content_submit_params.Content,
         author_id: str | Omit = omit,
         channel: str | Omit = omit,
         content_id: str | Omit = omit,
@@ -150,7 +150,7 @@ class AsyncModerateResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ModerateAnalyzeResponse:
+    ) -> ContentSubmitResponse:
         """
         Args:
           content: The content sent for moderation
@@ -191,46 +191,46 @@ class AsyncModerateResource(AsyncAPIResource):
                     "metadata": metadata,
                     "meta_type": meta_type,
                 },
-                moderate_analyze_params.ModerateAnalyzeParams,
+                content_submit_params.ContentSubmitParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ModerateAnalyzeResponse,
+            cast_to=ContentSubmitResponse,
         )
 
 
-class ModerateResourceWithRawResponse:
-    def __init__(self, moderate: ModerateResource) -> None:
-        self._moderate = moderate
+class ContentResourceWithRawResponse:
+    def __init__(self, content: ContentResource) -> None:
+        self._content = content
 
-        self.analyze = to_raw_response_wrapper(
-            moderate.analyze,
+        self.submit = to_raw_response_wrapper(
+            content.submit,
         )
 
 
-class AsyncModerateResourceWithRawResponse:
-    def __init__(self, moderate: AsyncModerateResource) -> None:
-        self._moderate = moderate
+class AsyncContentResourceWithRawResponse:
+    def __init__(self, content: AsyncContentResource) -> None:
+        self._content = content
 
-        self.analyze = async_to_raw_response_wrapper(
-            moderate.analyze,
+        self.submit = async_to_raw_response_wrapper(
+            content.submit,
         )
 
 
-class ModerateResourceWithStreamingResponse:
-    def __init__(self, moderate: ModerateResource) -> None:
-        self._moderate = moderate
+class ContentResourceWithStreamingResponse:
+    def __init__(self, content: ContentResource) -> None:
+        self._content = content
 
-        self.analyze = to_streamed_response_wrapper(
-            moderate.analyze,
+        self.submit = to_streamed_response_wrapper(
+            content.submit,
         )
 
 
-class AsyncModerateResourceWithStreamingResponse:
-    def __init__(self, moderate: AsyncModerateResource) -> None:
-        self._moderate = moderate
+class AsyncContentResourceWithStreamingResponse:
+    def __init__(self, content: AsyncContentResource) -> None:
+        self._content = content
 
-        self.analyze = async_to_streamed_response_wrapper(
-            moderate.analyze,
+        self.submit = async_to_streamed_response_wrapper(
+            content.submit,
         )

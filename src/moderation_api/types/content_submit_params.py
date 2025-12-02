@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 from .._utils import PropertyInfo
 
 __all__ = [
-    "ModerateAnalyzeParams",
+    "ContentSubmitParams",
     "Content",
     "ContentUnionMember0",
     "ContentUnionMember1",
@@ -23,7 +23,7 @@ __all__ = [
 ]
 
 
-class ModerateAnalyzeParams(TypedDict, total=False):
+class ContentSubmitParams(TypedDict, total=False):
     content: Required[Content]
     """The content sent for moderation"""
 
