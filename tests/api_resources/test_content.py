@@ -9,29 +9,29 @@ import pytest
 
 from tests.utils import assert_matches_type
 from moderation_api import ModerationAPI, AsyncModerationAPI
-from moderation_api.types import ModerateAnalyzeResponse
+from moderation_api.types import ContentSubmitResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestModerate:
+class TestContent:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_analyze(self, client: ModerationAPI) -> None:
-        moderate = client.moderate.analyze(
+    def test_method_submit(self, client: ModerationAPI) -> None:
+        content = client.content.submit(
             content={
                 "text": "x",
                 "type": "text",
             },
         )
-        assert_matches_type(ModerateAnalyzeResponse, moderate, path=["response"])
+        assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_analyze_with_all_params(self, client: ModerationAPI) -> None:
-        moderate = client.moderate.analyze(
+    def test_method_submit_with_all_params(self, client: ModerationAPI) -> None:
+        content = client.content.submit(
             content={
                 "text": "x",
                 "type": "text",
@@ -44,12 +44,12 @@ class TestModerate:
             metadata={"foo": "bar"},
             meta_type="profile",
         )
-        assert_matches_type(ModerateAnalyzeResponse, moderate, path=["response"])
+        assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_analyze(self, client: ModerationAPI) -> None:
-        response = client.moderate.with_raw_response.analyze(
+    def test_raw_response_submit(self, client: ModerationAPI) -> None:
+        response = client.content.with_raw_response.submit(
             content={
                 "text": "x",
                 "type": "text",
@@ -58,13 +58,13 @@ class TestModerate:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        moderate = response.parse()
-        assert_matches_type(ModerateAnalyzeResponse, moderate, path=["response"])
+        content = response.parse()
+        assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_analyze(self, client: ModerationAPI) -> None:
-        with client.moderate.with_streaming_response.analyze(
+    def test_streaming_response_submit(self, client: ModerationAPI) -> None:
+        with client.content.with_streaming_response.submit(
             content={
                 "text": "x",
                 "type": "text",
@@ -73,32 +73,32 @@ class TestModerate:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            moderate = response.parse()
-            assert_matches_type(ModerateAnalyzeResponse, moderate, path=["response"])
+            content = response.parse()
+            assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncModerate:
+class TestAsyncContent:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_analyze(self, async_client: AsyncModerationAPI) -> None:
-        moderate = await async_client.moderate.analyze(
+    async def test_method_submit(self, async_client: AsyncModerationAPI) -> None:
+        content = await async_client.content.submit(
             content={
                 "text": "x",
                 "type": "text",
             },
         )
-        assert_matches_type(ModerateAnalyzeResponse, moderate, path=["response"])
+        assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_analyze_with_all_params(self, async_client: AsyncModerationAPI) -> None:
-        moderate = await async_client.moderate.analyze(
+    async def test_method_submit_with_all_params(self, async_client: AsyncModerationAPI) -> None:
+        content = await async_client.content.submit(
             content={
                 "text": "x",
                 "type": "text",
@@ -111,12 +111,12 @@ class TestAsyncModerate:
             metadata={"foo": "bar"},
             meta_type="profile",
         )
-        assert_matches_type(ModerateAnalyzeResponse, moderate, path=["response"])
+        assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_analyze(self, async_client: AsyncModerationAPI) -> None:
-        response = await async_client.moderate.with_raw_response.analyze(
+    async def test_raw_response_submit(self, async_client: AsyncModerationAPI) -> None:
+        response = await async_client.content.with_raw_response.submit(
             content={
                 "text": "x",
                 "type": "text",
@@ -125,13 +125,13 @@ class TestAsyncModerate:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        moderate = await response.parse()
-        assert_matches_type(ModerateAnalyzeResponse, moderate, path=["response"])
+        content = await response.parse()
+        assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_analyze(self, async_client: AsyncModerationAPI) -> None:
-        async with async_client.moderate.with_streaming_response.analyze(
+    async def test_streaming_response_submit(self, async_client: AsyncModerationAPI) -> None:
+        async with async_client.content.with_streaming_response.submit(
             content={
                 "text": "x",
                 "type": "text",
@@ -140,7 +140,7 @@ class TestAsyncModerate:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            moderate = await response.parse()
-            assert_matches_type(ModerateAnalyzeResponse, moderate, path=["response"])
+            content = await response.parse()
+            assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
         assert cast(Any, response.is_closed) is True

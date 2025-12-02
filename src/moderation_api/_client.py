@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import auth, account, authors, moderate
+from .resources import auth, account, authors, content
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, ModerationAPIError
 from ._base_client import (
@@ -49,7 +49,7 @@ class ModerationAPI(SyncAPIClient):
     authors: authors.AuthorsResource
     queue: queue.QueueResource
     actions: actions.ActionsResource
-    moderate: moderate.ModerateResource
+    content: content.ContentResource
     account: account.AccountResource
     auth: auth.AuthResource
     wordlist: wordlist.WordlistResource
@@ -113,7 +113,7 @@ class ModerationAPI(SyncAPIClient):
         self.authors = authors.AuthorsResource(self)
         self.queue = queue.QueueResource(self)
         self.actions = actions.ActionsResource(self)
-        self.moderate = moderate.ModerateResource(self)
+        self.content = content.ContentResource(self)
         self.account = account.AccountResource(self)
         self.auth = auth.AuthResource(self)
         self.wordlist = wordlist.WordlistResource(self)
@@ -229,7 +229,7 @@ class AsyncModerationAPI(AsyncAPIClient):
     authors: authors.AsyncAuthorsResource
     queue: queue.AsyncQueueResource
     actions: actions.AsyncActionsResource
-    moderate: moderate.AsyncModerateResource
+    content: content.AsyncContentResource
     account: account.AsyncAccountResource
     auth: auth.AsyncAuthResource
     wordlist: wordlist.AsyncWordlistResource
@@ -293,7 +293,7 @@ class AsyncModerationAPI(AsyncAPIClient):
         self.authors = authors.AsyncAuthorsResource(self)
         self.queue = queue.AsyncQueueResource(self)
         self.actions = actions.AsyncActionsResource(self)
-        self.moderate = moderate.AsyncModerateResource(self)
+        self.content = content.AsyncContentResource(self)
         self.account = account.AsyncAccountResource(self)
         self.auth = auth.AsyncAuthResource(self)
         self.wordlist = wordlist.AsyncWordlistResource(self)
@@ -410,7 +410,7 @@ class ModerationAPIWithRawResponse:
         self.authors = authors.AuthorsResourceWithRawResponse(client.authors)
         self.queue = queue.QueueResourceWithRawResponse(client.queue)
         self.actions = actions.ActionsResourceWithRawResponse(client.actions)
-        self.moderate = moderate.ModerateResourceWithRawResponse(client.moderate)
+        self.content = content.ContentResourceWithRawResponse(client.content)
         self.account = account.AccountResourceWithRawResponse(client.account)
         self.auth = auth.AuthResourceWithRawResponse(client.auth)
         self.wordlist = wordlist.WordlistResourceWithRawResponse(client.wordlist)
@@ -421,7 +421,7 @@ class AsyncModerationAPIWithRawResponse:
         self.authors = authors.AsyncAuthorsResourceWithRawResponse(client.authors)
         self.queue = queue.AsyncQueueResourceWithRawResponse(client.queue)
         self.actions = actions.AsyncActionsResourceWithRawResponse(client.actions)
-        self.moderate = moderate.AsyncModerateResourceWithRawResponse(client.moderate)
+        self.content = content.AsyncContentResourceWithRawResponse(client.content)
         self.account = account.AsyncAccountResourceWithRawResponse(client.account)
         self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
         self.wordlist = wordlist.AsyncWordlistResourceWithRawResponse(client.wordlist)
@@ -432,7 +432,7 @@ class ModerationAPIWithStreamedResponse:
         self.authors = authors.AuthorsResourceWithStreamingResponse(client.authors)
         self.queue = queue.QueueResourceWithStreamingResponse(client.queue)
         self.actions = actions.ActionsResourceWithStreamingResponse(client.actions)
-        self.moderate = moderate.ModerateResourceWithStreamingResponse(client.moderate)
+        self.content = content.ContentResourceWithStreamingResponse(client.content)
         self.account = account.AccountResourceWithStreamingResponse(client.account)
         self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
         self.wordlist = wordlist.WordlistResourceWithStreamingResponse(client.wordlist)
@@ -443,7 +443,7 @@ class AsyncModerationAPIWithStreamedResponse:
         self.authors = authors.AsyncAuthorsResourceWithStreamingResponse(client.authors)
         self.queue = queue.AsyncQueueResourceWithStreamingResponse(client.queue)
         self.actions = actions.AsyncActionsResourceWithStreamingResponse(client.actions)
-        self.moderate = moderate.AsyncModerateResourceWithStreamingResponse(client.moderate)
+        self.content = content.AsyncContentResourceWithStreamingResponse(client.content)
         self.account = account.AsyncAccountResourceWithStreamingResponse(client.account)
         self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
         self.wordlist = wordlist.AsyncWordlistResourceWithStreamingResponse(client.wordlist)
