@@ -87,24 +87,12 @@ Methods:
 Types:
 
 ```python
-from moderation_api.types import (
-    ModerateAnalyzeResponse,
-    ModerateAnalyzeAudioResponse,
-    ModerateAnalyzeImageResponse,
-    ModerateAnalyzeObjectResponse,
-    ModerateAnalyzeTextResponse,
-    ModerateAnalyzeVideoResponse,
-)
+from moderation_api.types import ModerateAnalyzeResponse
 ```
 
 Methods:
 
 - <code title="post /moderate">client.moderate.<a href="./src/moderation_api/resources/moderate.py">analyze</a>(\*\*<a href="src/moderation_api/types/moderate_analyze_params.py">params</a>) -> <a href="./src/moderation_api/types/moderate_analyze_response.py">ModerateAnalyzeResponse</a></code>
-- <code title="post /moderate/audio">client.moderate.<a href="./src/moderation_api/resources/moderate.py">analyze_audio</a>(\*\*<a href="src/moderation_api/types/moderate_analyze_audio_params.py">params</a>) -> <a href="./src/moderation_api/types/moderate_analyze_audio_response.py">ModerateAnalyzeAudioResponse</a></code>
-- <code title="post /moderate/image">client.moderate.<a href="./src/moderation_api/resources/moderate.py">analyze_image</a>(\*\*<a href="src/moderation_api/types/moderate_analyze_image_params.py">params</a>) -> <a href="./src/moderation_api/types/moderate_analyze_image_response.py">ModerateAnalyzeImageResponse</a></code>
-- <code title="post /moderate/object">client.moderate.<a href="./src/moderation_api/resources/moderate.py">analyze_object</a>(\*\*<a href="src/moderation_api/types/moderate_analyze_object_params.py">params</a>) -> <a href="./src/moderation_api/types/moderate_analyze_object_response.py">ModerateAnalyzeObjectResponse</a></code>
-- <code title="post /moderate/text">client.moderate.<a href="./src/moderation_api/resources/moderate.py">analyze_text</a>(\*\*<a href="src/moderation_api/types/moderate_analyze_text_params.py">params</a>) -> <a href="./src/moderation_api/types/moderate_analyze_text_response.py">ModerateAnalyzeTextResponse</a></code>
-- <code title="post /moderate/video">client.moderate.<a href="./src/moderation_api/resources/moderate.py">analyze_video</a>(\*\*<a href="src/moderation_api/types/moderate_analyze_video_params.py">params</a>) -> <a href="./src/moderation_api/types/moderate_analyze_video_response.py">ModerateAnalyzeVideoResponse</a></code>
 
 # Account
 
