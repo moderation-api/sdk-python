@@ -86,6 +86,7 @@ pip install 'moderation_api[aiohttp] @ git+ssh://git@github.com/stainless-sdks/m
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from moderation_api import DefaultAioHttpClient
 from moderation_api import AsyncModerationAPI
@@ -93,7 +94,9 @@ from moderation_api import AsyncModerationAPI
 
 async def main() -> None:
     async with AsyncModerationAPI(
-        bearer_token="My Bearer Token",
+        bearer_token=os.environ.get(
+            "MODERATION_API_BEARER_TOKEN"
+        ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         authors = await client.authors.list()
