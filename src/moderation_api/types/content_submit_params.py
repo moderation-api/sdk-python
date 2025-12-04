@@ -21,31 +21,31 @@ __all__ = [
     "ContentContentNodeDataVideo",
     "ContentContentNodeDataAudio",
     "Policy",
-    "PolicyUnionMember0",
-    "PolicyUnionMember1",
-    "PolicyUnionMember2",
-    "PolicyUnionMember3",
-    "PolicyUnionMember4",
-    "PolicyUnionMember5",
-    "PolicyUnionMember6",
-    "PolicyUnionMember7",
-    "PolicyUnionMember8",
-    "PolicyUnionMember9",
-    "PolicyUnionMember10",
-    "PolicyUnionMember11",
-    "PolicyUnionMember12",
-    "PolicyUnionMember13",
-    "PolicyUnionMember14",
-    "PolicyUnionMember15",
-    "PolicyUnionMember16",
-    "PolicyUnionMember17",
-    "PolicyUnionMember18",
-    "PolicyUnionMember19",
-    "PolicyUnionMember20",
-    "PolicyUnionMember20Entities",
-    "PolicyUnionMember21",
-    "PolicyUnionMember21Entities",
-    "PolicyUnionMember22",
+    "PolicyToxicity",
+    "PolicyPersonalInformation",
+    "PolicyToxicitySevere",
+    "PolicyHate",
+    "PolicyIllicit",
+    "PolicyIllicitDrugs",
+    "PolicyIllicitAlcohol",
+    "PolicyIllicitFirearms",
+    "PolicyIllicitTobacco",
+    "PolicyIllicitGambling",
+    "PolicySexual",
+    "PolicyFlirtation",
+    "PolicyProfanity",
+    "PolicyViolence",
+    "PolicySelfHarm",
+    "PolicySpam",
+    "PolicySelfPromotion",
+    "PolicyPolitical",
+    "PolicyReligion",
+    "PolicyCodeAbuse",
+    "PolicyPiiMasking",
+    "PolicyPiiMaskingEntities",
+    "PolicyURLMasking",
+    "PolicyURLMaskingEntities",
+    "PolicyGuideline",
 ]
 
 
@@ -158,127 +158,127 @@ class ContentContentNode(TypedDict, total=False):
 Content: TypeAlias = Union[ContentText, ContentImage, ContentVideo, ContentAudio, ContentContentNode]
 
 
-class PolicyUnionMember0(TypedDict, total=False):
+class PolicyToxicity(TypedDict, total=False):
     id: Required[Literal["toxicity"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember1(TypedDict, total=False):
+class PolicyPersonalInformation(TypedDict, total=False):
     id: Required[Literal["personal_information"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember2(TypedDict, total=False):
+class PolicyToxicitySevere(TypedDict, total=False):
     id: Required[Literal["toxicity_severe"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember3(TypedDict, total=False):
+class PolicyHate(TypedDict, total=False):
     id: Required[Literal["hate"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember4(TypedDict, total=False):
+class PolicyIllicit(TypedDict, total=False):
     id: Required[Literal["illicit"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember5(TypedDict, total=False):
+class PolicyIllicitDrugs(TypedDict, total=False):
     id: Required[Literal["illicit_drugs"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember6(TypedDict, total=False):
+class PolicyIllicitAlcohol(TypedDict, total=False):
     id: Required[Literal["illicit_alcohol"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember7(TypedDict, total=False):
+class PolicyIllicitFirearms(TypedDict, total=False):
     id: Required[Literal["illicit_firearms"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember8(TypedDict, total=False):
+class PolicyIllicitTobacco(TypedDict, total=False):
     id: Required[Literal["illicit_tobacco"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember9(TypedDict, total=False):
+class PolicyIllicitGambling(TypedDict, total=False):
     id: Required[Literal["illicit_gambling"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember10(TypedDict, total=False):
+class PolicySexual(TypedDict, total=False):
     id: Required[Literal["sexual"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember11(TypedDict, total=False):
+class PolicyFlirtation(TypedDict, total=False):
     id: Required[Literal["flirtation"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember12(TypedDict, total=False):
+class PolicyProfanity(TypedDict, total=False):
     id: Required[Literal["profanity"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember13(TypedDict, total=False):
+class PolicyViolence(TypedDict, total=False):
     id: Required[Literal["violence"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember14(TypedDict, total=False):
+class PolicySelfHarm(TypedDict, total=False):
     id: Required[Literal["self_harm"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember15(TypedDict, total=False):
+class PolicySpam(TypedDict, total=False):
     id: Required[Literal["spam"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember16(TypedDict, total=False):
+class PolicySelfPromotion(TypedDict, total=False):
     id: Required[Literal["self_promotion"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember17(TypedDict, total=False):
+class PolicyPolitical(TypedDict, total=False):
     id: Required[Literal["political"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember18(TypedDict, total=False):
+class PolicyReligion(TypedDict, total=False):
     id: Required[Literal["religion"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember19(TypedDict, total=False):
+class PolicyCodeAbuse(TypedDict, total=False):
     id: Required[Literal["code_abuse"]]
 
     flag: Required[bool]
 
 
-class PolicyUnionMember20Entities(TypedDict, total=False):
+class PolicyPiiMaskingEntities(TypedDict, total=False):
     id: Required[
         Literal["email", "phone", "url", "address", "name", "username", "ip_address", "credit_card", "sensitive_other"]
     ]
@@ -292,13 +292,13 @@ class PolicyUnionMember20Entities(TypedDict, total=False):
     mask: str
 
 
-class PolicyUnionMember20(TypedDict, total=False):
+class PolicyPiiMasking(TypedDict, total=False):
     id: Required[Literal["pii"]]
 
-    entities: Required[Dict[str, PolicyUnionMember20Entities]]
+    entities: Required[Dict[str, PolicyPiiMaskingEntities]]
 
 
-class PolicyUnionMember21Entities(TypedDict, total=False):
+class PolicyURLMaskingEntities(TypedDict, total=False):
     id: Required[
         Literal["email", "phone", "url", "address", "name", "username", "ip_address", "credit_card", "sensitive_other"]
     ]
@@ -312,13 +312,13 @@ class PolicyUnionMember21Entities(TypedDict, total=False):
     mask: str
 
 
-class PolicyUnionMember21(TypedDict, total=False):
+class PolicyURLMasking(TypedDict, total=False):
     id: Required[Literal["url"]]
 
-    entities: Required[Dict[str, PolicyUnionMember21Entities]]
+    entities: Required[Dict[str, PolicyURLMaskingEntities]]
 
 
-class PolicyUnionMember22(TypedDict, total=False):
+class PolicyGuideline(TypedDict, total=False):
     id: Required[Literal["guideline"]]
 
     flag: Required[bool]
@@ -329,27 +329,27 @@ class PolicyUnionMember22(TypedDict, total=False):
 
 
 Policy: TypeAlias = Union[
-    PolicyUnionMember0,
-    PolicyUnionMember1,
-    PolicyUnionMember2,
-    PolicyUnionMember3,
-    PolicyUnionMember4,
-    PolicyUnionMember5,
-    PolicyUnionMember6,
-    PolicyUnionMember7,
-    PolicyUnionMember8,
-    PolicyUnionMember9,
-    PolicyUnionMember10,
-    PolicyUnionMember11,
-    PolicyUnionMember12,
-    PolicyUnionMember13,
-    PolicyUnionMember14,
-    PolicyUnionMember15,
-    PolicyUnionMember16,
-    PolicyUnionMember17,
-    PolicyUnionMember18,
-    PolicyUnionMember19,
-    PolicyUnionMember20,
-    PolicyUnionMember21,
-    PolicyUnionMember22,
+    PolicyToxicity,
+    PolicyPersonalInformation,
+    PolicyToxicitySevere,
+    PolicyHate,
+    PolicyIllicit,
+    PolicyIllicitDrugs,
+    PolicyIllicitAlcohol,
+    PolicyIllicitFirearms,
+    PolicyIllicitTobacco,
+    PolicyIllicitGambling,
+    PolicySexual,
+    PolicyFlirtation,
+    PolicyProfanity,
+    PolicyViolence,
+    PolicySelfHarm,
+    PolicySpam,
+    PolicySelfPromotion,
+    PolicyPolitical,
+    PolicyReligion,
+    PolicyCodeAbuse,
+    PolicyPiiMasking,
+    PolicyURLMasking,
+    PolicyGuideline,
 ]
