@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
@@ -20,6 +20,32 @@ __all__ = [
     "ContentUnionMember4DataUnionMember1",
     "ContentUnionMember4DataUnionMember2",
     "ContentUnionMember4DataUnionMember3",
+    "Policy",
+    "PolicyUnionMember0",
+    "PolicyUnionMember1",
+    "PolicyUnionMember2",
+    "PolicyUnionMember3",
+    "PolicyUnionMember4",
+    "PolicyUnionMember5",
+    "PolicyUnionMember6",
+    "PolicyUnionMember7",
+    "PolicyUnionMember8",
+    "PolicyUnionMember9",
+    "PolicyUnionMember10",
+    "PolicyUnionMember11",
+    "PolicyUnionMember12",
+    "PolicyUnionMember13",
+    "PolicyUnionMember14",
+    "PolicyUnionMember15",
+    "PolicyUnionMember16",
+    "PolicyUnionMember17",
+    "PolicyUnionMember18",
+    "PolicyUnionMember19",
+    "PolicyUnionMember20",
+    "PolicyUnionMember20Entities",
+    "PolicyUnionMember21",
+    "PolicyUnionMember21Entities",
+    "PolicyUnionMember22",
 ]
 
 
@@ -53,6 +79,12 @@ class ContentSubmitParams(TypedDict, total=False):
         PropertyInfo(alias="metaType"),
     ]
     """The meta type of content being moderated"""
+
+    policies: Iterable[Policy]
+    """
+    Optionally override the channel policies for this moderation request only
+    (enterprise).
+    """
 
 
 class ContentUnionMember0(TypedDict, total=False):
@@ -128,4 +160,201 @@ class ContentUnionMember4(TypedDict, total=False):
 
 Content: TypeAlias = Union[
     ContentUnionMember0, ContentUnionMember1, ContentUnionMember2, ContentUnionMember3, ContentUnionMember4
+]
+
+
+class PolicyUnionMember0(TypedDict, total=False):
+    id: Required[Literal["toxicity"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember1(TypedDict, total=False):
+    id: Required[Literal["personal_information"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember2(TypedDict, total=False):
+    id: Required[Literal["toxicity_severe"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember3(TypedDict, total=False):
+    id: Required[Literal["hate"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember4(TypedDict, total=False):
+    id: Required[Literal["illicit"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember5(TypedDict, total=False):
+    id: Required[Literal["illicit_drugs"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember6(TypedDict, total=False):
+    id: Required[Literal["illicit_alcohol"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember7(TypedDict, total=False):
+    id: Required[Literal["illicit_firearms"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember8(TypedDict, total=False):
+    id: Required[Literal["illicit_tobacco"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember9(TypedDict, total=False):
+    id: Required[Literal["illicit_gambling"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember10(TypedDict, total=False):
+    id: Required[Literal["sexual"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember11(TypedDict, total=False):
+    id: Required[Literal["flirtation"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember12(TypedDict, total=False):
+    id: Required[Literal["profanity"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember13(TypedDict, total=False):
+    id: Required[Literal["violence"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember14(TypedDict, total=False):
+    id: Required[Literal["self_harm"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember15(TypedDict, total=False):
+    id: Required[Literal["spam"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember16(TypedDict, total=False):
+    id: Required[Literal["self_promotion"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember17(TypedDict, total=False):
+    id: Required[Literal["political"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember18(TypedDict, total=False):
+    id: Required[Literal["religion"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember19(TypedDict, total=False):
+    id: Required[Literal["code_abuse"]]
+
+    flag: Required[bool]
+
+
+class PolicyUnionMember20Entities(TypedDict, total=False):
+    id: Required[
+        Literal["email", "phone", "url", "address", "name", "username", "ip_address", "credit_card", "sensitive_other"]
+    ]
+
+    enable: Required[bool]
+
+    flag: Required[bool]
+
+    should_mask: Required[Annotated[bool, PropertyInfo(alias="shouldMask")]]
+
+    mask: str
+
+
+class PolicyUnionMember20(TypedDict, total=False):
+    id: Required[Literal["pii"]]
+
+    entities: Required[Dict[str, PolicyUnionMember20Entities]]
+
+
+class PolicyUnionMember21Entities(TypedDict, total=False):
+    id: Required[
+        Literal["email", "phone", "url", "address", "name", "username", "ip_address", "credit_card", "sensitive_other"]
+    ]
+
+    enable: Required[bool]
+
+    flag: Required[bool]
+
+    should_mask: Required[Annotated[bool, PropertyInfo(alias="shouldMask")]]
+
+    mask: str
+
+
+class PolicyUnionMember21(TypedDict, total=False):
+    id: Required[Literal["url"]]
+
+    entities: Required[Dict[str, PolicyUnionMember21Entities]]
+
+
+class PolicyUnionMember22(TypedDict, total=False):
+    id: Required[Literal["guideline"]]
+
+    flag: Required[bool]
+
+    guideline_key: Required[Annotated[str, PropertyInfo(alias="guidelineKey")]]
+
+    instructions: Required[str]
+
+
+Policy: TypeAlias = Union[
+    PolicyUnionMember0,
+    PolicyUnionMember1,
+    PolicyUnionMember2,
+    PolicyUnionMember3,
+    PolicyUnionMember4,
+    PolicyUnionMember5,
+    PolicyUnionMember6,
+    PolicyUnionMember7,
+    PolicyUnionMember8,
+    PolicyUnionMember9,
+    PolicyUnionMember10,
+    PolicyUnionMember11,
+    PolicyUnionMember12,
+    PolicyUnionMember13,
+    PolicyUnionMember14,
+    PolicyUnionMember15,
+    PolicyUnionMember16,
+    PolicyUnionMember17,
+    PolicyUnionMember18,
+    PolicyUnionMember19,
+    PolicyUnionMember20,
+    PolicyUnionMember21,
+    PolicyUnionMember22,
 ]

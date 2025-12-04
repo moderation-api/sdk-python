@@ -43,6 +43,12 @@ class TestContent:
             do_not_store=True,
             metadata={"foo": "bar"},
             meta_type="profile",
+            policies=[
+                {
+                    "id": "toxicity",
+                    "flag": True,
+                }
+            ],
         )
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
@@ -110,6 +116,12 @@ class TestAsyncContent:
             do_not_store=True,
             metadata={"foo": "bar"},
             meta_type="profile",
+            policies=[
+                {
+                    "id": "toxicity",
+                    "flag": True,
+                }
+            ],
         )
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 

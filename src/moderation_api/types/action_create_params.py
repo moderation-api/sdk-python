@@ -61,6 +61,8 @@ class ActionCreateParams(TypedDict, total=False):
             "AUTHOR_REPORT",
             "AUTHOR_WARN",
             "AUTHOR_CUSTOM",
+            "ITEM_REJECT",
+            "ITEM_ALLOW",
             "ITEM_CUSTOM",
         ]
     ]
