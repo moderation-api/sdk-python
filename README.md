@@ -35,8 +35,13 @@ client = ModerationAPI(
     secret_key=os.environ.get("MODAPI_SECRET_KEY"),  # This is the default and can be omitted
 )
 
-authors = client.authors.list()
-print(authors.authors)
+response = client.content.submit(
+    content={
+        "text": "x",
+        "type": "text",
+    },
+)
+print(response.recommendation)
 ```
 
 While you can provide a `secret_key` keyword argument,
@@ -59,8 +64,13 @@ client = AsyncModerationAPI(
 
 
 async def main() -> None:
-    authors = await client.authors.list()
-    print(authors.authors)
+    response = await client.content.submit(
+        content={
+            "text": "x",
+            "type": "text",
+        },
+    )
+    print(response.recommendation)
 
 
 asyncio.run(main())
@@ -93,8 +103,13 @@ async def main() -> None:
         secret_key=os.environ.get("MODAPI_SECRET_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        authors = await client.authors.list()
-        print(authors.authors)
+        response = await client.content.submit(
+            content={
+                "text": "x",
+                "type": "text",
+            },
+        )
+        print(response.recommendation)
 
 
 asyncio.run(main())
@@ -141,7 +156,12 @@ from moderation_api import ModerationAPI
 client = ModerationAPI()
 
 try:
-    client.authors.list()
+    client.content.submit(
+        content={
+            "text": "x",
+            "type": "text",
+        },
+    )
 except moderation_api.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -184,7 +204,12 @@ client = ModerationAPI(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).authors.list()
+client.with_options(max_retries=5).content.submit(
+    content={
+        "text": "x",
+        "type": "text",
+    },
+)
 ```
 
 ### Timeouts
@@ -207,7 +232,12 @@ client = ModerationAPI(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).authors.list()
+client.with_options(timeout=5.0).content.submit(
+    content={
+        "text": "x",
+        "type": "text",
+    },
+)
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -248,11 +278,16 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from moderation_api import ModerationAPI
 
 client = ModerationAPI()
-response = client.authors.with_raw_response.list()
+response = client.content.with_raw_response.submit(
+    content={
+        "text": "x",
+        "type": "text",
+    },
+)
 print(response.headers.get('X-My-Header'))
 
-author = response.parse()  # get the object that `authors.list()` would have returned
-print(author.authors)
+content = response.parse()  # get the object that `content.submit()` would have returned
+print(content.recommendation)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/moderation-api-python/tree/main/src/moderation_api/_response.py) object.
@@ -266,7 +301,12 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.authors.with_streaming_response.list() as response:
+with client.content.with_streaming_response.submit(
+    content={
+        "text": "x",
+        "type": "text",
+    },
+) as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
