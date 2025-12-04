@@ -37,7 +37,7 @@ from moderation_api._base_client import (
 from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-bearer_token = "My Bearer Token"
+secret_key = "My Secret Key"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -83,9 +83,9 @@ class TestModerationAPI:
         copied = client.copy()
         assert id(copied) != id(client)
 
-        copied = client.copy(bearer_token="another My Bearer Token")
-        assert copied.bearer_token == "another My Bearer Token"
-        assert client.bearer_token == "My Bearer Token"
+        copied = client.copy(secret_key="another My Secret Key")
+        assert copied.secret_key == "another My Secret Key"
+        assert client.secret_key == "My Secret Key"
 
     def test_copy_default_options(self, client: ModerationAPI) -> None:
         # options that have a default are overridden correctly
@@ -105,10 +105,7 @@ class TestModerationAPI:
 
     def test_copy_default_headers(self) -> None:
         client = ModerationAPI(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
 
@@ -143,7 +140,7 @@ class TestModerationAPI:
 
     def test_copy_default_query(self) -> None:
         client = ModerationAPI(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, default_query={"foo": "bar"}
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
 
@@ -269,7 +266,7 @@ class TestModerationAPI:
 
     def test_client_timeout_option(self) -> None:
         client = ModerationAPI(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, timeout=httpx.Timeout(0)
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -282,7 +279,7 @@ class TestModerationAPI:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
             client = ModerationAPI(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, secret_key=secret_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -294,7 +291,7 @@ class TestModerationAPI:
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
             client = ModerationAPI(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, secret_key=secret_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -306,7 +303,7 @@ class TestModerationAPI:
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = ModerationAPI(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, secret_key=secret_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -320,17 +317,14 @@ class TestModerationAPI:
             async with httpx.AsyncClient() as http_client:
                 ModerationAPI(
                     base_url=base_url,
-                    bearer_token=bearer_token,
+                    secret_key=secret_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
 
     def test_default_headers_option(self) -> None:
         test_client = ModerationAPI(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = test_client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
@@ -338,7 +332,7 @@ class TestModerationAPI:
 
         test_client2 = ModerationAPI(
             base_url=base_url,
-            bearer_token=bearer_token,
+            secret_key=secret_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -353,19 +347,19 @@ class TestModerationAPI:
         test_client2.close()
 
     def test_validate_headers(self) -> None:
-        client = ModerationAPI(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = ModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
+        assert request.headers.get("Authorization") == f"Bearer {secret_key}"
 
         with pytest.raises(ModerationAPIError):
-            with update_env(**{"MODERATION_API_BEARER_TOKEN": Omit()}):
-                client2 = ModerationAPI(base_url=base_url, bearer_token=None, _strict_response_validation=True)
+            with update_env(**{"MODAPI_SECRET_KEY": Omit()}):
+                client2 = ModerationAPI(base_url=base_url, secret_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
         client = ModerationAPI(
             base_url=base_url,
-            bearer_token=bearer_token,
+            secret_key=secret_key,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -572,7 +566,7 @@ class TestModerationAPI:
 
     def test_base_url_setter(self) -> None:
         client = ModerationAPI(
-            base_url="https://example.com/from_init", bearer_token=bearer_token, _strict_response_validation=True
+            base_url="https://example.com/from_init", secret_key=secret_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
 
@@ -584,20 +578,18 @@ class TestModerationAPI:
 
     def test_base_url_env(self) -> None:
         with update_env(MODERATION_API_BASE_URL="http://localhost:5000/from/env"):
-            client = ModerationAPI(bearer_token=bearer_token, _strict_response_validation=True)
+            client = ModerationAPI(secret_key=secret_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
             ModerationAPI(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", secret_key=secret_key, _strict_response_validation=True
             ),
             ModerationAPI(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                secret_key=secret_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -619,13 +611,11 @@ class TestModerationAPI:
         "client",
         [
             ModerationAPI(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", secret_key=secret_key, _strict_response_validation=True
             ),
             ModerationAPI(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                secret_key=secret_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -647,13 +637,11 @@ class TestModerationAPI:
         "client",
         [
             ModerationAPI(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", secret_key=secret_key, _strict_response_validation=True
             ),
             ModerationAPI(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                secret_key=secret_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -672,7 +660,7 @@ class TestModerationAPI:
         client.close()
 
     def test_copied_client_does_not_close_http(self) -> None:
-        test_client = ModerationAPI(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        test_client = ModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=True)
         assert not test_client.is_closed()
 
         copied = test_client.copy()
@@ -683,7 +671,7 @@ class TestModerationAPI:
         assert not test_client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        test_client = ModerationAPI(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        test_client = ModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=True)
         with test_client as c2:
             assert c2 is test_client
             assert not c2.is_closed()
@@ -705,10 +693,7 @@ class TestModerationAPI:
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
             ModerationAPI(
-                base_url=base_url,
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
-                max_retries=cast(Any, None),
+                base_url=base_url, secret_key=secret_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
     @pytest.mark.respx(base_url=base_url)
@@ -718,14 +703,12 @@ class TestModerationAPI:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = ModerationAPI(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        strict_client = ModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        non_strict_client = ModerationAPI(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=False
-        )
+        non_strict_client = ModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=False)
 
         response = non_strict_client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -932,9 +915,9 @@ class TestAsyncModerationAPI:
         copied = async_client.copy()
         assert id(copied) != id(async_client)
 
-        copied = async_client.copy(bearer_token="another My Bearer Token")
-        assert copied.bearer_token == "another My Bearer Token"
-        assert async_client.bearer_token == "My Bearer Token"
+        copied = async_client.copy(secret_key="another My Secret Key")
+        assert copied.secret_key == "another My Secret Key"
+        assert async_client.secret_key == "My Secret Key"
 
     def test_copy_default_options(self, async_client: AsyncModerationAPI) -> None:
         # options that have a default are overridden correctly
@@ -954,10 +937,7 @@ class TestAsyncModerationAPI:
 
     async def test_copy_default_headers(self) -> None:
         client = AsyncModerationAPI(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
 
@@ -992,7 +972,7 @@ class TestAsyncModerationAPI:
 
     async def test_copy_default_query(self) -> None:
         client = AsyncModerationAPI(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, default_query={"foo": "bar"}
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
 
@@ -1120,7 +1100,7 @@ class TestAsyncModerationAPI:
 
     async def test_client_timeout_option(self) -> None:
         client = AsyncModerationAPI(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, timeout=httpx.Timeout(0)
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1133,7 +1113,7 @@ class TestAsyncModerationAPI:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
             client = AsyncModerationAPI(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, secret_key=secret_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1145,7 +1125,7 @@ class TestAsyncModerationAPI:
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
             client = AsyncModerationAPI(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, secret_key=secret_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1157,7 +1137,7 @@ class TestAsyncModerationAPI:
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = AsyncModerationAPI(
-                base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True, http_client=http_client
+                base_url=base_url, secret_key=secret_key, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1171,17 +1151,14 @@ class TestAsyncModerationAPI:
             with httpx.Client() as http_client:
                 AsyncModerationAPI(
                     base_url=base_url,
-                    bearer_token=bearer_token,
+                    secret_key=secret_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
 
     async def test_default_headers_option(self) -> None:
         test_client = AsyncModerationAPI(
-            base_url=base_url,
-            bearer_token=bearer_token,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = test_client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
@@ -1189,7 +1166,7 @@ class TestAsyncModerationAPI:
 
         test_client2 = AsyncModerationAPI(
             base_url=base_url,
-            bearer_token=bearer_token,
+            secret_key=secret_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -1204,19 +1181,19 @@ class TestAsyncModerationAPI:
         await test_client2.close()
 
     def test_validate_headers(self) -> None:
-        client = AsyncModerationAPI(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        client = AsyncModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {bearer_token}"
+        assert request.headers.get("Authorization") == f"Bearer {secret_key}"
 
         with pytest.raises(ModerationAPIError):
-            with update_env(**{"MODERATION_API_BEARER_TOKEN": Omit()}):
-                client2 = AsyncModerationAPI(base_url=base_url, bearer_token=None, _strict_response_validation=True)
+            with update_env(**{"MODAPI_SECRET_KEY": Omit()}):
+                client2 = AsyncModerationAPI(base_url=base_url, secret_key=None, _strict_response_validation=True)
             _ = client2
 
     async def test_default_query_option(self) -> None:
         client = AsyncModerationAPI(
             base_url=base_url,
-            bearer_token=bearer_token,
+            secret_key=secret_key,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -1425,7 +1402,7 @@ class TestAsyncModerationAPI:
 
     async def test_base_url_setter(self) -> None:
         client = AsyncModerationAPI(
-            base_url="https://example.com/from_init", bearer_token=bearer_token, _strict_response_validation=True
+            base_url="https://example.com/from_init", secret_key=secret_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
 
@@ -1437,20 +1414,18 @@ class TestAsyncModerationAPI:
 
     async def test_base_url_env(self) -> None:
         with update_env(MODERATION_API_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncModerationAPI(bearer_token=bearer_token, _strict_response_validation=True)
+            client = AsyncModerationAPI(secret_key=secret_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
             AsyncModerationAPI(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", secret_key=secret_key, _strict_response_validation=True
             ),
             AsyncModerationAPI(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                secret_key=secret_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1472,13 +1447,11 @@ class TestAsyncModerationAPI:
         "client",
         [
             AsyncModerationAPI(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", secret_key=secret_key, _strict_response_validation=True
             ),
             AsyncModerationAPI(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                secret_key=secret_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1500,13 +1473,11 @@ class TestAsyncModerationAPI:
         "client",
         [
             AsyncModerationAPI(
-                base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
+                base_url="http://localhost:5000/custom/path/", secret_key=secret_key, _strict_response_validation=True
             ),
             AsyncModerationAPI(
                 base_url="http://localhost:5000/custom/path/",
-                bearer_token=bearer_token,
+                secret_key=secret_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1525,7 +1496,7 @@ class TestAsyncModerationAPI:
         await client.close()
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        test_client = AsyncModerationAPI(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        test_client = AsyncModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=True)
         assert not test_client.is_closed()
 
         copied = test_client.copy()
@@ -1537,7 +1508,7 @@ class TestAsyncModerationAPI:
         assert not test_client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        test_client = AsyncModerationAPI(base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True)
+        test_client = AsyncModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=True)
         async with test_client as c2:
             assert c2 is test_client
             assert not c2.is_closed()
@@ -1561,10 +1532,7 @@ class TestAsyncModerationAPI:
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
             AsyncModerationAPI(
-                base_url=base_url,
-                bearer_token=bearer_token,
-                _strict_response_validation=True,
-                max_retries=cast(Any, None),
+                base_url=base_url, secret_key=secret_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
     @pytest.mark.respx(base_url=base_url)
@@ -1574,15 +1542,13 @@ class TestAsyncModerationAPI:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncModerationAPI(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=True
-        )
+        strict_client = AsyncModerationAPI(base_url=base_url, secret_key=secret_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
         non_strict_client = AsyncModerationAPI(
-            base_url=base_url, bearer_token=bearer_token, _strict_response_validation=False
+            base_url=base_url, secret_key=secret_key, _strict_response_validation=False
         )
 
         response = await non_strict_client.get("/foo", cast_to=Model)
