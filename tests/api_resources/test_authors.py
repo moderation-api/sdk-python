@@ -196,8 +196,8 @@ class TestAuthors:
             content_types="contentTypes",
             last_active_date="lastActiveDate",
             member_since_date="memberSinceDate",
-            page_number="pageNumber",
-            page_size="pageSize",
+            page_number=0,
+            page_size=0,
             sort_by="trustLevel",
             sort_direction="asc",
         )
@@ -446,8 +446,8 @@ class TestAsyncAuthors:
             content_types="contentTypes",
             last_active_date="lastActiveDate",
             member_since_date="memberSinceDate",
-            page_number="pageNumber",
-            page_size="pageSize",
+            page_number=0,
+            page_size=0,
             sort_by="trustLevel",
             sort_direction="asc",
         )

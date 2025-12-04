@@ -41,8 +41,8 @@ class TestItems:
             filtered_action_ids="filteredActionIds",
             include_resolved="includeResolved",
             labels="labels",
-            page_number="pageNumber",
-            page_size="pageSize",
+            page_number=0,
+            page_size=0,
             sort_direction="asc",
             sort_field="createdAt",
         )
@@ -232,8 +232,8 @@ class TestAsyncItems:
             filtered_action_ids="filteredActionIds",
             include_resolved="includeResolved",
             labels="labels",
-            page_number="pageNumber",
-            page_size="pageSize",
+            page_number=0,
+            page_size=0,
             sort_direction="asc",
             sort_field="createdAt",
         )
