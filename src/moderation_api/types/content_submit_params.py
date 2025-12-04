@@ -10,16 +10,16 @@ from .._utils import PropertyInfo
 __all__ = [
     "ContentSubmitParams",
     "Content",
-    "ContentUnionMember0",
-    "ContentUnionMember1",
-    "ContentUnionMember2",
-    "ContentUnionMember3",
-    "ContentUnionMember4",
-    "ContentUnionMember4Data",
-    "ContentUnionMember4DataUnionMember0",
-    "ContentUnionMember4DataUnionMember1",
-    "ContentUnionMember4DataUnionMember2",
-    "ContentUnionMember4DataUnionMember3",
+    "ContentText",
+    "ContentImage",
+    "ContentVideo",
+    "ContentAudio",
+    "ContentContentNode",
+    "ContentContentNodeData",
+    "ContentContentNodeDataText",
+    "ContentContentNodeDataImage",
+    "ContentContentNodeDataVideo",
+    "ContentContentNodeDataAudio",
     "Policy",
     "PolicyUnionMember0",
     "PolicyUnionMember1",
@@ -87,80 +87,75 @@ class ContentSubmitParams(TypedDict, total=False):
     """
 
 
-class ContentUnionMember0(TypedDict, total=False):
+class ContentText(TypedDict, total=False):
     text: Required[str]
     """The content text"""
 
     type: Required[Literal["text"]]
 
 
-class ContentUnionMember1(TypedDict, total=False):
+class ContentImage(TypedDict, total=False):
     type: Required[Literal["image"]]
 
     url: Required[str]
     """A public URL of the image content"""
 
 
-class ContentUnionMember2(TypedDict, total=False):
+class ContentVideo(TypedDict, total=False):
     type: Required[Literal["video"]]
 
     url: Required[str]
     """A public URL of the video content"""
 
 
-class ContentUnionMember3(TypedDict, total=False):
+class ContentAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
 
     url: Required[str]
     """The URL of the audio content"""
 
 
-class ContentUnionMember4DataUnionMember0(TypedDict, total=False):
+class ContentContentNodeDataText(TypedDict, total=False):
     text: Required[str]
     """The content text"""
 
     type: Required[Literal["text"]]
 
 
-class ContentUnionMember4DataUnionMember1(TypedDict, total=False):
+class ContentContentNodeDataImage(TypedDict, total=False):
     type: Required[Literal["image"]]
 
     url: Required[str]
     """A public URL of the image content"""
 
 
-class ContentUnionMember4DataUnionMember2(TypedDict, total=False):
+class ContentContentNodeDataVideo(TypedDict, total=False):
     type: Required[Literal["video"]]
 
     url: Required[str]
     """A public URL of the video content"""
 
 
-class ContentUnionMember4DataUnionMember3(TypedDict, total=False):
+class ContentContentNodeDataAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
 
     url: Required[str]
     """The URL of the audio content"""
 
 
-ContentUnionMember4Data: TypeAlias = Union[
-    ContentUnionMember4DataUnionMember0,
-    ContentUnionMember4DataUnionMember1,
-    ContentUnionMember4DataUnionMember2,
-    ContentUnionMember4DataUnionMember3,
+ContentContentNodeData: TypeAlias = Union[
+    ContentContentNodeDataText, ContentContentNodeDataImage, ContentContentNodeDataVideo, ContentContentNodeDataAudio
 ]
 
 
-class ContentUnionMember4(TypedDict, total=False):
-    data: Required[Dict[str, ContentUnionMember4Data]]
+class ContentContentNode(TypedDict, total=False):
+    data: Required[Dict[str, ContentContentNodeData]]
     """Values in the object. Can be mixed content types."""
 
     type: Required[Literal["object"]]
 
 
-Content: TypeAlias = Union[
-    ContentUnionMember0, ContentUnionMember1, ContentUnionMember2, ContentUnionMember3, ContentUnionMember4
-]
+Content: TypeAlias = Union[ContentText, ContentImage, ContentVideo, ContentAudio, ContentContentNode]
 
 
 class PolicyUnionMember0(TypedDict, total=False):

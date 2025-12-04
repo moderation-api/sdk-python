@@ -12,20 +12,20 @@ __all__ = [
     "AuthorTrustLevel",
     "Content",
     "ContentModifiedUnionMember1ContentModifiedUnionMember1Item",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember0",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember1",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember2",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember3",
+    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemText",
+    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemImage",
+    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemVideo",
+    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemAudio",
     "Evaluation",
     "Insight",
-    "InsightSentimentInsights",
-    "InsightLanguageInsights",
+    "InsightSentimentInsight",
+    "InsightLanguageInsight",
     "Meta",
     "Policy",
-    "PolicyUnionMember0",
-    "PolicyUnionMember0Label",
-    "PolicyUnionMember1",
-    "PolicyUnionMember1Match",
+    "PolicyClassifierOutput",
+    "PolicyClassifierOutputLabel",
+    "PolicyEntityMatcherOutput",
+    "PolicyEntityMatcherOutputMatch",
     "Recommendation",
     "Error",
 ]
@@ -63,28 +63,28 @@ class Author(BaseModel):
     """The author's ID from your system"""
 
 
-class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember0(BaseModel):
+class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemText(BaseModel):
     text: str
     """The content text"""
 
     type: Literal["text"]
 
 
-class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember1(BaseModel):
+class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemImage(BaseModel):
     type: Literal["image"]
 
     url: str
     """A public URL of the image content"""
 
 
-class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember2(BaseModel):
+class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemVideo(BaseModel):
     type: Literal["video"]
 
     url: str
     """A public URL of the video content"""
 
 
-class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember3(BaseModel):
+class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemAudio(BaseModel):
     type: Literal["audio"]
 
     url: str
@@ -92,10 +92,10 @@ class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember3(Bas
 
 
 ContentModifiedUnionMember1ContentModifiedUnionMember1Item: TypeAlias = Union[
-    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember0,
-    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember1,
-    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember2,
-    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember3,
+    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemText,
+    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemImage,
+    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemVideo,
+    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemAudio,
 ]
 
 
@@ -130,7 +130,7 @@ class Evaluation(BaseModel):
     """Whether the content was flagged for Unicode spoofing."""
 
 
-class InsightSentimentInsights(BaseModel):
+class InsightSentimentInsight(BaseModel):
     id: Literal["sentiment"]
 
     probability: float
@@ -140,7 +140,7 @@ class InsightSentimentInsights(BaseModel):
     value: Optional[Literal["positive", "neutral", "negative"]] = None
 
 
-class InsightLanguageInsights(BaseModel):
+class InsightLanguageInsight(BaseModel):
     id: Literal["language"]
 
     probability: float
@@ -150,7 +150,7 @@ class InsightLanguageInsights(BaseModel):
     value: Optional[str] = None
 
 
-Insight: TypeAlias = Union[InsightSentimentInsights, InsightLanguageInsights]
+Insight: TypeAlias = Union[InsightSentimentInsight, InsightLanguageInsight]
 
 
 class Meta(BaseModel):
@@ -169,7 +169,7 @@ class Meta(BaseModel):
     processing_time: Optional[str] = None
 
 
-class PolicyUnionMember0Label(BaseModel):
+class PolicyClassifierOutputLabel(BaseModel):
     id: str
 
     flagged: bool
@@ -177,7 +177,7 @@ class PolicyUnionMember0Label(BaseModel):
     probability: float
 
 
-class PolicyUnionMember0(BaseModel):
+class PolicyClassifierOutput(BaseModel):
     id: str
     """The unique identifier for the classifier output."""
 
@@ -190,10 +190,10 @@ class PolicyUnionMember0(BaseModel):
     flagged_fields: Optional[List[str]] = None
     """The keys of the flagged fields if submitting an object."""
 
-    labels: Optional[List[PolicyUnionMember0Label]] = None
+    labels: Optional[List[PolicyClassifierOutputLabel]] = None
 
 
-class PolicyUnionMember1Match(BaseModel):
+class PolicyEntityMatcherOutputMatch(BaseModel):
     match: str
 
     probability: float
@@ -201,12 +201,12 @@ class PolicyUnionMember1Match(BaseModel):
     span: List[object]
 
 
-class PolicyUnionMember1(BaseModel):
+class PolicyEntityMatcherOutput(BaseModel):
     id: str
 
     flagged: bool
 
-    matches: List[PolicyUnionMember1Match]
+    matches: List[PolicyEntityMatcherOutputMatch]
 
     probability: float
 
@@ -215,7 +215,7 @@ class PolicyUnionMember1(BaseModel):
     flagged_fields: Optional[List[str]] = None
 
 
-Policy: TypeAlias = Union[PolicyUnionMember0, PolicyUnionMember1]
+Policy: TypeAlias = Union[PolicyClassifierOutput, PolicyEntityMatcherOutput]
 
 
 class Recommendation(BaseModel):
