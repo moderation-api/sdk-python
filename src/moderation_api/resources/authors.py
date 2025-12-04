@@ -233,8 +233,8 @@ class AuthorsResource(SyncAPIResource):
         content_types: str | Omit = omit,
         last_active_date: str | Omit = omit,
         member_since_date: str | Omit = omit,
-        page_number: str | Omit = omit,
-        page_size: str | Omit = omit,
+        page_number: float | Omit = omit,
+        page_size: float | Omit = omit,
         sort_by: Literal[
             "trustLevel",
             "violationCount",
@@ -534,8 +534,8 @@ class AsyncAuthorsResource(AsyncAPIResource):
         content_types: str | Omit = omit,
         last_active_date: str | Omit = omit,
         member_since_date: str | Omit = omit,
-        page_number: str | Omit = omit,
-        page_size: str | Omit = omit,
+        page_number: float | Omit = omit,
+        page_size: float | Omit = omit,
         sort_by: Literal[
             "trustLevel",
             "violationCount",

@@ -56,8 +56,8 @@ class ItemsResource(SyncAPIResource):
         filtered_action_ids: str | Omit = omit,
         include_resolved: str | Omit = omit,
         labels: str | Omit = omit,
-        page_number: str | Omit = omit,
-        page_size: str | Omit = omit,
+        page_number: float | Omit = omit,
+        page_size: float | Omit = omit,
         sort_direction: Literal["asc", "desc"] | Omit = omit,
         sort_field: Literal["createdAt", "severity", "reviewedAt"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -236,8 +236,8 @@ class AsyncItemsResource(AsyncAPIResource):
         filtered_action_ids: str | Omit = omit,
         include_resolved: str | Omit = omit,
         labels: str | Omit = omit,
-        page_number: str | Omit = omit,
-        page_size: str | Omit = omit,
+        page_number: float | Omit = omit,
+        page_size: float | Omit = omit,
         sort_direction: Literal["asc", "desc"] | Omit = omit,
         sort_field: Literal["createdAt", "severity", "reviewedAt"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

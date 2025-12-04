@@ -24,10 +24,10 @@ class ItemListParams(TypedDict, total=False):
 
     labels: str
 
-    page_number: Annotated[str, PropertyInfo(alias="pageNumber")]
+    page_number: Annotated[float, PropertyInfo(alias="pageNumber")]
     """Page number to fetch"""
 
-    page_size: Annotated[str, PropertyInfo(alias="pageSize")]
+    page_size: Annotated[float, PropertyInfo(alias="pageSize")]
     """Number of items per page"""
 
     sort_direction: Annotated[Literal["asc", "desc"], PropertyInfo(alias="sortDirection")]
