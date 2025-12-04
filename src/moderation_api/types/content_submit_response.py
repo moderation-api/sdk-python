@@ -198,7 +198,7 @@ class PolicyEntityMatcherOutputMatch(BaseModel):
 
     probability: float
 
-    span: List[object]
+    span: List[int]
 
 
 class PolicyEntityMatcherOutput(BaseModel):
