@@ -32,19 +32,17 @@ import os
 from moderation_api import ModerationAPI
 
 client = ModerationAPI(
-    bearer_token=os.environ.get(
-        "MODERATION_API_BEARER_TOKEN"
-    ),  # This is the default and can be omitted
+    secret_key=os.environ.get("MODAPI_SECRET_KEY"),  # This is the default and can be omitted
 )
 
 authors = client.authors.list()
 print(authors.authors)
 ```
 
-While you can provide a `bearer_token` keyword argument,
+While you can provide a `secret_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `MODERATION_API_BEARER_TOKEN="My Bearer Token"` to your `.env` file
-so that your Bearer Token is not stored in source control.
+to add `MODAPI_SECRET_KEY="My Secret Key"` to your `.env` file
+so that your Secret Key is not stored in source control.
 
 ## Async usage
 
@@ -56,9 +54,7 @@ import asyncio
 from moderation_api import AsyncModerationAPI
 
 client = AsyncModerationAPI(
-    bearer_token=os.environ.get(
-        "MODERATION_API_BEARER_TOKEN"
-    ),  # This is the default and can be omitted
+    secret_key=os.environ.get("MODAPI_SECRET_KEY"),  # This is the default and can be omitted
 )
 
 
@@ -94,9 +90,7 @@ from moderation_api import AsyncModerationAPI
 
 async def main() -> None:
     async with AsyncModerationAPI(
-        bearer_token=os.environ.get(
-            "MODERATION_API_BEARER_TOKEN"
-        ),  # This is the default and can be omitted
+        secret_key=os.environ.get("MODAPI_SECRET_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         authors = await client.authors.list()

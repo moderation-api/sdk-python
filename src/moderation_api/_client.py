@@ -57,12 +57,12 @@ class ModerationAPI(SyncAPIClient):
     with_streaming_response: ModerationAPIWithStreamedResponse
 
     # client options
-    bearer_token: str
+    secret_key: str
 
     def __init__(
         self,
         *,
-        bearer_token: str | None = None,
+        secret_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -84,15 +84,15 @@ class ModerationAPI(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous ModerationAPI client instance.
 
-        This automatically infers the `bearer_token` argument from the `MODERATION_API_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `secret_key` argument from the `MODAPI_SECRET_KEY` environment variable if it is not provided.
         """
-        if bearer_token is None:
-            bearer_token = os.environ.get("MODERATION_API_BEARER_TOKEN")
-        if bearer_token is None:
+        if secret_key is None:
+            secret_key = os.environ.get("MODAPI_SECRET_KEY")
+        if secret_key is None:
             raise ModerationAPIError(
-                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the MODERATION_API_BEARER_TOKEN environment variable"
+                "The secret_key client option must be set either by passing secret_key to the client or by setting the MODAPI_SECRET_KEY environment variable"
             )
-        self.bearer_token = bearer_token
+        self.secret_key = secret_key
 
         if base_url is None:
             base_url = os.environ.get("MODERATION_API_BASE_URL")
@@ -128,8 +128,8 @@ class ModerationAPI(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        bearer_token = self.bearer_token
-        return {"Authorization": f"Bearer {bearer_token}"}
+        secret_key = self.secret_key
+        return {"Authorization": f"Bearer {secret_key}"}
 
     @property
     @override
@@ -143,7 +143,7 @@ class ModerationAPI(SyncAPIClient):
     def copy(
         self,
         *,
-        bearer_token: str | None = None,
+        secret_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -177,7 +177,7 @@ class ModerationAPI(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            bearer_token=bearer_token or self.bearer_token,
+            secret_key=secret_key or self.secret_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -237,12 +237,12 @@ class AsyncModerationAPI(AsyncAPIClient):
     with_streaming_response: AsyncModerationAPIWithStreamedResponse
 
     # client options
-    bearer_token: str
+    secret_key: str
 
     def __init__(
         self,
         *,
-        bearer_token: str | None = None,
+        secret_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -264,15 +264,15 @@ class AsyncModerationAPI(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncModerationAPI client instance.
 
-        This automatically infers the `bearer_token` argument from the `MODERATION_API_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `secret_key` argument from the `MODAPI_SECRET_KEY` environment variable if it is not provided.
         """
-        if bearer_token is None:
-            bearer_token = os.environ.get("MODERATION_API_BEARER_TOKEN")
-        if bearer_token is None:
+        if secret_key is None:
+            secret_key = os.environ.get("MODAPI_SECRET_KEY")
+        if secret_key is None:
             raise ModerationAPIError(
-                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the MODERATION_API_BEARER_TOKEN environment variable"
+                "The secret_key client option must be set either by passing secret_key to the client or by setting the MODAPI_SECRET_KEY environment variable"
             )
-        self.bearer_token = bearer_token
+        self.secret_key = secret_key
 
         if base_url is None:
             base_url = os.environ.get("MODERATION_API_BASE_URL")
@@ -308,8 +308,8 @@ class AsyncModerationAPI(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        bearer_token = self.bearer_token
-        return {"Authorization": f"Bearer {bearer_token}"}
+        secret_key = self.secret_key
+        return {"Authorization": f"Bearer {secret_key}"}
 
     @property
     @override
@@ -323,7 +323,7 @@ class AsyncModerationAPI(AsyncAPIClient):
     def copy(
         self,
         *,
-        bearer_token: str | None = None,
+        secret_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -357,7 +357,7 @@ class AsyncModerationAPI(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            bearer_token=bearer_token or self.bearer_token,
+            secret_key=secret_key or self.secret_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
