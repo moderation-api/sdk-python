@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -56,6 +56,7 @@ class ContentResource(SyncAPIResource):
         metadata: Dict[str, object] | Omit = omit,
         meta_type: Literal["profile", "message", "post", "comment", "event", "product", "review", "other"]
         | Omit = omit,
+        policies: Iterable[content_submit_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -82,6 +83,9 @@ class ContentResource(SyncAPIResource):
 
           meta_type: The meta type of content being moderated
 
+          policies: Optionally override the channel policies for this moderation request only
+              (enterprise).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -102,6 +106,7 @@ class ContentResource(SyncAPIResource):
                     "do_not_store": do_not_store,
                     "metadata": metadata,
                     "meta_type": meta_type,
+                    "policies": policies,
                 },
                 content_submit_params.ContentSubmitParams,
             ),
@@ -144,6 +149,7 @@ class AsyncContentResource(AsyncAPIResource):
         metadata: Dict[str, object] | Omit = omit,
         meta_type: Literal["profile", "message", "post", "comment", "event", "product", "review", "other"]
         | Omit = omit,
+        policies: Iterable[content_submit_params.Policy] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -170,6 +176,9 @@ class AsyncContentResource(AsyncAPIResource):
 
           meta_type: The meta type of content being moderated
 
+          policies: Optionally override the channel policies for this moderation request only
+              (enterprise).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -190,6 +199,7 @@ class AsyncContentResource(AsyncAPIResource):
                     "do_not_store": do_not_store,
                     "metadata": metadata,
                     "meta_type": meta_type,
+                    "policies": policies,
                 },
                 content_submit_params.ContentSubmitParams,
             ),

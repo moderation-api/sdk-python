@@ -81,6 +81,8 @@ class ActionsResource(SyncAPIResource):
                 "AUTHOR_REPORT",
                 "AUTHOR_WARN",
                 "AUTHOR_CUSTOM",
+                "ITEM_REJECT",
+                "ITEM_ALLOW",
                 "ITEM_CUSTOM",
             ]
         ]
@@ -216,6 +218,8 @@ class ActionsResource(SyncAPIResource):
                 "AUTHOR_REPORT",
                 "AUTHOR_WARN",
                 "AUTHOR_CUSTOM",
+                "ITEM_REJECT",
+                "ITEM_ALLOW",
                 "ITEM_CUSTOM",
             ]
         ]
@@ -414,6 +418,8 @@ class AsyncActionsResource(AsyncAPIResource):
                 "AUTHOR_REPORT",
                 "AUTHOR_WARN",
                 "AUTHOR_CUSTOM",
+                "ITEM_REJECT",
+                "ITEM_ALLOW",
                 "ITEM_CUSTOM",
             ]
         ]
@@ -549,6 +555,8 @@ class AsyncActionsResource(AsyncAPIResource):
                 "AUTHOR_REPORT",
                 "AUTHOR_WARN",
                 "AUTHOR_CUSTOM",
+                "ITEM_REJECT",
+                "ITEM_ALLOW",
                 "ITEM_CUSTOM",
             ]
         ]
