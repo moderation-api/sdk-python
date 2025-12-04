@@ -18,8 +18,8 @@ __all__ = [
     "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemUnionMember3",
     "Evaluation",
     "Insight",
-    "InsightUnionMember0",
-    "InsightUnionMember1",
+    "InsightSentimentInsights",
+    "InsightLanguageInsights",
     "Meta",
     "Policy",
     "PolicyUnionMember0",
@@ -130,7 +130,7 @@ class Evaluation(BaseModel):
     """Whether the content was flagged for Unicode spoofing."""
 
 
-class InsightUnionMember0(BaseModel):
+class InsightSentimentInsights(BaseModel):
     id: Literal["sentiment"]
 
     probability: float
@@ -140,7 +140,7 @@ class InsightUnionMember0(BaseModel):
     value: Optional[Literal["positive", "neutral", "negative"]] = None
 
 
-class InsightUnionMember1(BaseModel):
+class InsightLanguageInsights(BaseModel):
     id: Literal["language"]
 
     probability: float
@@ -150,7 +150,7 @@ class InsightUnionMember1(BaseModel):
     value: Optional[str] = None
 
 
-Insight: TypeAlias = Union[InsightUnionMember0, InsightUnionMember1]
+Insight: TypeAlias = Union[InsightSentimentInsights, InsightLanguageInsights]
 
 
 class Meta(BaseModel):
