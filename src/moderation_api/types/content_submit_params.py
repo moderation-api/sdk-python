@@ -14,12 +14,12 @@ __all__ = [
     "ContentImage",
     "ContentVideo",
     "ContentAudio",
-    "ContentContentNode",
-    "ContentContentNodeData",
-    "ContentContentNodeDataText",
-    "ContentContentNodeDataImage",
-    "ContentContentNodeDataVideo",
-    "ContentContentNodeDataAudio",
+    "ContentObject",
+    "ContentObjectData",
+    "ContentObjectDataText",
+    "ContentObjectDataImage",
+    "ContentObjectDataVideo",
+    "ContentObjectDataAudio",
     "Policy",
     "PolicyToxicity",
     "PolicyPersonalInformation",
@@ -81,10 +81,7 @@ class ContentSubmitParams(TypedDict, total=False):
     """The meta type of content being moderated"""
 
     policies: Iterable[Policy]
-    """
-    Optionally override the channel policies for this moderation request only
-    (enterprise).
-    """
+    """(Enterprise) override the channel policies for this moderation request only."""
 
 
 class ContentText(TypedDict, total=False):
@@ -115,47 +112,47 @@ class ContentAudio(TypedDict, total=False):
     """The URL of the audio content"""
 
 
-class ContentContentNodeDataText(TypedDict, total=False):
+class ContentObjectDataText(TypedDict, total=False):
     text: Required[str]
     """The content text"""
 
     type: Required[Literal["text"]]
 
 
-class ContentContentNodeDataImage(TypedDict, total=False):
+class ContentObjectDataImage(TypedDict, total=False):
     type: Required[Literal["image"]]
 
     url: Required[str]
     """A public URL of the image content"""
 
 
-class ContentContentNodeDataVideo(TypedDict, total=False):
+class ContentObjectDataVideo(TypedDict, total=False):
     type: Required[Literal["video"]]
 
     url: Required[str]
     """A public URL of the video content"""
 
 
-class ContentContentNodeDataAudio(TypedDict, total=False):
+class ContentObjectDataAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
 
     url: Required[str]
     """The URL of the audio content"""
 
 
-ContentContentNodeData: TypeAlias = Union[
-    ContentContentNodeDataText, ContentContentNodeDataImage, ContentContentNodeDataVideo, ContentContentNodeDataAudio
+ContentObjectData: TypeAlias = Union[
+    ContentObjectDataText, ContentObjectDataImage, ContentObjectDataVideo, ContentObjectDataAudio
 ]
 
 
-class ContentContentNode(TypedDict, total=False):
-    data: Required[Dict[str, ContentContentNodeData]]
+class ContentObject(TypedDict, total=False):
+    data: Required[Dict[str, ContentObjectData]]
     """Values in the object. Can be mixed content types."""
 
     type: Required[Literal["object"]]
 
 
-Content: TypeAlias = Union[ContentText, ContentImage, ContentVideo, ContentAudio, ContentContentNode]
+Content: TypeAlias = Union[ContentText, ContentImage, ContentVideo, ContentAudio, ContentObject]
 
 
 class PolicyToxicity(TypedDict, total=False):
