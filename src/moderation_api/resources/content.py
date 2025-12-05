@@ -83,8 +83,7 @@ class ContentResource(SyncAPIResource):
 
           meta_type: The meta type of content being moderated
 
-          policies: Optionally override the channel policies for this moderation request only
-              (enterprise).
+          policies: (Enterprise) override the channel policies for this moderation request only.
 
           extra_headers: Send extra headers
 
@@ -176,8 +175,7 @@ class AsyncContentResource(AsyncAPIResource):
 
           meta_type: The meta type of content being moderated
 
-          policies: Optionally override the channel policies for this moderation request only
-              (enterprise).
+          policies: (Enterprise) override the channel policies for this moderation request only.
 
           extra_headers: Send extra headers
 
