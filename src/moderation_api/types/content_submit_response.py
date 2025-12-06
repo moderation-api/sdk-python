@@ -11,11 +11,11 @@ __all__ = [
     "AuthorBlock",
     "AuthorTrustLevel",
     "Content",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1Item",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemText",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemImage",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemVideo",
-    "ContentModifiedUnionMember1ContentModifiedUnionMember1ItemAudio",
+    "ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItem",
+    "ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemText",
+    "ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemImage",
+    "ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemVideo",
+    "ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemAudio",
     "Evaluation",
     "Insight",
     "InsightSentimentInsight",
@@ -63,39 +63,39 @@ class Author(BaseModel):
     """The author's ID from your system"""
 
 
-class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemText(BaseModel):
+class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemText(BaseModel):
     text: str
     """The content text"""
 
     type: Literal["text"]
 
 
-class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemImage(BaseModel):
+class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemImage(BaseModel):
     type: Literal["image"]
 
     url: str
     """A public URL of the image content"""
 
 
-class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemVideo(BaseModel):
+class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemVideo(BaseModel):
     type: Literal["video"]
 
     url: str
     """A public URL of the video content"""
 
 
-class ContentModifiedUnionMember1ContentModifiedUnionMember1ItemAudio(BaseModel):
+class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemAudio(BaseModel):
     type: Literal["audio"]
 
     url: str
     """The URL of the audio content"""
 
 
-ContentModifiedUnionMember1ContentModifiedUnionMember1Item: TypeAlias = Union[
-    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemText,
-    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemImage,
-    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemVideo,
-    ContentModifiedUnionMember1ContentModifiedUnionMember1ItemAudio,
+ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItem: TypeAlias = Union[
+    ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemText,
+    ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemImage,
+    ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemVideo,
+    ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemAudio,
 ]
 
 
@@ -109,7 +109,12 @@ class Content(BaseModel):
     masked: bool
     """Whether any values have been masked."""
 
-    modified: Union[str, Dict[str, ContentModifiedUnionMember1ContentModifiedUnionMember1Item], None] = None
+    modified: Union[
+        str,
+        Dict[str, object],
+        Dict[str, ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItem],
+        None,
+    ] = None
     """The modified content, if any."""
 
 

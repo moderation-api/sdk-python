@@ -31,7 +31,7 @@ class ContentResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/moderation-api-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/moderation-api/sdk-python#accessing-raw-response-data-eg-headers
         """
         return ContentResourceWithRawResponse(self)
 
@@ -40,7 +40,7 @@ class ContentResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/moderation-api-python#with_streaming_response
+        For more information, see https://www.github.com/moderation-api/sdk-python#with_streaming_response
         """
         return ContentResourceWithStreamingResponse(self)
 
@@ -83,8 +83,7 @@ class ContentResource(SyncAPIResource):
 
           meta_type: The meta type of content being moderated
 
-          policies: Optionally override the channel policies for this moderation request only
-              (enterprise).
+          policies: (Enterprise) override the channel policies for this moderation request only.
 
           extra_headers: Send extra headers
 
@@ -124,7 +123,7 @@ class AsyncContentResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/moderation-api-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/moderation-api/sdk-python#accessing-raw-response-data-eg-headers
         """
         return AsyncContentResourceWithRawResponse(self)
 
@@ -133,7 +132,7 @@ class AsyncContentResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/moderation-api-python#with_streaming_response
+        For more information, see https://www.github.com/moderation-api/sdk-python#with_streaming_response
         """
         return AsyncContentResourceWithStreamingResponse(self)
 
@@ -176,8 +175,7 @@ class AsyncContentResource(AsyncAPIResource):
 
           meta_type: The meta type of content being moderated
 
-          policies: Optionally override the channel policies for this moderation request only
-              (enterprise).
+          policies: (Enterprise) override the channel policies for this moderation request only.
 
           extra_headers: Send extra headers
 
