@@ -8,6 +8,8 @@ __all__ = ["WordlistGetEmbeddingStatusResponse"]
 
 
 class WordlistGetEmbeddingStatusResponse(BaseModel):
+    """Embedding status details"""
+
     progress: float
     """Percentage of words that have been embedded (0-100)"""
 

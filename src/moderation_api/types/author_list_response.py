@@ -20,6 +20,8 @@ __all__ = [
 
 
 class AuthorBlock(BaseModel):
+    """Block or suspension details, if applicable. Null if the author is enabled."""
+
     reason: Optional[str] = None
     """The moderators reason why the author was blocked or suspended."""
 
@@ -28,6 +30,11 @@ class AuthorBlock(BaseModel):
 
 
 class AuthorMetadata(BaseModel):
+    """Additional metadata provided by your system.
+
+    We recommend including any relevant information that may assist in the moderation process.
+    """
+
     email_verified: Optional[bool] = None
     """Whether the author's email is verified"""
 
@@ -68,6 +75,8 @@ class AuthorMetrics(BaseModel):
 
 
 class AuthorRiskEvaluation(BaseModel):
+    """Risk assessment details, if available."""
+
     risk_level: Optional[float] = None
     """Calculated risk level based on more than 10 behavioral signals."""
 

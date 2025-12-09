@@ -32,6 +32,8 @@ __all__ = [
 
 
 class AuthorBlock(BaseModel):
+    """Block or suspension details, if applicable. Null if the author is enabled."""
+
     reason: Optional[str] = None
     """The moderators reason why the author was blocked or suspended."""
 
@@ -48,6 +50,11 @@ class AuthorTrustLevel(BaseModel):
 
 
 class Author(BaseModel):
+    """The author of the content if your account has authors enabled.
+
+    Requires you to send authorId when submitting content.
+    """
+
     id: str
     """Author ID in Moderation API"""
 
@@ -64,6 +71,8 @@ class Author(BaseModel):
 
 
 class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemText(BaseModel):
+    """Text"""
+
     text: str
     """The content text"""
 
@@ -71,6 +80,8 @@ class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObj
 
 
 class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemImage(BaseModel):
+    """Image"""
+
     type: Literal["image"]
 
     url: str
@@ -78,6 +89,8 @@ class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObj
 
 
 class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemVideo(BaseModel):
+    """Video"""
+
     type: Literal["video"]
 
     url: str
@@ -85,6 +98,8 @@ class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObj
 
 
 class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemAudio(BaseModel):
+    """Audio"""
+
     type: Literal["audio"]
 
     url: str
@@ -100,6 +115,8 @@ ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectCon
 
 
 class Content(BaseModel):
+    """Potentially modified content."""
+
     id: str
     """The unique identifier for the content.
 
@@ -119,6 +136,8 @@ class Content(BaseModel):
 
 
 class Evaluation(BaseModel):
+    """The evaluation of the content after running the channel policies."""
+
     flag_probability: float
     """The probability that the content should be flagged."""
 
@@ -136,6 +155,8 @@ class Evaluation(BaseModel):
 
 
 class InsightSentimentInsight(BaseModel):
+    """Sentiment insight"""
+
     id: Literal["sentiment"]
 
     probability: float
@@ -146,6 +167,8 @@ class InsightSentimentInsight(BaseModel):
 
 
 class InsightLanguageInsight(BaseModel):
+    """Language insight"""
+
     id: Literal["language"]
 
     probability: float
@@ -159,6 +182,8 @@ Insight: TypeAlias = Union[InsightSentimentInsight, InsightLanguageInsight]
 
 
 class Meta(BaseModel):
+    """Metadata about the moderation request"""
+
     channel_key: str
     """The unique key of the channel where the content was handled.
 
@@ -183,6 +208,8 @@ class PolicyClassifierOutputLabel(BaseModel):
 
 
 class PolicyClassifierOutput(BaseModel):
+    """Classifier policy."""
+
     id: str
     """The unique identifier for the classifier output."""
 
@@ -207,6 +234,8 @@ class PolicyEntityMatcherOutputMatch(BaseModel):
 
 
 class PolicyEntityMatcherOutput(BaseModel):
+    """Entity matcher policy."""
+
     id: str
 
     flagged: bool
@@ -224,6 +253,8 @@ Policy: TypeAlias = Union[PolicyClassifierOutput, PolicyEntityMatcherOutput]
 
 
 class Recommendation(BaseModel):
+    """The recommendation for the content based on the evaluation."""
+
     action: Literal["review", "allow", "reject"]
     """The action to take based on the recommendation"""
 
