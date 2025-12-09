@@ -85,6 +85,8 @@ class ContentSubmitParams(TypedDict, total=False):
 
 
 class ContentText(TypedDict, total=False):
+    """Text"""
+
     text: Required[str]
     """The content text"""
 
@@ -92,6 +94,8 @@ class ContentText(TypedDict, total=False):
 
 
 class ContentImage(TypedDict, total=False):
+    """Image"""
+
     type: Required[Literal["image"]]
 
     url: Required[str]
@@ -99,6 +103,8 @@ class ContentImage(TypedDict, total=False):
 
 
 class ContentVideo(TypedDict, total=False):
+    """Video"""
+
     type: Required[Literal["video"]]
 
     url: Required[str]
@@ -106,6 +112,8 @@ class ContentVideo(TypedDict, total=False):
 
 
 class ContentAudio(TypedDict, total=False):
+    """Audio"""
+
     type: Required[Literal["audio"]]
 
     url: Required[str]
@@ -113,6 +121,8 @@ class ContentAudio(TypedDict, total=False):
 
 
 class ContentObjectDataText(TypedDict, total=False):
+    """Text"""
+
     text: Required[str]
     """The content text"""
 
@@ -120,6 +130,8 @@ class ContentObjectDataText(TypedDict, total=False):
 
 
 class ContentObjectDataImage(TypedDict, total=False):
+    """Image"""
+
     type: Required[Literal["image"]]
 
     url: Required[str]
@@ -127,6 +139,8 @@ class ContentObjectDataImage(TypedDict, total=False):
 
 
 class ContentObjectDataVideo(TypedDict, total=False):
+    """Video"""
+
     type: Required[Literal["video"]]
 
     url: Required[str]
@@ -134,6 +148,8 @@ class ContentObjectDataVideo(TypedDict, total=False):
 
 
 class ContentObjectDataAudio(TypedDict, total=False):
+    """Audio"""
+
     type: Required[Literal["audio"]]
 
     url: Required[str]
@@ -146,6 +162,8 @@ ContentObjectData: TypeAlias = Union[
 
 
 class ContentObject(TypedDict, total=False):
+    """Object"""
+
     data: Required[Dict[str, ContentObjectData]]
     """Values in the object. Can be mixed content types."""
 
