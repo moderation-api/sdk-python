@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.1 (2025-12-09)
+
+Full Changelog: [v1.0.0...v1.0.1](https://github.com/moderation-api/sdk-python/compare/v1.0.0...v1.0.1)
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([36ea40a](https://github.com/moderation-api/sdk-python/commit/36ea40ac2b242cd53c8cd915befe809b65a13215))
+
+
+### Chores
+
+* update SDK settings ([1876999](https://github.com/moderation-api/sdk-python/commit/18769999773649b22146674569e8ba3ddf88f876))
+
 ## 1.0.0 (2025-12-06)
 
 Full Changelog: [v0.0.1...v1.0.0](https://github.com/moderation-api/sdk-python/compare/v0.0.1...v1.0.0)
