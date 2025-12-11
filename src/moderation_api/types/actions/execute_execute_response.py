@@ -6,5 +6,7 @@ __all__ = ["ExecuteExecuteResponse"]
 
 
 class ExecuteExecuteResponse(BaseModel):
+    """Execution result"""
+
     success: bool
     """Whether the action was executed successfully"""

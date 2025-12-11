@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.2 (2025-12-09)
+
+Full Changelog: [v1.0.1...v1.0.2](https://github.com/moderation-api/sdk-python/compare/v1.0.1...v1.0.2)
+
+### Chores
+
+* add missing docstrings ([02bdf8f](https://github.com/moderation-api/sdk-python/commit/02bdf8ffdef877fdb38df5c8215f241c0af2936e))
+
 ## 1.0.1 (2025-12-09)
 
 Full Changelog: [v1.0.0...v1.0.1](https://github.com/moderation-api/sdk-python/compare/v1.0.0...v1.0.1)

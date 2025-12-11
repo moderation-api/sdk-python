@@ -38,6 +38,11 @@ class AuthorUpdateParams(TypedDict, total=False):
 
 
 class MetadataTyped(TypedDict, total=False):
+    """Additional metadata provided by your system.
+
+    We recommend including any relevant information that may assist in the moderation process.
+    """
+
     email_verified: Optional[bool]
     """Whether the author's email is verified"""
 
