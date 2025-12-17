@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import auth, account, authors, content
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, ModerationAPIError
 from ._base_client import (
@@ -29,9 +29,16 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.queue import queue
-from .resources.actions import actions
-from .resources.wordlist import wordlist
+
+if TYPE_CHECKING:
+    from .resources import auth, queue, account, actions, authors, content, wordlist
+    from .resources.auth import AuthResource, AsyncAuthResource
+    from .resources.account import AccountResource, AsyncAccountResource
+    from .resources.authors import AuthorsResource, AsyncAuthorsResource
+    from .resources.content import ContentResource, AsyncContentResource
+    from .resources.queue.queue import QueueResource, AsyncQueueResource
+    from .resources.actions.actions import ActionsResource, AsyncActionsResource
+    from .resources.wordlist.wordlist import WordlistResource, AsyncWordlistResource
 
 __all__ = [
     "Timeout",
@@ -46,16 +53,6 @@ __all__ = [
 
 
 class ModerationAPI(SyncAPIClient):
-    authors: authors.AuthorsResource
-    queue: queue.QueueResource
-    actions: actions.ActionsResource
-    content: content.ContentResource
-    account: account.AccountResource
-    auth: auth.AuthResource
-    wordlist: wordlist.WordlistResource
-    with_raw_response: ModerationAPIWithRawResponse
-    with_streaming_response: ModerationAPIWithStreamedResponse
-
     # client options
     secret_key: str
 
@@ -110,15 +107,55 @@ class ModerationAPI(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.authors = authors.AuthorsResource(self)
-        self.queue = queue.QueueResource(self)
-        self.actions = actions.ActionsResource(self)
-        self.content = content.ContentResource(self)
-        self.account = account.AccountResource(self)
-        self.auth = auth.AuthResource(self)
-        self.wordlist = wordlist.WordlistResource(self)
-        self.with_raw_response = ModerationAPIWithRawResponse(self)
-        self.with_streaming_response = ModerationAPIWithStreamedResponse(self)
+    @cached_property
+    def authors(self) -> AuthorsResource:
+        from .resources.authors import AuthorsResource
+
+        return AuthorsResource(self)
+
+    @cached_property
+    def queue(self) -> QueueResource:
+        from .resources.queue import QueueResource
+
+        return QueueResource(self)
+
+    @cached_property
+    def actions(self) -> ActionsResource:
+        from .resources.actions import ActionsResource
+
+        return ActionsResource(self)
+
+    @cached_property
+    def content(self) -> ContentResource:
+        from .resources.content import ContentResource
+
+        return ContentResource(self)
+
+    @cached_property
+    def account(self) -> AccountResource:
+        from .resources.account import AccountResource
+
+        return AccountResource(self)
+
+    @cached_property
+    def auth(self) -> AuthResource:
+        from .resources.auth import AuthResource
+
+        return AuthResource(self)
+
+    @cached_property
+    def wordlist(self) -> WordlistResource:
+        from .resources.wordlist import WordlistResource
+
+        return WordlistResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> ModerationAPIWithRawResponse:
+        return ModerationAPIWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ModerationAPIWithStreamedResponse:
+        return ModerationAPIWithStreamedResponse(self)
 
     @property
     @override
@@ -226,16 +263,6 @@ class ModerationAPI(SyncAPIClient):
 
 
 class AsyncModerationAPI(AsyncAPIClient):
-    authors: authors.AsyncAuthorsResource
-    queue: queue.AsyncQueueResource
-    actions: actions.AsyncActionsResource
-    content: content.AsyncContentResource
-    account: account.AsyncAccountResource
-    auth: auth.AsyncAuthResource
-    wordlist: wordlist.AsyncWordlistResource
-    with_raw_response: AsyncModerationAPIWithRawResponse
-    with_streaming_response: AsyncModerationAPIWithStreamedResponse
-
     # client options
     secret_key: str
 
@@ -290,15 +317,55 @@ class AsyncModerationAPI(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.authors = authors.AsyncAuthorsResource(self)
-        self.queue = queue.AsyncQueueResource(self)
-        self.actions = actions.AsyncActionsResource(self)
-        self.content = content.AsyncContentResource(self)
-        self.account = account.AsyncAccountResource(self)
-        self.auth = auth.AsyncAuthResource(self)
-        self.wordlist = wordlist.AsyncWordlistResource(self)
-        self.with_raw_response = AsyncModerationAPIWithRawResponse(self)
-        self.with_streaming_response = AsyncModerationAPIWithStreamedResponse(self)
+    @cached_property
+    def authors(self) -> AsyncAuthorsResource:
+        from .resources.authors import AsyncAuthorsResource
+
+        return AsyncAuthorsResource(self)
+
+    @cached_property
+    def queue(self) -> AsyncQueueResource:
+        from .resources.queue import AsyncQueueResource
+
+        return AsyncQueueResource(self)
+
+    @cached_property
+    def actions(self) -> AsyncActionsResource:
+        from .resources.actions import AsyncActionsResource
+
+        return AsyncActionsResource(self)
+
+    @cached_property
+    def content(self) -> AsyncContentResource:
+        from .resources.content import AsyncContentResource
+
+        return AsyncContentResource(self)
+
+    @cached_property
+    def account(self) -> AsyncAccountResource:
+        from .resources.account import AsyncAccountResource
+
+        return AsyncAccountResource(self)
+
+    @cached_property
+    def auth(self) -> AsyncAuthResource:
+        from .resources.auth import AsyncAuthResource
+
+        return AsyncAuthResource(self)
+
+    @cached_property
+    def wordlist(self) -> AsyncWordlistResource:
+        from .resources.wordlist import AsyncWordlistResource
+
+        return AsyncWordlistResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncModerationAPIWithRawResponse:
+        return AsyncModerationAPIWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncModerationAPIWithStreamedResponse:
+        return AsyncModerationAPIWithStreamedResponse(self)
 
     @property
     @override
@@ -406,47 +473,199 @@ class AsyncModerationAPI(AsyncAPIClient):
 
 
 class ModerationAPIWithRawResponse:
+    _client: ModerationAPI
+
     def __init__(self, client: ModerationAPI) -> None:
-        self.authors = authors.AuthorsResourceWithRawResponse(client.authors)
-        self.queue = queue.QueueResourceWithRawResponse(client.queue)
-        self.actions = actions.ActionsResourceWithRawResponse(client.actions)
-        self.content = content.ContentResourceWithRawResponse(client.content)
-        self.account = account.AccountResourceWithRawResponse(client.account)
-        self.auth = auth.AuthResourceWithRawResponse(client.auth)
-        self.wordlist = wordlist.WordlistResourceWithRawResponse(client.wordlist)
+        self._client = client
+
+    @cached_property
+    def authors(self) -> authors.AuthorsResourceWithRawResponse:
+        from .resources.authors import AuthorsResourceWithRawResponse
+
+        return AuthorsResourceWithRawResponse(self._client.authors)
+
+    @cached_property
+    def queue(self) -> queue.QueueResourceWithRawResponse:
+        from .resources.queue import QueueResourceWithRawResponse
+
+        return QueueResourceWithRawResponse(self._client.queue)
+
+    @cached_property
+    def actions(self) -> actions.ActionsResourceWithRawResponse:
+        from .resources.actions import ActionsResourceWithRawResponse
+
+        return ActionsResourceWithRawResponse(self._client.actions)
+
+    @cached_property
+    def content(self) -> content.ContentResourceWithRawResponse:
+        from .resources.content import ContentResourceWithRawResponse
+
+        return ContentResourceWithRawResponse(self._client.content)
+
+    @cached_property
+    def account(self) -> account.AccountResourceWithRawResponse:
+        from .resources.account import AccountResourceWithRawResponse
+
+        return AccountResourceWithRawResponse(self._client.account)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithRawResponse:
+        from .resources.auth import AuthResourceWithRawResponse
+
+        return AuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def wordlist(self) -> wordlist.WordlistResourceWithRawResponse:
+        from .resources.wordlist import WordlistResourceWithRawResponse
+
+        return WordlistResourceWithRawResponse(self._client.wordlist)
 
 
 class AsyncModerationAPIWithRawResponse:
+    _client: AsyncModerationAPI
+
     def __init__(self, client: AsyncModerationAPI) -> None:
-        self.authors = authors.AsyncAuthorsResourceWithRawResponse(client.authors)
-        self.queue = queue.AsyncQueueResourceWithRawResponse(client.queue)
-        self.actions = actions.AsyncActionsResourceWithRawResponse(client.actions)
-        self.content = content.AsyncContentResourceWithRawResponse(client.content)
-        self.account = account.AsyncAccountResourceWithRawResponse(client.account)
-        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
-        self.wordlist = wordlist.AsyncWordlistResourceWithRawResponse(client.wordlist)
+        self._client = client
+
+    @cached_property
+    def authors(self) -> authors.AsyncAuthorsResourceWithRawResponse:
+        from .resources.authors import AsyncAuthorsResourceWithRawResponse
+
+        return AsyncAuthorsResourceWithRawResponse(self._client.authors)
+
+    @cached_property
+    def queue(self) -> queue.AsyncQueueResourceWithRawResponse:
+        from .resources.queue import AsyncQueueResourceWithRawResponse
+
+        return AsyncQueueResourceWithRawResponse(self._client.queue)
+
+    @cached_property
+    def actions(self) -> actions.AsyncActionsResourceWithRawResponse:
+        from .resources.actions import AsyncActionsResourceWithRawResponse
+
+        return AsyncActionsResourceWithRawResponse(self._client.actions)
+
+    @cached_property
+    def content(self) -> content.AsyncContentResourceWithRawResponse:
+        from .resources.content import AsyncContentResourceWithRawResponse
+
+        return AsyncContentResourceWithRawResponse(self._client.content)
+
+    @cached_property
+    def account(self) -> account.AsyncAccountResourceWithRawResponse:
+        from .resources.account import AsyncAccountResourceWithRawResponse
+
+        return AsyncAccountResourceWithRawResponse(self._client.account)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        from .resources.auth import AsyncAuthResourceWithRawResponse
+
+        return AsyncAuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def wordlist(self) -> wordlist.AsyncWordlistResourceWithRawResponse:
+        from .resources.wordlist import AsyncWordlistResourceWithRawResponse
+
+        return AsyncWordlistResourceWithRawResponse(self._client.wordlist)
 
 
 class ModerationAPIWithStreamedResponse:
+    _client: ModerationAPI
+
     def __init__(self, client: ModerationAPI) -> None:
-        self.authors = authors.AuthorsResourceWithStreamingResponse(client.authors)
-        self.queue = queue.QueueResourceWithStreamingResponse(client.queue)
-        self.actions = actions.ActionsResourceWithStreamingResponse(client.actions)
-        self.content = content.ContentResourceWithStreamingResponse(client.content)
-        self.account = account.AccountResourceWithStreamingResponse(client.account)
-        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
-        self.wordlist = wordlist.WordlistResourceWithStreamingResponse(client.wordlist)
+        self._client = client
+
+    @cached_property
+    def authors(self) -> authors.AuthorsResourceWithStreamingResponse:
+        from .resources.authors import AuthorsResourceWithStreamingResponse
+
+        return AuthorsResourceWithStreamingResponse(self._client.authors)
+
+    @cached_property
+    def queue(self) -> queue.QueueResourceWithStreamingResponse:
+        from .resources.queue import QueueResourceWithStreamingResponse
+
+        return QueueResourceWithStreamingResponse(self._client.queue)
+
+    @cached_property
+    def actions(self) -> actions.ActionsResourceWithStreamingResponse:
+        from .resources.actions import ActionsResourceWithStreamingResponse
+
+        return ActionsResourceWithStreamingResponse(self._client.actions)
+
+    @cached_property
+    def content(self) -> content.ContentResourceWithStreamingResponse:
+        from .resources.content import ContentResourceWithStreamingResponse
+
+        return ContentResourceWithStreamingResponse(self._client.content)
+
+    @cached_property
+    def account(self) -> account.AccountResourceWithStreamingResponse:
+        from .resources.account import AccountResourceWithStreamingResponse
+
+        return AccountResourceWithStreamingResponse(self._client.account)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        from .resources.auth import AuthResourceWithStreamingResponse
+
+        return AuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def wordlist(self) -> wordlist.WordlistResourceWithStreamingResponse:
+        from .resources.wordlist import WordlistResourceWithStreamingResponse
+
+        return WordlistResourceWithStreamingResponse(self._client.wordlist)
 
 
 class AsyncModerationAPIWithStreamedResponse:
+    _client: AsyncModerationAPI
+
     def __init__(self, client: AsyncModerationAPI) -> None:
-        self.authors = authors.AsyncAuthorsResourceWithStreamingResponse(client.authors)
-        self.queue = queue.AsyncQueueResourceWithStreamingResponse(client.queue)
-        self.actions = actions.AsyncActionsResourceWithStreamingResponse(client.actions)
-        self.content = content.AsyncContentResourceWithStreamingResponse(client.content)
-        self.account = account.AsyncAccountResourceWithStreamingResponse(client.account)
-        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
-        self.wordlist = wordlist.AsyncWordlistResourceWithStreamingResponse(client.wordlist)
+        self._client = client
+
+    @cached_property
+    def authors(self) -> authors.AsyncAuthorsResourceWithStreamingResponse:
+        from .resources.authors import AsyncAuthorsResourceWithStreamingResponse
+
+        return AsyncAuthorsResourceWithStreamingResponse(self._client.authors)
+
+    @cached_property
+    def queue(self) -> queue.AsyncQueueResourceWithStreamingResponse:
+        from .resources.queue import AsyncQueueResourceWithStreamingResponse
+
+        return AsyncQueueResourceWithStreamingResponse(self._client.queue)
+
+    @cached_property
+    def actions(self) -> actions.AsyncActionsResourceWithStreamingResponse:
+        from .resources.actions import AsyncActionsResourceWithStreamingResponse
+
+        return AsyncActionsResourceWithStreamingResponse(self._client.actions)
+
+    @cached_property
+    def content(self) -> content.AsyncContentResourceWithStreamingResponse:
+        from .resources.content import AsyncContentResourceWithStreamingResponse
+
+        return AsyncContentResourceWithStreamingResponse(self._client.content)
+
+    @cached_property
+    def account(self) -> account.AsyncAccountResourceWithStreamingResponse:
+        from .resources.account import AsyncAccountResourceWithStreamingResponse
+
+        return AsyncAccountResourceWithStreamingResponse(self._client.account)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        from .resources.auth import AsyncAuthResourceWithStreamingResponse
+
+        return AsyncAuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def wordlist(self) -> wordlist.AsyncWordlistResourceWithStreamingResponse:
+        from .resources.wordlist import AsyncWordlistResourceWithStreamingResponse
+
+        return AsyncWordlistResourceWithStreamingResponse(self._client.wordlist)
 
 
 Client = ModerationAPI
