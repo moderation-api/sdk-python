@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.1.0 (2025-12-18)
+
+Full Changelog: [v1.0.2...v1.1.0](https://github.com/moderation-api/sdk-python/compare/v1.0.2...v1.1.0)
+
+### Features
+
+* **api:** api update ([6c44a32](https://github.com/moderation-api/sdk-python/commit/6c44a32976994920a0caceca0c77e59b8aca5219))
+
+
+### Bug Fixes
+
+* use async_to_httpx_files in patch method ([e533ec4](https://github.com/moderation-api/sdk-python/commit/e533ec49c12007c031a7660997d6b23658dd6cc5))
+
+
+### Chores
+
+* **internal:** add missing files argument to base client ([0b9d250](https://github.com/moderation-api/sdk-python/commit/0b9d250739e8d607cc70e1aba126f46ef830d23b))
+* speedup initial import ([5ff9c69](https://github.com/moderation-api/sdk-python/commit/5ff9c698d4acb2c3c312711ef11632bc3ad754d7))
+
+
+### Refactors
+
+* **internal:** switch from rye to uv ([4f4101f](https://github.com/moderation-api/sdk-python/commit/4f4101fd1680a9e9929821fa50242bfe871b6bd9))
+
 ## 1.0.2 (2025-12-09)
 
 Full Changelog: [v1.0.1...v1.0.2](https://github.com/moderation-api/sdk-python/compare/v1.0.1...v1.0.2)
