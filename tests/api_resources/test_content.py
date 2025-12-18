@@ -47,6 +47,7 @@ class TestContent:
                 {
                     "id": "toxicity",
                     "flag": True,
+                    "threshold": 0,
                 }
             ],
         )
@@ -120,6 +121,7 @@ class TestAsyncContent:
                 {
                     "id": "toxicity",
                     "flag": True,
+                    "threshold": 0,
                 }
             ],
         )
