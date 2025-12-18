@@ -178,11 +178,15 @@ class PolicyToxicity(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyPersonalInformation(TypedDict, total=False):
     id: Required[Literal["personal_information"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicyToxicitySevere(TypedDict, total=False):
@@ -190,11 +194,15 @@ class PolicyToxicitySevere(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyHate(TypedDict, total=False):
     id: Required[Literal["hate"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicyIllicit(TypedDict, total=False):
@@ -202,11 +210,15 @@ class PolicyIllicit(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyIllicitDrugs(TypedDict, total=False):
     id: Required[Literal["illicit_drugs"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicyIllicitAlcohol(TypedDict, total=False):
@@ -214,11 +226,15 @@ class PolicyIllicitAlcohol(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyIllicitFirearms(TypedDict, total=False):
     id: Required[Literal["illicit_firearms"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicyIllicitTobacco(TypedDict, total=False):
@@ -226,11 +242,15 @@ class PolicyIllicitTobacco(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyIllicitGambling(TypedDict, total=False):
     id: Required[Literal["illicit_gambling"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicySexual(TypedDict, total=False):
@@ -238,11 +258,15 @@ class PolicySexual(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyFlirtation(TypedDict, total=False):
     id: Required[Literal["flirtation"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicyProfanity(TypedDict, total=False):
@@ -250,11 +274,15 @@ class PolicyProfanity(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyViolence(TypedDict, total=False):
     id: Required[Literal["violence"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicySelfHarm(TypedDict, total=False):
@@ -262,11 +290,15 @@ class PolicySelfHarm(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicySpam(TypedDict, total=False):
     id: Required[Literal["spam"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicySelfPromotion(TypedDict, total=False):
@@ -274,11 +306,15 @@ class PolicySelfPromotion(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyPolitical(TypedDict, total=False):
     id: Required[Literal["political"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicyReligion(TypedDict, total=False):
@@ -286,11 +322,15 @@ class PolicyReligion(TypedDict, total=False):
 
     flag: Required[bool]
 
+    threshold: float
+
 
 class PolicyCodeAbuse(TypedDict, total=False):
     id: Required[Literal["code_abuse"]]
 
     flag: Required[bool]
+
+    threshold: float
 
 
 class PolicyPiiMaskingEntities(TypedDict, total=False):
@@ -341,6 +381,8 @@ class PolicyGuideline(TypedDict, total=False):
     guideline_key: Required[Annotated[str, PropertyInfo(alias="guidelineKey")]]
 
     instructions: Required[str]
+
+    threshold: float
 
 
 Policy: TypeAlias = Union[
