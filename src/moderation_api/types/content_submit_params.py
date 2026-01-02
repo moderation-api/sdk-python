@@ -333,18 +333,17 @@ class PolicyCodeAbuse(TypedDict, total=False):
     threshold: float
 
 
-class PolicyPiiMaskingEntities(TypedDict, total=False):
-    id: Required[
-        Literal["email", "phone", "url", "address", "name", "username", "ip_address", "credit_card", "sensitive_other"]
-    ]
+class PolicyPiiMaskingEntitiesTyped(TypedDict, total=False):
+    enable: bool
 
-    enable: Required[bool]
-
-    flag: Required[bool]
-
-    should_mask: Required[Annotated[bool, PropertyInfo(alias="shouldMask")]]
+    flag: bool
 
     mask: str
+
+    should_mask: Annotated[bool, PropertyInfo(alias="shouldMask")]
+
+
+PolicyPiiMaskingEntities: TypeAlias = Union[PolicyPiiMaskingEntitiesTyped, Dict[str, object]]
 
 
 class PolicyPiiMasking(TypedDict, total=False):
@@ -353,18 +352,17 @@ class PolicyPiiMasking(TypedDict, total=False):
     entities: Required[Dict[str, PolicyPiiMaskingEntities]]
 
 
-class PolicyURLMaskingEntities(TypedDict, total=False):
-    id: Required[
-        Literal["email", "phone", "url", "address", "name", "username", "ip_address", "credit_card", "sensitive_other"]
-    ]
+class PolicyURLMaskingEntitiesTyped(TypedDict, total=False):
+    enable: bool
 
-    enable: Required[bool]
-
-    flag: Required[bool]
-
-    should_mask: Required[Annotated[bool, PropertyInfo(alias="shouldMask")]]
+    flag: bool
 
     mask: str
+
+    should_mask: Annotated[bool, PropertyInfo(alias="shouldMask")]
+
+
+PolicyURLMaskingEntities: TypeAlias = Union[PolicyURLMaskingEntitiesTyped, Dict[str, object]]
 
 
 class PolicyURLMasking(TypedDict, total=False):
