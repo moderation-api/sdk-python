@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.2.0 (2026-01-02)
+
+Full Changelog: [v1.1.0...v1.2.0](https://github.com/moderation-api/sdk-python/compare/v1.1.0...v1.2.0)
+
+### Features
+
+* **api:** api update ([15074fd](https://github.com/moderation-api/sdk-python/commit/15074fd461baf06418a47910229566c2064c7e11))
+
+
+### Chores
+
+* **internal:** add `--fix` argument to lint script ([893326c](https://github.com/moderation-api/sdk-python/commit/893326cd41958716559755c3da9a967a453db4b9))
+
 ## 1.1.0 (2025-12-18)
 
 Full Changelog: [v1.0.2...v1.1.0](https://github.com/moderation-api/sdk-python/compare/v1.0.2...v1.1.0)
