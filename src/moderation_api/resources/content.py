@@ -57,6 +57,7 @@ class ContentResource(SyncAPIResource):
         meta_type: Literal["profile", "message", "post", "comment", "event", "product", "review", "other"]
         | Omit = omit,
         policies: Iterable[content_submit_params.Policy] | Omit = omit,
+        timestamp: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,6 +86,9 @@ class ContentResource(SyncAPIResource):
 
           policies: (Enterprise) override the channel policies for this moderation request only.
 
+          timestamp: Unix timestamp (in milliseconds) of when the content was created. Use if content
+              is not submitted in real-time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -106,6 +110,7 @@ class ContentResource(SyncAPIResource):
                     "metadata": metadata,
                     "meta_type": meta_type,
                     "policies": policies,
+                    "timestamp": timestamp,
                 },
                 content_submit_params.ContentSubmitParams,
             ),
@@ -149,6 +154,7 @@ class AsyncContentResource(AsyncAPIResource):
         meta_type: Literal["profile", "message", "post", "comment", "event", "product", "review", "other"]
         | Omit = omit,
         policies: Iterable[content_submit_params.Policy] | Omit = omit,
+        timestamp: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -177,6 +183,9 @@ class AsyncContentResource(AsyncAPIResource):
 
           policies: (Enterprise) override the channel policies for this moderation request only.
 
+          timestamp: Unix timestamp (in milliseconds) of when the content was created. Use if content
+              is not submitted in real-time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -198,6 +207,7 @@ class AsyncContentResource(AsyncAPIResource):
                     "metadata": metadata,
                     "meta_type": meta_type,
                     "policies": policies,
+                    "timestamp": timestamp,
                 },
                 content_submit_params.ContentSubmitParams,
             ),
