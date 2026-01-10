@@ -50,6 +50,7 @@ class TestContent:
                     "threshold": 0,
                 }
             ],
+            timestamp=0,
         )
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
@@ -124,6 +125,7 @@ class TestAsyncContent:
                     "threshold": 0,
                 }
             ],
+            timestamp=0,
         )
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
