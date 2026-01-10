@@ -83,6 +83,12 @@ class ContentSubmitParams(TypedDict, total=False):
     policies: Iterable[Policy]
     """(Enterprise) override the channel policies for this moderation request only."""
 
+    timestamp: float
+    """Unix timestamp (in milliseconds) of when the content was created.
+
+    Use if content is not submitted in real-time.
+    """
+
 
 class ContentText(TypedDict, total=False):
     """Text"""
