@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0 (2026-01-14)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/moderation-api/sdk-python/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **client:** add support for binary request streaming ([38dd553](https://github.com/moderation-api/sdk-python/commit/38dd55321d26a3cdb65918e3eb56dbeeafbe5dde))
+
 ## 1.3.0 (2026-01-10)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/moderation-api/sdk-python/compare/v1.2.0...v1.3.0)
