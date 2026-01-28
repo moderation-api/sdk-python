@@ -32,6 +32,8 @@ __all__ = [
     "PolicyIllicitTobacco",
     "PolicyIllicitGambling",
     "PolicyCannabis",
+    "PolicyAdult",
+    "PolicyCrypto",
     "PolicySexual",
     "PolicyFlirtation",
     "PolicyProfanity",
@@ -268,6 +270,22 @@ class PolicyCannabis(TypedDict, total=False):
     threshold: float
 
 
+class PolicyAdult(TypedDict, total=False):
+    id: Required[Literal["adult"]]
+
+    flag: Required[bool]
+
+    threshold: float
+
+
+class PolicyCrypto(TypedDict, total=False):
+    id: Required[Literal["crypto"]]
+
+    flag: Required[bool]
+
+    threshold: float
+
+
 class PolicySexual(TypedDict, total=False):
     id: Required[Literal["sexual"]]
 
@@ -410,6 +428,8 @@ Policy: TypeAlias = Union[
     PolicyIllicitTobacco,
     PolicyIllicitGambling,
     PolicyCannabis,
+    PolicyAdult,
+    PolicyCrypto,
     PolicySexual,
     PolicyFlirtation,
     PolicyProfanity,
