@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.0 (2026-01-28)
+
+Full Changelog: [v1.5.0...v1.6.0](https://github.com/moderation-api/sdk-python/compare/v1.5.0...v1.6.0)
+
+### Features
+
+* **api:** api update ([5a4b3f8](https://github.com/moderation-api/sdk-python/commit/5a4b3f8e67363ef200fd2013f49b655a0ba6a864))
+
 ## 1.5.0 (2026-01-28)
 
 Full Changelog: [v1.4.0...v1.5.0](https://github.com/moderation-api/sdk-python/compare/v1.4.0...v1.5.0)
