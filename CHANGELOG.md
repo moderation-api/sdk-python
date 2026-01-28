@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.5.0 (2026-01-28)
+
+Full Changelog: [v1.4.0...v1.5.0](https://github.com/moderation-api/sdk-python/compare/v1.4.0...v1.5.0)
+
+### Features
+
+* **api:** api update ([f169692](https://github.com/moderation-api/sdk-python/commit/f1696924142a6c6ab846a6d2186986000e767f16))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([2b6a3c8](https://github.com/moderation-api/sdk-python/commit/2b6a3c800e24d79e9e33856f7c30131d7c6b43f6))
+* **internal:** update `actions/checkout` version ([bb501b1](https://github.com/moderation-api/sdk-python/commit/bb501b1f60a8a374c8357993e67251e436c161fa))
+
 ## 1.4.0 (2026-01-14)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/moderation-api/sdk-python/compare/v1.3.0...v1.4.0)
