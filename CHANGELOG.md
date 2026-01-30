@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.7.0 (2026-01-30)
+
+Full Changelog: [v1.6.0...v1.7.0](https://github.com/moderation-api/sdk-python/compare/v1.6.0...v1.7.0)
+
+### Features
+
+* **client:** add custom JSON encoder for extended type support ([1e50ad0](https://github.com/moderation-api/sdk-python/commit/1e50ad07fe7df9764d1718fcec4daea811ccf45e))
+
 ## 1.6.0 (2026-01-28)
 
 Full Changelog: [v1.5.0...v1.6.0](https://github.com/moderation-api/sdk-python/compare/v1.5.0...v1.6.0)
