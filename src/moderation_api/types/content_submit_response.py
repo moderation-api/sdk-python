@@ -258,7 +258,9 @@ class Recommendation(BaseModel):
     action: Literal["review", "allow", "reject"]
     """The action to take based on the recommendation"""
 
-    reason_codes: List[Literal["severity_reject", "severity_review", "author_block", "dry_run"]]
+    reason_codes: List[
+        Literal["severity_reject", "severity_review", "author_block", "dry_run", "trusted_allow", "untrusted_severity"]
+    ]
     """The reason code for the recommendation.
 
     Can be used to display a reason to the user.
