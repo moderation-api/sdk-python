@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.9.0 (2026-02-20)
+
+Full Changelog: [v1.8.0...v1.9.0](https://github.com/moderation-api/sdk-python/compare/v1.8.0...v1.9.0)
+
+### Features
+
+* **api:** api update ([3e62dda](https://github.com/moderation-api/sdk-python/commit/3e62dda30d79c73a9b4fa3b7a202f2d2a518a260))
+
+
+### Chores
+
+* format all `api.md` files ([5a7c325](https://github.com/moderation-api/sdk-python/commit/5a7c325071957fec9830ac78ca74942fc869ec58))
+* **internal:** bump dependencies ([1f203f8](https://github.com/moderation-api/sdk-python/commit/1f203f8daf18535d007d7c3f1246672ab8fea1a9))
+* **internal:** fix lint error on Python 3.14 ([784cacf](https://github.com/moderation-api/sdk-python/commit/784cacf3ebe73f8e83bc3e091d1d5ba385a907a7))
+* **internal:** remove mock server code ([4e8ce8c](https://github.com/moderation-api/sdk-python/commit/4e8ce8c633cefb04e03fd11e9705517556d00398))
+
 ## 1.8.0 (2026-02-06)
 
 Full Changelog: [v1.7.0...v1.8.0](https://github.com/moderation-api/sdk-python/compare/v1.7.0...v1.8.0)
