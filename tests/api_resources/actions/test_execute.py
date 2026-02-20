@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestExecute:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_execute(self, client: ModerationAPI) -> None:
         execute = client.actions.execute.execute(
@@ -30,7 +30,7 @@ class TestExecute:
         )
         assert_matches_type(ExecuteExecuteResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_execute_with_all_params(self, client: ModerationAPI) -> None:
         execute = client.actions.execute.execute(
@@ -43,7 +43,7 @@ class TestExecute:
         )
         assert_matches_type(ExecuteExecuteResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_execute(self, client: ModerationAPI) -> None:
         response = client.actions.execute.with_raw_response.execute(
@@ -55,7 +55,7 @@ class TestExecute:
         execute = response.parse()
         assert_matches_type(ExecuteExecuteResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_execute(self, client: ModerationAPI) -> None:
         with client.actions.execute.with_streaming_response.execute(
@@ -69,7 +69,7 @@ class TestExecute:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_execute_by_id(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -79,7 +79,7 @@ class TestExecute:
 
         assert_matches_type(ExecuteExecuteByIDResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_execute_by_id_with_all_params(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -93,7 +93,7 @@ class TestExecute:
 
         assert_matches_type(ExecuteExecuteByIDResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_execute_by_id(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -106,7 +106,7 @@ class TestExecute:
         execute = response.parse()
         assert_matches_type(ExecuteExecuteByIDResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_execute_by_id(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -121,7 +121,7 @@ class TestExecute:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_execute_by_id(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -136,7 +136,7 @@ class TestAsyncExecute:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_execute(self, async_client: AsyncModerationAPI) -> None:
         execute = await async_client.actions.execute.execute(
@@ -144,7 +144,7 @@ class TestAsyncExecute:
         )
         assert_matches_type(ExecuteExecuteResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_execute_with_all_params(self, async_client: AsyncModerationAPI) -> None:
         execute = await async_client.actions.execute.execute(
@@ -157,7 +157,7 @@ class TestAsyncExecute:
         )
         assert_matches_type(ExecuteExecuteResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_execute(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.actions.execute.with_raw_response.execute(
@@ -169,7 +169,7 @@ class TestAsyncExecute:
         execute = await response.parse()
         assert_matches_type(ExecuteExecuteResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_execute(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.actions.execute.with_streaming_response.execute(
@@ -183,7 +183,7 @@ class TestAsyncExecute:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_execute_by_id(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -193,7 +193,7 @@ class TestAsyncExecute:
 
         assert_matches_type(ExecuteExecuteByIDResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_execute_by_id_with_all_params(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -207,7 +207,7 @@ class TestAsyncExecute:
 
         assert_matches_type(ExecuteExecuteByIDResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_execute_by_id(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -220,7 +220,7 @@ class TestAsyncExecute:
         execute = await response.parse()
         assert_matches_type(ExecuteExecuteByIDResponse, execute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_execute_by_id(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -235,7 +235,7 @@ class TestAsyncExecute:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_execute_by_id(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):

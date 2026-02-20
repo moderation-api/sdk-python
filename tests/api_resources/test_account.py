@@ -17,13 +17,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAccount:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: ModerationAPI) -> None:
         account = client.account.list()
         assert_matches_type(AccountListResponse, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: ModerationAPI) -> None:
         response = client.account.with_raw_response.list()
@@ -33,7 +33,7 @@ class TestAccount:
         account = response.parse()
         assert_matches_type(AccountListResponse, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: ModerationAPI) -> None:
         with client.account.with_streaming_response.list() as response:
@@ -51,13 +51,13 @@ class TestAsyncAccount:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncModerationAPI) -> None:
         account = await async_client.account.list()
         assert_matches_type(AccountListResponse, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.account.with_raw_response.list()
@@ -67,7 +67,7 @@ class TestAsyncAccount:
         account = await response.parse()
         assert_matches_type(AccountListResponse, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.account.with_streaming_response.list() as response:

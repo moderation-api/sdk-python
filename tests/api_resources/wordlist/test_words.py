@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWords:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_add(self, client: ModerationAPI) -> None:
         word = client.wordlist.words.add(
@@ -26,7 +26,7 @@ class TestWords:
         )
         assert_matches_type(WordAddResponse, word, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_add(self, client: ModerationAPI) -> None:
         response = client.wordlist.words.with_raw_response.add(
@@ -39,7 +39,7 @@ class TestWords:
         word = response.parse()
         assert_matches_type(WordAddResponse, word, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_add(self, client: ModerationAPI) -> None:
         with client.wordlist.words.with_streaming_response.add(
@@ -54,7 +54,7 @@ class TestWords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_add(self, client: ModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -63,7 +63,7 @@ class TestWords:
                 words=["string"],
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_remove(self, client: ModerationAPI) -> None:
         word = client.wordlist.words.remove(
@@ -72,7 +72,7 @@ class TestWords:
         )
         assert_matches_type(WordRemoveResponse, word, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_remove(self, client: ModerationAPI) -> None:
         response = client.wordlist.words.with_raw_response.remove(
@@ -85,7 +85,7 @@ class TestWords:
         word = response.parse()
         assert_matches_type(WordRemoveResponse, word, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_remove(self, client: ModerationAPI) -> None:
         with client.wordlist.words.with_streaming_response.remove(
@@ -100,7 +100,7 @@ class TestWords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_remove(self, client: ModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -115,7 +115,7 @@ class TestAsyncWords:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_add(self, async_client: AsyncModerationAPI) -> None:
         word = await async_client.wordlist.words.add(
@@ -124,7 +124,7 @@ class TestAsyncWords:
         )
         assert_matches_type(WordAddResponse, word, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_add(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.wordlist.words.with_raw_response.add(
@@ -137,7 +137,7 @@ class TestAsyncWords:
         word = await response.parse()
         assert_matches_type(WordAddResponse, word, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_add(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.wordlist.words.with_streaming_response.add(
@@ -152,7 +152,7 @@ class TestAsyncWords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_add(self, async_client: AsyncModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -161,7 +161,7 @@ class TestAsyncWords:
                 words=["string"],
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_remove(self, async_client: AsyncModerationAPI) -> None:
         word = await async_client.wordlist.words.remove(
@@ -170,7 +170,7 @@ class TestAsyncWords:
         )
         assert_matches_type(WordRemoveResponse, word, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_remove(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.wordlist.words.with_raw_response.remove(
@@ -183,7 +183,7 @@ class TestAsyncWords:
         word = await response.parse()
         assert_matches_type(WordRemoveResponse, word, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_remove(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.wordlist.words.with_streaming_response.remove(
@@ -198,7 +198,7 @@ class TestAsyncWords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_remove(self, async_client: AsyncModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

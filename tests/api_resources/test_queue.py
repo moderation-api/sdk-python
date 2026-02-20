@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestQueue:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: ModerationAPI) -> None:
         queue = client.queue.retrieve(
@@ -25,7 +25,7 @@ class TestQueue:
         )
         assert_matches_type(QueueRetrieveResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: ModerationAPI) -> None:
         response = client.queue.with_raw_response.retrieve(
@@ -37,7 +37,7 @@ class TestQueue:
         queue = response.parse()
         assert_matches_type(QueueRetrieveResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: ModerationAPI) -> None:
         with client.queue.with_streaming_response.retrieve(
@@ -51,7 +51,7 @@ class TestQueue:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: ModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -59,7 +59,7 @@ class TestQueue:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_stats(self, client: ModerationAPI) -> None:
         queue = client.queue.get_stats(
@@ -67,7 +67,7 @@ class TestQueue:
         )
         assert_matches_type(QueueGetStatsResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_stats_with_all_params(self, client: ModerationAPI) -> None:
         queue = client.queue.get_stats(
@@ -76,7 +76,7 @@ class TestQueue:
         )
         assert_matches_type(QueueGetStatsResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_stats(self, client: ModerationAPI) -> None:
         response = client.queue.with_raw_response.get_stats(
@@ -88,7 +88,7 @@ class TestQueue:
         queue = response.parse()
         assert_matches_type(QueueGetStatsResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_stats(self, client: ModerationAPI) -> None:
         with client.queue.with_streaming_response.get_stats(
@@ -102,7 +102,7 @@ class TestQueue:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_get_stats(self, client: ModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -116,7 +116,7 @@ class TestAsyncQueue:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModerationAPI) -> None:
         queue = await async_client.queue.retrieve(
@@ -124,7 +124,7 @@ class TestAsyncQueue:
         )
         assert_matches_type(QueueRetrieveResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.queue.with_raw_response.retrieve(
@@ -136,7 +136,7 @@ class TestAsyncQueue:
         queue = await response.parse()
         assert_matches_type(QueueRetrieveResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.queue.with_streaming_response.retrieve(
@@ -150,7 +150,7 @@ class TestAsyncQueue:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -158,7 +158,7 @@ class TestAsyncQueue:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_stats(self, async_client: AsyncModerationAPI) -> None:
         queue = await async_client.queue.get_stats(
@@ -166,7 +166,7 @@ class TestAsyncQueue:
         )
         assert_matches_type(QueueGetStatsResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_stats_with_all_params(self, async_client: AsyncModerationAPI) -> None:
         queue = await async_client.queue.get_stats(
@@ -175,7 +175,7 @@ class TestAsyncQueue:
         )
         assert_matches_type(QueueGetStatsResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_stats(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.queue.with_raw_response.get_stats(
@@ -187,7 +187,7 @@ class TestAsyncQueue:
         queue = await response.parse()
         assert_matches_type(QueueGetStatsResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_stats(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.queue.with_streaming_response.get_stats(
@@ -201,7 +201,7 @@ class TestAsyncQueue:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_get_stats(self, async_client: AsyncModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
