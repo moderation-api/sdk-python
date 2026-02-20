@@ -19,7 +19,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAuth:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -27,7 +27,7 @@ class TestAuth:
 
         assert_matches_type(AuthCreateResponse, auth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -38,7 +38,7 @@ class TestAuth:
         auth = response.parse()
         assert_matches_type(AuthCreateResponse, auth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -51,7 +51,7 @@ class TestAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -59,7 +59,7 @@ class TestAuth:
 
         assert_matches_type(AuthRetrieveResponse, auth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -70,7 +70,7 @@ class TestAuth:
         auth = response.parse()
         assert_matches_type(AuthRetrieveResponse, auth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: ModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -89,7 +89,7 @@ class TestAsyncAuth:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -97,7 +97,7 @@ class TestAsyncAuth:
 
         assert_matches_type(AuthCreateResponse, auth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -108,7 +108,7 @@ class TestAsyncAuth:
         auth = await response.parse()
         assert_matches_type(AuthCreateResponse, auth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -121,7 +121,7 @@ class TestAsyncAuth:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -129,7 +129,7 @@ class TestAsyncAuth:
 
         assert_matches_type(AuthRetrieveResponse, auth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):
@@ -140,7 +140,7 @@ class TestAsyncAuth:
         auth = await response.parse()
         assert_matches_type(AuthRetrieveResponse, auth, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModerationAPI) -> None:
         with pytest.warns(DeprecationWarning):

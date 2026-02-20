@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWordlist:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: ModerationAPI) -> None:
         wordlist = client.wordlist.retrieve(
@@ -30,7 +30,7 @@ class TestWordlist:
         )
         assert_matches_type(WordlistRetrieveResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: ModerationAPI) -> None:
         response = client.wordlist.with_raw_response.retrieve(
@@ -42,7 +42,7 @@ class TestWordlist:
         wordlist = response.parse()
         assert_matches_type(WordlistRetrieveResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: ModerationAPI) -> None:
         with client.wordlist.with_streaming_response.retrieve(
@@ -56,7 +56,7 @@ class TestWordlist:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: ModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -64,7 +64,7 @@ class TestWordlist:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: ModerationAPI) -> None:
         wordlist = client.wordlist.update(
@@ -72,7 +72,7 @@ class TestWordlist:
         )
         assert_matches_type(WordlistUpdateResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: ModerationAPI) -> None:
         wordlist = client.wordlist.update(
@@ -85,7 +85,7 @@ class TestWordlist:
         )
         assert_matches_type(WordlistUpdateResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: ModerationAPI) -> None:
         response = client.wordlist.with_raw_response.update(
@@ -97,7 +97,7 @@ class TestWordlist:
         wordlist = response.parse()
         assert_matches_type(WordlistUpdateResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: ModerationAPI) -> None:
         with client.wordlist.with_streaming_response.update(
@@ -111,7 +111,7 @@ class TestWordlist:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: ModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -119,13 +119,13 @@ class TestWordlist:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: ModerationAPI) -> None:
         wordlist = client.wordlist.list()
         assert_matches_type(WordlistListResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: ModerationAPI) -> None:
         response = client.wordlist.with_raw_response.list()
@@ -135,7 +135,7 @@ class TestWordlist:
         wordlist = response.parse()
         assert_matches_type(WordlistListResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: ModerationAPI) -> None:
         with client.wordlist.with_streaming_response.list() as response:
@@ -147,7 +147,7 @@ class TestWordlist:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_embedding_status(self, client: ModerationAPI) -> None:
         wordlist = client.wordlist.get_embedding_status(
@@ -155,7 +155,7 @@ class TestWordlist:
         )
         assert_matches_type(WordlistGetEmbeddingStatusResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_embedding_status(self, client: ModerationAPI) -> None:
         response = client.wordlist.with_raw_response.get_embedding_status(
@@ -167,7 +167,7 @@ class TestWordlist:
         wordlist = response.parse()
         assert_matches_type(WordlistGetEmbeddingStatusResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_embedding_status(self, client: ModerationAPI) -> None:
         with client.wordlist.with_streaming_response.get_embedding_status(
@@ -181,7 +181,7 @@ class TestWordlist:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_get_embedding_status(self, client: ModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -195,7 +195,7 @@ class TestAsyncWordlist:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModerationAPI) -> None:
         wordlist = await async_client.wordlist.retrieve(
@@ -203,7 +203,7 @@ class TestAsyncWordlist:
         )
         assert_matches_type(WordlistRetrieveResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.wordlist.with_raw_response.retrieve(
@@ -215,7 +215,7 @@ class TestAsyncWordlist:
         wordlist = await response.parse()
         assert_matches_type(WordlistRetrieveResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.wordlist.with_streaming_response.retrieve(
@@ -229,7 +229,7 @@ class TestAsyncWordlist:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -237,7 +237,7 @@ class TestAsyncWordlist:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncModerationAPI) -> None:
         wordlist = await async_client.wordlist.update(
@@ -245,7 +245,7 @@ class TestAsyncWordlist:
         )
         assert_matches_type(WordlistUpdateResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModerationAPI) -> None:
         wordlist = await async_client.wordlist.update(
@@ -258,7 +258,7 @@ class TestAsyncWordlist:
         )
         assert_matches_type(WordlistUpdateResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.wordlist.with_raw_response.update(
@@ -270,7 +270,7 @@ class TestAsyncWordlist:
         wordlist = await response.parse()
         assert_matches_type(WordlistUpdateResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.wordlist.with_streaming_response.update(
@@ -284,7 +284,7 @@ class TestAsyncWordlist:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -292,13 +292,13 @@ class TestAsyncWordlist:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncModerationAPI) -> None:
         wordlist = await async_client.wordlist.list()
         assert_matches_type(WordlistListResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.wordlist.with_raw_response.list()
@@ -308,7 +308,7 @@ class TestAsyncWordlist:
         wordlist = await response.parse()
         assert_matches_type(WordlistListResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.wordlist.with_streaming_response.list() as response:
@@ -320,7 +320,7 @@ class TestAsyncWordlist:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_embedding_status(self, async_client: AsyncModerationAPI) -> None:
         wordlist = await async_client.wordlist.get_embedding_status(
@@ -328,7 +328,7 @@ class TestAsyncWordlist:
         )
         assert_matches_type(WordlistGetEmbeddingStatusResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_embedding_status(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.wordlist.with_raw_response.get_embedding_status(
@@ -340,7 +340,7 @@ class TestAsyncWordlist:
         wordlist = await response.parse()
         assert_matches_type(WordlistGetEmbeddingStatusResponse, wordlist, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_embedding_status(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.wordlist.with_streaming_response.get_embedding_status(
@@ -354,7 +354,7 @@ class TestAsyncWordlist:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_get_embedding_status(self, async_client: AsyncModerationAPI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

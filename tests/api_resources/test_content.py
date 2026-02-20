@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestContent:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_submit(self, client: ModerationAPI) -> None:
         content = client.content.submit(
@@ -28,7 +28,7 @@ class TestContent:
         )
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_submit_with_all_params(self, client: ModerationAPI) -> None:
         content = client.content.submit(
@@ -54,7 +54,7 @@ class TestContent:
         )
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_submit(self, client: ModerationAPI) -> None:
         response = client.content.with_raw_response.submit(
@@ -69,7 +69,7 @@ class TestContent:
         content = response.parse()
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_submit(self, client: ModerationAPI) -> None:
         with client.content.with_streaming_response.submit(
@@ -92,7 +92,7 @@ class TestAsyncContent:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_submit(self, async_client: AsyncModerationAPI) -> None:
         content = await async_client.content.submit(
@@ -103,7 +103,7 @@ class TestAsyncContent:
         )
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_submit_with_all_params(self, async_client: AsyncModerationAPI) -> None:
         content = await async_client.content.submit(
@@ -129,7 +129,7 @@ class TestAsyncContent:
         )
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_submit(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.content.with_raw_response.submit(
@@ -144,7 +144,7 @@ class TestAsyncContent:
         content = await response.parse()
         assert_matches_type(ContentSubmitResponse, content, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_submit(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.content.with_streaming_response.submit(
