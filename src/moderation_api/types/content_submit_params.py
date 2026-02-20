@@ -107,7 +107,10 @@ class ContentImage(TypedDict, total=False):
 
     type: Required[Literal["image"]]
 
-    url: Required[str]
+    data: str
+    """Base64-encoded image data"""
+
+    url: str
     """A public URL of the image content"""
 
 
@@ -143,7 +146,10 @@ class ContentObjectDataImage(TypedDict, total=False):
 
     type: Required[Literal["image"]]
 
-    url: Required[str]
+    data: str
+    """Base64-encoded image data"""
+
+    url: str
     """A public URL of the image content"""
 
 

@@ -84,7 +84,10 @@ class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObj
 
     type: Literal["image"]
 
-    url: str
+    data: Optional[str] = None
+    """Base64-encoded image data"""
+
+    url: Optional[str] = None
     """A public URL of the image content"""
 
 
