@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.9.1 (2026-02-20)
+
+Full Changelog: [v1.9.0...v1.9.1](https://github.com/moderation-api/sdk-python/compare/v1.9.0...v1.9.1)
+
+### Chores
+
+* update mock server docs ([1967778](https://github.com/moderation-api/sdk-python/commit/1967778c317634f98c29d59b547fd530d347340d))
+
 ## 1.9.0 (2026-02-20)
 
 Full Changelog: [v1.8.0...v1.9.0](https://github.com/moderation-api/sdk-python/compare/v1.8.0...v1.9.0)
