@@ -108,10 +108,14 @@ class ContentImage(TypedDict, total=False):
     type: Required[Literal["image"]]
 
     data: str
-    """Base64-encoded image data"""
+    """Base64-encoded image data.
+
+    Either url or data must be provided. Note: base64 images are not stored and will
+    not appear in the review queue.
+    """
 
     url: str
-    """A public URL of the image content"""
+    """A public URL of the image content. Either url or data must be provided."""
 
 
 class ContentVideo(TypedDict, total=False):
@@ -147,10 +151,14 @@ class ContentObjectDataImage(TypedDict, total=False):
     type: Required[Literal["image"]]
 
     data: str
-    """Base64-encoded image data"""
+    """Base64-encoded image data.
+
+    Either url or data must be provided. Note: base64 images are not stored and will
+    not appear in the review queue.
+    """
 
     url: str
-    """A public URL of the image content"""
+    """A public URL of the image content. Either url or data must be provided."""
 
 
 class ContentObjectDataVideo(TypedDict, total=False):
