@@ -85,10 +85,14 @@ class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObj
     type: Literal["image"]
 
     data: Optional[str] = None
-    """Base64-encoded image data"""
+    """Base64-encoded image data.
+
+    Either url or data must be provided. Note: base64 images are not stored and will
+    not appear in the review queue.
+    """
 
     url: Optional[str] = None
-    """A public URL of the image content"""
+    """A public URL of the image content. Either url or data must be provided."""
 
 
 class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemVideo(BaseModel):
