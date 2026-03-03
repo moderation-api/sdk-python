@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.11.0 (2026-03-03)
+
+Full Changelog: [v1.10.0...v1.11.0](https://github.com/moderation-api/sdk-python/compare/v1.10.0...v1.11.0)
+
+### Features
+
+* **api:** api update ([bf7013d](https://github.com/moderation-api/sdk-python/commit/bf7013d41dd8bd6fcd346164c751ce25f55f48a8))
+
+
+### Chores
+
+* **ci:** bump uv version ([c3a8d9d](https://github.com/moderation-api/sdk-python/commit/c3a8d9da2923fc83b47193fa421fa5f377843869))
+* **internal:** add request options to SSE classes ([ca09e91](https://github.com/moderation-api/sdk-python/commit/ca09e915f0d2ae9ba8852514563fd9ff76cd2afe))
+* **internal:** make `test_proxy_environment_variables` more resilient ([f75a80e](https://github.com/moderation-api/sdk-python/commit/f75a80efb34c4845c555dd883211805b7a4ebe16))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([2b5aaa4](https://github.com/moderation-api/sdk-python/commit/2b5aaa4f2c2a33bf102344d0e843ffa770d8faff))
+
 ## 1.10.0 (2026-02-23)
 
 Full Changelog: [v1.9.1...v1.10.0](https://github.com/moderation-api/sdk-python/compare/v1.9.1...v1.10.0)
