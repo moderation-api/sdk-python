@@ -157,6 +157,12 @@ class Evaluation(BaseModel):
     A higher score indicates more severe content.
     """
 
+    shadow_flagged: Optional[bool] = None
+    """
+    Whether the content would have been flagged by analyze-only policies (flag:
+    false).
+    """
+
     unicode_spoofed: Optional[bool] = None
     """Whether the content was flagged for Unicode spoofing."""
 
