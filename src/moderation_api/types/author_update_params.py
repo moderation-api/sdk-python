@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from typing_extensions import TypeAlias, TypedDict
+from typing import Optional
+from typing_extensions import TypedDict
 
 __all__ = ["AuthorUpdateParams", "Metadata"]
 
@@ -37,7 +37,7 @@ class AuthorUpdateParams(TypedDict, total=False):
     """URL of the author's profile picture"""
 
 
-class MetadataTyped(TypedDict, total=False):
+class Metadata(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """Additional metadata provided by your system.
 
     We recommend including any relevant information that may assist in the moderation process.
@@ -54,6 +54,3 @@ class MetadataTyped(TypedDict, total=False):
 
     phone_verified: Optional[bool]
     """Whether the author's phone number is verified"""
-
-
-Metadata: TypeAlias = Union[MetadataTyped, Dict[str, object]]
