@@ -380,7 +380,7 @@ class PolicyCodeAbuse(TypedDict, total=False):
     threshold: float
 
 
-class PolicyPiiMaskingEntitiesTyped(TypedDict, total=False):
+class PolicyPiiMaskingEntities(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     enable: bool
 
     flag: bool
@@ -388,9 +388,6 @@ class PolicyPiiMaskingEntitiesTyped(TypedDict, total=False):
     mask: str
 
     should_mask: Annotated[bool, PropertyInfo(alias="shouldMask")]
-
-
-PolicyPiiMaskingEntities: TypeAlias = Union[PolicyPiiMaskingEntitiesTyped, Dict[str, object]]
 
 
 class PolicyPiiMasking(TypedDict, total=False):
@@ -399,7 +396,7 @@ class PolicyPiiMasking(TypedDict, total=False):
     entities: Required[Dict[str, PolicyPiiMaskingEntities]]
 
 
-class PolicyURLMaskingEntitiesTyped(TypedDict, total=False):
+class PolicyURLMaskingEntities(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     enable: bool
 
     flag: bool
@@ -407,9 +404,6 @@ class PolicyURLMaskingEntitiesTyped(TypedDict, total=False):
     mask: str
 
     should_mask: Annotated[bool, PropertyInfo(alias="shouldMask")]
-
-
-PolicyURLMaskingEntities: TypeAlias = Union[PolicyURLMaskingEntitiesTyped, Dict[str, object]]
 
 
 class PolicyURLMasking(TypedDict, total=False):
