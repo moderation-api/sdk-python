@@ -48,6 +48,7 @@ __all__ = [
     "PolicyPiiMaskingEntities",
     "PolicyURLMasking",
     "PolicyURLMaskingEntities",
+    "PolicyURLRisk",
     "PolicyGuideline",
 ]
 
@@ -412,6 +413,14 @@ class PolicyURLMasking(TypedDict, total=False):
     entities: Required[Dict[str, PolicyURLMaskingEntities]]
 
 
+class PolicyURLRisk(TypedDict, total=False):
+    id: Required[Literal["url_risk"]]
+
+    flag: Required[bool]
+
+    threshold: float
+
+
 class PolicyGuideline(TypedDict, total=False):
     id: Required[Literal["guideline"]]
 
@@ -450,5 +459,6 @@ Policy: TypeAlias = Union[
     PolicyCodeAbuse,
     PolicyPiiMasking,
     PolicyURLMasking,
+    PolicyURLRisk,
     PolicyGuideline,
 ]
