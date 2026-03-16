@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.12.0 (2026-03-16)
+
+Full Changelog: [v1.11.0...v1.12.0](https://github.com/moderation-api/sdk-python/compare/v1.11.0...v1.12.0)
+
+### Features
+
+* **api:** api update ([6907711](https://github.com/moderation-api/sdk-python/commit/6907711c4c3e30391b867862e55fc349a3c2fb09))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([e610021](https://github.com/moderation-api/sdk-python/commit/e6100213a30c4915355288c031b412f945479bc8))
+
+
+### Refactors
+
+* **types:** use `extra_items` from PEP 728 ([430bfe0](https://github.com/moderation-api/sdk-python/commit/430bfe06ab9314f3f3013bf6928d47a9a450109e))
+
 ## 1.11.0 (2026-03-03)
 
 Full Changelog: [v1.10.0...v1.11.0](https://github.com/moderation-api/sdk-python/compare/v1.10.0...v1.11.0)
