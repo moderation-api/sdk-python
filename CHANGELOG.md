@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.12.2 (2026-03-17)
+
+Full Changelog: [v1.12.1...v1.12.2](https://github.com/moderation-api/sdk-python/compare/v1.12.1...v1.12.2)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([e38b349](https://github.com/moderation-api/sdk-python/commit/e38b349ffa696a9cf939a7a9ca9d8faf2a82ff89))
+
 ## 1.12.1 (2026-03-17)
 
 Full Changelog: [v1.12.0...v1.12.1](https://github.com/moderation-api/sdk-python/compare/v1.12.0...v1.12.1)
