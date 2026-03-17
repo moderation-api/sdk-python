@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.12.1 (2026-03-17)
+
+Full Changelog: [v1.12.0...v1.12.1](https://github.com/moderation-api/sdk-python/compare/v1.12.0...v1.12.1)
+
+### Bug Fixes
+
+* **pydantic:** do not pass `by_alias` unless set ([1cadcd9](https://github.com/moderation-api/sdk-python/commit/1cadcd9418281d551a5285454256c87601826354))
+
 ## 1.12.0 (2026-03-16)
 
 Full Changelog: [v1.11.0...v1.12.0](https://github.com/moderation-api/sdk-python/compare/v1.11.0...v1.12.0)
