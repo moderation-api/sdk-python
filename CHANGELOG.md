@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.12.3 (2026-03-20)
+
+Full Changelog: [v1.12.2...v1.12.3](https://github.com/moderation-api/sdk-python/compare/v1.12.2...v1.12.3)
+
+### Bug Fixes
+
+* sanitize endpoint path params ([82ab871](https://github.com/moderation-api/sdk-python/commit/82ab8719733bad759fc3e7dc199da0eaa76aca47))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([405d710](https://github.com/moderation-api/sdk-python/commit/405d7101d6e0490e1a101d185450a2fa46ebd0d6))
+
 ## 1.12.2 (2026-03-17)
 
 Full Changelog: [v1.12.1...v1.12.2](https://github.com/moderation-api/sdk-python/compare/v1.12.1...v1.12.2)
