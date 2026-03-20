@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -90,7 +90,7 @@ class ItemsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/queue/{id}/items",
+            path_template("/queue/{id}/items", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -152,7 +152,7 @@ class ItemsResource(SyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._post(
-            f"/queue/{id}/items/{item_id}/resolve",
+            path_template("/queue/{id}/items/{item_id}/resolve", id=id, item_id=item_id),
             body=maybe_transform({"comment": comment}, item_resolve_params.ItemResolveParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -196,7 +196,7 @@ class ItemsResource(SyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return self._post(
-            f"/queue/{id}/items/{item_id}/unresolve",
+            path_template("/queue/{id}/items/{item_id}/unresolve", id=id, item_id=item_id),
             body=maybe_transform({"comment": comment}, item_unresolve_params.ItemUnresolveParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -270,7 +270,7 @@ class AsyncItemsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/queue/{id}/items",
+            path_template("/queue/{id}/items", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -332,7 +332,7 @@ class AsyncItemsResource(AsyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._post(
-            f"/queue/{id}/items/{item_id}/resolve",
+            path_template("/queue/{id}/items/{item_id}/resolve", id=id, item_id=item_id),
             body=await async_maybe_transform({"comment": comment}, item_resolve_params.ItemResolveParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -376,7 +376,7 @@ class AsyncItemsResource(AsyncAPIResource):
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
         return await self._post(
-            f"/queue/{id}/items/{item_id}/unresolve",
+            path_template("/queue/{id}/items/{item_id}/unresolve", id=id, item_id=item_id),
             body=await async_maybe_transform({"comment": comment}, item_unresolve_params.ItemUnresolveParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
