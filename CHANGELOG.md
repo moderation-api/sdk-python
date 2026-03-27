@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.13.0 (2026-03-27)
+
+Full Changelog: [v1.12.3...v1.13.0](https://github.com/moderation-api/sdk-python/compare/v1.12.3...v1.13.0)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([69c6284](https://github.com/moderation-api/sdk-python/commit/69c62848a38686b3aa04f9dc5917546d1020f719))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([4266432](https://github.com/moderation-api/sdk-python/commit/42664327600ba3569c0d3285f6e0679e5242c2e9))
+* **internal:** update gitignore ([7c14aa9](https://github.com/moderation-api/sdk-python/commit/7c14aa94c384e89db9870c0a9825bb98cbd889d6))
+
 ## 1.12.3 (2026-03-20)
 
 Full Changelog: [v1.12.2...v1.12.3](https://github.com/moderation-api/sdk-python/compare/v1.12.2...v1.12.3)
