@@ -141,6 +141,13 @@ class Content(BaseModel):
     ] = None
     """The modified content, if any."""
 
+    transcript: Optional[str] = None
+    """The transcribed text from audio content.
+
+    Only present when audio moderation is used and transcript inclusion is enabled
+    on the channel.
+    """
+
 
 class Evaluation(BaseModel):
     """The evaluation of the content after running the channel policies."""
