@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.14.1 (2026-04-08)
+
+Full Changelog: [v1.14.0...v1.14.1](https://github.com/moderation-api/sdk-python/compare/v1.14.0...v1.14.1)
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([b7b9011](https://github.com/moderation-api/sdk-python/commit/b7b90113856681532a7c9122705e8f5f9ec80d93))
+
 ## 1.14.0 (2026-03-31)
 
 Full Changelog: [v1.13.0...v1.14.0](https://github.com/moderation-api/sdk-python/compare/v1.13.0...v1.14.0)
