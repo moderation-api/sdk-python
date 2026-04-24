@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = [
@@ -417,6 +418,19 @@ class PolicyURLRisk(TypedDict, total=False):
     id: Required[Literal["url_risk"]]
 
     flag: Required[bool]
+
+    allowlist_wordlist_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowlistWordlistIds")]
+    """IDs of wordlists whose entries are treated as allowed URL domains.
+
+    Matches short-circuit the risk model and are never flagged.
+    """
+
+    blocklist_wordlist_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="blocklistWordlistIds")]
+    """IDs of wordlists whose entries are treated as blocked URL domains.
+
+    Matches short-circuit the risk model and are always flagged. Blocklists take
+    precedence over allowlists.
+    """
 
     threshold: float
 
