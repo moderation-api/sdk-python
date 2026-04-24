@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.15.0 (2026-04-24)
+
+Full Changelog: [v1.14.2...v1.15.0](https://github.com/moderation-api/sdk-python/compare/v1.14.2...v1.15.0)
+
+### Features
+
+* **api:** api update ([427f2f7](https://github.com/moderation-api/sdk-python/commit/427f2f7b4b34e5a3c659247da17dd2f2bfb4b8d2))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([2faff3e](https://github.com/moderation-api/sdk-python/commit/2faff3eea5e706eaa238b9db26a35617b2b8e8fd))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([b13f27f](https://github.com/moderation-api/sdk-python/commit/b13f27f8fd5673b841bca8796a767a8218db497a))
+
 ## 1.14.2 (2026-04-11)
 
 Full Changelog: [v1.14.1...v1.14.2](https://github.com/moderation-api/sdk-python/compare/v1.14.1...v1.14.2)
