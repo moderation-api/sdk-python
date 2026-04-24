@@ -26,6 +26,8 @@ __all__ = [
     "PolicyClassifierOutputLabel",
     "PolicyEntityMatcherOutput",
     "PolicyEntityMatcherOutputMatch",
+    "PolicyEntityMatcherOutputMatchSignals",
+    "PolicyEntityMatcherOutputMatchSignalsBrandImpersonation",
     "Recommendation",
     "Error",
 ]
@@ -245,12 +247,59 @@ class PolicyClassifierOutput(BaseModel):
     labels: Optional[List[PolicyClassifierOutputLabel]] = None
 
 
+class PolicyEntityMatcherOutputMatchSignalsBrandImpersonation(BaseModel):
+    brand: str
+
+    method: Literal["registered_domain_token", "subdomain_token"]
+
+
+class PolicyEntityMatcherOutputMatchSignals(BaseModel):
+    """Observable properties of a URL (URL Risk only).
+
+    Absent for allow/block list matches.
+    """
+
+    bot_protection: Optional[bool] = None
+
+    brand_impersonation: Optional[PolicyEntityMatcherOutputMatchSignalsBrandImpersonation] = None
+
+    domain_age_days: Optional[int] = None
+
+    final_url: Optional[str] = None
+
+    has_email_setup: Optional[bool] = None
+
+    has_suspicious_characters: bool
+
+    is_link_shortener: bool
+
+    is_reported: bool
+
+    redirect_count: Optional[int] = None
+
+
 class PolicyEntityMatcherOutputMatch(BaseModel):
     match: str
 
     probability: float
 
     span: List[int]
+
+    entity_type: Optional[str] = None
+    """Sub-type of the entity match — e.g.
+
+    the NER key (email, phone, name, …) for PII matches. Absent for URL Risk and
+    wordlist matches where the type is already encoded in the parent label.
+    """
+
+    reasons: Optional[List[str]] = None
+    """Stable codes explaining why a URL was flagged (URL Risk only)."""
+
+    signals: Optional[PolicyEntityMatcherOutputMatchSignals] = None
+    """Observable properties of a URL (URL Risk only).
+
+    Absent for allow/block list matches.
+    """
 
 
 class PolicyEntityMatcherOutput(BaseModel):
