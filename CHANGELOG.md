@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.16.0 (2026-04-28)
+
+Full Changelog: [v1.15.0...v1.16.0](https://github.com/moderation-api/sdk-python/compare/v1.15.0...v1.16.0)
+
+### Features
+
+* support setting headers via env ([d420ac7](https://github.com/moderation-api/sdk-python/commit/d420ac7cbc82e47de5068c93117a89431b31e219))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([24c5513](https://github.com/moderation-api/sdk-python/commit/24c551349a951f1d57e1c5e06179aa6a0f7df7ba))
+
 ## 1.15.0 (2026-04-24)
 
 Full Changelog: [v1.14.2...v1.15.0](https://github.com/moderation-api/sdk-python/compare/v1.14.2...v1.15.0)
