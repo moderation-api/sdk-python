@@ -29,6 +29,7 @@ __all__ = [
     "PolicyEntityMatcherOutputMatchSignals",
     "PolicyEntityMatcherOutputMatchSignalsBrandImpersonation",
     "Recommendation",
+    "RecommendationMatchedRule",
     "Error",
 ]
 
@@ -321,6 +322,12 @@ class PolicyEntityMatcherOutput(BaseModel):
 Policy: TypeAlias = Union[PolicyClassifierOutput, PolicyEntityMatcherOutput]
 
 
+class RecommendationMatchedRule(BaseModel):
+    key: str
+
+    name: str
+
+
 class Recommendation(BaseModel):
     """The recommendation for the content based on the evaluation."""
 
@@ -328,12 +335,25 @@ class Recommendation(BaseModel):
     """The action to take based on the recommendation"""
 
     reason_codes: List[
-        Literal["severity_reject", "severity_review", "author_block", "dry_run", "trusted_allow", "untrusted_severity"]
+        Literal[
+            "severity_reject",
+            "severity_review",
+            "author_block",
+            "dry_run",
+            "trusted_allow",
+            "untrusted_severity",
+            "rule_match",
+            "rule_default",
+            "rule_fallback",
+        ]
     ]
     """The reason code for the recommendation.
 
     Can be used to display a reason to the user.
     """
+
+    matched_rules: Optional[List[RecommendationMatchedRule]] = None
+    """Rules that matched during evaluation, if rules engine is active."""
 
 
 class Error(BaseModel):
