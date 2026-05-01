@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.17.1 (2026-05-01)
+
+Full Changelog: [v1.17.0...v1.17.1](https://github.com/moderation-api/sdk-python/compare/v1.17.0...v1.17.1)
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([d2e57b3](https://github.com/moderation-api/sdk-python/commit/d2e57b30bb588d023745bd0250e91846b609bf0a))
+
 ## 1.17.0 (2026-04-29)
 
 Full Changelog: [v1.16.0...v1.17.0](https://github.com/moderation-api/sdk-python/compare/v1.16.0...v1.17.0)
