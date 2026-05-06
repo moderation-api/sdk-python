@@ -119,6 +119,9 @@ class Author(BaseModel):
 
     trust_level: AuthorTrustLevel
 
+    company: Optional[str] = None
+    """The author's company or organization"""
+
     email: Optional[str] = None
     """Author email address"""
 

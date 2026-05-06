@@ -432,6 +432,12 @@ class PolicyURLRisk(TypedDict, total=False):
     precedence over allowlists.
     """
 
+    flag_link_shorteners: Annotated[bool, PropertyInfo(alias="flagLinkShorteners")]
+    """
+    When true, any URL detected as a free link shortener (bit.ly, t.co, tinyurl,
+    etc.) is always flagged regardless of risk score. Allowlist matches still win.
+    """
+
     threshold: float
 
 

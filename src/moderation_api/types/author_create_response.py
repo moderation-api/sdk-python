@@ -110,6 +110,9 @@ class AuthorCreateResponse(BaseModel):
 
     trust_level: TrustLevel
 
+    company: Optional[str] = None
+    """The author's company or organization"""
+
     email: Optional[str] = None
     """Author email address"""
 
