@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.18.0 (2026-05-06)
+
+Full Changelog: [v1.17.0...v1.18.0](https://github.com/moderation-api/sdk-python/compare/v1.17.0...v1.18.0)
+
+### Features
+
+* **api:** api update ([9f119a9](https://github.com/moderation-api/sdk-python/commit/9f119a9f2586fd0454a0c37b0d2673840d5a4b34))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([d2e57b3](https://github.com/moderation-api/sdk-python/commit/d2e57b30bb588d023745bd0250e91846b609bf0a))
+
 ## 1.17.0 (2026-04-29)
 
 Full Changelog: [v1.16.0...v1.17.0](https://github.com/moderation-api/sdk-python/compare/v1.16.0...v1.17.0)
