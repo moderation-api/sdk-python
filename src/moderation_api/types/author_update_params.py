@@ -9,6 +9,9 @@ __all__ = ["AuthorUpdateParams", "Metadata"]
 
 
 class AuthorUpdateParams(TypedDict, total=False):
+    company: Optional[str]
+    """The author's company or organization"""
+
     email: Optional[str]
     """Author email address"""
 

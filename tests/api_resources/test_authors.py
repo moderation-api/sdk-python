@@ -36,6 +36,7 @@ class TestAuthors:
     def test_method_create_with_all_params(self, client: ModerationAPI) -> None:
         author = client.authors.create(
             external_id="external_id",
+            company="company",
             email="dev@stainless.com",
             external_link="https://example.com",
             first_seen=0,
@@ -133,6 +134,7 @@ class TestAuthors:
     def test_method_update_with_all_params(self, client: ModerationAPI) -> None:
         author = client.authors.update(
             id="id",
+            company="company",
             email="dev@stainless.com",
             external_link="https://example.com",
             first_seen=0,
@@ -286,6 +288,7 @@ class TestAsyncAuthors:
     async def test_method_create_with_all_params(self, async_client: AsyncModerationAPI) -> None:
         author = await async_client.authors.create(
             external_id="external_id",
+            company="company",
             email="dev@stainless.com",
             external_link="https://example.com",
             first_seen=0,
@@ -383,6 +386,7 @@ class TestAsyncAuthors:
     async def test_method_update_with_all_params(self, async_client: AsyncModerationAPI) -> None:
         author = await async_client.authors.update(
             id="id",
+            company="company",
             email="dev@stainless.com",
             external_link="https://example.com",
             first_seen=0,
