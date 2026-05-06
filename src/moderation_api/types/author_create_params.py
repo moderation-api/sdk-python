@@ -12,6 +12,9 @@ class AuthorCreateParams(TypedDict, total=False):
     external_id: Required[str]
     """External ID of the user, typically the ID of the author in your database."""
 
+    company: Optional[str]
+    """The author's company or organization"""
+
     email: Optional[str]
     """Author email address"""
 

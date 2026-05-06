@@ -52,6 +52,7 @@ class AuthorsResource(SyncAPIResource):
         self,
         *,
         external_id: str,
+        company: Optional[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         external_link: Optional[str] | Omit = omit,
         first_seen: float | Omit = omit,
@@ -74,6 +75,8 @@ class AuthorsResource(SyncAPIResource):
 
         Args:
           external_id: External ID of the user, typically the ID of the author in your database.
+
+          company: The author's company or organization
 
           email: Author email address
 
@@ -103,6 +106,7 @@ class AuthorsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "external_id": external_id,
+                    "company": company,
                     "email": email,
                     "external_link": external_link,
                     "first_seen": first_seen,
@@ -160,6 +164,7 @@ class AuthorsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        company: Optional[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         external_link: Optional[str] | Omit = omit,
         first_seen: float | Omit = omit,
@@ -180,6 +185,8 @@ class AuthorsResource(SyncAPIResource):
 
         Args:
           id: Either external ID or the ID assigned by moderation API.
+
+          company: The author's company or organization
 
           email: Author email address
 
@@ -210,6 +217,7 @@ class AuthorsResource(SyncAPIResource):
             path_template("/authors/{id}", id=id),
             body=maybe_transform(
                 {
+                    "company": company,
                     "email": email,
                     "external_link": external_link,
                     "first_seen": first_seen,
@@ -353,6 +361,7 @@ class AsyncAuthorsResource(AsyncAPIResource):
         self,
         *,
         external_id: str,
+        company: Optional[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         external_link: Optional[str] | Omit = omit,
         first_seen: float | Omit = omit,
@@ -375,6 +384,8 @@ class AsyncAuthorsResource(AsyncAPIResource):
 
         Args:
           external_id: External ID of the user, typically the ID of the author in your database.
+
+          company: The author's company or organization
 
           email: Author email address
 
@@ -404,6 +415,7 @@ class AsyncAuthorsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "external_id": external_id,
+                    "company": company,
                     "email": email,
                     "external_link": external_link,
                     "first_seen": first_seen,
@@ -461,6 +473,7 @@ class AsyncAuthorsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        company: Optional[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         external_link: Optional[str] | Omit = omit,
         first_seen: float | Omit = omit,
@@ -481,6 +494,8 @@ class AsyncAuthorsResource(AsyncAPIResource):
 
         Args:
           id: Either external ID or the ID assigned by moderation API.
+
+          company: The author's company or organization
 
           email: Author email address
 
@@ -511,6 +526,7 @@ class AsyncAuthorsResource(AsyncAPIResource):
             path_template("/authors/{id}", id=id),
             body=await async_maybe_transform(
                 {
+                    "company": company,
                     "email": email,
                     "external_link": external_link,
                     "first_seen": first_seen,
