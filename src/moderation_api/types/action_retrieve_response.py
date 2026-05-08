@@ -7,32 +7,12 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["ActionRetrieveResponse", "PossibleValue", "Webhook"]
+__all__ = ["ActionRetrieveResponse", "PossibleValue"]
 
 
 class PossibleValue(BaseModel):
     value: str
     """The value of the action."""
-
-
-class Webhook(BaseModel):
-    id: str
-    """The ID of the webhook."""
-
-    name: str
-    """The webhook's name, used to identify it in the dashboard"""
-
-    url: str
-    """The webhook's URL. We'll call this URL when the event occurs."""
-
-    description: Optional[str] = None
-    """The webhook's description"""
-
-    moderation_action_id: Optional[str] = FieldInfo(alias="moderationActionId", default=None)
-    """The ID of the moderation action to trigger the webhook on.
-
-    Only used for moderation action webhooks.
-    """
 
 
 class ActionRetrieveResponse(BaseModel):
@@ -78,9 +58,6 @@ class ActionRetrieveResponse(BaseModel):
 
     value_required: bool = FieldInfo(alias="valueRequired")
     """Whether the action requires a value to be executed."""
-
-    webhooks: List[Webhook]
-    """The action's webhooks."""
 
     description: Optional[str] = None
     """The description of the action."""

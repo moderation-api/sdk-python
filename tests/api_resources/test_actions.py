@@ -46,14 +46,6 @@ class TestActions:
             queue_behaviour="REMOVE",
             type="AUTHOR_BLOCK",
             value_required=True,
-            webhooks=[
-                {
-                    "name": "name",
-                    "url": "https://example.com",
-                    "id": "id",
-                    "description": "description",
-                }
-            ],
         )
         assert_matches_type(ActionCreateResponse, action, path=["response"])
 
@@ -149,14 +141,6 @@ class TestActions:
             queue_behaviour="REMOVE",
             type="AUTHOR_BLOCK",
             value_required=True,
-            webhooks=[
-                {
-                    "name": "name",
-                    "url": "https://example.com",
-                    "id": "id",
-                    "description": "description",
-                }
-            ],
         )
         assert_matches_type(ActionUpdateResponse, action, path=["response"])
 
@@ -301,14 +285,6 @@ class TestAsyncActions:
             queue_behaviour="REMOVE",
             type="AUTHOR_BLOCK",
             value_required=True,
-            webhooks=[
-                {
-                    "name": "name",
-                    "url": "https://example.com",
-                    "id": "id",
-                    "description": "description",
-                }
-            ],
         )
         assert_matches_type(ActionCreateResponse, action, path=["response"])
 
@@ -404,14 +380,6 @@ class TestAsyncActions:
             queue_behaviour="REMOVE",
             type="AUTHOR_BLOCK",
             value_required=True,
-            webhooks=[
-                {
-                    "name": "name",
-                    "url": "https://example.com",
-                    "id": "id",
-                    "description": "description",
-                }
-            ],
         )
         assert_matches_type(ActionUpdateResponse, action, path=["response"])
 

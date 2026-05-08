@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["ActionUpdateParams", "PossibleValue", "Webhook"]
+__all__ = ["ActionUpdateParams", "PossibleValue"]
 
 
 class ActionUpdateParams(TypedDict, total=False):
@@ -71,24 +71,7 @@ class ActionUpdateParams(TypedDict, total=False):
     value_required: Annotated[bool, PropertyInfo(alias="valueRequired")]
     """Whether the action requires a value to be executed."""
 
-    webhooks: Iterable[Webhook]
-    """The action's webhooks."""
-
 
 class PossibleValue(TypedDict, total=False):
     value: Required[str]
     """The value of the action."""
-
-
-class Webhook(TypedDict, total=False):
-    name: Required[str]
-    """The webhook's name, used to identify it in the dashboard"""
-
-    url: Required[str]
-    """The webhook's URL. We'll call this URL when the event occurs."""
-
-    id: str
-    """ID of an existing webhook or undefined if this is a new webhook."""
-
-    description: Optional[str]
-    """The webhook's description"""
