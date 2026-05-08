@@ -7,37 +7,12 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = [
-    "ActionListResponse",
-    "ActionListResponseItem",
-    "ActionListResponseItemPossibleValue",
-    "ActionListResponseItemWebhook",
-]
+__all__ = ["ActionListResponse", "ActionListResponseItem", "ActionListResponseItemPossibleValue"]
 
 
 class ActionListResponseItemPossibleValue(BaseModel):
     value: str
     """The value of the action."""
-
-
-class ActionListResponseItemWebhook(BaseModel):
-    id: str
-    """The ID of the webhook."""
-
-    name: str
-    """The webhook's name, used to identify it in the dashboard"""
-
-    url: str
-    """The webhook's URL. We'll call this URL when the event occurs."""
-
-    description: Optional[str] = None
-    """The webhook's description"""
-
-    moderation_action_id: Optional[str] = FieldInfo(alias="moderationActionId", default=None)
-    """The ID of the moderation action to trigger the webhook on.
-
-    Only used for moderation action webhooks.
-    """
 
 
 class ActionListResponseItem(BaseModel):
@@ -83,9 +58,6 @@ class ActionListResponseItem(BaseModel):
 
     value_required: bool = FieldInfo(alias="valueRequired")
     """Whether the action requires a value to be executed."""
-
-    webhooks: List[ActionListResponseItemWebhook]
-    """The action's webhooks."""
 
     description: Optional[str] = None
     """The description of the action."""

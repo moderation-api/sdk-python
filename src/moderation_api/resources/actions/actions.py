@@ -88,7 +88,6 @@ class ActionsResource(SyncAPIResource):
         ]
         | Omit = omit,
         value_required: bool | Omit = omit,
-        webhooks: Iterable[action_create_params.Webhook] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,8 +125,6 @@ class ActionsResource(SyncAPIResource):
 
           value_required: Whether the action requires a value to be executed.
 
-          webhooks: The action's webhooks.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -151,7 +148,6 @@ class ActionsResource(SyncAPIResource):
                     "queue_behaviour": queue_behaviour,
                     "type": type,
                     "value_required": value_required,
-                    "webhooks": webhooks,
                 },
                 action_create_params.ActionCreateParams,
             ),
@@ -225,7 +221,6 @@ class ActionsResource(SyncAPIResource):
         ]
         | Omit = omit,
         value_required: bool | Omit = omit,
-        webhooks: Iterable[action_update_params.Webhook] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,8 +260,6 @@ class ActionsResource(SyncAPIResource):
 
           value_required: Whether the action requires a value to be executed.
 
-          webhooks: The action's webhooks.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -292,7 +285,6 @@ class ActionsResource(SyncAPIResource):
                     "queue_behaviour": queue_behaviour,
                     "type": type,
                     "value_required": value_required,
-                    "webhooks": webhooks,
                 },
                 action_update_params.ActionUpdateParams,
             ),
@@ -425,7 +417,6 @@ class AsyncActionsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         value_required: bool | Omit = omit,
-        webhooks: Iterable[action_create_params.Webhook] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -463,8 +454,6 @@ class AsyncActionsResource(AsyncAPIResource):
 
           value_required: Whether the action requires a value to be executed.
 
-          webhooks: The action's webhooks.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -488,7 +477,6 @@ class AsyncActionsResource(AsyncAPIResource):
                     "queue_behaviour": queue_behaviour,
                     "type": type,
                     "value_required": value_required,
-                    "webhooks": webhooks,
                 },
                 action_create_params.ActionCreateParams,
             ),
@@ -562,7 +550,6 @@ class AsyncActionsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         value_required: bool | Omit = omit,
-        webhooks: Iterable[action_update_params.Webhook] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -602,8 +589,6 @@ class AsyncActionsResource(AsyncAPIResource):
 
           value_required: Whether the action requires a value to be executed.
 
-          webhooks: The action's webhooks.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -629,7 +614,6 @@ class AsyncActionsResource(AsyncAPIResource):
                     "queue_behaviour": queue_behaviour,
                     "type": type,
                     "value_required": value_required,
-                    "webhooks": webhooks,
                 },
                 action_update_params.ActionUpdateParams,
             ),
