@@ -25,7 +25,7 @@ Methods:
 Types:
 
 ```python
-from moderation_api.types import QueueRetrieveResponse, QueueGetStatsResponse
+from moderation_api.types import WebhookEvent, QueueRetrieveResponse, QueueGetStatsResponse
 ```
 
 Methods:
