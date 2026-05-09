@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.19.1 (2026-05-09)
+
+Full Changelog: [v1.19.0...v1.19.1](https://github.com/moderation-api/sdk-python/compare/v1.19.0...v1.19.1)
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([3d020a4](https://github.com/moderation-api/sdk-python/commit/3d020a47af6b2155a6d09e4015b1e8da2c45c13d))
+
 ## 1.19.0 (2026-05-08)
 
 Full Changelog: [v1.18.0...v1.19.0](https://github.com/moderation-api/sdk-python/compare/v1.18.0...v1.19.0)
