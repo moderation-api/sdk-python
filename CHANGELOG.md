@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.20.1 (2026-05-13)
+
+Full Changelog: [v1.20.0...v1.20.1](https://github.com/moderation-api/sdk-python/compare/v1.20.0...v1.20.1)
+
 ## 1.20.0 (2026-05-12)
 
 Full Changelog: [v1.19.1...v1.20.0](https://github.com/moderation-api/sdk-python/compare/v1.19.1...v1.20.0)
