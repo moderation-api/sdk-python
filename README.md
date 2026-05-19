@@ -34,7 +34,7 @@ client = ModerationAPI(
 
 response = client.content.submit(
     content={
-        "text": "x",
+        "text": "text",
         "type": "text",
     },
 )
@@ -63,7 +63,7 @@ client = AsyncModerationAPI(
 async def main() -> None:
     response = await client.content.submit(
         content={
-            "text": "x",
+            "text": "text",
             "type": "text",
         },
     )
@@ -102,7 +102,7 @@ async def main() -> None:
     ) as client:
         response = await client.content.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
         )
@@ -155,7 +155,7 @@ client = ModerationAPI()
 try:
     client.content.submit(
         content={
-            "text": "x",
+            "text": "text",
             "type": "text",
         },
     )
@@ -203,7 +203,7 @@ client = ModerationAPI(
 # Or, configure per-request:
 client.with_options(max_retries=5).content.submit(
     content={
-        "text": "x",
+        "text": "text",
         "type": "text",
     },
 )
@@ -231,7 +231,7 @@ client = ModerationAPI(
 # Override per-request:
 client.with_options(timeout=5.0).content.submit(
     content={
-        "text": "x",
+        "text": "text",
         "type": "text",
     },
 )
@@ -277,7 +277,7 @@ from moderation_api import ModerationAPI
 client = ModerationAPI()
 response = client.content.with_raw_response.submit(
     content={
-        "text": "x",
+        "text": "text",
         "type": "text",
     },
 )
@@ -300,7 +300,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 ```python
 with client.content.with_streaming_response.submit(
     content={
-        "text": "x",
+        "text": "text",
         "type": "text",
     },
 ) as response:

@@ -22,7 +22,7 @@ class TestContent:
     def test_method_submit(self, client: ModerationAPI) -> None:
         content = client.content.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
         )
@@ -33,7 +33,7 @@ class TestContent:
     def test_method_submit_with_all_params(self, client: ModerationAPI) -> None:
         content = client.content.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
             author_id="authorId",
@@ -59,7 +59,7 @@ class TestContent:
     def test_raw_response_submit(self, client: ModerationAPI) -> None:
         response = client.content.with_raw_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
         )
@@ -74,7 +74,7 @@ class TestContent:
     def test_streaming_response_submit(self, client: ModerationAPI) -> None:
         with client.content.with_streaming_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
         ) as response:
@@ -97,7 +97,7 @@ class TestAsyncContent:
     async def test_method_submit(self, async_client: AsyncModerationAPI) -> None:
         content = await async_client.content.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
         )
@@ -108,7 +108,7 @@ class TestAsyncContent:
     async def test_method_submit_with_all_params(self, async_client: AsyncModerationAPI) -> None:
         content = await async_client.content.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
             author_id="authorId",
@@ -134,7 +134,7 @@ class TestAsyncContent:
     async def test_raw_response_submit(self, async_client: AsyncModerationAPI) -> None:
         response = await async_client.content.with_raw_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
         )
@@ -149,7 +149,7 @@ class TestAsyncContent:
     async def test_streaming_response_submit(self, async_client: AsyncModerationAPI) -> None:
         async with async_client.content.with_streaming_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
         ) as response:
