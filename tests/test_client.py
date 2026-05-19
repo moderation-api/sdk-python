@@ -895,7 +895,7 @@ class TestModerationAPI:
         with pytest.raises(APITimeoutError):
             client.content.with_streaming_response.submit(
                 content={
-                    "text": "x",
+                    "text": "text",
                     "type": "text",
                 }
             ).__enter__()
@@ -910,7 +910,7 @@ class TestModerationAPI:
         with pytest.raises(APIStatusError):
             client.content.with_streaming_response.submit(
                 content={
-                    "text": "x",
+                    "text": "text",
                     "type": "text",
                 }
             ).__enter__()
@@ -944,7 +944,7 @@ class TestModerationAPI:
 
         response = client.content.with_raw_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             }
         )
@@ -973,7 +973,7 @@ class TestModerationAPI:
 
         response = client.content.with_raw_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
             extra_headers={"x-stainless-retry-count": Omit()},
@@ -1002,7 +1002,7 @@ class TestModerationAPI:
 
         response = client.content.with_raw_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
             extra_headers={"x-stainless-retry-count": "42"},
@@ -1863,7 +1863,7 @@ class TestAsyncModerationAPI:
         with pytest.raises(APITimeoutError):
             await async_client.content.with_streaming_response.submit(
                 content={
-                    "text": "x",
+                    "text": "text",
                     "type": "text",
                 }
             ).__aenter__()
@@ -1880,7 +1880,7 @@ class TestAsyncModerationAPI:
         with pytest.raises(APIStatusError):
             await async_client.content.with_streaming_response.submit(
                 content={
-                    "text": "x",
+                    "text": "text",
                     "type": "text",
                 }
             ).__aenter__()
@@ -1914,7 +1914,7 @@ class TestAsyncModerationAPI:
 
         response = await client.content.with_raw_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             }
         )
@@ -1943,7 +1943,7 @@ class TestAsyncModerationAPI:
 
         response = await client.content.with_raw_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
             extra_headers={"x-stainless-retry-count": Omit()},
@@ -1972,7 +1972,7 @@ class TestAsyncModerationAPI:
 
         response = await client.content.with_raw_response.submit(
             content={
-                "text": "x",
+                "text": "text",
                 "type": "text",
             },
             extra_headers={"x-stainless-retry-count": "42"},
