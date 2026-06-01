@@ -42,6 +42,7 @@ __all__ = [
     "PolicySelfHarm",
     "PolicySpam",
     "PolicyLowQualityContent",
+    "PolicyFaceDetection",
     "PolicySelfPromotion",
     "PolicyPolitical",
     "PolicyReligion",
@@ -365,6 +366,26 @@ class PolicyLowQualityContent(TypedDict, total=False):
     threshold: float
 
 
+class PolicyFaceDetection(TypedDict, total=False):
+    id: Required[Literal["face_detection"]]
+
+    flag: Required[bool]
+
+    comparator: Literal["at_least", "fewer_than"]
+    """
+    Flag images that contain "at least" or "fewer than" the configured number of
+    faces. Defaults to at_least.
+    """
+
+    count: int
+    """Number of faces the comparator applies to.
+
+    Defaults to 1, so the default rule flags any image containing a face.
+    """
+
+    threshold: float
+
+
 class PolicySelfPromotion(TypedDict, total=False):
     id: Required[Literal["self_promotion"]]
 
@@ -489,6 +510,7 @@ Policy: TypeAlias = Union[
     PolicySelfHarm,
     PolicySpam,
     PolicyLowQualityContent,
+    PolicyFaceDetection,
     PolicySelfPromotion,
     PolicyPolitical,
     PolicyReligion,
