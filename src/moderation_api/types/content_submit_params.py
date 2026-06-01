@@ -41,6 +41,7 @@ __all__ = [
     "PolicyViolence",
     "PolicySelfHarm",
     "PolicySpam",
+    "PolicyLowQualityContent",
     "PolicySelfPromotion",
     "PolicyPolitical",
     "PolicyReligion",
@@ -350,6 +351,20 @@ class PolicySpam(TypedDict, total=False):
     threshold: float
 
 
+class PolicyLowQualityContent(TypedDict, total=False):
+    id: Required[Literal["low_quality"]]
+
+    flag: Required[bool]
+
+    min_words: Annotated[int, PropertyInfo(alias="minWords")]
+    """Flag content with fewer than this many words as low-effort.
+
+    Defaults to 3. Set to disable by omitting.
+    """
+
+    threshold: float
+
+
 class PolicySelfPromotion(TypedDict, total=False):
     id: Required[Literal["self_promotion"]]
 
@@ -473,6 +488,7 @@ Policy: TypeAlias = Union[
     PolicyViolence,
     PolicySelfHarm,
     PolicySpam,
+    PolicyLowQualityContent,
     PolicySelfPromotion,
     PolicyPolitical,
     PolicyReligion,
