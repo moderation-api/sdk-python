@@ -242,6 +242,12 @@ class PolicyClassifierOutput(BaseModel):
 
     type: Literal["classifier"]
 
+    data: Optional[Dict[str, object]] = None
+    """Optional structured data produced by the policy.
+
+    For face detection: { count, faces: [{ confidence, gender, age }] }.
+    """
+
     flagged_fields: Optional[List[str]] = None
     """The keys of the flagged fields if submitting an object."""
 
