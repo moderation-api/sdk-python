@@ -351,6 +351,7 @@ class Recommendation(BaseModel):
             "rule_match",
             "rule_default",
             "rule_fallback",
+            "client_override",
         ]
     ]
     """The reason code for the recommendation.

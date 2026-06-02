@@ -50,6 +50,7 @@ class ContentResource(SyncAPIResource):
         content: content_submit_params.Content,
         author_id: str | Omit = omit,
         channel: str | Omit = omit,
+        client_action: content_submit_params.ClientAction | Omit = omit,
         content_id: str | Omit = omit,
         conversation_id: str | Omit = omit,
         do_not_store: bool | Omit = omit,
@@ -73,6 +74,10 @@ class ContentResource(SyncAPIResource):
 
           channel: Provide a channel ID or key. Will use the project's default channel if not
               provided.
+
+          client_action: A recommendation from your own client-side flagging (e.g. a banned-IP list or a
+              third-party tool). Feeds the rules engine and can escalate or override the
+              recommended action. Does not change whether our analysis flagged the content.
 
           content_id: The unique ID of the content in your database.
 
@@ -104,6 +109,7 @@ class ContentResource(SyncAPIResource):
                     "content": content,
                     "author_id": author_id,
                     "channel": channel,
+                    "client_action": client_action,
                     "content_id": content_id,
                     "conversation_id": conversation_id,
                     "do_not_store": do_not_store,
@@ -147,6 +153,7 @@ class AsyncContentResource(AsyncAPIResource):
         content: content_submit_params.Content,
         author_id: str | Omit = omit,
         channel: str | Omit = omit,
+        client_action: content_submit_params.ClientAction | Omit = omit,
         content_id: str | Omit = omit,
         conversation_id: str | Omit = omit,
         do_not_store: bool | Omit = omit,
@@ -170,6 +177,10 @@ class AsyncContentResource(AsyncAPIResource):
 
           channel: Provide a channel ID or key. Will use the project's default channel if not
               provided.
+
+          client_action: A recommendation from your own client-side flagging (e.g. a banned-IP list or a
+              third-party tool). Feeds the rules engine and can escalate or override the
+              recommended action. Does not change whether our analysis flagged the content.
 
           content_id: The unique ID of the content in your database.
 
@@ -201,6 +212,7 @@ class AsyncContentResource(AsyncAPIResource):
                     "content": content,
                     "author_id": author_id,
                     "channel": channel,
+                    "client_action": client_action,
                     "content_id": content_id,
                     "conversation_id": conversation_id,
                     "do_not_store": do_not_store,
