@@ -21,6 +21,7 @@ __all__ = [
     "ContentObjectDataImage",
     "ContentObjectDataVideo",
     "ContentObjectDataAudio",
+    "ClientAction",
     "Policy",
     "PolicyToxicity",
     "PolicyPersonalInformation",
@@ -67,6 +68,14 @@ class ContentSubmitParams(TypedDict, total=False):
     """Provide a channel ID or key.
 
     Will use the project's default channel if not provided.
+    """
+
+    client_action: Annotated[ClientAction, PropertyInfo(alias="clientAction")]
+    """A recommendation from your own client-side flagging (e.g.
+
+    a banned-IP list or a third-party tool). Feeds the rules engine and can escalate
+    or override the recommended action. Does not change whether our analysis flagged
+    the content.
     """
 
     content_id: Annotated[str, PropertyInfo(alias="contentId")]
@@ -198,6 +207,29 @@ class ContentObject(TypedDict, total=False):
 
 
 Content: TypeAlias = Union[ContentText, ContentImage, ContentVideo, ContentAudio, ContentObject]
+
+
+class ClientAction(TypedDict, total=False):
+    """A recommendation from your own client-side flagging (e.g.
+
+    a banned-IP list or a third-party tool). Feeds the rules engine and can escalate or override the recommended action. Does not change whether our analysis flagged the content.
+    """
+
+    action: Required[Literal["review", "allow", "reject"]]
+    """Your recommendation for the content: allow, review, or reject."""
+
+    behavior: Literal["override", "escalate"]
+    """How your recommendation combines with ours.
+
+    Defaults to 'escalate', which only applies it when stricter than ours;
+    'override' replaces ours outright.
+    """
+
+    reason: str
+    """A human-readable explanation for your recommendation."""
+
+    source: str
+    """Where your recommendation came from, e.g. "banned-ip"."""
 
 
 class PolicyToxicity(TypedDict, total=False):
