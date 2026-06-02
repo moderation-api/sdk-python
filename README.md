@@ -130,11 +130,14 @@ from moderation_api import ModerationAPI
 
 client = ModerationAPI()
 
-author = client.authors.create(
-    external_id="external_id",
-    metadata={},
+response = client.content.submit(
+    content={
+        "text": "text",
+        "type": "text",
+    },
+    client_action={"action": "review"},
 )
-print(author.metadata)
+print(response.client_action)
 ```
 
 ## Handling errors
