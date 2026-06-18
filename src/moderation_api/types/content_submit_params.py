@@ -91,7 +91,7 @@ class ContentSubmitParams(TypedDict, total=False):
     """Any metadata you want to store with the content"""
 
     meta_type: Annotated[
-        Literal["profile", "message", "post", "comment", "event", "product", "review", "other"],
+        Literal["profile", "message", "post", "comment", "event", "product", "review", "voice", "other"],
         PropertyInfo(alias="metaType"),
     ]
     """The meta type of content being moderated"""
