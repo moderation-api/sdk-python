@@ -55,7 +55,7 @@ class ContentResource(SyncAPIResource):
         conversation_id: str | Omit = omit,
         do_not_store: bool | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
-        meta_type: Literal["profile", "message", "post", "comment", "event", "product", "review", "other"]
+        meta_type: Literal["profile", "message", "post", "comment", "event", "product", "review", "voice", "other"]
         | Omit = omit,
         policies: Iterable[content_submit_params.Policy] | Omit = omit,
         timestamp: float | Omit = omit,
@@ -158,7 +158,7 @@ class AsyncContentResource(AsyncAPIResource):
         conversation_id: str | Omit = omit,
         do_not_store: bool | Omit = omit,
         metadata: Dict[str, object] | Omit = omit,
-        meta_type: Literal["profile", "message", "post", "comment", "event", "product", "review", "other"]
+        meta_type: Literal["profile", "message", "post", "comment", "event", "product", "review", "voice", "other"]
         | Omit = omit,
         policies: Iterable[content_submit_params.Policy] | Omit = omit,
         timestamp: float | Omit = omit,
