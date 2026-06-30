@@ -450,7 +450,11 @@ class PolicyCodeAbuse(TypedDict, total=False):
     threshold: float
 
 
-class PolicyPiiMaskingEntities(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class PolicyPiiMaskingEntities(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     enable: bool
 
     flag: bool
@@ -466,7 +470,11 @@ class PolicyPiiMasking(TypedDict, total=False):
     entities: Required[Dict[str, PolicyPiiMaskingEntities]]
 
 
-class PolicyURLMaskingEntities(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class PolicyURLMaskingEntities(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     enable: bool
 
     flag: bool
