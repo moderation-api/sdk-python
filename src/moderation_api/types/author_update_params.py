@@ -40,7 +40,11 @@ class AuthorUpdateParams(TypedDict, total=False):
     """URL of the author's profile picture"""
 
 
-class Metadata(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class Metadata(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """Additional metadata provided by your system.
 
     We recommend including any relevant information that may assist in the moderation process.
