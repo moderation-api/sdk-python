@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.25.1 (2026-06-30)
+
+Full Changelog: [v1.25.0...v1.25.1](https://github.com/moderation-api/sdk-python/compare/v1.25.0...v1.25.1)
+
+### Bug Fixes
+
+* **types:** avoid type-checker errors on params with additional properties ([348fae3](https://github.com/moderation-api/sdk-python/commit/348fae3cbebd21db329ad5eaed0d8222a1275911))
+
 ## 1.25.0 (2026-06-18)
 
 Full Changelog: [v1.24.0...v1.25.0](https://github.com/moderation-api/sdk-python/compare/v1.24.0...v1.25.0)
