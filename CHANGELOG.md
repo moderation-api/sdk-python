@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.25.2 (2026-07-14)
+
+Full Changelog: [v1.25.1...v1.25.2](https://github.com/moderation-api/sdk-python/compare/v1.25.1...v1.25.2)
+
+### Bug Fixes
+
+* **internal:** resolve build failures ([d95b314](https://github.com/moderation-api/sdk-python/commit/d95b3140b5bbef7ae2422adfc1e1c56bb1cf87da))
+
 ## 1.25.1 (2026-06-30)
 
 Full Changelog: [v1.25.0...v1.25.1](https://github.com/moderation-api/sdk-python/compare/v1.25.0...v1.25.1)
