@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.26.0 (2026-07-18)
+
+Full Changelog: [v1.25.2...v1.26.0](https://github.com/moderation-api/sdk-python/compare/v1.25.2...v1.26.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([67a1e27](https://github.com/moderation-api/sdk-python/commit/67a1e272016a55c60b9c8a275f82ca02c190d393))
+
 ## 1.25.2 (2026-07-14)
 
 Full Changelog: [v1.25.1...v1.25.2](https://github.com/moderation-api/sdk-python/compare/v1.25.1...v1.25.2)
