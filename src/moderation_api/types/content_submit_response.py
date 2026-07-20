@@ -144,18 +144,18 @@ class Content(BaseModel):
     ] = None
     """The modified content, if any."""
 
+    unicode_cleaned: bool
+    """
+    Whether Unicode spoofing normalization rewrote the content — confusables folded
+    to their Latin lookalikes, invisible characters and combining-mark abuse
+    stripped.
+    """
+
     transcript: Optional[str] = None
     """The transcribed text from audio content.
 
     Only present when audio moderation is used and transcript inclusion is enabled
     on the channel.
-    """
-
-    unicode_cleaned: Optional[bool] = None
-    """
-    Whether Unicode spoofing normalization rewrote the content — confusables folded
-    to their Latin lookalikes, invisible characters and combining-mark abuse
-    stripped.
     """
 
 
