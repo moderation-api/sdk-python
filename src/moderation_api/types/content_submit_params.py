@@ -48,6 +48,8 @@ __all__ = [
     "PolicyPolitical",
     "PolicyReligion",
     "PolicyCodeAbuse",
+    "PolicyUnicodeSpoofing",
+    "PolicyUnicodeSpoofingSignals",
     "PolicyPiiMasking",
     "PolicyPiiMaskingEntities",
     "PolicyURLMasking",
@@ -450,6 +452,25 @@ class PolicyCodeAbuse(TypedDict, total=False):
     threshold: float
 
 
+class PolicyUnicodeSpoofingSignals(TypedDict, total=False):
+    flag: bool
+
+
+class PolicyUnicodeSpoofing(TypedDict, total=False):
+    id: Required[Literal["unicode_spoofing"]]
+
+    flag: Required[bool]
+
+    signals: Dict[str, PolicyUnicodeSpoofingSignals]
+    """Per-signal flag toggles.
+
+    Omitted signals are enabled. A signal set to { flag: false } is still detected
+    and reported as a label, but does not by itself flag the policy.
+    """
+
+    threshold: float
+
+
 class PolicyPiiMaskingEntities(  # type: ignore[call-arg]
     TypedDict,
     total=False,
@@ -555,6 +576,7 @@ Policy: TypeAlias = Union[
     PolicyPolitical,
     PolicyReligion,
     PolicyCodeAbuse,
+    PolicyUnicodeSpoofing,
     PolicyPiiMasking,
     PolicyURLMasking,
     PolicyURLRisk,

@@ -151,6 +151,13 @@ class Content(BaseModel):
     on the channel.
     """
 
+    unicode_cleaned: Optional[bool] = None
+    """
+    Whether Unicode spoofing normalization rewrote the content — confusables folded
+    to their Latin lookalikes, invisible characters and combining-mark abuse
+    stripped.
+    """
+
 
 class Evaluation(BaseModel):
     """The evaluation of the content after running the channel policies."""
