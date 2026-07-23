@@ -3,6 +3,8 @@
 from typing import Dict, List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 
 __all__ = [
@@ -235,6 +237,8 @@ class PolicyClassifierOutputLabel(BaseModel):
     flagged: bool
 
     probability: float
+
+    shadow_flagged: Optional[bool] = FieldInfo(alias="shadowFlagged", default=None)
 
 
 class PolicyClassifierOutput(BaseModel):
