@@ -352,22 +352,26 @@ class Recommendation(BaseModel):
     """The action to take based on the recommendation"""
 
     reason_codes: List[
-        Literal[
-            "severity_reject",
-            "severity_review",
-            "author_block",
-            "dry_run",
-            "trusted_allow",
-            "untrusted_severity",
-            "rule_match",
-            "rule_default",
-            "rule_fallback",
-            "client_override",
+        Union[
+            Literal[
+                "severity_reject",
+                "severity_review",
+                "author_block",
+                "dry_run",
+                "trusted_allow",
+                "untrusted_severity",
+                "rule_match",
+                "rule_default",
+                "rule_fallback",
+                "client_override",
+            ],
+            str,
         ]
     ]
-    """The reason code for the recommendation.
+    """Reason codes for the recommendation.
 
-    Can be used to display a reason to the user.
+    Standard codes plus a `rule:<key>` code identifying the rule that produced the
+    action. Can be used to display a reason to the user.
     """
 
     matched_rules: Optional[List[RecommendationMatchedRule]] = None
