@@ -25,7 +25,19 @@ class QueueFilter(BaseModel):
 
     author_id: Optional[str] = FieldInfo(alias="authorID", default=None)
 
+    author_trust_levels: Optional[List[int]] = FieldInfo(alias="authorTrustLevels", default=None)
+
     before_date: Optional[str] = FieldInfo(alias="beforeDate", default=None)
+
+    check_status: Optional[Literal["all", "checked", "unchecked"]] = FieldInfo(alias="checkStatus", default=None)
+
+    clear_date_window: Optional[bool] = FieldInfo(alias="clearDateWindow", default=None)
+
+    content_id: Optional[str] = FieldInfo(alias="contentID", default=None)
+
+    content_types: Optional[
+        List[Literal["profile", "message", "post", "comment", "event", "product", "review", "voice", "other"]]
+    ] = FieldInfo(alias="contentTypes", default=None)
 
     conversation_ids: Optional[List[Optional[str]]] = FieldInfo(alias="conversationIds", default=None)
 
@@ -35,13 +47,29 @@ class QueueFilter(BaseModel):
 
     filter_labels: Optional[List[QueueFilterFilterLabel]] = FieldInfo(alias="filterLabels", default=None)
 
+    is_flagged: Optional[Literal["ALL", "FLAGGED", "NOT_FLAGGED", "SHADOW_FLAGGED"]] = FieldInfo(
+        alias="isFlagged", default=None
+    )
+
     labels: Optional[List[str]] = None
+
+    languages: Optional[List[str]] = None
+
+    media_types: Optional[List[Literal["text", "image", "video", "object", "audio"]]] = FieldInfo(
+        alias="mediaTypes", default=None
+    )
 
     recommendation_actions: Optional[List[Literal["review", "allow", "reject"]]] = FieldInfo(
         alias="recommendationActions", default=None
     )
 
-    show_checked: Optional[bool] = FieldInfo(alias="showChecked", default=None)
+    search: Optional[List[str]] = None
+
+    within: Optional[float] = None
+
+    within_unit: Optional[Literal["MINUTES", "HOURS", "DAYS", "WEEKS", "MONTHS", "YEARS"]] = FieldInfo(
+        alias="withinUnit", default=None
+    )
 
 
 class Queue(BaseModel):
