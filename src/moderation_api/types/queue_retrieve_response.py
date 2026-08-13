@@ -13,7 +13,7 @@ __all__ = ["QueueRetrieveResponse", "Queue", "QueueFilter", "QueueFilterFilterLa
 class QueueFilterFilterLabel(BaseModel):
     label: str
 
-    type: Literal["FLAGGED", "NOT_FLAGGED", "THRESHOLDS"]
+    type: Literal["FLAGGED", "NOT_FLAGGED", "THRESHOLDS", "MATCHED"]
 
     max_threshold: Optional[float] = FieldInfo(alias="maxThreshold", default=None)
 
