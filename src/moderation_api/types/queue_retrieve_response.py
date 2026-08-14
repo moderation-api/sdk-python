@@ -55,9 +55,13 @@ class QueueFilter(BaseModel):
 
     languages: Optional[List[str]] = None
 
+    max_severity: Optional[int] = FieldInfo(alias="maxSeverity", default=None)
+
     media_types: Optional[List[Literal["text", "image", "video", "object", "audio"]]] = FieldInfo(
         alias="mediaTypes", default=None
     )
+
+    min_severity: Optional[int] = FieldInfo(alias="minSeverity", default=None)
 
     recommendation_actions: Optional[List[Literal["review", "allow", "reject"]]] = FieldInfo(
         alias="recommendationActions", default=None
