@@ -48,6 +48,14 @@ from .content import (
     ContentResourceWithStreamingResponse,
     AsyncContentResourceWithStreamingResponse,
 )
+from .webhooks import (
+    WebhooksResource,
+    AsyncWebhooksResource,
+    WebhooksResourceWithRawResponse,
+    AsyncWebhooksResourceWithRawResponse,
+    WebhooksResourceWithStreamingResponse,
+    AsyncWebhooksResourceWithStreamingResponse,
+)
 from .wordlist import (
     WordlistResource,
     AsyncWordlistResource,
@@ -55,6 +63,14 @@ from .wordlist import (
     AsyncWordlistResourceWithRawResponse,
     WordlistResourceWithStreamingResponse,
     AsyncWordlistResourceWithStreamingResponse,
+)
+from .webhook_secret import (
+    WebhookSecretResource,
+    AsyncWebhookSecretResource,
+    WebhookSecretResourceWithRawResponse,
+    AsyncWebhookSecretResourceWithRawResponse,
+    WebhookSecretResourceWithStreamingResponse,
+    AsyncWebhookSecretResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -100,4 +116,16 @@ __all__ = [
     "AsyncWordlistResourceWithRawResponse",
     "WordlistResourceWithStreamingResponse",
     "AsyncWordlistResourceWithStreamingResponse",
+    "WebhooksResource",
+    "AsyncWebhooksResource",
+    "WebhooksResourceWithRawResponse",
+    "AsyncWebhooksResourceWithRawResponse",
+    "WebhooksResourceWithStreamingResponse",
+    "AsyncWebhooksResourceWithStreamingResponse",
+    "WebhookSecretResource",
+    "AsyncWebhookSecretResource",
+    "WebhookSecretResourceWithRawResponse",
+    "AsyncWebhookSecretResourceWithRawResponse",
+    "WebhookSecretResourceWithStreamingResponse",
+    "AsyncWebhookSecretResourceWithStreamingResponse",
 ]
