@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.35.0 (2026-08-20)
+
+Full Changelog: [v1.34.0...v1.35.0](https://github.com/moderation-api/sdk-python/compare/v1.34.0...v1.35.0)
+
+### Features
+
+* **api:** webhooks and stream ([4f4bf9f](https://github.com/moderation-api/sdk-python/commit/4f4bf9f2d1e2b6c5ddea270e16fd4d8f10600618))
+
 ## 1.34.0 (2026-08-14)
 
 Full Changelog: [v1.33.0...v1.34.0](https://github.com/moderation-api/sdk-python/compare/v1.33.0...v1.34.0)
