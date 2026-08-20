@@ -19,6 +19,40 @@ class TestContent:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_stream(self, client: ModerationAPI) -> None:
+        content = client.content.stream(
+            sec_web_socket_protocol="moderationapi.v1",
+        )
+        assert content is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_stream(self, client: ModerationAPI) -> None:
+        response = client.content.with_raw_response.stream(
+            sec_web_socket_protocol="moderationapi.v1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        content = response.parse()
+        assert content is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_stream(self, client: ModerationAPI) -> None:
+        with client.content.with_streaming_response.stream(
+            sec_web_socket_protocol="moderationapi.v1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            content = response.parse()
+            assert content is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_method_submit(self, client: ModerationAPI) -> None:
         content = client.content.submit(
             content={
@@ -97,6 +131,40 @@ class TestAsyncContent:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_stream(self, async_client: AsyncModerationAPI) -> None:
+        content = await async_client.content.stream(
+            sec_web_socket_protocol="moderationapi.v1",
+        )
+        assert content is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_stream(self, async_client: AsyncModerationAPI) -> None:
+        response = await async_client.content.with_raw_response.stream(
+            sec_web_socket_protocol="moderationapi.v1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        content = await response.parse()
+        assert content is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_stream(self, async_client: AsyncModerationAPI) -> None:
+        async with async_client.content.with_streaming_response.stream(
+            sec_web_socket_protocol="moderationapi.v1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            content = await response.parse()
+            assert content is None
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize

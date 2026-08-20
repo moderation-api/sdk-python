@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import content_submit_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -43,6 +43,59 @@ class ContentResource(SyncAPIResource):
         For more information, see https://www.github.com/moderation-api/sdk-python#with_streaming_response
         """
         return ContentResourceWithStreamingResponse(self)
+
+    def stream(
+        self,
+        *,
+        sec_web_socket_protocol: Literal["moderationapi.v1"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Open a WebSocket to moderate live voice/call audio in real time.
+
+        Speech is
+        transcribed and each finalized utterance is moderated by your enabled text
+        policies; you receive a verdict per utterance as it's spoken.
+
+        **This is a WebSocket upgrade, not a regular HTTP call.** The request body below
+        documents the frames you _send_ over the socket; the `101` response documents
+        the events you _receive_.
+
+        - **Auth:** `Authorization: Bearer <api_key>` on the upgrade. A missing/invalid
+          key closes `4401`; voice not enabled on the plan/channel closes `4403`.
+        - **Subprotocol:** request `moderationapi.v1`.
+        - **Flow:** send one `start` frame, then `media` frames as audio arrives, then
+          `stop` (or disconnect). You receive `session.started`, `utterance.final` per
+          utterance, optional `utterance.partial`/`warning`, and `session.ended`.
+        - **Close codes:** `1000` normal · `1011` server error · `4400` bad request ·
+          `4401` auth failed · `4403` voice not enabled · `4429` concurrency limit.
+
+        See the
+        [Real-time voice guide](https://docs.moderationapi.com/content-moderation/real-time-voice)
+        for the full walkthrough and code examples.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers.update({"Sec-WebSocket-Protocol": str(sec_web_socket_protocol)})
+        return self._get(
+            "/stream" if self._client._base_url_overridden else "wss://voice.moderationapi.com/v1/stream",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
 
     def submit(
         self,
@@ -147,6 +200,59 @@ class AsyncContentResource(AsyncAPIResource):
         """
         return AsyncContentResourceWithStreamingResponse(self)
 
+    async def stream(
+        self,
+        *,
+        sec_web_socket_protocol: Literal["moderationapi.v1"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Open a WebSocket to moderate live voice/call audio in real time.
+
+        Speech is
+        transcribed and each finalized utterance is moderated by your enabled text
+        policies; you receive a verdict per utterance as it's spoken.
+
+        **This is a WebSocket upgrade, not a regular HTTP call.** The request body below
+        documents the frames you _send_ over the socket; the `101` response documents
+        the events you _receive_.
+
+        - **Auth:** `Authorization: Bearer <api_key>` on the upgrade. A missing/invalid
+          key closes `4401`; voice not enabled on the plan/channel closes `4403`.
+        - **Subprotocol:** request `moderationapi.v1`.
+        - **Flow:** send one `start` frame, then `media` frames as audio arrives, then
+          `stop` (or disconnect). You receive `session.started`, `utterance.final` per
+          utterance, optional `utterance.partial`/`warning`, and `session.ended`.
+        - **Close codes:** `1000` normal · `1011` server error · `4400` bad request ·
+          `4401` auth failed · `4403` voice not enabled · `4429` concurrency limit.
+
+        See the
+        [Real-time voice guide](https://docs.moderationapi.com/content-moderation/real-time-voice)
+        for the full walkthrough and code examples.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers.update({"Sec-WebSocket-Protocol": str(sec_web_socket_protocol)})
+        return await self._get(
+            "/stream" if self._client._base_url_overridden else "wss://voice.moderationapi.com/v1/stream",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
     async def submit(
         self,
         *,
@@ -234,6 +340,9 @@ class ContentResourceWithRawResponse:
     def __init__(self, content: ContentResource) -> None:
         self._content = content
 
+        self.stream = to_raw_response_wrapper(
+            content.stream,
+        )
         self.submit = to_raw_response_wrapper(
             content.submit,
         )
@@ -243,6 +352,9 @@ class AsyncContentResourceWithRawResponse:
     def __init__(self, content: AsyncContentResource) -> None:
         self._content = content
 
+        self.stream = async_to_raw_response_wrapper(
+            content.stream,
+        )
         self.submit = async_to_raw_response_wrapper(
             content.submit,
         )
@@ -252,6 +364,9 @@ class ContentResourceWithStreamingResponse:
     def __init__(self, content: ContentResource) -> None:
         self._content = content
 
+        self.stream = to_streamed_response_wrapper(
+            content.stream,
+        )
         self.submit = to_streamed_response_wrapper(
             content.submit,
         )
@@ -261,6 +376,9 @@ class AsyncContentResourceWithStreamingResponse:
     def __init__(self, content: AsyncContentResource) -> None:
         self._content = content
 
+        self.stream = async_to_streamed_response_wrapper(
+            content.stream,
+        )
         self.submit = async_to_streamed_response_wrapper(
             content.submit,
         )

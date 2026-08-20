@@ -35,12 +35,14 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import auth, queue, account, actions, authors, content, wordlist
+    from .resources import auth, queue, account, actions, authors, content, webhooks, wordlist, webhook_secret
     from .resources.auth import AuthResource, AsyncAuthResource
     from .resources.account import AccountResource, AsyncAccountResource
     from .resources.authors import AuthorsResource, AsyncAuthorsResource
     from .resources.content import ContentResource, AsyncContentResource
+    from .resources.webhooks import WebhooksResource, AsyncWebhooksResource
     from .resources.queue.queue import QueueResource, AsyncQueueResource
+    from .resources.webhook_secret import WebhookSecretResource, AsyncWebhookSecretResource
     from .resources.actions.actions import ActionsResource, AsyncActionsResource
     from .resources.wordlist.wordlist import WordlistResource, AsyncWordlistResource
 
@@ -97,6 +99,7 @@ class ModerationAPI(SyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("MODERATION_API_BASE_URL")
+        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.moderationapi.com/v1"
 
@@ -163,6 +166,18 @@ class ModerationAPI(SyncAPIClient):
         return WordlistResource(self)
 
     @cached_property
+    def webhooks(self) -> WebhooksResource:
+        from .resources.webhooks import WebhooksResource
+
+        return WebhooksResource(self)
+
+    @cached_property
+    def webhook_secret(self) -> WebhookSecretResource:
+        from .resources.webhook_secret import WebhookSecretResource
+
+        return WebhookSecretResource(self)
+
+    @cached_property
     def with_raw_response(self) -> ModerationAPIWithRawResponse:
         return ModerationAPIWithRawResponse(self)
 
@@ -226,7 +241,7 @@ class ModerationAPI(SyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(
+        client = self.__class__(
             secret_key=secret_key or self.secret_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -236,6 +251,8 @@ class ModerationAPI(SyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
+        client._base_url_overridden = self._base_url_overridden or base_url is not None
+        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -316,6 +333,7 @@ class AsyncModerationAPI(AsyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("MODERATION_API_BASE_URL")
+        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.moderationapi.com/v1"
 
@@ -382,6 +400,18 @@ class AsyncModerationAPI(AsyncAPIClient):
         return AsyncWordlistResource(self)
 
     @cached_property
+    def webhooks(self) -> AsyncWebhooksResource:
+        from .resources.webhooks import AsyncWebhooksResource
+
+        return AsyncWebhooksResource(self)
+
+    @cached_property
+    def webhook_secret(self) -> AsyncWebhookSecretResource:
+        from .resources.webhook_secret import AsyncWebhookSecretResource
+
+        return AsyncWebhookSecretResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncModerationAPIWithRawResponse:
         return AsyncModerationAPIWithRawResponse(self)
 
@@ -445,7 +475,7 @@ class AsyncModerationAPI(AsyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(
+        client = self.__class__(
             secret_key=secret_key or self.secret_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -455,6 +485,8 @@ class AsyncModerationAPI(AsyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
+        client._base_url_overridden = self._base_url_overridden or base_url is not None
+        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -542,6 +574,18 @@ class ModerationAPIWithRawResponse:
 
         return WordlistResourceWithRawResponse(self._client.wordlist)
 
+    @cached_property
+    def webhooks(self) -> webhooks.WebhooksResourceWithRawResponse:
+        from .resources.webhooks import WebhooksResourceWithRawResponse
+
+        return WebhooksResourceWithRawResponse(self._client.webhooks)
+
+    @cached_property
+    def webhook_secret(self) -> webhook_secret.WebhookSecretResourceWithRawResponse:
+        from .resources.webhook_secret import WebhookSecretResourceWithRawResponse
+
+        return WebhookSecretResourceWithRawResponse(self._client.webhook_secret)
+
 
 class AsyncModerationAPIWithRawResponse:
     _client: AsyncModerationAPI
@@ -590,6 +634,18 @@ class AsyncModerationAPIWithRawResponse:
         from .resources.wordlist import AsyncWordlistResourceWithRawResponse
 
         return AsyncWordlistResourceWithRawResponse(self._client.wordlist)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooksResourceWithRawResponse:
+        from .resources.webhooks import AsyncWebhooksResourceWithRawResponse
+
+        return AsyncWebhooksResourceWithRawResponse(self._client.webhooks)
+
+    @cached_property
+    def webhook_secret(self) -> webhook_secret.AsyncWebhookSecretResourceWithRawResponse:
+        from .resources.webhook_secret import AsyncWebhookSecretResourceWithRawResponse
+
+        return AsyncWebhookSecretResourceWithRawResponse(self._client.webhook_secret)
 
 
 class ModerationAPIWithStreamedResponse:
@@ -640,6 +696,18 @@ class ModerationAPIWithStreamedResponse:
 
         return WordlistResourceWithStreamingResponse(self._client.wordlist)
 
+    @cached_property
+    def webhooks(self) -> webhooks.WebhooksResourceWithStreamingResponse:
+        from .resources.webhooks import WebhooksResourceWithStreamingResponse
+
+        return WebhooksResourceWithStreamingResponse(self._client.webhooks)
+
+    @cached_property
+    def webhook_secret(self) -> webhook_secret.WebhookSecretResourceWithStreamingResponse:
+        from .resources.webhook_secret import WebhookSecretResourceWithStreamingResponse
+
+        return WebhookSecretResourceWithStreamingResponse(self._client.webhook_secret)
+
 
 class AsyncModerationAPIWithStreamedResponse:
     _client: AsyncModerationAPI
@@ -688,6 +756,18 @@ class AsyncModerationAPIWithStreamedResponse:
         from .resources.wordlist import AsyncWordlistResourceWithStreamingResponse
 
         return AsyncWordlistResourceWithStreamingResponse(self._client.wordlist)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooksResourceWithStreamingResponse:
+        from .resources.webhooks import AsyncWebhooksResourceWithStreamingResponse
+
+        return AsyncWebhooksResourceWithStreamingResponse(self._client.webhooks)
+
+    @cached_property
+    def webhook_secret(self) -> webhook_secret.AsyncWebhookSecretResourceWithStreamingResponse:
+        from .resources.webhook_secret import AsyncWebhookSecretResourceWithStreamingResponse
+
+        return AsyncWebhookSecretResourceWithStreamingResponse(self._client.webhook_secret)
 
 
 Client = ModerationAPI

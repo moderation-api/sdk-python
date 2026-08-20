@@ -92,6 +92,7 @@ from moderation_api.types import ContentSubmitResponse
 
 Methods:
 
+- <code title="get /stream">client.content.<a href="./src/moderation_api/resources/content.py">stream</a>() -> None</code>
 - <code title="post /moderate">client.content.<a href="./src/moderation_api/resources/content.py">submit</a>(\*\*<a href="src/moderation_api/types/content_submit_params.py">params</a>) -> <a href="./src/moderation_api/types/content_submit_response.py">ContentSubmitResponse</a></code>
 
 # Account
@@ -151,3 +152,37 @@ Methods:
 
 - <code title="post /wordlist/{id}/words">client.wordlist.words.<a href="./src/moderation_api/resources/wordlist/words.py">add</a>(id, \*\*<a href="src/moderation_api/types/wordlist/word_add_params.py">params</a>) -> <a href="./src/moderation_api/types/wordlist/word_add_response.py">WordAddResponse</a></code>
 - <code title="delete /wordlist/{id}/words">client.wordlist.words.<a href="./src/moderation_api/resources/wordlist/words.py">remove</a>(id, \*\*<a href="src/moderation_api/types/wordlist/word_remove_params.py">params</a>) -> <a href="./src/moderation_api/types/wordlist/word_remove_response.py">WordRemoveResponse</a></code>
+
+# Webhooks
+
+Types:
+
+```python
+from moderation_api.types import (
+    WebhookCreateResponse,
+    WebhookRetrieveResponse,
+    WebhookUpdateResponse,
+    WebhookListResponse,
+    WebhookDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /webhooks">client.webhooks.<a href="./src/moderation_api/resources/webhooks.py">create</a>(\*\*<a href="src/moderation_api/types/webhook_create_params.py">params</a>) -> <a href="./src/moderation_api/types/webhook_create_response.py">WebhookCreateResponse</a></code>
+- <code title="get /webhooks/{id}">client.webhooks.<a href="./src/moderation_api/resources/webhooks.py">retrieve</a>(id) -> <a href="./src/moderation_api/types/webhook_retrieve_response.py">WebhookRetrieveResponse</a></code>
+- <code title="put /webhooks/{id}">client.webhooks.<a href="./src/moderation_api/resources/webhooks.py">update</a>(id, \*\*<a href="src/moderation_api/types/webhook_update_params.py">params</a>) -> <a href="./src/moderation_api/types/webhook_update_response.py">WebhookUpdateResponse</a></code>
+- <code title="get /webhooks">client.webhooks.<a href="./src/moderation_api/resources/webhooks.py">list</a>() -> <a href="./src/moderation_api/types/webhook_list_response.py">WebhookListResponse</a></code>
+- <code title="delete /webhooks/{id}">client.webhooks.<a href="./src/moderation_api/resources/webhooks.py">delete</a>(id) -> <a href="./src/moderation_api/types/webhook_delete_response.py">WebhookDeleteResponse</a></code>
+
+# WebhookSecret
+
+Types:
+
+```python
+from moderation_api.types import WebhookSecretRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /webhook-secret">client.webhook_secret.<a href="./src/moderation_api/resources/webhook_secret.py">retrieve</a>() -> <a href="./src/moderation_api/types/webhook_secret_retrieve_response.py">WebhookSecretRetrieveResponse</a></code>
