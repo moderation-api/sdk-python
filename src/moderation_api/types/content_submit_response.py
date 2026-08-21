@@ -12,6 +12,8 @@ __all__ = [
     "Author",
     "AuthorBlock",
     "AuthorTrustLevel",
+    "Casebook",
+    "CasebookTopic",
     "Content",
     "ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItem",
     "ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemText",
@@ -73,6 +75,57 @@ class Author(BaseModel):
 
     external_id: Optional[str] = None
     """The author's ID from your system"""
+
+
+class CasebookTopic(BaseModel):
+    """
+    The topic the closest matching case is filed under, or null when it has not been grouped into one yet.
+    """
+
+    id: str
+
+    label: str
+
+
+class Casebook(BaseModel):
+    """
+    What your casebook — the record of your past moderation decisions — found for this content, or null when it had nothing close enough to say, when the matching cases disagreed, or when casebook lookups are not switched on for this channel. Reports what the casebook found; whether it decided the outcome is shown in `recommendation`, where a higher-priority rule may have settled the item first.
+    """
+
+    agreement: float
+    """
+    How unanimous the matching cases are, from 0 to 1: the share of them that
+    decided this way, ignoring how many there are. Always at least 0.8 when a ruling
+    is returned — below that the casebook reports a disagreement instead of picking
+    a side — so it tells you how clean the consensus was, and is not a threshold to
+    re-apply yourself.
+    """
+
+    case_count: float
+    """How many of your past cases backed this ruling."""
+
+    confidence: float
+    """
+    How strongly the casebook holds this ruling, from 0 to 1: the agreement scaled
+    by how much evidence backs it, so a handful of close, recent cases outweighs one
+    distant one. Older cases count for less, halving in weight roughly every 180
+    days. This is the number to use in rules when you want a strength condition.
+    """
+
+    similarity: float
+    """How close the nearest matching case is, from 0 to 1.
+
+    1 means the content is identical to something you have already decided.
+    """
+
+    topic: Optional[CasebookTopic] = None
+    """
+    The topic the closest matching case is filed under, or null when it has not been
+    grouped into one yet.
+    """
+
+    verdict: Literal["allow", "reject"]
+    """The ruling your past decisions point to for this content."""
 
 
 class ContentModifiedModifiedNestedObjectContentContentModifiedModifiedNestedObjectContentItemText(BaseModel):
@@ -364,6 +417,7 @@ class Recommendation(BaseModel):
                 "rule_default",
                 "rule_fallback",
                 "client_override",
+                "casebook_match",
             ],
             str,
         ]
@@ -389,6 +443,15 @@ class ContentSubmitResponse(BaseModel):
     """The author of the content if your account has authors enabled.
 
     Requires you to send authorId when submitting content.
+    """
+
+    casebook: Optional[Casebook] = None
+    """
+    What your casebook — the record of your past moderation decisions — found for
+    this content, or null when it had nothing close enough to say, when the matching
+    cases disagreed, or when casebook lookups are not switched on for this channel.
+    Reports what the casebook found; whether it decided the outcome is shown in
+    `recommendation`, where a higher-priority rule may have settled the item first.
     """
 
     content: Content
