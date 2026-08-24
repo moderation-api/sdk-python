@@ -29,6 +29,10 @@ class QueueFilter(BaseModel):
 
     before_date: Optional[str] = FieldInfo(alias="beforeDate", default=None)
 
+    casebook_handled: Optional[Literal["ALL", "HANDLED", "WOULD_HAVE_HANDLED"]] = FieldInfo(
+        alias="casebookHandled", default=None
+    )
+
     check_status: Optional[Literal["all", "checked", "unchecked"]] = FieldInfo(alias="checkStatus", default=None)
 
     clear_date_window: Optional[bool] = FieldInfo(alias="clearDateWindow", default=None)
