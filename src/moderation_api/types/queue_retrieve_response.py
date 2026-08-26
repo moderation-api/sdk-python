@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["QueueRetrieveResponse", "Queue", "QueueFilter", "QueueFilterFilterLabel"]
+__all__ = ["QueueRetrieveResponse", "Queue", "QueueFilter", "QueueFilterFilterLabel", "QueueFilterMetadataFilter"]
 
 
 class QueueFilterFilterLabel(BaseModel):
@@ -18,6 +18,12 @@ class QueueFilterFilterLabel(BaseModel):
     max_threshold: Optional[float] = FieldInfo(alias="maxThreshold", default=None)
 
     min_threshold: Optional[float] = FieldInfo(alias="minThreshold", default=None)
+
+
+class QueueFilterMetadataFilter(BaseModel):
+    key: str
+
+    value: str
 
 
 class QueueFilter(BaseModel):
@@ -64,6 +70,8 @@ class QueueFilter(BaseModel):
     media_types: Optional[List[Literal["text", "image", "video", "object", "audio"]]] = FieldInfo(
         alias="mediaTypes", default=None
     )
+
+    metadata_filters: Optional[List[QueueFilterMetadataFilter]] = FieldInfo(alias="metadataFilters", default=None)
 
     min_severity: Optional[int] = FieldInfo(alias="minSeverity", default=None)
 
