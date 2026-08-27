@@ -35,7 +35,7 @@ class QueueFilter(BaseModel):
 
     before_date: Optional[str] = FieldInfo(alias="beforeDate", default=None)
 
-    casebook_handled: Optional[Literal["ALL", "HANDLED", "WOULD_HAVE_HANDLED"]] = FieldInfo(
+    casebook_handled: Optional[Literal["ALL", "HANDLED", "OVERRULED"]] = FieldInfo(
         alias="casebookHandled", default=None
     )
 
