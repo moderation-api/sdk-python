@@ -37,6 +37,7 @@ __all__ = [
     "PolicyAdult",
     "PolicyCrypto",
     "PolicySexual",
+    "PolicySexualMinors",
     "PolicyFlirtation",
     "PolicyProfanity",
     "PolicyViolence",
@@ -346,6 +347,14 @@ class PolicySexual(TypedDict, total=False):
     threshold: float
 
 
+class PolicySexualMinors(TypedDict, total=False):
+    id: Required[Literal["sexual_minors"]]
+
+    flag: Required[bool]
+
+    threshold: float
+
+
 class PolicyFlirtation(TypedDict, total=False):
     id: Required[Literal["flirtation"]]
 
@@ -567,6 +576,7 @@ Policy: TypeAlias = Union[
     PolicyAdult,
     PolicyCrypto,
     PolicySexual,
+    PolicySexualMinors,
     PolicyFlirtation,
     PolicyProfanity,
     PolicyViolence,
