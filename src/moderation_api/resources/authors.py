@@ -314,10 +314,15 @@ class AuthorsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthorDeleteResponse:
-        """
-        Delete a specific author
+        """Delete a specific author.
+
+        This resets the author: status, blocks, trust level,
+        metrics and action history are removed. The author is created again with a clean
+        record the next time content is moderated for the same ID.
 
         Args:
+          id: Either external ID or the ID assigned by moderation API.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -623,10 +628,15 @@ class AsyncAuthorsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AuthorDeleteResponse:
-        """
-        Delete a specific author
+        """Delete a specific author.
+
+        This resets the author: status, blocks, trust level,
+        metrics and action history are removed. The author is created again with a clean
+        record the next time content is moderated for the same ID.
 
         Args:
+          id: Either external ID or the ID assigned by moderation API.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
