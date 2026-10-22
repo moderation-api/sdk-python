@@ -14,6 +14,7 @@ class ContentSDK(BaseSDK):
         self,
         *,
         content: Union[models.ContentRequest, models.ContentRequestTypedDict],
+        project_id: Optional[str] = None,
         timestamp: Optional[float] = None,
         channel: Optional[str] = None,
         content_id: Optional[str] = None,
@@ -38,8 +39,10 @@ class ContentSDK(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> models.SubmitContentResponse:
-        r"""
+        r"""Submit content
+
         :param content: The content sent for moderation
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param timestamp: Unix timestamp (in milliseconds) of when the content was created. Use if content is not submitted in real-time.
         :param channel: Provide a channel ID or key. Will use the project's default channel if not provided.
         :param content_id: The unique ID of the content in your database.
@@ -66,20 +69,23 @@ class ContentSDK(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.SubmitContentRequest(
-            content=utils.get_pydantic_model(content, models.ContentRequest),
-            timestamp=timestamp,
-            channel=channel,
-            content_id=content_id,
-            meta_type=meta_type,
-            author_id=author_id,
-            conversation_id=conversation_id,
-            metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
-            client_action=utils.get_pydantic_model(
-                client_action, Optional[models.SubmitContentClientAction]
-            ),
-            do_not_store=do_not_store,
-            policies=utils.get_pydantic_model(
-                policies, Optional[List[models.PolicyRequest]]
+            project_id=project_id,
+            body=models.SubmitContentRequestBody(
+                content=utils.get_pydantic_model(content, models.ContentRequest),
+                timestamp=timestamp,
+                channel=channel,
+                content_id=content_id,
+                meta_type=meta_type,
+                author_id=author_id,
+                conversation_id=conversation_id,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
+                client_action=utils.get_pydantic_model(
+                    client_action, Optional[models.SubmitContentClientAction]
+                ),
+                do_not_store=do_not_store,
+                policies=utils.get_pydantic_model(
+                    policies, Optional[List[models.PolicyRequest]]
+                ),
             ),
         )
 
@@ -97,7 +103,7 @@ class ContentSDK(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.SubmitContentRequest
+                request.body, False, False, "json", models.SubmitContentRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -171,6 +177,7 @@ class ContentSDK(BaseSDK):
         self,
         *,
         content: Union[models.ContentRequest, models.ContentRequestTypedDict],
+        project_id: Optional[str] = None,
         timestamp: Optional[float] = None,
         channel: Optional[str] = None,
         content_id: Optional[str] = None,
@@ -195,8 +202,10 @@ class ContentSDK(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> models.SubmitContentResponse:
-        r"""
+        r"""Submit content
+
         :param content: The content sent for moderation
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param timestamp: Unix timestamp (in milliseconds) of when the content was created. Use if content is not submitted in real-time.
         :param channel: Provide a channel ID or key. Will use the project's default channel if not provided.
         :param content_id: The unique ID of the content in your database.
@@ -223,20 +232,23 @@ class ContentSDK(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.SubmitContentRequest(
-            content=utils.get_pydantic_model(content, models.ContentRequest),
-            timestamp=timestamp,
-            channel=channel,
-            content_id=content_id,
-            meta_type=meta_type,
-            author_id=author_id,
-            conversation_id=conversation_id,
-            metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
-            client_action=utils.get_pydantic_model(
-                client_action, Optional[models.SubmitContentClientAction]
-            ),
-            do_not_store=do_not_store,
-            policies=utils.get_pydantic_model(
-                policies, Optional[List[models.PolicyRequest]]
+            project_id=project_id,
+            body=models.SubmitContentRequestBody(
+                content=utils.get_pydantic_model(content, models.ContentRequest),
+                timestamp=timestamp,
+                channel=channel,
+                content_id=content_id,
+                meta_type=meta_type,
+                author_id=author_id,
+                conversation_id=conversation_id,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
+                client_action=utils.get_pydantic_model(
+                    client_action, Optional[models.SubmitContentClientAction]
+                ),
+                do_not_store=do_not_store,
+                policies=utils.get_pydantic_model(
+                    policies, Optional[List[models.PolicyRequest]]
+                ),
             ),
         )
 
@@ -254,7 +266,7 @@ class ContentSDK(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.SubmitContentRequest
+                request.body, False, False, "json", models.SubmitContentRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,

@@ -4,7 +4,7 @@ from __future__ import annotations
 from .pagination import Pagination, PaginationTypedDict
 from .publicauthor import PublicAuthor, PublicAuthorTypedDict
 from moderation_api.types import BaseModel, UNSET_SENTINEL
-from moderation_api.utils import FieldMetadata, QueryParamMetadata
+from moderation_api.utils import FieldMetadata, HeaderMetadata, QueryParamMetadata
 import pydantic
 from pydantic import model_serializer
 from typing import Awaitable, Callable, List, Literal, Optional, Union
@@ -39,6 +39,8 @@ class ListAuthorsRequestTypedDict(TypedDict):
     member_since_date: NotRequired[str]
     last_active_date: NotRequired[str]
     content_types: NotRequired[List[str]]
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
 
 
 class ListAuthorsRequest(BaseModel):
@@ -84,6 +86,13 @@ class ListAuthorsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
 
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -95,6 +104,7 @@ class ListAuthorsRequest(BaseModel):
                 "memberSinceDate",
                 "lastActiveDate",
                 "contentTypes",
+                "projectId",
             ]
         )
         serialized = handler(self)

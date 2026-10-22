@@ -116,6 +116,7 @@ class Authors(BaseSDK):
                     member_since_date=request.member_since_date,
                     last_active_date=request.last_active_date,
                     content_types=request.content_types,
+                    project_id=request.project_id,
                 ),
                 retries=retries,
                 server_url=server_url,
@@ -278,6 +279,7 @@ class Authors(BaseSDK):
                     member_since_date=request.member_since_date,
                     last_active_date=request.last_active_date,
                     content_types=request.content_types,
+                    project_id=request.project_id,
                 ),
                 retries=retries,
                 server_url=server_url,
@@ -336,6 +338,7 @@ class Authors(BaseSDK):
         self,
         *,
         external_id: str,
+        project_id: Optional[str] = None,
         profile_picture: OptionalNullable[str] = UNSET,
         external_link: OptionalNullable[str] = UNSET,
         name: OptionalNullable[str] = UNSET,
@@ -357,6 +360,7 @@ class Authors(BaseSDK):
         Create a new author. Typically not needed as authors are created automatically when content is moderated.
 
         :param external_id: External ID of the user, typically the ID of the author in your database.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param profile_picture: URL of the author's profile picture
         :param external_link: URL of the author's external profile
         :param name: Author name or identifier
@@ -382,18 +386,21 @@ class Authors(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateAuthorRequest(
-            profile_picture=profile_picture,
-            external_link=external_link,
-            name=name,
-            email=email,
-            company=company,
-            metadata=utils.get_pydantic_model(
-                metadata, Optional[models.CreateAuthorMetadata]
+            project_id=project_id,
+            body=models.CreateAuthorRequestBody(
+                profile_picture=profile_picture,
+                external_link=external_link,
+                name=name,
+                email=email,
+                company=company,
+                metadata=utils.get_pydantic_model(
+                    metadata, Optional[models.CreateAuthorMetadata]
+                ),
+                first_seen=first_seen,
+                last_seen=last_seen,
+                manual_trust_level=manual_trust_level,
+                external_id=external_id,
             ),
-            first_seen=first_seen,
-            last_seen=last_seen,
-            manual_trust_level=manual_trust_level,
-            external_id=external_id,
         )
 
         req = self._build_request(
@@ -410,7 +417,7 @@ class Authors(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateAuthorRequest
+                request.body, False, False, "json", models.CreateAuthorRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -484,6 +491,7 @@ class Authors(BaseSDK):
         self,
         *,
         external_id: str,
+        project_id: Optional[str] = None,
         profile_picture: OptionalNullable[str] = UNSET,
         external_link: OptionalNullable[str] = UNSET,
         name: OptionalNullable[str] = UNSET,
@@ -505,6 +513,7 @@ class Authors(BaseSDK):
         Create a new author. Typically not needed as authors are created automatically when content is moderated.
 
         :param external_id: External ID of the user, typically the ID of the author in your database.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param profile_picture: URL of the author's profile picture
         :param external_link: URL of the author's external profile
         :param name: Author name or identifier
@@ -530,18 +539,21 @@ class Authors(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateAuthorRequest(
-            profile_picture=profile_picture,
-            external_link=external_link,
-            name=name,
-            email=email,
-            company=company,
-            metadata=utils.get_pydantic_model(
-                metadata, Optional[models.CreateAuthorMetadata]
+            project_id=project_id,
+            body=models.CreateAuthorRequestBody(
+                profile_picture=profile_picture,
+                external_link=external_link,
+                name=name,
+                email=email,
+                company=company,
+                metadata=utils.get_pydantic_model(
+                    metadata, Optional[models.CreateAuthorMetadata]
+                ),
+                first_seen=first_seen,
+                last_seen=last_seen,
+                manual_trust_level=manual_trust_level,
+                external_id=external_id,
             ),
-            first_seen=first_seen,
-            last_seen=last_seen,
-            manual_trust_level=manual_trust_level,
-            external_id=external_id,
         )
 
         req = self._build_request_async(
@@ -558,7 +570,7 @@ class Authors(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateAuthorRequest
+                request.body, False, False, "json", models.CreateAuthorRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -632,6 +644,7 @@ class Authors(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -642,6 +655,7 @@ class Authors(BaseSDK):
         Get detailed information about a specific author including historical data and analysis
 
         :param id: Either external ID or the ID assigned by moderation API.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -659,6 +673,7 @@ class Authors(BaseSDK):
 
         request = models.GetAuthorRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -749,6 +764,7 @@ class Authors(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -759,6 +775,7 @@ class Authors(BaseSDK):
         Get detailed information about a specific author including historical data and analysis
 
         :param id: Either external ID or the ID assigned by moderation API.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -776,6 +793,7 @@ class Authors(BaseSDK):
 
         request = models.GetAuthorRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -866,6 +884,7 @@ class Authors(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         profile_picture: OptionalNullable[str] = UNSET,
         external_link: OptionalNullable[str] = UNSET,
         name: OptionalNullable[str] = UNSET,
@@ -887,6 +906,7 @@ class Authors(BaseSDK):
         Update the details of a specific author
 
         :param id: Either external ID or the ID assigned by moderation API.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param profile_picture: URL of the author's profile picture
         :param external_link: URL of the author's external profile
         :param name: Author name or identifier
@@ -913,6 +933,7 @@ class Authors(BaseSDK):
 
         request = models.UpdateAuthorRequest(
             id=id,
+            project_id=project_id,
             body=models.UpdateAuthorRequestBody(
                 profile_picture=profile_picture,
                 external_link=external_link,
@@ -1019,6 +1040,7 @@ class Authors(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         profile_picture: OptionalNullable[str] = UNSET,
         external_link: OptionalNullable[str] = UNSET,
         name: OptionalNullable[str] = UNSET,
@@ -1040,6 +1062,7 @@ class Authors(BaseSDK):
         Update the details of a specific author
 
         :param id: Either external ID or the ID assigned by moderation API.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param profile_picture: URL of the author's profile picture
         :param external_link: URL of the author's external profile
         :param name: Author name or identifier
@@ -1066,6 +1089,7 @@ class Authors(BaseSDK):
 
         request = models.UpdateAuthorRequest(
             id=id,
+            project_id=project_id,
             body=models.UpdateAuthorRequestBody(
                 profile_picture=profile_picture,
                 external_link=external_link,
@@ -1172,6 +1196,7 @@ class Authors(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1182,6 +1207,7 @@ class Authors(BaseSDK):
         Delete a specific author. This resets the author: status, blocks, trust level, metrics and action history are removed. The author is created again with a clean record the next time content is moderated for the same ID.
 
         :param id: Either external ID or the ID assigned by moderation API.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1199,6 +1225,7 @@ class Authors(BaseSDK):
 
         request = models.DeleteAuthorRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -1289,6 +1316,7 @@ class Authors(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1299,6 +1327,7 @@ class Authors(BaseSDK):
         Delete a specific author. This resets the author: status, blocks, trust level, metrics and action history are removed. The author is created again with a clean record the next time content is moderated for the same ID.
 
         :param id: Either external ID or the ID assigned by moderation API.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1316,6 +1345,7 @@ class Authors(BaseSDK):
 
         request = models.DeleteAuthorRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(

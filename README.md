@@ -372,7 +372,7 @@ Create the organization client only where you manage projects and channels, for 
 
 ### [Content](docs/sdks/contentsdk/README.md)
 
-* [submit](docs/sdks/contentsdk/README.md#submit)
+* [submit](docs/sdks/contentsdk/README.md#submit) - Submit content
 
 ### [Projects](docs/sdks/projects/README.md)
 

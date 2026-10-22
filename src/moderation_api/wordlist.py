@@ -30,6 +30,7 @@ class Wordlist(BaseSDK):
         *,
         page: Optional[int] = 1,
         page_size: Optional[int] = 20,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -41,6 +42,7 @@ class Wordlist(BaseSDK):
 
         :param page:
         :param page_size:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -59,6 +61,7 @@ class Wordlist(BaseSDK):
         request = models.ListWordlistsRequest(
             page=page,
             page_size=page_size,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -125,6 +128,7 @@ class Wordlist(BaseSDK):
             return self.list(
                 page=next_page,
                 page_size=page_size,
+                project_id=project_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -183,6 +187,7 @@ class Wordlist(BaseSDK):
         *,
         page: Optional[int] = 1,
         page_size: Optional[int] = 20,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -194,6 +199,7 @@ class Wordlist(BaseSDK):
 
         :param page:
         :param page_size:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -212,6 +218,7 @@ class Wordlist(BaseSDK):
         request = models.ListWordlistsRequest(
             page=page,
             page_size=page_size,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -281,6 +288,7 @@ class Wordlist(BaseSDK):
             return self.list_async(
                 page=next_page,
                 page_size=page_size,
+                project_id=project_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -338,6 +346,7 @@ class Wordlist(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -348,6 +357,7 @@ class Wordlist(BaseSDK):
         Get a specific wordlist by ID
 
         :param id: ID of the wordlist to get
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -365,6 +375,7 @@ class Wordlist(BaseSDK):
 
         request = models.GetWordlistRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -455,6 +466,7 @@ class Wordlist(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -465,6 +477,7 @@ class Wordlist(BaseSDK):
         Get a specific wordlist by ID
 
         :param id: ID of the wordlist to get
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -482,6 +495,7 @@ class Wordlist(BaseSDK):
 
         request = models.GetWordlistRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -572,6 +586,7 @@ class Wordlist(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         name: Optional[str] = None,
         key: Optional[str] = None,
         description: Optional[str] = None,
@@ -587,6 +602,7 @@ class Wordlist(BaseSDK):
         Update a wordlist
 
         :param id: ID of the wordlist to update
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param name: New name for the wordlist
         :param key: New key for the wordlist
         :param description: New description for the wordlist
@@ -609,6 +625,7 @@ class Wordlist(BaseSDK):
 
         request = models.UpdateWordlistRequest(
             id=id,
+            project_id=project_id,
             body=models.UpdateWordlistRequestBody(
                 name=name,
                 key=key,
@@ -699,6 +716,7 @@ class Wordlist(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         name: Optional[str] = None,
         key: Optional[str] = None,
         description: Optional[str] = None,
@@ -714,6 +732,7 @@ class Wordlist(BaseSDK):
         Update a wordlist
 
         :param id: ID of the wordlist to update
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param name: New name for the wordlist
         :param key: New key for the wordlist
         :param description: New description for the wordlist
@@ -736,6 +755,7 @@ class Wordlist(BaseSDK):
 
         request = models.UpdateWordlistRequest(
             id=id,
+            project_id=project_id,
             body=models.UpdateWordlistRequestBody(
                 name=name,
                 key=key,
@@ -826,6 +846,7 @@ class Wordlist(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -836,6 +857,7 @@ class Wordlist(BaseSDK):
         Get the current embedding progress status for a wordlist
 
         :param id: ID of the wordlist to check embedding status for
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -853,6 +875,7 @@ class Wordlist(BaseSDK):
 
         request = models.GetWordlistEmbeddingStatusRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -945,6 +968,7 @@ class Wordlist(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -955,6 +979,7 @@ class Wordlist(BaseSDK):
         Get the current embedding progress status for a wordlist
 
         :param id: ID of the wordlist to check embedding status for
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -972,6 +997,7 @@ class Wordlist(BaseSDK):
 
         request = models.GetWordlistEmbeddingStatusRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(

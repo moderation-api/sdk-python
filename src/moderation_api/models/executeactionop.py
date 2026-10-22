@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 from moderation_api.types import BaseModel, UNSET_SENTINEL
+from moderation_api.utils import FieldMetadata, HeaderMetadata, RequestMetadata
 import pydantic
 from pydantic import model_serializer
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class ExecuteActionRequestTypedDict(TypedDict):
+class ExecuteActionRequestBodyTypedDict(TypedDict):
     r"""Input parameters"""
 
     action_key: str
@@ -25,7 +26,7 @@ class ExecuteActionRequestTypedDict(TypedDict):
     r"""Optional duration in milliseconds for actions with timeouts"""
 
 
-class ExecuteActionRequest(BaseModel):
+class ExecuteActionRequestBody(BaseModel):
     r"""Input parameters"""
 
     action_key: Annotated[str, pydantic.Field(alias="actionKey")]
@@ -67,6 +68,42 @@ class ExecuteActionRequest(BaseModel):
         return m
 
 
+class ExecuteActionRequestTypedDict(TypedDict):
+    body: ExecuteActionRequestBodyTypedDict
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+
+class ExecuteActionRequest(BaseModel):
+    body: Annotated[
+        ExecuteActionRequestBody,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["projectId"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
 class ExecuteActionResponseTypedDict(TypedDict):
     r"""Execution result"""
 
@@ -82,6 +119,6 @@ class ExecuteActionResponse(BaseModel):
 
 
 try:
-    ExecuteActionRequest.model_rebuild()
+    ExecuteActionRequestBody.model_rebuild()
 except NameError:
     pass

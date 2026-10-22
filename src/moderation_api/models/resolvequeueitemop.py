@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 from moderation_api.types import BaseModel, UNSET_SENTINEL
-from moderation_api.utils import FieldMetadata, PathParamMetadata, RequestMetadata
+from moderation_api.utils import (
+    FieldMetadata,
+    HeaderMetadata,
+    PathParamMetadata,
+    RequestMetadata,
+)
 import pydantic
 from pydantic import model_serializer
 from typing import Optional
@@ -41,6 +46,8 @@ class ResolveQueueItemRequestTypedDict(TypedDict):
     item_id: str
     r"""The item ID to resolve"""
     body: ResolveQueueItemRequestBodyTypedDict
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
 
 
 class ResolveQueueItemRequest(BaseModel):
@@ -60,6 +67,29 @@ class ResolveQueueItemRequest(BaseModel):
         ResolveQueueItemRequestBody,
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
+
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["projectId"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class ResolveQueueItemResponseTypedDict(TypedDict):

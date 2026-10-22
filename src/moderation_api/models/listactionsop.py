@@ -10,7 +10,7 @@ from moderation_api.types import (
     UNSET_SENTINEL,
     UnrecognizedStr,
 )
-from moderation_api.utils import FieldMetadata, QueryParamMetadata
+from moderation_api.utils import FieldMetadata, HeaderMetadata, QueryParamMetadata
 import pydantic
 from pydantic import model_serializer
 from typing import Awaitable, Callable, List, Literal, Optional, Union
@@ -21,6 +21,8 @@ class ListActionsRequestTypedDict(TypedDict):
     queue_id: NotRequired[str]
     page: NotRequired[int]
     page_size: NotRequired[int]
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
 
 
 class ListActionsRequest(BaseModel):
@@ -41,9 +43,16 @@ class ListActionsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = 20
 
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["queueId", "page", "pageSize"])
+        optional_fields = set(["queueId", "page", "pageSize", "projectId"])
         serialized = handler(self)
         m = {}
 

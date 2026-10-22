@@ -9,9 +9,10 @@ from moderation_api.types import (
     UNSET_SENTINEL,
     UnrecognizedStr,
 )
+from moderation_api.utils import FieldMetadata, HeaderMetadata, RequestMetadata
 import pydantic
 from pydantic import model_serializer
-from typing import List, Literal, Union
+from typing import List, Literal, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -30,7 +31,7 @@ CreateWebhookEventTypeRequest = Literal[
 ]
 
 
-class CreateWebhookRequestTypedDict(TypedDict):
+class CreateWebhookRequestBodyTypedDict(TypedDict):
     name: str
     r"""The webhook's name, used to identify it in the dashboard"""
     url: str
@@ -41,7 +42,7 @@ class CreateWebhookRequestTypedDict(TypedDict):
     r"""The webhook's description"""
 
 
-class CreateWebhookRequest(BaseModel):
+class CreateWebhookRequestBody(BaseModel):
     name: str
     r"""The webhook's name, used to identify it in the dashboard"""
 
@@ -77,6 +78,42 @@ class CreateWebhookRequest(BaseModel):
                     or k not in optional_fields
                     or is_nullable_and_explicitly_set
                 ):
+                    m[k] = val
+
+        return m
+
+
+class CreateWebhookRequestTypedDict(TypedDict):
+    body: CreateWebhookRequestBodyTypedDict
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+
+class CreateWebhookRequest(BaseModel):
+    body: Annotated[
+        CreateWebhookRequestBody,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["projectId"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
                     m[k] = val
 
         return m
@@ -184,7 +221,7 @@ class CreateWebhookResponse(BaseModel):
 
 
 try:
-    CreateWebhookRequest.model_rebuild()
+    CreateWebhookRequestBody.model_rebuild()
 except NameError:
     pass
 try:

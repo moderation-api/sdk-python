@@ -9,6 +9,7 @@ from moderation_api.types import (
     UNSET_SENTINEL,
     UnrecognizedStr,
 )
+from moderation_api.utils import FieldMetadata, HeaderMetadata, RequestMetadata
 import pydantic
 from pydantic import model_serializer
 from typing import List, Literal, Optional, Union
@@ -55,7 +56,7 @@ class CreateActionPossibleValueRequest(BaseModel):
     r"""The value of the action."""
 
 
-class CreateActionRequestTypedDict(TypedDict):
+class CreateActionRequestBodyTypedDict(TypedDict):
     name: str
     r"""The name of the action."""
     key: NotRequired[Nullable[str]]
@@ -80,7 +81,7 @@ class CreateActionRequestTypedDict(TypedDict):
     r"""Whether the action allows any text to be entered as a value or if it must be one of the possible values."""
 
 
-class CreateActionRequest(BaseModel):
+class CreateActionRequestBody(BaseModel):
     name: str
     r"""The name of the action."""
 
@@ -158,6 +159,42 @@ class CreateActionRequest(BaseModel):
                     or k not in optional_fields
                     or is_nullable_and_explicitly_set
                 ):
+                    m[k] = val
+
+        return m
+
+
+class CreateActionRequestTypedDict(TypedDict):
+    body: CreateActionRequestBodyTypedDict
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+
+class CreateActionRequest(BaseModel):
+    body: Annotated[
+        CreateActionRequestBody,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["projectId"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
                     m[k] = val
 
         return m
@@ -330,7 +367,7 @@ class CreateActionResponse(BaseModel):
 
 
 try:
-    CreateActionRequest.model_rebuild()
+    CreateActionRequestBody.model_rebuild()
 except NameError:
     pass
 try:
