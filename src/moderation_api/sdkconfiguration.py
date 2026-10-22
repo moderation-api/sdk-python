@@ -16,7 +16,7 @@ from typing import Callable, Dict, Optional, Tuple, Union
 
 
 SERVERS = [
-    "https://moderationapi.com/api/v1",
+    "https://api.moderationapi.com/v1",
 ]
 """Contains the list of servers available to the SDK"""
 
