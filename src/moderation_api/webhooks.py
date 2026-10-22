@@ -16,6 +16,7 @@ class Webhooks(BaseSDK):
         *,
         page: Optional[int] = 1,
         page_size: Optional[int] = 20,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -27,6 +28,7 @@ class Webhooks(BaseSDK):
 
         :param page:
         :param page_size:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -45,6 +47,7 @@ class Webhooks(BaseSDK):
         request = models.ListWebhooksRequest(
             page=page,
             page_size=page_size,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -111,6 +114,7 @@ class Webhooks(BaseSDK):
             return self.list(
                 page=next_page,
                 page_size=page_size,
+                project_id=project_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -151,6 +155,7 @@ class Webhooks(BaseSDK):
         *,
         page: Optional[int] = 1,
         page_size: Optional[int] = 20,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -162,6 +167,7 @@ class Webhooks(BaseSDK):
 
         :param page:
         :param page_size:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -180,6 +186,7 @@ class Webhooks(BaseSDK):
         request = models.ListWebhooksRequest(
             page=page,
             page_size=page_size,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -249,6 +256,7 @@ class Webhooks(BaseSDK):
             return self.list_async(
                 page=next_page,
                 page_size=page_size,
+                project_id=project_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -290,6 +298,7 @@ class Webhooks(BaseSDK):
         name: str,
         url: str,
         event_types: Iterable[models.CreateWebhookEventTypeRequest],
+        project_id: Optional[str] = None,
         description: OptionalNullable[str] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -303,6 +312,7 @@ class Webhooks(BaseSDK):
         :param name: The webhook's name, used to identify it in the dashboard
         :param url: The webhook's URL. We'll call this URL when an event occurs.
         :param event_types: Event types this webhook subscribes to. One webhook URL receives all events you list here.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param description: The webhook's description
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -320,11 +330,14 @@ class Webhooks(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateWebhookRequest(
-            name=name,
-            description=description,
-            url=url,
-            event_types=utils.unmarshal(
-                event_types, List[models.CreateWebhookEventTypeRequest]
+            project_id=project_id,
+            body=models.CreateWebhookRequestBody(
+                name=name,
+                description=description,
+                url=url,
+                event_types=utils.unmarshal(
+                    event_types, List[models.CreateWebhookEventTypeRequest]
+                ),
             ),
         )
 
@@ -342,7 +355,7 @@ class Webhooks(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateWebhookRequest
+                request.body, False, False, "json", models.CreateWebhookRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -408,6 +421,7 @@ class Webhooks(BaseSDK):
         name: str,
         url: str,
         event_types: Iterable[models.CreateWebhookEventTypeRequest],
+        project_id: Optional[str] = None,
         description: OptionalNullable[str] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -421,6 +435,7 @@ class Webhooks(BaseSDK):
         :param name: The webhook's name, used to identify it in the dashboard
         :param url: The webhook's URL. We'll call this URL when an event occurs.
         :param event_types: Event types this webhook subscribes to. One webhook URL receives all events you list here.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param description: The webhook's description
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -438,11 +453,14 @@ class Webhooks(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateWebhookRequest(
-            name=name,
-            description=description,
-            url=url,
-            event_types=utils.unmarshal(
-                event_types, List[models.CreateWebhookEventTypeRequest]
+            project_id=project_id,
+            body=models.CreateWebhookRequestBody(
+                name=name,
+                description=description,
+                url=url,
+                event_types=utils.unmarshal(
+                    event_types, List[models.CreateWebhookEventTypeRequest]
+                ),
             ),
         )
 
@@ -460,7 +478,7 @@ class Webhooks(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateWebhookRequest
+                request.body, False, False, "json", models.CreateWebhookRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -524,6 +542,7 @@ class Webhooks(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -534,6 +553,7 @@ class Webhooks(BaseSDK):
         Get a webhook by ID.
 
         :param id: The ID of the webhook to get.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -551,6 +571,7 @@ class Webhooks(BaseSDK):
 
         request = models.GetWebhookRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -626,6 +647,7 @@ class Webhooks(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -636,6 +658,7 @@ class Webhooks(BaseSDK):
         Get a webhook by ID.
 
         :param id: The ID of the webhook to get.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -653,6 +676,7 @@ class Webhooks(BaseSDK):
 
         request = models.GetWebhookRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -728,6 +752,7 @@ class Webhooks(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         name: Optional[str] = None,
         description: OptionalNullable[str] = UNSET,
         url: Optional[str] = None,
@@ -742,6 +767,7 @@ class Webhooks(BaseSDK):
         Update a webhook. Legacy v1 webhooks are read-only: delete them and create a new webhook instead.
 
         :param id: The ID of the webhook to update.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param name: The webhook's name, used to identify it in the dashboard
         :param description: The webhook's description
         :param url: The webhook's URL. We'll call this URL when an event occurs.
@@ -763,6 +789,7 @@ class Webhooks(BaseSDK):
 
         request = models.UpdateWebhookRequest(
             id=id,
+            project_id=project_id,
             body=models.UpdateWebhookRequestBody(
                 name=name,
                 description=description,
@@ -854,6 +881,7 @@ class Webhooks(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         name: Optional[str] = None,
         description: OptionalNullable[str] = UNSET,
         url: Optional[str] = None,
@@ -868,6 +896,7 @@ class Webhooks(BaseSDK):
         Update a webhook. Legacy v1 webhooks are read-only: delete them and create a new webhook instead.
 
         :param id: The ID of the webhook to update.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param name: The webhook's name, used to identify it in the dashboard
         :param description: The webhook's description
         :param url: The webhook's URL. We'll call this URL when an event occurs.
@@ -889,6 +918,7 @@ class Webhooks(BaseSDK):
 
         request = models.UpdateWebhookRequest(
             id=id,
+            project_id=project_id,
             body=models.UpdateWebhookRequestBody(
                 name=name,
                 description=description,
@@ -980,6 +1010,7 @@ class Webhooks(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -990,6 +1021,7 @@ class Webhooks(BaseSDK):
         Delete a webhook.
 
         :param id: The ID of the webhook to delete.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1007,6 +1039,7 @@ class Webhooks(BaseSDK):
 
         request = models.DeleteWebhookRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -1082,6 +1115,7 @@ class Webhooks(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1092,6 +1126,7 @@ class Webhooks(BaseSDK):
         Delete a webhook.
 
         :param id: The ID of the webhook to delete.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1109,6 +1144,7 @@ class Webhooks(BaseSDK):
 
         request = models.DeleteWebhookRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(

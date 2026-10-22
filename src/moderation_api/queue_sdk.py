@@ -28,6 +28,7 @@ class QueueSDK(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -38,6 +39,7 @@ class QueueSDK(BaseSDK):
         Get a queue
 
         :param id: The queue ID
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -55,6 +57,7 @@ class QueueSDK(BaseSDK):
 
         request = models.GetQueueRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -145,6 +148,7 @@ class QueueSDK(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -155,6 +159,7 @@ class QueueSDK(BaseSDK):
         Get a queue
 
         :param id: The queue ID
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -172,6 +177,7 @@ class QueueSDK(BaseSDK):
 
         request = models.GetQueueRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -263,6 +269,7 @@ class QueueSDK(BaseSDK):
         *,
         id: str,
         within_days: Optional[int] = 30,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -274,6 +281,7 @@ class QueueSDK(BaseSDK):
 
         :param id: The queue ID
         :param within_days:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -292,6 +300,7 @@ class QueueSDK(BaseSDK):
         request = models.GetQueueStatsRequest(
             id=id,
             within_days=within_days,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -383,6 +392,7 @@ class QueueSDK(BaseSDK):
         *,
         id: str,
         within_days: Optional[int] = 30,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -394,6 +404,7 @@ class QueueSDK(BaseSDK):
 
         :param id: The queue ID
         :param within_days:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -412,6 +423,7 @@ class QueueSDK(BaseSDK):
         request = models.GetQueueStatsRequest(
             id=id,
             within_days=within_days,
+            project_id=project_id,
         )
 
         req = self._build_request_async(

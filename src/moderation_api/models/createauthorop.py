@@ -8,10 +8,11 @@ from moderation_api.types import (
     UNSET,
     UNSET_SENTINEL,
 )
+from moderation_api.utils import FieldMetadata, HeaderMetadata, RequestMetadata
 import pydantic
 from pydantic import ConfigDict, model_serializer
 from typing import Any, Dict, Optional
-from typing_extensions import NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class CreateAuthorMetadataTypedDict(TypedDict):
@@ -98,7 +99,7 @@ class CreateAuthorMetadata(BaseModel):
         return m
 
 
-class CreateAuthorRequestTypedDict(TypedDict):
+class CreateAuthorRequestBodyTypedDict(TypedDict):
     external_id: str
     r"""External ID of the user, typically the ID of the author in your database."""
     profile_picture: NotRequired[Nullable[str]]
@@ -120,7 +121,7 @@ class CreateAuthorRequestTypedDict(TypedDict):
     manual_trust_level: NotRequired[Nullable[float]]
 
 
-class CreateAuthorRequest(BaseModel):
+class CreateAuthorRequestBody(BaseModel):
     external_id: str
     r"""External ID of the user, typically the ID of the author in your database."""
 
@@ -192,6 +193,42 @@ class CreateAuthorRequest(BaseModel):
                     or k not in optional_fields
                     or is_nullable_and_explicitly_set
                 ):
+                    m[k] = val
+
+        return m
+
+
+class CreateAuthorRequestTypedDict(TypedDict):
+    body: CreateAuthorRequestBodyTypedDict
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+
+class CreateAuthorRequest(BaseModel):
+    body: Annotated[
+        CreateAuthorRequestBody,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["projectId"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
                     m[k] = val
 
         return m

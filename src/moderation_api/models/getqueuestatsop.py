@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 from moderation_api.types import BaseModel, UNSET_SENTINEL
-from moderation_api.utils import FieldMetadata, PathParamMetadata, QueryParamMetadata
+from moderation_api.utils import (
+    FieldMetadata,
+    HeaderMetadata,
+    PathParamMetadata,
+    QueryParamMetadata,
+)
 import pydantic
 from pydantic import model_serializer
 from typing import List, Optional
@@ -13,6 +18,8 @@ class GetQueueStatsRequestTypedDict(TypedDict):
     id: str
     r"""The queue ID"""
     within_days: NotRequired[int]
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
 
 
 class GetQueueStatsRequest(BaseModel):
@@ -27,9 +34,16 @@ class GetQueueStatsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = 30
 
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["withinDays"])
+        optional_fields = set(["withinDays", "projectId"])
         serialized = handler(self)
         m = {}
 

@@ -9,16 +9,18 @@ from moderation_api.types import (
     UNSET_SENTINEL,
     UnrecognizedStr,
 )
-from moderation_api.utils import FieldMetadata, PathParamMetadata
+from moderation_api.utils import FieldMetadata, HeaderMetadata, PathParamMetadata
 import pydantic
 from pydantic import model_serializer
-from typing import List, Literal, Union
+from typing import List, Literal, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class GetWebhookRequestTypedDict(TypedDict):
     id: str
     r"""The ID of the webhook to get."""
+    project_id: NotRequired[str]
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
 
 
 class GetWebhookRequest(BaseModel):
@@ -26,6 +28,29 @@ class GetWebhookRequest(BaseModel):
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""The ID of the webhook to get."""
+
+    project_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Project-Id"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["projectId"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 GetWebhookEventType = Union[

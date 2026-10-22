@@ -1,5 +1,47 @@
 # Changelog
 
+## 2.1.0 (2026-10-22)
+
+Full Changelog: [v2.0.0...v2.1.0](https://github.com/moderation-api/sdk-python/compare/v2.0.0...v2.1.0)
+
+### API changes
+
+- Update to the latest API spec.
+
+## 2.0.0 (2026-10-22)
+
+A new major version of the Python SDK. Read the breaking changes before you upgrade.
+
+```bash
+pip install --upgrade "moderation_api>=2,<3"
+```
+
+### Python-specific changes
+
+- Requires Python 3.10 or later (was 3.9).
+- Use the client as a context manager: `with ModerationAPI() as client:`. Every method has an `_async` version, for example `await client.content.submit_async(...)`.
+- Methods take keyword arguments in snake_case, for example `client.content.submit(content={...}, author_id="user-123")`.
+- Verify webhooks with `moderation_api.webhook_signature.construct_event(payload, signature)`.
+### What's new
+
+- **Covers the whole API**, including the management API (`projects`, `channels`), wordlists and the review queue.
+- **Automatic pagination.** List methods return an iterator that fetches the next page for you.
+- **Clear errors.** One error class per HTTP status (`BadRequestError`, `NotFoundError`, `RateLimitError`, ...). Every error has a specific `code` (for example `invalid_api_key`, `quota_exceeded` or `author_not_found`), a `request_id` and a `doc_url`. See [Errors](https://docs.moderationapi.com/api-reference/errors).
+- **Retries** with exponential backoff on `429` and `5xx`, and timeouts per client or per request.
+- **Webhook verification** that reads the secret from `MODAPI_WEBHOOK_SECRET`.
+
+### Breaking changes
+
+The SDK is now generated from our OpenAPI spec with a new generator. Most calls keep their names, but check these:
+
+- **List responses** are `{ data, pagination }` instead of a plain array or a resource-specific shape, and list methods take `page` and `pageSize`.
+- **Errors** have a new body: `code` is the specific error code, not the HTTP category. The old `data` field is gone.
+- **Renamed:** `account.list` is now `account.retrieve`, and `actions.execute.execute` is now `actions.execute`.
+- **Removed:** `actions.execute.executeByID` (use `actions.execute` with `actionId` or `actionKey`), `auth.*`, and `content.stream` (see [Real-time voice](https://docs.moderationapi.com/content-moderation/real-time-voice)).
+- **Organization keys** work only with `projects` and `channels`; project keys work with everything else. Use one client per key. See the README.
+
+The license is unchanged: Apache-2.0.
+
 ## 1.42.0 (2026-09-14)
 
 Full Changelog: [v1.41.0...v1.42.0](https://github.com/moderation-api/sdk-python/compare/v1.41.0...v1.42.0)

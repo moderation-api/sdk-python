@@ -26,6 +26,7 @@ class Items(BaseSDK):
         include_resolved: Optional[bool] = None,
         author_id: Optional[str] = None,
         filtered_action_ids: Optional[Iterable[str]] = None,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -47,6 +48,7 @@ class Items(BaseSDK):
         :param include_resolved:
         :param author_id:
         :param filtered_action_ids:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -77,6 +79,7 @@ class Items(BaseSDK):
             filtered_action_ids=utils.unmarshal(
                 filtered_action_ids, Optional[List[str]]
             ),
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -153,6 +156,7 @@ class Items(BaseSDK):
                 include_resolved=include_resolved,
                 author_id=author_id,
                 filtered_action_ids=filtered_action_ids,
+                project_id=project_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -221,6 +225,7 @@ class Items(BaseSDK):
         include_resolved: Optional[bool] = None,
         author_id: Optional[str] = None,
         filtered_action_ids: Optional[Iterable[str]] = None,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -242,6 +247,7 @@ class Items(BaseSDK):
         :param include_resolved:
         :param author_id:
         :param filtered_action_ids:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -272,6 +278,7 @@ class Items(BaseSDK):
             filtered_action_ids=utils.unmarshal(
                 filtered_action_ids, Optional[List[str]]
             ),
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -351,6 +358,7 @@ class Items(BaseSDK):
                 include_resolved=include_resolved,
                 author_id=author_id,
                 filtered_action_ids=filtered_action_ids,
+                project_id=project_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -409,6 +417,7 @@ class Items(BaseSDK):
         *,
         id: str,
         item_id: str,
+        project_id: Optional[str] = None,
         comment: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -421,6 +430,7 @@ class Items(BaseSDK):
 
         :param id: The queue ID
         :param item_id: The item ID to resolve
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param comment: Optional comment
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -440,6 +450,7 @@ class Items(BaseSDK):
         request = models.ResolveQueueItemRequest(
             id=id,
             item_id=item_id,
+            project_id=project_id,
             body=models.ResolveQueueItemRequestBody(
                 comment=comment,
             ),
@@ -534,6 +545,7 @@ class Items(BaseSDK):
         *,
         id: str,
         item_id: str,
+        project_id: Optional[str] = None,
         comment: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -546,6 +558,7 @@ class Items(BaseSDK):
 
         :param id: The queue ID
         :param item_id: The item ID to resolve
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param comment: Optional comment
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -565,6 +578,7 @@ class Items(BaseSDK):
         request = models.ResolveQueueItemRequest(
             id=id,
             item_id=item_id,
+            project_id=project_id,
             body=models.ResolveQueueItemRequestBody(
                 comment=comment,
             ),
@@ -659,6 +673,7 @@ class Items(BaseSDK):
         *,
         id: str,
         item_id: str,
+        project_id: Optional[str] = None,
         comment: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -671,6 +686,7 @@ class Items(BaseSDK):
 
         :param id: The queue ID
         :param item_id: The item ID to unresolve
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param comment: Optional reason for unresolving the item
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -690,6 +706,7 @@ class Items(BaseSDK):
         request = models.UnresolveQueueItemRequest(
             id=id,
             item_id=item_id,
+            project_id=project_id,
             body=models.UnresolveQueueItemRequestBody(
                 comment=comment,
             ),
@@ -784,6 +801,7 @@ class Items(BaseSDK):
         *,
         id: str,
         item_id: str,
+        project_id: Optional[str] = None,
         comment: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -796,6 +814,7 @@ class Items(BaseSDK):
 
         :param id: The queue ID
         :param item_id: The item ID to unresolve
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param comment: Optional reason for unresolving the item
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -815,6 +834,7 @@ class Items(BaseSDK):
         request = models.UnresolveQueueItemRequest(
             id=id,
             item_id=item_id,
+            project_id=project_id,
             body=models.UnresolveQueueItemRequestBody(
                 comment=comment,
             ),

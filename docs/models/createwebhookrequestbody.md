@@ -1,0 +1,11 @@
+# CreateWebhookRequestBody
+
+
+## Fields
+
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `name`                                                                                     | *str*                                                                                      | :heavy_check_mark:                                                                         | The webhook's name, used to identify it in the dashboard                                   |
+| `description`                                                                              | *OptionalNullable[str]*                                                                    | :heavy_minus_sign:                                                                         | The webhook's description                                                                  |
+| `url`                                                                                      | *str*                                                                                      | :heavy_check_mark:                                                                         | The webhook's URL. We'll call this URL when an event occurs.                               |
+| `event_types`                                                                              | List[[models.CreateWebhookEventTypeRequest](../models/createwebhookeventtyperequest.md)]   | :heavy_check_mark:                                                                         | Event types this webhook subscribes to. One webhook URL receives all events you list here. |

@@ -17,6 +17,7 @@ class Actions(BaseSDK):
         queue_id: Optional[str] = None,
         page: Optional[int] = 1,
         page_size: Optional[int] = 20,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -29,6 +30,7 @@ class Actions(BaseSDK):
         :param queue_id:
         :param page:
         :param page_size:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -48,6 +50,7 @@ class Actions(BaseSDK):
             queue_id=queue_id,
             page=page,
             page_size=page_size,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -115,6 +118,7 @@ class Actions(BaseSDK):
                 queue_id=queue_id,
                 page=next_page,
                 page_size=page_size,
+                project_id=project_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -174,6 +178,7 @@ class Actions(BaseSDK):
         queue_id: Optional[str] = None,
         page: Optional[int] = 1,
         page_size: Optional[int] = 20,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -186,6 +191,7 @@ class Actions(BaseSDK):
         :param queue_id:
         :param page:
         :param page_size:
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -205,6 +211,7 @@ class Actions(BaseSDK):
             queue_id=queue_id,
             page=page,
             page_size=page_size,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -275,6 +282,7 @@ class Actions(BaseSDK):
                 queue_id=queue_id,
                 page=next_page,
                 page_size=page_size,
+                project_id=project_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -332,6 +340,7 @@ class Actions(BaseSDK):
         self,
         *,
         name: str,
+        project_id: Optional[str] = None,
         key: OptionalNullable[str] = UNSET,
         description: OptionalNullable[str] = UNSET,
         type_: OptionalNullable[models.CreateActionTypeRequest] = UNSET,
@@ -359,6 +368,7 @@ class Actions(BaseSDK):
         Create an action.
 
         :param name: The name of the action.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param key: User defined key of the action.
         :param description: The description of the action.
         :param type: The type of the action.
@@ -385,21 +395,25 @@ class Actions(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateActionRequest(
-            key=key,
-            name=name,
-            description=description,
-            type=type_,
-            built_in=built_in,
-            queue_behaviour=queue_behaviour,
-            filter_in_queue_ids=utils.unmarshal(
-                filter_in_queue_ids, Optional[List[str]]
+            project_id=project_id,
+            body=models.CreateActionRequestBody(
+                key=key,
+                name=name,
+                description=description,
+                type=type_,
+                built_in=built_in,
+                queue_behaviour=queue_behaviour,
+                filter_in_queue_ids=utils.unmarshal(
+                    filter_in_queue_ids, Optional[List[str]]
+                ),
+                position=position,
+                possible_values=utils.get_pydantic_model(
+                    possible_values,
+                    Optional[List[models.CreateActionPossibleValueRequest]],
+                ),
+                value_required=value_required,
+                free_text=free_text,
             ),
-            position=position,
-            possible_values=utils.get_pydantic_model(
-                possible_values, Optional[List[models.CreateActionPossibleValueRequest]]
-            ),
-            value_required=value_required,
-            free_text=free_text,
         )
 
         req = self._build_request(
@@ -416,7 +430,7 @@ class Actions(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateActionRequest
+                request.body, False, False, "json", models.CreateActionRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -483,6 +497,7 @@ class Actions(BaseSDK):
         self,
         *,
         name: str,
+        project_id: Optional[str] = None,
         key: OptionalNullable[str] = UNSET,
         description: OptionalNullable[str] = UNSET,
         type_: OptionalNullable[models.CreateActionTypeRequest] = UNSET,
@@ -510,6 +525,7 @@ class Actions(BaseSDK):
         Create an action.
 
         :param name: The name of the action.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param key: User defined key of the action.
         :param description: The description of the action.
         :param type: The type of the action.
@@ -536,21 +552,25 @@ class Actions(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateActionRequest(
-            key=key,
-            name=name,
-            description=description,
-            type=type_,
-            built_in=built_in,
-            queue_behaviour=queue_behaviour,
-            filter_in_queue_ids=utils.unmarshal(
-                filter_in_queue_ids, Optional[List[str]]
+            project_id=project_id,
+            body=models.CreateActionRequestBody(
+                key=key,
+                name=name,
+                description=description,
+                type=type_,
+                built_in=built_in,
+                queue_behaviour=queue_behaviour,
+                filter_in_queue_ids=utils.unmarshal(
+                    filter_in_queue_ids, Optional[List[str]]
+                ),
+                position=position,
+                possible_values=utils.get_pydantic_model(
+                    possible_values,
+                    Optional[List[models.CreateActionPossibleValueRequest]],
+                ),
+                value_required=value_required,
+                free_text=free_text,
             ),
-            position=position,
-            possible_values=utils.get_pydantic_model(
-                possible_values, Optional[List[models.CreateActionPossibleValueRequest]]
-            ),
-            value_required=value_required,
-            free_text=free_text,
         )
 
         req = self._build_request_async(
@@ -567,7 +587,7 @@ class Actions(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateActionRequest
+                request.body, False, False, "json", models.CreateActionRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -634,6 +654,7 @@ class Actions(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -644,6 +665,7 @@ class Actions(BaseSDK):
         Get an action by ID.
 
         :param id: The ID of the action to get.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -661,6 +683,7 @@ class Actions(BaseSDK):
 
         request = models.GetActionRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -741,6 +764,7 @@ class Actions(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -751,6 +775,7 @@ class Actions(BaseSDK):
         Get an action by ID.
 
         :param id: The ID of the action to get.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -768,6 +793,7 @@ class Actions(BaseSDK):
 
         request = models.GetActionRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -848,6 +874,7 @@ class Actions(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         key: OptionalNullable[str] = UNSET,
         name: Optional[str] = None,
         description: OptionalNullable[str] = UNSET,
@@ -876,6 +903,7 @@ class Actions(BaseSDK):
         Update an action.
 
         :param id: The ID of the action to update.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param key: User defined key of the action.
         :param name: The name of the action.
         :param description: The description of the action.
@@ -904,6 +932,7 @@ class Actions(BaseSDK):
 
         request = models.UpdateActionRequest(
             id=id,
+            project_id=project_id,
             body=models.UpdateActionRequestBody(
                 key=key,
                 name=name,
@@ -1008,6 +1037,7 @@ class Actions(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         key: OptionalNullable[str] = UNSET,
         name: Optional[str] = None,
         description: OptionalNullable[str] = UNSET,
@@ -1036,6 +1066,7 @@ class Actions(BaseSDK):
         Update an action.
 
         :param id: The ID of the action to update.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param key: User defined key of the action.
         :param name: The name of the action.
         :param description: The description of the action.
@@ -1064,6 +1095,7 @@ class Actions(BaseSDK):
 
         request = models.UpdateActionRequest(
             id=id,
+            project_id=project_id,
             body=models.UpdateActionRequestBody(
                 key=key,
                 name=name,
@@ -1168,6 +1200,7 @@ class Actions(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1178,6 +1211,7 @@ class Actions(BaseSDK):
         Delete an action and all of its webhooks.
 
         :param id: The ID of the action to delete.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1195,6 +1229,7 @@ class Actions(BaseSDK):
 
         request = models.DeleteActionRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request(
@@ -1275,6 +1310,7 @@ class Actions(BaseSDK):
         self,
         *,
         id: str,
+        project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1285,6 +1321,7 @@ class Actions(BaseSDK):
         Delete an action and all of its webhooks.
 
         :param id: The ID of the action to delete.
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1302,6 +1339,7 @@ class Actions(BaseSDK):
 
         request = models.DeleteActionRequest(
             id=id,
+            project_id=project_id,
         )
 
         req = self._build_request_async(
@@ -1382,6 +1420,7 @@ class Actions(BaseSDK):
         self,
         *,
         action_key: str,
+        project_id: Optional[str] = None,
         content_ids: Optional[Iterable[str]] = None,
         author_ids: Optional[Iterable[str]] = None,
         value: Optional[str] = None,
@@ -1397,6 +1436,7 @@ class Actions(BaseSDK):
         Execute a moderation action on one or more content items.
 
         :param action_key: ID or key of the action to execute
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param content_ids: IDs of the content items to apply the action to. Provide this or authorIds.
         :param author_ids: IDs of the authors to apply the action to. Provide this or contentIds.
         :param value: Optional value to provide with the action
@@ -1418,12 +1458,15 @@ class Actions(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.ExecuteActionRequest(
-            action_key=action_key,
-            content_ids=utils.unmarshal(content_ids, Optional[List[str]]),
-            author_ids=utils.unmarshal(author_ids, Optional[List[str]]),
-            value=value,
-            queue_id=queue_id,
-            duration=duration,
+            project_id=project_id,
+            body=models.ExecuteActionRequestBody(
+                action_key=action_key,
+                content_ids=utils.unmarshal(content_ids, Optional[List[str]]),
+                author_ids=utils.unmarshal(author_ids, Optional[List[str]]),
+                value=value,
+                queue_id=queue_id,
+                duration=duration,
+            ),
         )
 
         req = self._build_request(
@@ -1440,7 +1483,7 @@ class Actions(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.ExecuteActionRequest
+                request.body, False, False, "json", models.ExecuteActionRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -1507,6 +1550,7 @@ class Actions(BaseSDK):
         self,
         *,
         action_key: str,
+        project_id: Optional[str] = None,
         content_ids: Optional[Iterable[str]] = None,
         author_ids: Optional[Iterable[str]] = None,
         value: Optional[str] = None,
@@ -1522,6 +1566,7 @@ class Actions(BaseSDK):
         Execute a moderation action on one or more content items.
 
         :param action_key: ID or key of the action to execute
+        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
         :param content_ids: IDs of the content items to apply the action to. Provide this or authorIds.
         :param author_ids: IDs of the authors to apply the action to. Provide this or contentIds.
         :param value: Optional value to provide with the action
@@ -1543,12 +1588,15 @@ class Actions(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.ExecuteActionRequest(
-            action_key=action_key,
-            content_ids=utils.unmarshal(content_ids, Optional[List[str]]),
-            author_ids=utils.unmarshal(author_ids, Optional[List[str]]),
-            value=value,
-            queue_id=queue_id,
-            duration=duration,
+            project_id=project_id,
+            body=models.ExecuteActionRequestBody(
+                action_key=action_key,
+                content_ids=utils.unmarshal(content_ids, Optional[List[str]]),
+                author_ids=utils.unmarshal(author_ids, Optional[List[str]]),
+                value=value,
+                queue_id=queue_id,
+                duration=duration,
+            ),
         )
 
         req = self._build_request_async(
@@ -1565,7 +1613,7 @@ class Actions(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.ExecuteActionRequest
+                request.body, False, False, "json", models.ExecuteActionRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
