@@ -589,7 +589,7 @@ import os
 
 
 with ModerationAPI(
-    server_url="https://moderationapi.com/api/v1",
+    server_url="https://api.moderationapi.com/v1",
     secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
 ) as ma_client:
 

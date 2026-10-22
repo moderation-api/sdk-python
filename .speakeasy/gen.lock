@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9620bfba-8df9-4d0e-8796-8423b39f97f0
 management:
-  docChecksum: c27787b45fc5b72aafff31ba945a9e61
+  docChecksum: 38730339aa1da77855e86c169896f12f
   docVersion: 1.1.0
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 2.1.0
-  configChecksum: dcbb9473f52855a62b1077cc63216b8d
+  releaseVersion: 2.1.1
+  configChecksum: 3d9a12333f71c39e9fb299bc45245b92
   repoURL: https://github.com/moderation-api/sdk-python
   installationURL: https://github.com/moderation-api/sdk-python.git
   published: true
@@ -681,7 +681,7 @@ trackedFiles:
   pylintrc:
     last_write_checksum: sha1:cb40e5fd2885dcf20f7c572a590b2656efe282a0
   pyproject.toml:
-    last_write_checksum: sha1:6242aa9a213ddc4cc915474b6733bff06344c5d5
+    last_write_checksum: sha1:194d3d0511d59ba7a0fc47a58ed0253a3d74922d
   scripts/prepare_readme.py:
     last_write_checksum: sha1:7b330dc0eb57c916a1158fd90c6227f8dc517c83
   scripts/publish.sh:
@@ -695,7 +695,7 @@ trackedFiles:
   src/moderation_api/_hooks/types.py:
     last_write_checksum: sha1:bb2a67c388c536a910bd205bd9582065c5d2de39
   src/moderation_api/_version.py:
-    last_write_checksum: sha1:f8a331162d341771db85dcce63b614858ab79d58
+    last_write_checksum: sha1:3846cc0f16d9c62f387bc8ee9b1f3f7911ad8e49
   src/moderation_api/account.py:
     last_write_checksum: sha1:b83155ed2e9ddea53715fef16adf03683ea99006
   src/moderation_api/actions.py:
@@ -859,7 +859,7 @@ trackedFiles:
   src/moderation_api/sdk.py:
     last_write_checksum: sha1:580ff8ec9ef32cc4f9a4e488a4a4f319f3a0304c
   src/moderation_api/sdkconfiguration.py:
-    last_write_checksum: sha1:86812fbbd7c1369f15f5163bf60163f933b1012e
+    last_write_checksum: sha1:80f7a8dc676b19a1c1a145d30be50f52e6a92672
   src/moderation_api/types/__init__.py:
     last_write_checksum: sha1:f9ad14217f832e74f594285960125add50324be9
   src/moderation_api/types/base64fileinput.py:
