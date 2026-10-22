@@ -1,29 +1,51 @@
 # Maintained in moderation-api/sdk-generator (custom/python). Edits here are overwritten.
+# Every push to main whose package version has no release tag yet publishes
+# that version and creates the GitHub release (notes: .github/release-notes/vX.Y.Z.md
+# if present, otherwise generated from the merged pull requests).
 name: Publish PyPI
 on:
-  release:
-    types: [published]
+  push:
+    branches: [main]
   workflow_dispatch:
 
+concurrency: release
+
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Read the version
+        run: echo "VERSION=$(sed -n 's/^version = \"\(.*\)\"$/\1/p' pyproject.toml | head -n 1)" >> "$GITHUB_ENV"
+      - name: Check for an unreleased version
+        id: version
+        run: |
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
+          if git ls-remote --exit-code --tags origin "refs/tags/v${VERSION}" >/dev/null; then
+            echo "v${VERSION} is already released."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          fi
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
+        if: steps.version.outputs.release == 'true'
         with:
           version: "0.9.13"
-      - name: Check the release tag matches pyproject.toml
-        if: github.event_name == 'release'
-        run: |
-          version=$(sed -n 's/^version = "\(.*\)"$/\1/p' pyproject.toml | head -1)
-          if [ "${GITHUB_REF_NAME#v}" != "$version" ]; then
-            echo "::error::Release tag $GITHUB_REF_NAME does not match pyproject.toml version $version"
-            exit 1
-          fi
-      - run: bash scripts/publish.sh
+      - if: steps.version.outputs.release == 'true'
+        run: bash scripts/publish.sh
         env:
           PYPI_TOKEN: ${{ secrets.MODERATION_API_PYPI_TOKEN || secrets.PYPI_TOKEN }}
+      - name: Create the GitHub release
+        if: steps.version.outputs.release == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          notes=".github/release-notes/v${VERSION}.md"
+          if [ -f "$notes" ]; then
+            gh release create "v${VERSION}" --target "$GITHUB_SHA" --title "v${VERSION}" --notes-file "$notes"
+          else
+            gh release create "v${VERSION}" --target "$GITHUB_SHA" --title "v${VERSION}" --generate-notes
+          fi
