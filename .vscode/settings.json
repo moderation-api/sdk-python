@@ -1,3 +1,6 @@
 {
-    "python.analysis.importFormat": "relative",
+  "python.testing.pytestArgs": ["tests", "-vv"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "pylint.args": ["--rcfile=pylintrc"]
 }

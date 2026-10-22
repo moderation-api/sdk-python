@@ -1,0 +1,10 @@
+# Metrics
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `total_content`                                                                           | *float*                                                                                   | :heavy_check_mark:                                                                        | Total pieces of content                                                                   |
+| `flagged_content`                                                                         | *float*                                                                                   | :heavy_check_mark:                                                                        | Number of flagged content pieces                                                          |
+| `average_sentiment`                                                                       | *OptionalNullable[float]*                                                                 | :heavy_minus_sign:                                                                        | Average sentiment score of content (-1 to 1). Requires a sentiment model in your project. |
