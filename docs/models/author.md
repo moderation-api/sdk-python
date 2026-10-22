@@ -1,0 +1,12 @@
+# Author
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `id`                                                                       | *str*                                                                      | :heavy_check_mark:                                                         | Author ID in Moderation API                                                |
+| `external_id`                                                              | *OptionalNullable[str]*                                                    | :heavy_minus_sign:                                                         | The author's ID from your system                                           |
+| `block`                                                                    | [Nullable[models.SubmitContentBlock]](../models/submitcontentblock.md)     | :heavy_check_mark:                                                         | Block or suspension details, if applicable. Null if the author is enabled. |
+| `status`                                                                   | [models.AuthorStatus](../models/authorstatus.md)                           | :heavy_check_mark:                                                         | Current author status                                                      |
+| `trust_level`                                                              | [models.SubmitContentTrustLevel](../models/submitcontenttrustlevel.md)     | :heavy_check_mark:                                                         | N/A                                                                        |

@@ -1,0 +1,11 @@
+# UpdateWebhookRequestBody
+
+
+## Fields
+
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `name`                                                                                     | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | The webhook's name, used to identify it in the dashboard                                   |
+| `description`                                                                              | *OptionalNullable[str]*                                                                    | :heavy_minus_sign:                                                                         | The webhook's description                                                                  |
+| `url`                                                                                      | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | The webhook's URL. We'll call this URL when an event occurs.                               |
+| `event_types`                                                                              | List[[models.UpdateWebhookEventTypeRequest](../models/updatewebhookeventtyperequest.md)]   | :heavy_minus_sign:                                                                         | Event types this webhook subscribes to. One webhook URL receives all events you list here. |

@@ -1,423 +1,789 @@
-# Moderation API Python API library
+<!-- Start Custom [intro] -->
+# Moderation API Python SDK
 
-<!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/moderation_api.svg?label=pypi%20(stable))](https://pypi.org/project/moderation_api/)
+[![PyPI](https://img.shields.io/pypi/v/moderation_api.svg)](https://pypi.org/project/moderation_api/)
 
-The Moderation API Python library provides convenient access to the Moderation API REST API from any Python 3.9+
-application. The library includes type definitions for all request params and response fields,
-and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
+The official Python library for [Moderation API](https://moderationapi.com). Use it to moderate text, images, video and audio, manage authors, review queues, actions and wordlists, and verify webhooks. It supports both synchronous and `asyncio` code.
 
-It is generated with [Stainless](https://www.stainless.com/).
+- Get an API key in the [dashboard](https://dash.moderationapi.com).
+- Read the [documentation](https://docs.moderationapi.com) and the [API reference](https://docs.moderationapi.com/api-reference/introduction).
+<!-- End Custom [intro] -->
 
-## Documentation
+<!-- Start Summary [summary] -->
+## Summary
 
-The REST API documentation can be found on [docs.moderationapi.com](https://docs.moderationapi.com). The full API of this library can be found in [api.md](api.md).
+Moderation API: Moderate text, images, video and audio in real time, manage authors, review queues and actions, and receive webhooks.
 
-## Installation
+More information about the API can be found at https://docs.moderationapi.com
+<!-- End Summary [summary] -->
 
-```sh
-# install from PyPI
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Moderation API Python SDK](#moderation-api-python-sdk)
+  * [SDK Installation](#sdk-installation)
+  * [IDE Support](#ide-support)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Moderating content](#moderating-content)
+  * [Verifying webhooks](#verifying-webhooks)
+  * [Authentication](#authentication)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Pagination](#pagination)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Resource Management](#resource-management)
+  * [Debugging](#debugging)
+  * [Timeouts](#timeouts)
+  * [Requirements](#requirements)
+  * [Support](#support)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
+
+<!-- End Table of Contents [toc] -->
+
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
+
+> [!NOTE]
+> **Python version upgrade policy**
+>
+> Once a Python version reaches its [official end of life date](https://devguide.python.org/versions/), a 3-month grace period is provided for users to upgrade. Following this grace period, the minimum python version supported in the SDK will be updated.
+
+The SDK can be installed with *uv*, *pip*, or *poetry* package managers.
+
+### uv
+
+*uv* is a fast Python package installer and resolver, designed as a drop-in replacement for pip and pip-tools. It's recommended for its speed and modern Python tooling capabilities.
+
+```bash
+uv add moderation_api
+```
+
+### PIP
+
+*PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
+
+```bash
 pip install moderation_api
 ```
 
-## Usage
+### Poetry
 
-The full API of this library can be found in [api.md](api.md).
+*Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
 
-```python
-import os
-from moderation_api import ModerationAPI
-
-client = ModerationAPI(
-    secret_key=os.environ.get("MODAPI_SECRET_KEY"),  # This is the default and can be omitted
-)
-
-response = client.content.submit(
-    content={
-        "text": "text",
-        "type": "text",
-    },
-)
-print(response.recommendation)
+```bash
+poetry add moderation_api
 ```
 
-While you can provide a `secret_key` keyword argument,
-we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `MODAPI_SECRET_KEY="My Secret Key"` to your `.env` file
-so that your Secret Key is not stored in source control.
+### Shell and script usage with `uv`
 
-## Async usage
-
-Simply import `AsyncModerationAPI` instead of `ModerationAPI` and use `await` with each API call:
-
-```python
-import os
-import asyncio
-from moderation_api import AsyncModerationAPI
-
-client = AsyncModerationAPI(
-    secret_key=os.environ.get("MODAPI_SECRET_KEY"),  # This is the default and can be omitted
-)
-
-
-async def main() -> None:
-    response = await client.content.submit(
-        content={
-            "text": "text",
-            "type": "text",
-        },
-    )
-    print(response.recommendation)
-
-
-asyncio.run(main())
-```
-
-Functionality between the synchronous and asynchronous clients is otherwise identical.
-
-### With aiohttp
-
-By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
-
-You can enable this by installing `aiohttp`:
-
-```sh
-# install from PyPI
-pip install moderation_api[aiohttp]
-```
-
-Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
-
-```python
-import os
-import asyncio
-from moderation_api import DefaultAioHttpClient
-from moderation_api import AsyncModerationAPI
-
-
-async def main() -> None:
-    async with AsyncModerationAPI(
-        secret_key=os.environ.get("MODAPI_SECRET_KEY"),  # This is the default and can be omitted
-        http_client=DefaultAioHttpClient(),
-    ) as client:
-        response = await client.content.submit(
-            content={
-                "text": "text",
-                "type": "text",
-            },
-        )
-        print(response.recommendation)
-
-
-asyncio.run(main())
-```
-
-## Using types
-
-Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
-
-- Serializing back into JSON, `model.to_json()`
-- Converting to a dictionary, `model.to_dict()`
-
-Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
-
-## Nested params
-
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
-
-```python
-from moderation_api import ModerationAPI
-
-client = ModerationAPI()
-
-response = client.content.submit(
-    content={
-        "text": "text",
-        "type": "text",
-    },
-    client_action={"action": "review"},
-)
-print(response.client_action)
-```
-
-## Handling errors
-
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `moderation_api.APIConnectionError` is raised.
-
-When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `moderation_api.APIStatusError` is raised, containing `status_code` and `response` properties.
-
-All errors inherit from `moderation_api.APIError`.
-
-```python
-import moderation_api
-from moderation_api import ModerationAPI
-
-client = ModerationAPI()
-
-try:
-    client.content.submit(
-        content={
-            "text": "text",
-            "type": "text",
-        },
-    )
-except moderation_api.APIConnectionError as e:
-    print("The server could not be reached")
-    print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except moderation_api.RateLimitError as e:
-    print("A 429 status code was received; we should back off a bit.")
-except moderation_api.APIStatusError as e:
-    print("Another non-200-range status code was received")
-    print(e.status_code)
-    print(e.response)
-```
-
-Error codes are as follows:
-
-| Status Code | Error Type                 |
-| ----------- | -------------------------- |
-| 400         | `BadRequestError`          |
-| 401         | `AuthenticationError`      |
-| 403         | `PermissionDeniedError`    |
-| 404         | `NotFoundError`            |
-| 422         | `UnprocessableEntityError` |
-| 429         | `RateLimitError`           |
-| >=500       | `InternalServerError`      |
-| N/A         | `APIConnectionError`       |
-
-### Retries
-
-Certain errors are automatically retried 2 times by default, with a short exponential backoff.
-Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,
-429 Rate Limit, and >=500 Internal errors are all retried by default.
-
-You can use the `max_retries` option to configure or disable retry settings:
-
-```python
-from moderation_api import ModerationAPI
-
-# Configure the default for all requests:
-client = ModerationAPI(
-    # default is 2
-    max_retries=0,
-)
-
-# Or, configure per-request:
-client.with_options(max_retries=5).content.submit(
-    content={
-        "text": "text",
-        "type": "text",
-    },
-)
-```
-
-### Timeouts
-
-By default requests time out after 1 minute. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
-
-```python
-from moderation_api import ModerationAPI
-
-# Configure the default for all requests:
-client = ModerationAPI(
-    # 20 seconds (default is 1 minute)
-    timeout=20.0,
-)
-
-# More granular control:
-client = ModerationAPI(
-    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
-)
-
-# Override per-request:
-client.with_options(timeout=5.0).content.submit(
-    content={
-        "text": "text",
-        "type": "text",
-    },
-)
-```
-
-On timeout, an `APITimeoutError` is thrown.
-
-Note that requests that time out are [retried twice by default](#retries).
-
-## Advanced
-
-### Logging
-
-We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
-
-You can enable logging by setting the environment variable `MODERATION_API_LOG` to `info`.
+You can use this SDK in a Python shell with [uv](https://docs.astral.sh/uv/) and the `uvx` command that comes with it like so:
 
 ```shell
-$ export MODERATION_API_LOG=info
+uvx --from moderation_api python
 ```
 
-Or to `debug` for more verbose logging.
+It's also possible to write a standalone Python script without needing to set up a whole project like so:
 
-### How to tell whether `None` means `null` or missing
+```python
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "moderation_api",
+# ]
+# ///
 
-In an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:
-
-```py
-if response.my_field is None:
-  if 'my_field' not in response.model_fields_set:
-    print('Got json like {}, without a "my_field" key present at all.')
-  else:
-    print('Got json like {"my_field": null}.')
-```
-
-### Accessing raw response data (e.g. headers)
-
-The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
-
-```py
 from moderation_api import ModerationAPI
 
-client = ModerationAPI()
-response = client.content.with_raw_response.submit(
-    content={
-        "text": "text",
+sdk = ModerationAPI(
+  # SDK arguments
+)
+
+# Rest of script here...
+```
+
+Once that is saved to a file, you can run it with `uv run script.py` where
+`script.py` can be replaced with the actual file name.
+<!-- End SDK Installation [installation] -->
+
+<!-- Start IDE Support [idesupport] -->
+## IDE Support
+
+### PyCharm
+
+Generally, the SDK will work well with most IDEs out of the box. However, when using PyCharm, you can enjoy much better integration with Pydantic by installing an additional plugin.
+
+- [PyCharm Pydantic Plugin](https://docs.pydantic.dev/latest/integrations/pycharm/)
+<!-- End IDE Support [idesupport] -->
+
+<!-- Start SDK Example Usage [usage] -->
+## SDK Example Usage
+
+### Example
+
+```python
+# Synchronous Example
+from moderation_api import ModerationAPI
+import os
+
+
+with ModerationAPI(
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.content.submit(content={
         "type": "text",
-    },
-)
-print(response.headers.get('X-My-Header'))
+        "text": "Hey, check out my profile for a deal!",
+    }, content_id="message-48213", author_id="user-1092", conversation_id="room-general", metadata={
+        "platform": "ios",
+    })
 
-content = response.parse()  # get the object that `content.submit()` would have returned
-print(content.recommendation)
+    # Handle response
+    print(res)
 ```
 
-These methods return an [`APIResponse`](https://github.com/moderation-api/sdk-python/tree/main/src/moderation_api/_response.py) object.
+</br>
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/moderation-api/sdk-python/tree/main/src/moderation_api/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
-
-#### `.with_streaming_response`
-
-The above interface eagerly reads the full response body when you make the request, which may not always be what you want.
-
-To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
+The same SDK client can also be used to make asynchronous requests by importing asyncio.
 
 ```python
-with client.content.with_streaming_response.submit(
-    content={
-        "text": "text",
-        "type": "text",
-    },
-) as response:
-    print(response.headers.get("X-My-Header"))
+# Asynchronous Example
+import asyncio
+from moderation_api import ModerationAPI
+import os
 
-    for line in response.iter_lines():
-        print(line)
+async def main():
+
+    async with ModerationAPI(
+        secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+    ) as ma_client:
+
+        res = await ma_client.content.submit_async(content={
+            "type": "text",
+            "text": "Hey, check out my profile for a deal!",
+        }, content_id="message-48213", author_id="user-1092", conversation_id="room-general", metadata={
+            "platform": "ios",
+        })
+
+        # Handle response
+        print(res)
+
+asyncio.run(main())
 ```
+<!-- End SDK Example Usage [usage] -->
+<!-- Start Custom [guide] -->
+## Moderating content
 
-The context manager is required so that the response will reliably be closed.
+Use `content.submit` to moderate text, images, video, audio, or objects with several fields. All parameters except `content` are optional.
 
-### Making custom/undocumented requests
-
-This library is typed for convenient access to the documented API.
-
-If you need to access undocumented endpoints, params, or response properties, the library can still be used.
-
-#### Undocumented endpoints
-
-To make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other
-http verbs. Options on the client will be respected (such as retries) when making this request.
-
-```py
-import httpx
-
-response = client.post(
-    "/foo",
-    cast_to=httpx.Response,
-    body={"my_param": True},
-)
-
-print(response.headers.get("x-foo"))
-```
-
-#### Undocumented request params
-
-If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request
-options.
-
-#### Undocumented response properties
-
-To access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You
-can also get all the extra fields on the Pydantic model as a dict with
-[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).
-
-### Configuring the HTTP client
-
-You can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:
-
-- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)
-- Custom [transports](https://www.python-httpx.org/advanced/transports/)
-- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality
+The client reads your API key from the `MODAPI_SECRET_KEY` environment variable. To set it in code, pass `secret_key`.
 
 ```python
-import httpx
-from moderation_api import ModerationAPI, DefaultHttpxClient
+from moderation_api import ModerationAPI
 
-client = ModerationAPI(
-    # Or use the `MODERATION_API_BASE_URL` env var
-    base_url="http://my.test.server.example.com:8083",
-    http_client=DefaultHttpxClient(
-        proxy="http://my.test.proxy.example.com",
-        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
-    ),
-)
+with ModerationAPI() as client:  # reads MODAPI_SECRET_KEY
+    # Text
+    client.content.submit(
+        content={"type": "text", "text": "Your text here"},
+        content_id="message-123",  # your ID for the content
+        author_id="user-123",  # your ID for the user who wrote it
+        conversation_id="room-123",  # groups related content
+        metadata={"platform": "ios"},
+    )
+
+    # Image, video and audio: send a URL
+    client.content.submit(content={"type": "image", "url": "https://example.com/image.jpg"})
+    client.content.submit(content={"type": "video", "url": "https://example.com/video.mp4"})
+    client.content.submit(content={"type": "audio", "url": "https://example.com/audio.mp3"})
+
+    # An object with several fields, moderated together
+    client.content.submit(
+        content={
+            "type": "object",
+            "data": {
+                "title": {"type": "text", "text": "Post title"},
+                "body": {"type": "text", "text": "Post content"},
+                "thumbnail": {"type": "image", "url": "https://example.com/thumb.jpg"},
+            },
+        },
+    )
 ```
 
-You can also customize the client on a per-request basis by using `with_options()`:
+Every method has an `async` version with the suffix `_async`, for example `await client.content.submit_async(...)`.
+
+### Using the result
+
+`evaluation.flagged` tells you if any policy flagged the content. `recommendation.action` is the action the API recommends after it applies your thresholds and rules: `allow`, `review` or `reject`.
 
 ```python
-client.with_options(http_client=DefaultHttpxClient(...))
-```
-
-### Managing HTTP resources
-
-By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
-
-```py
 from moderation_api import ModerationAPI
 
 with ModerationAPI() as client:
-  # make requests here
-  ...
+    result = client.content.submit(content={"type": "text", "text": "Some content"})
 
-# HTTP client is now closed
+    if result.evaluation.flagged:
+        print("A policy flagged the content")
+
+    if result.recommendation.action == "reject":
+        pass  # Block the content
+    elif result.recommendation.action == "review":
+        pass  # Publish or hold it, and send it to a review queue
+    else:
+        pass  # Publish the content
+
+    for policy in result.policies:
+        print(f"{policy.id}: flagged={policy.flagged}")
 ```
 
-## Versioning
+## Verifying webhooks
 
-This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
+Moderation API signs every webhook delivery with your project's webhook signing secret. The signature is in the `modapi-signature` header.
 
-1. Changes that only affect static types, without breaking runtime behavior.
-2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
-3. Changes that we do not expect to impact the vast majority of users in practice.
+### Webhook signing secret
 
-We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
+Find the secret on the [API keys page in the dashboard](https://dash.moderationapi.com/project/latest/configure/api-keys), or get it with `client.webhook_secret.retrieve()`. Store it in the `MODAPI_WEBHOOK_SECRET` environment variable. It is not your API key. Get it once, for example in a setup script, and do not call `retrieve` for each delivery, so verification does not depend on a call to the API. Keep it as secret as your API key: anyone with it can sign webhooks.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/moderation-api/sdk-python/issues) with questions, bugs, or suggestions.
+### Verify a delivery
 
-### Determining the installed version
+`construct_event` checks the signature against the raw body and returns the event as a dictionary. It reads the secret from `MODAPI_WEBHOOK_SECRET`; to set it in code, pass `secret`. It raises `WebhookSignatureError` if the signature does not match.
 
-If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
+```python
+from flask import Flask, request
+from moderation_api.webhook_signature import WebhookSignatureError, construct_event
 
-You can determine the version that is being used at runtime with:
+app = Flask(__name__)
 
-```py
-import moderation_api
-print(moderation_api.__version__)
+@app.post("/webhooks/moderation")
+def moderation_webhook():
+    try:
+        event = construct_event(
+            request.get_data(),  # the raw body, not parsed JSON
+            request.headers.get("modapi-signature", ""),
+        )
+    except WebhookSignatureError:
+        return "Invalid signature", 400
+
+    print(event["type"])
+    return "", 200
+```
+<!-- End Custom [guide] -->
+
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name         | Type | Scheme      | Environment Variable |
+| ------------ | ---- | ----------- | -------------------- |
+| `secret_key` | http | HTTP Bearer | `MODAPI_SECRET_KEY`  |
+
+To authenticate with the API the `secret_key` parameter must be set when initializing the SDK client instance. For example:
+```python
+from moderation_api import ModerationAPI
+import os
+
+
+with ModerationAPI(
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.authors.list(request={})
+
+    while res is not None:
+        # Handle items
+
+        res = res.next()
+
+```
+<!-- End Authentication [security] -->
+<!-- Start Custom [auth] -->
+### Project and organization keys
+
+Moderation API has two kinds of API keys:
+
+- A **project key** works with one project: content, authors, review queues, actions, wordlists, webhooks and the account. Most integrations need only this key.
+- An **organization key** works with the [management API](https://docs.moderationapi.com/api-reference/management-api): projects and channels. The management API is available on Enterprise plans.
+
+Each key works only with its own endpoints. With the wrong key the API returns `403` with the code `project_key_required` or `organization_key_required`. If you use both, create one client for each key:
+
+```python
+import os
+from moderation_api import ModerationAPI
+
+# Project key, from MODAPI_SECRET_KEY
+client = ModerationAPI()
+
+# Organization key
+management = ModerationAPI(secret_key=os.environ["MODAPI_ORGANIZATION_KEY"])
+
+res = management.projects.list()
+while res is not None:
+    for project in res.result.data:
+        print(project.id, project.name)
+    res = res.next()
+```
+
+Create the organization client only where you manage projects and channels, for example in a setup script, and keep the organization key out of the code that moderates content.
+<!-- End Custom [auth] -->
+
+
+<!-- Start Available Resources and Operations [operations] -->
+## Available Resources and Operations
+
+<details open>
+<summary>Available methods</summary>
+
+### [Account](docs/sdks/account/README.md)
+
+* [retrieve](docs/sdks/account/README.md#retrieve) - Get account details
+
+### [Actions](docs/sdks/actions/README.md)
+
+* [list](docs/sdks/actions/README.md#list) - List moderation actions
+* [create](docs/sdks/actions/README.md#create) - Create an action
+* [retrieve](docs/sdks/actions/README.md#retrieve) - Get an action
+* [update](docs/sdks/actions/README.md#update) - Update an action
+* [delete](docs/sdks/actions/README.md#delete) - Delete an action
+* [execute](docs/sdks/actions/README.md#execute) - Execute moderation action
+
+### [Authors](docs/sdks/authors/README.md)
+
+* [list](docs/sdks/authors/README.md#list) - List authors
+* [create](docs/sdks/authors/README.md#create) - Create a new author
+* [retrieve](docs/sdks/authors/README.md#retrieve) - Get author details
+* [update](docs/sdks/authors/README.md#update) - Update author details
+* [delete](docs/sdks/authors/README.md#delete) - Delete an author
+
+### [Channels](docs/sdks/channels/README.md)
+
+* [list](docs/sdks/channels/README.md#list) - List channels
+* [create](docs/sdks/channels/README.md#create) - Create a channel
+* [retrieve](docs/sdks/channels/README.md#retrieve) - Get a channel
+* [update](docs/sdks/channels/README.md#update) - Update a channel
+* [delete](docs/sdks/channels/README.md#delete) - Delete a channel
+* [duplicate](docs/sdks/channels/README.md#duplicate) - Duplicate a channel
+
+### [Content](docs/sdks/contentsdk/README.md)
+
+* [submit](docs/sdks/contentsdk/README.md#submit)
+
+### [Projects](docs/sdks/projects/README.md)
+
+* [list](docs/sdks/projects/README.md#list) - List projects
+* [create](docs/sdks/projects/README.md#create) - Create a project
+* [retrieve](docs/sdks/projects/README.md#retrieve) - Get a project
+* [update](docs/sdks/projects/README.md#update) - Update a project
+* [delete](docs/sdks/projects/README.md#delete) - Delete a project
+* [duplicate](docs/sdks/projects/README.md#duplicate) - Duplicate a project
+
+### [Queue](docs/sdks/queuesdk/README.md)
+
+* [retrieve](docs/sdks/queuesdk/README.md#retrieve) - Get a queue
+* [get_stats](docs/sdks/queuesdk/README.md#get_stats) - Get queue statistics
+
+#### [Queue.Items](docs/sdks/items/README.md)
+
+* [list](docs/sdks/items/README.md#list) - Get queue items
+* [resolve](docs/sdks/items/README.md#resolve) - Resolve a queue item
+* [unresolve](docs/sdks/items/README.md#unresolve) - Unresolve a queue item
+
+### [Webhooks](docs/sdks/webhooks/README.md)
+
+* [list](docs/sdks/webhooks/README.md#list) - List webhooks
+* [create](docs/sdks/webhooks/README.md#create) - Create a webhook
+* [retrieve](docs/sdks/webhooks/README.md#retrieve) - Get a webhook
+* [update](docs/sdks/webhooks/README.md#update) - Update a webhook
+* [delete](docs/sdks/webhooks/README.md#delete) - Delete a webhook
+
+### [WebhookSecret](docs/sdks/webhooksecret/README.md)
+
+* [retrieve](docs/sdks/webhooksecret/README.md#retrieve) - Get the webhook signing secret
+
+### [Wordlist](docs/sdks/wordlist/README.md)
+
+* [list](docs/sdks/wordlist/README.md#list) - List wordlists
+* [retrieve](docs/sdks/wordlist/README.md#retrieve) - Get wordlist
+* [update](docs/sdks/wordlist/README.md#update) - Update wordlist
+* [get_embedding_status](docs/sdks/wordlist/README.md#get_embedding_status) - Get embedding status
+
+#### [Wordlist.Words](docs/sdks/words/README.md)
+
+* [add](docs/sdks/words/README.md#add) - Add words to wordlist
+* [remove](docs/sdks/words/README.md#remove) - Remove words from wordlist
+
+</details>
+<!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `None`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```python
+from moderation_api import ModerationAPI
+import os
+
+
+with ModerationAPI(
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.authors.list(request={})
+
+    while res is not None:
+        # Handle items
+
+        res = res.next()
+
+```
+<!-- End Pagination [pagination] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
+```python
+from moderation_api import ModerationAPI
+from moderation_api.utils import BackoffStrategy, RetryConfig
+import os
+
+
+with ModerationAPI(
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.authors.list(request={},
+        RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
+
+    while res is not None:
+        # Handle items
+
+        res = res.next()
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
+```python
+from moderation_api import ModerationAPI
+from moderation_api.utils import BackoffStrategy, RetryConfig
+import os
+
+
+with ModerationAPI(
+    retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.authors.list(request={})
+
+    while res is not None:
+        # Handle items
+
+        res = res.next()
+
+```
+<!-- End Retries [retries] -->
+
+<!-- Start Error Handling [errors] -->
+## Error Handling
+
+[`ModerationAPIError`](./src/moderation_api/errors/moderationapierror.py) is the base class for all HTTP error responses. It has the following properties:
+
+| Property           | Type             | Description                                                                             |
+| ------------------ | ---------------- | --------------------------------------------------------------------------------------- |
+| `err.message`      | `str`            | Error message                                                                           |
+| `err.status_code`  | `int`            | HTTP response status code eg `404`                                                      |
+| `err.headers`      | `httpx.Headers`  | HTTP response headers                                                                   |
+| `err.body`         | `str`            | HTTP body. Can be empty string if no body is returned.                                  |
+| `err.raw_response` | `httpx.Response` | Raw HTTP response                                                                       |
+| `err.data`         |                  | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
+
+### Example
+```python
+from moderation_api import ModerationAPI, errors
+import os
+from typing import Literal
+
+
+with ModerationAPI(
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+    res = None
+    try:
+
+        res = ma_client.authors.list(request={})
+
+        while res is not None:
+            # Handle items
+
+            res = res.next()
+
+
+    except errors.ModerationAPIError as e:
+        # The base class for HTTP error responses
+        print(e.message)
+        print(e.status_code)
+        print(e.body)
+        print(e.headers)
+        print(e.raw_response)
+
+        # Depending on the method different errors may be thrown
+        if isinstance(e, errors.BadRequestError):
+            print(e.data.type)  # Literal["invalid_request_error"]
+            print(e.data.code)  # models.BadRequestErrorCode
+            print(e.data.message)  # str
+            print(e.data.issues)  # Optional[List[models.ErrorIssue]]
+            print(e.data.request_id)  # str
+```
+
+### Error Classes
+**Primary errors:**
+* [`ModerationAPIError`](./src/moderation_api/errors/moderationapierror.py): The base class for HTTP error responses.
+  * [`AuthenticationError`](./src/moderation_api/errors/authenticationerror.py): The API key is missing, invalid or revoked. Status code `401`.
+  * [`RateLimitError`](./src/moderation_api/errors/ratelimiterror.py): Too many requests. Retry after the number of seconds in the `Retry-After` header. Status code `429`.
+
+<details><summary>Less common errors (10)</summary>
+
+<br />
+
+**Network errors:**
+* [`httpx.RequestError`](https://www.python-httpx.org/exceptions/#httpx.RequestError): Base class for request errors.
+    * [`httpx.ConnectError`](https://www.python-httpx.org/exceptions/#httpx.ConnectError): HTTP client was unable to make a request to a server.
+    * [`httpx.TimeoutException`](https://www.python-httpx.org/exceptions/#httpx.TimeoutException): HTTP request timed out.
+
+
+**Inherit from [`ModerationAPIError`](./src/moderation_api/errors/moderationapierror.py)**:
+* [`BadRequestError`](./src/moderation_api/errors/badrequesterror.py): The request is malformed or a parameter is invalid. Status code `400`. Applicable to 32 of 42 methods.*
+* [`NotFoundError`](./src/moderation_api/errors/notfounderror.py): The resource does not exist or the key cannot see it. Status code `404`. Applicable to 31 of 42 methods.*
+* [`PermissionDeniedError`](./src/moderation_api/errors/permissiondeniederror.py): The API key cannot do this, or the plan limit for this resource is reached. Status code `403`. Applicable to 27 of 42 methods.*
+* [`InternalServerError`](./src/moderation_api/errors/internalservererror.py): Something went wrong on our side. Retry with backoff. Status code `500`. Applicable to 15 of 42 methods.*
+* [`ConflictError`](./src/moderation_api/errors/conflicterror.py): The request conflicts with the current state of a resource. Status code `409`. Applicable to 2 of 42 methods.*
+* [`ResponseValidationError`](./src/moderation_api/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
+<!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Override Server URL Per-Client
+
+The default server can be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
+```python
+from moderation_api import ModerationAPI
+import os
+
+
+with ModerationAPI(
+    server_url="https://moderationapi.com/api/v1",
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.authors.list(request={})
+
+    while res is not None:
+        # Handle items
+
+        res = res.next()
+
+```
+<!-- End Server Selection [server] -->
+
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The Python SDK makes API calls using the [httpx](https://www.python-httpx.org/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with your own HTTP client instance.
+Depending on whether you are using the sync or async version of the SDK, you can pass an instance of `HttpClient` or `AsyncHttpClient` respectively, which are Protocol's ensuring that the client has the necessary methods to make API calls.
+This allows you to wrap the client with your own custom logic, such as adding custom headers, logging, or error handling, or you can just pass an instance of `httpx.Client` or `httpx.AsyncClient` directly.
+
+For example, you could specify a header for every request that this sdk makes as follows:
+```python
+from moderation_api import ModerationAPI
+import httpx
+
+http_client = httpx.Client(headers={"x-custom-header": "someValue"})
+s = ModerationAPI(client=http_client)
+```
+
+or you could wrap the client with your own custom logic:
+```python
+from moderation_api import ModerationAPI
+from moderation_api.httpclient import AsyncHttpClient
+import httpx
+
+class CustomClient(AsyncHttpClient):
+    client: AsyncHttpClient
+
+    def __init__(self, client: AsyncHttpClient):
+        self.client = client
+
+    async def send(
+        self,
+        request: httpx.Request,
+        *,
+        stream: bool = False,
+        auth: Union[
+            httpx._types.AuthTypes, httpx._client.UseClientDefault, None
+        ] = httpx.USE_CLIENT_DEFAULT,
+        follow_redirects: Union[
+            bool, httpx._client.UseClientDefault
+        ] = httpx.USE_CLIENT_DEFAULT,
+    ) -> httpx.Response:
+        request.headers["Client-Level-Header"] = "added by client"
+
+        return await self.client.send(
+            request, stream=stream, auth=auth, follow_redirects=follow_redirects
+        )
+
+    def build_request(
+        self,
+        method: str,
+        url: httpx._types.URLTypes,
+        *,
+        content: Optional[httpx._types.RequestContent] = None,
+        data: Optional[httpx._types.RequestData] = None,
+        files: Optional[httpx._types.RequestFiles] = None,
+        json: Optional[Any] = None,
+        params: Optional[httpx._types.QueryParamTypes] = None,
+        headers: Optional[httpx._types.HeaderTypes] = None,
+        cookies: Optional[httpx._types.CookieTypes] = None,
+        timeout: Union[
+            httpx._types.TimeoutTypes, httpx._client.UseClientDefault
+        ] = httpx.USE_CLIENT_DEFAULT,
+        extensions: Optional[httpx._types.RequestExtensions] = None,
+    ) -> httpx.Request:
+        return self.client.build_request(
+            method,
+            url,
+            content=content,
+            data=data,
+            files=files,
+            json=json,
+            params=params,
+            headers=headers,
+            cookies=cookies,
+            timeout=timeout,
+            extensions=extensions,
+        )
+
+s = ModerationAPI(async_client=CustomClient(httpx.AsyncClient()))
+```
+### httpx2 (Pydantic's httpx fork)
+
+[httpx2](https://httpx2.pydantic.dev/) is Pydantic's maintained fork of `httpx`. To run this SDK on httpx2, call `alias_httpx()` at your program's entry point, before importing the SDK, so every `import httpx` — including the ones inside the SDK — resolves to `httpx2`:
+```python
+import httpx2
+
+httpx2.alias_httpx()
+
+from moderation_api import ModerationAPI
+
+s = ModerationAPI()
+```
+
+An SDK can also be generated against httpx2 directly, so it depends on the fork instead of `httpx`, by setting `python.httpClientLibrary: httpx2` in `gen.yaml`.
+<!-- End Custom HTTP Client [http-client] -->
+
+<!-- Start Resource Management [resource-management] -->
+## Resource Management
+
+The `ModerationAPI` class implements the context manager protocol and registers a finalizer function to close the underlying sync and async HTTPX clients it uses under the hood. This will close HTTP connections, release memory and free up other resources held by the SDK. In short-lived Python programs and notebooks that make a few SDK method calls, resource management may not be a concern. However, in longer-lived programs, it is beneficial to create a single SDK instance via a [context manager][context-manager] and reuse it across the application.
+
+[context-manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
+
+```python
+from moderation_api import ModerationAPI
+import os
+def main():
+
+    with ModerationAPI(
+        secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+    ) as ma_client:
+        # Rest of application here...
+
+
+# Or when using async:
+async def amain():
+
+    async with ModerationAPI(
+        secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+    ) as ma_client:
+        # Rest of application here...
+```
+<!-- End Resource Management [resource-management] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass your own logger class directly into your SDK.
+```python
+from moderation_api import ModerationAPI
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+s = ModerationAPI(debug_logger=logging.getLogger("moderation_api"))
+```
+
+You can also enable a default debug logger by setting an environment variable `MODAPI_DEBUG` to true.
+<!-- End Debugging [debug] -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+<!-- Start Custom [more] -->
+## Timeouts
+
+Set a timeout in milliseconds for all requests on the client, or for one request:
+
+```python
+from moderation_api import ModerationAPI
+
+with ModerationAPI(timeout_ms=10_000) as client:
+    client.content.submit(content={"type": "text", "text": "Hello"}, timeout_ms=5_000)
 ```
 
 ## Requirements
 
-Python 3.9 or higher.
+Python 3.10 or later.
 
-## Contributing
 
-See [the contributing documentation](./CONTRIBUTING.md).
+## Support
+
+- [API reference](https://docs.moderationapi.com/api-reference/introduction)
+- [Errors and error codes](https://docs.moderationapi.com/api-reference/errors)
+- [Rate limits](https://docs.moderationapi.com/api-reference/rate-limits)
+- [Guides](https://docs.moderationapi.com/get-started/introduction)
+- Email [support@moderationapi.com](mailto:support@moderationapi.com)
+
+Found a bug? Open an issue in this repository. This package is generated from the [Moderation API OpenAPI spec](https://api.moderationapi.com/v1/openapi.json), so pull requests to the generated code can't be merged as they are, but we use them to fix the generator.
+<!-- End Custom [more] -->
+
+# Development
+
+## Maturity
+
+This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
+to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
+looking for the latest version.
+
+## Contributions
+
+While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
+We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
+
+### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=moderation-api&utm_campaign=python)

@@ -1,0 +1,1651 @@
+lockVersion: 2.0.0
+id: 9620bfba-8df9-4d0e-8796-8423b39f97f0
+management:
+  docChecksum: 3320e8867e978fb3c091936a85b4b990
+  docVersion: 1.1.0
+  speakeasyVersion: internal
+  generationVersion: internal
+  releaseVersion: 2.0.0
+  configChecksum: eeab91f42de23d385040d77b9e9d21de
+  repoURL: https://github.com/moderation-api/sdk-python
+  installationURL: https://github.com/moderation-api/sdk-python.git
+  published: true
+features:
+  python:
+    additionalDependencies: 1.1.0
+    additionalProperties: 1.0.2
+    constsAndDefaults: 1.0.8
+    core: 6.1.4
+    defaultEnabledRetries: 0.2.0
+    enumUnions: 0.1.1
+    envVarSecurityUsage: 0.3.3
+    examples: 3.0.4
+    flatRequests: 1.0.1
+    flattening: 3.1.1
+    globalSecurity: 3.0.7
+    globalSecurityCallbacks: 1.0.0
+    globalSecurityFlattening: 1.0.0
+    globalServerURLs: 3.2.1
+    groups: 3.0.1
+    ignores: 3.0.1
+    methodArguments: 1.1.1
+    nameOverrides: 3.0.3
+    nullables: 1.0.2
+    openEnums: 1.0.5
+    pagination: 3.0.10
+    responseFormat: 1.1.0
+    retries: 3.1.2
+    sdkHooks: 1.3.0
+    unions: 3.1.12
+trackedFiles:
+  .gitattributes:
+    last_write_checksum: sha1:53134de3ada576f37c22276901e1b5b6d85cd2da
+  .vscode/settings.json:
+    last_write_checksum: sha1:f84632c81029fcdda8c3b0c768d02b836fc80526
+  USAGE.md:
+    last_write_checksum: sha1:35241f8e427a0234c0001470e89c984c3b8518da
+  docs/errors/authenticationerror.md:
+    last_write_checksum: sha1:cdb9eaf19220813ba7f8e63c39807eec5fb8f95f
+  docs/errors/badrequesterror.md:
+    last_write_checksum: sha1:5c91688d22f321d3dcec650091bdcd61b01f34a4
+  docs/errors/conflicterror.md:
+    last_write_checksum: sha1:f5e67eedc35f8a93c2ba9675a5bdf7ebd696e446
+  docs/errors/internalservererror.md:
+    last_write_checksum: sha1:f17be7e390331a5523a66684f9681f907ce4f9b9
+  docs/errors/notfounderror.md:
+    last_write_checksum: sha1:f1b0b0c97c7796ee821c6312960fac56404600c4
+  docs/errors/permissiondeniederror.md:
+    last_write_checksum: sha1:5cbd352b22ff1b417d3529604fc6325e746a6df3
+  docs/errors/ratelimiterror.md:
+    last_write_checksum: sha1:c3525f444f391db06263cef2cfe877ea8f015469
+  docs/models/actionrequest.md:
+    last_write_checksum: sha1:eb97e24bc728f013d6a86346ad5edea0b5406373
+  docs/models/actionstat.md:
+    last_write_checksum: sha1:dd4e71ad441cb258bb22a3823e1b334637635546
+  docs/models/addwordlistwordsrequest.md:
+    last_write_checksum: sha1:67ecf74f25a496e8d3000e4903cc0de557d8ae18
+  docs/models/addwordlistwordsrequestbody.md:
+    last_write_checksum: sha1:2c2d0ee0bddfafe1779220ee07aee53179e3b6fe
+  docs/models/addwordlistwordsresponse.md:
+    last_write_checksum: sha1:a8c13caecc06d1dccdd85db6ebd20a24cd42cfb7
+  docs/models/adult.md:
+    last_write_checksum: sha1:194bc3084d569fc2bb26899942dee223ea69fc41
+  docs/models/alcohol.md:
+    last_write_checksum: sha1:4d9eade3ffde7dc311481a156704ee4dc52715bd
+  docs/models/audiorequest.md:
+    last_write_checksum: sha1:c66c1f8a42e100aaa611130ab915647e54cdccf4
+  docs/models/audioresponse.md:
+    last_write_checksum: sha1:9f7d896d79666963d3d884e6b12ffad79ce32c0d
+  docs/models/authenticationerrorcode.md:
+    last_write_checksum: sha1:67fd46b3807d5cbdbf5785b53b24e38785f31ae4
+  docs/models/author.md:
+    last_write_checksum: sha1:534fc4c86f2ef71bf154b995d07ab1a00a86fd1b
+  docs/models/authorstatus.md:
+    last_write_checksum: sha1:7d7a67666c6ec82daa47ba9726c4d92792314ce1
+  docs/models/badrequesterrorcode.md:
+    last_write_checksum: sha1:db01c352f4c47ed2fb309d384daada84fa288601
+  docs/models/block.md:
+    last_write_checksum: sha1:a59f8f13228667d39879853ad05332c707c0afc8
+  docs/models/cannabis.md:
+    last_write_checksum: sha1:f2837d187a268df000bcd19928b2b2e75cdf187c
+  docs/models/casebook.md:
+    last_write_checksum: sha1:06f2d38ae97a4fd3e1ac632ce85bd3ebd7e47fe8
+  docs/models/casebookagreement.md:
+    last_write_checksum: sha1:7880dea0021ba88be8c71f1ca4f338d64389d312
+  docs/models/casebookanswer.md:
+    last_write_checksum: sha1:679b43586bfba9db51ad0452ec8e51a1fcc37c88
+  docs/models/channel.md:
+    last_write_checksum: sha1:1eccfaf5e0fe2775c92f478c52009a55745ae2bb
+  docs/models/channelcircumvention.md:
+    last_write_checksum: sha1:dfe4dde2cd4ad0ad751259472da6f28fbd89fd28
+  docs/models/checkstatus.md:
+    last_write_checksum: sha1:36c36e20ac95b903bc8198bebaf7cbab2818f968
+  docs/models/classifieroutput.md:
+    last_write_checksum: sha1:b019db75a1906cd78f17d0053e6376bbbc94ee10
+  docs/models/codeabuse.md:
+    last_write_checksum: sha1:333ee43a88629531a32a0a4ec3f7e9a78e31eae4
+  docs/models/comparator.md:
+    last_write_checksum: sha1:c8227a52509cefabe09f336ca28a3c4a0c6c785e
+  docs/models/compassioninsight.md:
+    last_write_checksum: sha1:3a6b37f719e4301f94db8afca1b6be115fc87bf2
+  docs/models/conflicterrorcode.md:
+    last_write_checksum: sha1:39a3e6ae6711fc773739d8076effac117e23aca3
+  docs/models/contentleafrequest.md:
+    last_write_checksum: sha1:1fa9fcef61c099d7ee1bac5a905e2ae1308a5fc9
+  docs/models/contentleafresponse.md:
+    last_write_checksum: sha1:314309bbbe5ef8180a6bfd693cb36aed188ec628
+  docs/models/contentrequest.md:
+    last_write_checksum: sha1:682c7c7f78778b8a08c6a64e9230dcbfe6a26a08
+  docs/models/contentresponse.md:
+    last_write_checksum: sha1:8ab7d73288f6fb995609db9fdcbcd4044c5c1423
+  docs/models/contenttype.md:
+    last_write_checksum: sha1:6284641dc647d602fd81adb8c7bb8925ec1cad70
+  docs/models/createactionpositionrequest.md:
+    last_write_checksum: sha1:594af65ab48fe70cd7a81fbd9b58b5001296dc8c
+  docs/models/createactionpositionresponse.md:
+    last_write_checksum: sha1:846d64a52922d8ccab56b5c429a4f08c6a51ce11
+  docs/models/createactionpossiblevaluerequest.md:
+    last_write_checksum: sha1:bd132f9936ee1ece77aad523f3738cc4b3536594
+  docs/models/createactionpossiblevalueresponse.md:
+    last_write_checksum: sha1:71117a7df91dc02be4166cfa96774dc1cbf54a9c
+  docs/models/createactionqueuebehaviourrequest.md:
+    last_write_checksum: sha1:cd7d936482bd85528a81b9d7fd765285554577a5
+  docs/models/createactionqueuebehaviourresponse.md:
+    last_write_checksum: sha1:661904e9ebeff0db3f2fbb3db788c585ec3abb52
+  docs/models/createactionrequest.md:
+    last_write_checksum: sha1:aa2351b0ac02f2fb01dc9c49876286321a6cdf46
+  docs/models/createactionresponse.md:
+    last_write_checksum: sha1:f72815df42b9c6296431df92f36615b4af72e131
+  docs/models/createactiontyperequest.md:
+    last_write_checksum: sha1:ccc0359529a1e131695415109f2df690193430ec
+  docs/models/createactiontyperesponse.md:
+    last_write_checksum: sha1:0ae0e1015843f1c7d5610c8e95ec8a81a23369ca
+  docs/models/createauthormetadata.md:
+    last_write_checksum: sha1:ed6f2bb159071080f1ddde183b7e09a0033a693b
+  docs/models/createauthorrequest.md:
+    last_write_checksum: sha1:3940374edcfb8174b20a0345fd5ac382ac96636f
+  docs/models/createchannelcontenttype.md:
+    last_write_checksum: sha1:b3757eb17490479fcec9b45bfaa758ccc75ffe02
+  docs/models/createchannelrequest.md:
+    last_write_checksum: sha1:379cd7d7d019aa16fa349d08fd340f9d761ef3d9
+  docs/models/createchannelrequestbody.md:
+    last_write_checksum: sha1:a716f74f46bb226942ba825a5365762920dc0143
+  docs/models/createprojectrequest.md:
+    last_write_checksum: sha1:3002ce5c3ad3795024e372370dfb648e4d437c49
+  docs/models/createwebhookeventtyperequest.md:
+    last_write_checksum: sha1:6cdd6e585c43838aeabce0a0fd7b011d379d0f2a
+  docs/models/createwebhookeventtyperesponse.md:
+    last_write_checksum: sha1:0a604e50578f61dfea4d7248bd12e03b126428ea
+  docs/models/createwebhookpayloadversion.md:
+    last_write_checksum: sha1:fc2b9c87fa4930fea544ebf72a0491d9ee5c2c77
+  docs/models/createwebhookrequest.md:
+    last_write_checksum: sha1:f39353f0fa80861118ecc5451344392aa9a037b6
+  docs/models/createwebhookresponse.md:
+    last_write_checksum: sha1:d3e4e95d3258e1a3e2c6f9b647eb035089a64022
+  docs/models/crypto.md:
+    last_write_checksum: sha1:db443484ad40bac81119ff67c24a0216b6e3c08d
+  docs/models/curiosityinsight.md:
+    last_write_checksum: sha1:1821f1fa75be68d3e3bbc18307d3db1b00ad6e29
+  docs/models/currentproject.md:
+    last_write_checksum: sha1:2fd22e845cf2a3fac9dc06eb116e9bfaba9a2fe1
+  docs/models/dailyreviewcount.md:
+    last_write_checksum: sha1:ea66f88370089f3db1268a31befa907ed03f9e21
+  docs/models/dataaudiorequest.md:
+    last_write_checksum: sha1:1608d0ba903dd972968ef75d224d294ef9dc07ea
+  docs/models/dataimagerequest.md:
+    last_write_checksum: sha1:f318ff8465cb47eb9155cbbaaf13a1830d436db1
+  docs/models/datatextrequest.md:
+    last_write_checksum: sha1:f4780379c485adfce973fca45cd4b3961d6be8e7
+  docs/models/datavideorequest.md:
+    last_write_checksum: sha1:948cd457b3bc2ed3c352ae6d4331807883a349f9
+  docs/models/deleteactionrequest.md:
+    last_write_checksum: sha1:10e359260d656c7788c04628c785c80f206d924a
+  docs/models/deleteactionresponse.md:
+    last_write_checksum: sha1:d8128ce2a339c801bfa0c91ed1b1243cc974a3d1
+  docs/models/deleteauthorrequest.md:
+    last_write_checksum: sha1:93036cc1490c705a88d040faf0f7794b94f4b9be
+  docs/models/deleteauthorresponse.md:
+    last_write_checksum: sha1:470ec6b2dd0f1e3fa81c9b67bdf00524270de610
+  docs/models/deletechannelrequest.md:
+    last_write_checksum: sha1:f15a63f69416a0228c603522ae4ec1e918deaae9
+  docs/models/deletechannelresponse.md:
+    last_write_checksum: sha1:6d002e7c91c4ae391d1535613ec29479c99510d2
+  docs/models/deleteprojectrequest.md:
+    last_write_checksum: sha1:0fae4904915f4471b38bd3c021789f7facf99fab
+  docs/models/deleteprojectresponse.md:
+    last_write_checksum: sha1:57597dca05a2fcd6f6b1ef129f7cd834cc5316ba
+  docs/models/deletewebhookrequest.md:
+    last_write_checksum: sha1:1c8d21f01f7423bb195f37fb7fae5c01c6a4b4be
+  docs/models/deletewebhookresponse.md:
+    last_write_checksum: sha1:9c274b660824d02e9fc18bab98ef18fd9027add1
+  docs/models/drugs.md:
+    last_write_checksum: sha1:7161f3ce2338c523d90d1556437b4fab5eb5ac8d
+  docs/models/duplicatechannelrequest.md:
+    last_write_checksum: sha1:9af71095b84629af4e61f4bd845577c6f45cb186
+  docs/models/duplicatechannelrequestbody.md:
+    last_write_checksum: sha1:8dacee6cf4bfdc132a374cadc95ece2dd989d8d8
+  docs/models/duplicateprojectrequest.md:
+    last_write_checksum: sha1:cbfe1635be415e13dba4ca774d97a2e4172d5723
+  docs/models/duplicateprojectrequestbody.md:
+    last_write_checksum: sha1:5234197ebdc408326170b4ce06b7a1ffa716f07a
+  docs/models/entities1.md:
+    last_write_checksum: sha1:b3d757af0318e20c42c7b1a5cda989ff2b74c1cf
+  docs/models/entities2.md:
+    last_write_checksum: sha1:50daf5790ec89fcf04576c5f80f5cc683d45d739
+  docs/models/entitymatcheroutput.md:
+    last_write_checksum: sha1:981a6db66252c12b525c687b2784da8b6d6c8adc
+  docs/models/error.md:
+    last_write_checksum: sha1:ce64e8572d1e52bc72bb6026b926434f43c1fb5f
+  docs/models/errorissue.md:
+    last_write_checksum: sha1:87c23a8bfded35f36e16efd98e1adbc71f6c21df
+  docs/models/evaluation.md:
+    last_write_checksum: sha1:dc81ec6315567fca488efc6da9a16b4ca6899925
+  docs/models/executeactionrequest.md:
+    last_write_checksum: sha1:4c6c1eb3e55d5125fc51d27c093cf522f672a6b3
+  docs/models/executeactionresponse.md:
+    last_write_checksum: sha1:0295450e86664ce938a9b7bb2050e1e06b768543
+  docs/models/extremism.md:
+    last_write_checksum: sha1:5fac6b4e17a881eba7ad0b594693f1db235283c0
+  docs/models/facedetection.md:
+    last_write_checksum: sha1:4f04c10a8d8451004fb295916b8553f7ff59abab
+  docs/models/filter_.md:
+    last_write_checksum: sha1:8fcade253298593df1b69abb9152bde3a541803f
+  docs/models/filterlabel.md:
+    last_write_checksum: sha1:4facc20237eb19a90c6f4dc186fe78dc5a548f40
+  docs/models/flaggedcontenttrend.md:
+    last_write_checksum: sha1:6f146aac7ca954fd2612722c5edecc8ad76808cb
+  docs/models/flaggingmode.md:
+    last_write_checksum: sha1:2b62179f3ffb684c32dbd22701c564701c6f608e
+  docs/models/gambling.md:
+    last_write_checksum: sha1:343bbfe2f0a7f12e50f78e0c6da7eda073de026d
+  docs/models/getaccountresponse.md:
+    last_write_checksum: sha1:7f88c1b881320e8cf86763cd05088e75e549a22e
+  docs/models/getactionposition.md:
+    last_write_checksum: sha1:f604aaad6f43b41e124be60b2036e160722a1f49
+  docs/models/getactionpossiblevalue.md:
+    last_write_checksum: sha1:237ca6b0c406e49120acf0b4587bf5c1c71ac8d2
+  docs/models/getactionqueuebehaviour.md:
+    last_write_checksum: sha1:3f1e1988781d3f52fec875063ee677bfba485db2
+  docs/models/getactionrequest.md:
+    last_write_checksum: sha1:debf92a4e624cd34b5c0be89e484f58b6ee249a6
+  docs/models/getactionresponse.md:
+    last_write_checksum: sha1:bad30829267fbc4ba772be0f905f4a6537ec164f
+  docs/models/getactiontype.md:
+    last_write_checksum: sha1:2c93577a65ac4a4e32889986e486b5efd0848646
+  docs/models/getauthorrequest.md:
+    last_write_checksum: sha1:50606459859f66e5aad6dae61df11b93237c17ea
+  docs/models/getchannelrequest.md:
+    last_write_checksum: sha1:6f995844a8ce5166bcb1994a0d2ebe2458e98fa9
+  docs/models/getprojectrequest.md:
+    last_write_checksum: sha1:36ed032fdb5e6f8a3f9be1ed427a1a17d58d0e2f
+  docs/models/getqueuecontenttype.md:
+    last_write_checksum: sha1:4cbf028f26c123a95a021932502a165966549d9f
+  docs/models/getqueuequeue.md:
+    last_write_checksum: sha1:c8ef905a7df4b648a35c47552d5366b7f1bb5451
+  docs/models/getqueuerecommendationaction.md:
+    last_write_checksum: sha1:bc6702b02de201c183034d644f701aa1afbd6901
+  docs/models/getqueuerequest.md:
+    last_write_checksum: sha1:1e58ca4255b8dfce11679ebdc0f425964c098161
+  docs/models/getqueueresponse.md:
+    last_write_checksum: sha1:92fbe19cabcc7751157bd1043491e26bed955085
+  docs/models/getqueuestatsrequest.md:
+    last_write_checksum: sha1:7973e8c487c678f623912fb1da347b9aa716dbc1
+  docs/models/getqueuestatsresponse.md:
+    last_write_checksum: sha1:fcbe4d64e0d11aa962ba42bdad4fb15c09a08d48
+  docs/models/getqueuetype.md:
+    last_write_checksum: sha1:3d139324f660493267bc2584e25f2954de263c4b
+  docs/models/getwebhookeventtype.md:
+    last_write_checksum: sha1:2c8b1d5bb03b136c6553b17e5bdd00b830e7a394
+  docs/models/getwebhookpayloadversion.md:
+    last_write_checksum: sha1:60b692ba995e47aa4a6207788a11c118717b48b9
+  docs/models/getwebhookrequest.md:
+    last_write_checksum: sha1:b0aec79d7152020859f0bf4d4fada8b5740d8704
+  docs/models/getwebhookresponse.md:
+    last_write_checksum: sha1:aab2bc255c774bcb7e7c7f21fb349be95f021e98
+  docs/models/getwebhooksecretresponse.md:
+    last_write_checksum: sha1:2b522faf79d9aeb7a83d515b6f9a9caf7e5c3e7e
+  docs/models/getwordlistembeddingstatusrequest.md:
+    last_write_checksum: sha1:fab592cd4a7264d7f4e193e2e58a46d63c128ec7
+  docs/models/getwordlistembeddingstatusresponse.md:
+    last_write_checksum: sha1:8a14bd9f775b10af8cc179aa5e7a072775c4e956
+  docs/models/getwordlistrequest.md:
+    last_write_checksum: sha1:e7b3e87e9c12fc9dd9f49d0f4d6a73a6470ef6ee
+  docs/models/getwordlistresponse.md:
+    last_write_checksum: sha1:47a1730eb606700aba8d367e0f3613f741c9a31b
+  docs/models/guideline.md:
+    last_write_checksum: sha1:52714c42bd978f68e39c4835c47aaf0349dcabd6
+  docs/models/hate.md:
+    last_write_checksum: sha1:4b0739af2e5513062b1d5b7ea7491f33e6044528
+  docs/models/illegaltrade.md:
+    last_write_checksum: sha1:7bd0e3701aa236dd887e8ddf2fa091711115d7e2
+  docs/models/illicit.md:
+    last_write_checksum: sha1:d9e89a6d603564c397827f47a39fb5b4288a88f0
+  docs/models/illicitalcohol.md:
+    last_write_checksum: sha1:fe87a95c77a23b354a405e201626f38de8c2102d
+  docs/models/illicitdrugs.md:
+    last_write_checksum: sha1:6f5e4943d74b05a27e188d98240e8f7181efecf0
+  docs/models/illicitfirearms.md:
+    last_write_checksum: sha1:b3b74a44072073b961d92ea386ca1939d63425a5
+  docs/models/illicitgambling.md:
+    last_write_checksum: sha1:f11dc12049e4595868fdeeb8d6ed6ad8e33218f4
+  docs/models/illicittobacco.md:
+    last_write_checksum: sha1:ddf3b2d96a696cff6d42053e67a85988992f24fe
+  docs/models/imagerequest.md:
+    last_write_checksum: sha1:7abfa9d0eae07bb7cd24d02e0fc07eca35744873
+  docs/models/imageresponse.md:
+    last_write_checksum: sha1:3564cb96f25e0d06378ea7497485adc67144edb3
+  docs/models/insight.md:
+    last_write_checksum: sha1:b5caab43652173b483a5081e842c1391c4ad227e
+  docs/models/internalservererrorcode.md:
+    last_write_checksum: sha1:e10bd4ab0ff00c78ad783e9079edd382a2832cc3
+  docs/models/isflagged.md:
+    last_write_checksum: sha1:5945535d190a3658b78ae9f24eedeb39c6fcc564
+  docs/models/languageinsight.md:
+    last_write_checksum: sha1:24e3ed1573936724d99cb0927df88a73297763f4
+  docs/models/listactionsdata.md:
+    last_write_checksum: sha1:383349fd9b27227df3de1b0012d815e5640b0b27
+  docs/models/listactionsposition.md:
+    last_write_checksum: sha1:bf792b65ea690dd608d2840aa49e5eedc0b09309
+  docs/models/listactionspossiblevalue.md:
+    last_write_checksum: sha1:f2c0a3f6f51162add8a05a518ab2d706508134e7
+  docs/models/listactionsqueuebehaviour.md:
+    last_write_checksum: sha1:64482ff4675f11131fce0dc1279544a67a94ee3a
+  docs/models/listactionsrequest.md:
+    last_write_checksum: sha1:617592e0bcae925a030a2b267fa04c66173dc6e8
+  docs/models/listactionsresponse.md:
+    last_write_checksum: sha1:58f2ed5f656ee6cf7cd83b0565dc21d1a23ac034
+  docs/models/listactionsresponsebody.md:
+    last_write_checksum: sha1:d41707e051228afda35737c1f88b59eafd909845
+  docs/models/listactionstype.md:
+    last_write_checksum: sha1:0acfca31cf44c1d30a705feb78bafa018407152c
+  docs/models/listauthorsrequest.md:
+    last_write_checksum: sha1:9e56c7bd72b8886a4700f6404428f480166b2445
+  docs/models/listauthorsresponse.md:
+    last_write_checksum: sha1:54190f4a9d6e175bcb07946f024079d9d75f73a1
+  docs/models/listauthorsresponsebody.md:
+    last_write_checksum: sha1:e13bbad68a5b35808b3d816918b4f6376d51b925
+  docs/models/listauthorssortdirection.md:
+    last_write_checksum: sha1:3782d7e8077d7823c2be30217f7184df75eb5499
+  docs/models/listchannelsrequest.md:
+    last_write_checksum: sha1:3588e16e2514f0c0101fee1af2a19f8a777669e1
+  docs/models/listchannelsresponse.md:
+    last_write_checksum: sha1:597fababd7f7feea9d615789bf18e3b24ecaa6cd
+  docs/models/listchannelsresponsebody.md:
+    last_write_checksum: sha1:844cd001968fbb83868bc6fdf9bbed8b0ee08184
+  docs/models/listprojectsrequest.md:
+    last_write_checksum: sha1:50a2e97251581e5444d463b3a5021543d2aedb53
+  docs/models/listprojectsresponse.md:
+    last_write_checksum: sha1:da5ad1598b3d60e808ffd38508a531b26ba694ec
+  docs/models/listprojectsresponsebody.md:
+    last_write_checksum: sha1:a810cd219dae76dab77a95d485f8770245d0a21f
+  docs/models/listqueueitemsaction.md:
+    last_write_checksum: sha1:9abd259ba70374326c6017c1dd947f4b81548381
+  docs/models/listqueueitemsdata.md:
+    last_write_checksum: sha1:2207fdc0a837fcf1d8c243051baddc03fcc48413
+  docs/models/listqueueitemslabel.md:
+    last_write_checksum: sha1:0c4fcb2565877c1ba680c14f5931e031bb8d01e3
+  docs/models/listqueueitemsrequest.md:
+    last_write_checksum: sha1:906c170681dae9725ee465ef305ac37cde2fbdfa
+  docs/models/listqueueitemsresponse.md:
+    last_write_checksum: sha1:e64d55d94911de55deceb1229745943edbd32f81
+  docs/models/listqueueitemsresponsebody.md:
+    last_write_checksum: sha1:1d4ae5766877b9d20e15ba39ed9efdbb286bcc7d
+  docs/models/listqueueitemssortdirection.md:
+    last_write_checksum: sha1:ca8cd8f662954c9a0a95befa5bb22993fdd0a8f5
+  docs/models/listqueueitemsstatus.md:
+    last_write_checksum: sha1:c02460d6c404820ed84c868bf8b5e0b438671c53
+  docs/models/listwebhooksdata.md:
+    last_write_checksum: sha1:429716b17fa368d72aacf324cce21a446ec03b43
+  docs/models/listwebhookseventtype.md:
+    last_write_checksum: sha1:c056714bd9a7d55dfbe514b72440bcc06f5ebf2e
+  docs/models/listwebhookspayloadversion.md:
+    last_write_checksum: sha1:1e5703533be94f7611a849073310f8472c877b45
+  docs/models/listwebhooksrequest.md:
+    last_write_checksum: sha1:bb9bea952aa562a98b6c2e9a6dd4dea37e087714
+  docs/models/listwebhooksresponse.md:
+    last_write_checksum: sha1:0d455d264c8f505d8ece9be38a7eabf0296241cc
+  docs/models/listwebhooksresponsebody.md:
+    last_write_checksum: sha1:4b69602067699ec7dd1c6cfb8806ec412c9233bd
+  docs/models/listwordlistsdata.md:
+    last_write_checksum: sha1:c494cff76fdb516204f6e9e8e3b7c31648d36f12
+  docs/models/listwordlistsrequest.md:
+    last_write_checksum: sha1:c958bfb208d5b19743b33f13154de1ece52782f1
+  docs/models/listwordlistsresponse.md:
+    last_write_checksum: sha1:42695dbad3b56ec850f5f607f68932de9ceaffac
+  docs/models/listwordlistsresponsebody.md:
+    last_write_checksum: sha1:ddc4e89135b32a4d76b2c044d04217d21367cae4
+  docs/models/lowqualitycontent.md:
+    last_write_checksum: sha1:4f0be91d2004422b98e25125bb2c99d3b8dcbb0d
+  docs/models/matchedrule.md:
+    last_write_checksum: sha1:38b4b6b7b5a492a54f94b3c7aa28df84a5d2272b
+  docs/models/mediatype.md:
+    last_write_checksum: sha1:b01559d3bfd412e12037c883500e1b63e83584e7
+  docs/models/meta.md:
+    last_write_checksum: sha1:16400e8b19a2b2e40958ca16043bb346fe91f802
+  docs/models/metadata.md:
+    last_write_checksum: sha1:3c8b975ac90d4d1b22e32ce536262cb44b3a944d
+  docs/models/metadatafilter.md:
+    last_write_checksum: sha1:687f14cadd5f224288ea1092ad37ecf83a63347e
+  docs/models/metastatus.md:
+    last_write_checksum: sha1:ca093563fe510508ebda1b9e0bb7418c9760988c
+  docs/models/method.md:
+    last_write_checksum: sha1:7ad0046f6601782c6f7f7130e60f22bfefbdd020
+  docs/models/metrics.md:
+    last_write_checksum: sha1:cdf314c36b96f304b7a118b4d68c6680af473922
+  docs/models/modified.md:
+    last_write_checksum: sha1:f9beaef1f80aa3d97168d9486d263117541f4eb8
+  docs/models/notfounderrorcode.md:
+    last_write_checksum: sha1:a27312bea3d9a56e398b702a77267fbf82522128
+  docs/models/pagination.md:
+    last_write_checksum: sha1:4b3da29ce00e5aa486e79a68fdd00b9741432a6c
+  docs/models/path.md:
+    last_write_checksum: sha1:08671134358fba8ec3f55d1cfdc6b79bfbe5a58f
+  docs/models/permissiondeniederrorcode.md:
+    last_write_checksum: sha1:edbc722271cfa0fabce1468ca964302b35f0de7d
+  docs/models/personalinformation.md:
+    last_write_checksum: sha1:89bb52124c85a33aeb6f76541153c7cad633bfb9
+  docs/models/personalstoryinsight.md:
+    last_write_checksum: sha1:dd1bed3be2352c6e9e996f757957c2cdd5ff45ff
+  docs/models/piimasking.md:
+    last_write_checksum: sha1:294d1f75f8af8eb9a2a971d1ce1b527a69e2474f
+  docs/models/policyrequest.md:
+    last_write_checksum: sha1:7e2a70b2e90bb3a3e861621208e4dc552b5ee176
+  docs/models/policyresponse.md:
+    last_write_checksum: sha1:9d3a5ab4cff0968a140ab778127e35d24926286c
+  docs/models/political.md:
+    last_write_checksum: sha1:deb07e4e829c7c2994766f2f787272cf0fce34e3
+  docs/models/profanity.md:
+    last_write_checksum: sha1:c7552728b6eef5b380a57e9a4c1c3216c5b74805
+  docs/models/project.md:
+    last_write_checksum: sha1:9c90aec9e27e572b30379a6f44fc78d746dabf7e
+  docs/models/projectglobalflaggingmode.md:
+    last_write_checksum: sha1:e849c01b3b79fd799d4f74664020a06b849d7c2b
+  docs/models/projectwithkey.md:
+    last_write_checksum: sha1:0d6790cc417b2da344ea0e9aee416f221e8cdd57
+  docs/models/projectwithkeyglobalflaggingmode.md:
+    last_write_checksum: sha1:0b0c5937fb850c9bbc165416821c2ee89b470698
+  docs/models/promotion.md:
+    last_write_checksum: sha1:52b573d17f9566555dd3407a1ea04f1b7825fa15
+  docs/models/publicauthor.md:
+    last_write_checksum: sha1:d921dc5c5445bb99f1e8f616aaf400ef36ef604b
+  docs/models/ratelimiterrorcode.md:
+    last_write_checksum: sha1:d3d0923b8a898b1d740ce6bfc04a262f8e7666d4
+  docs/models/reasoncode.md:
+    last_write_checksum: sha1:3ed986792eb1e1d34f25c9e4443d61ca91c03d45
+  docs/models/reasoncodeenum.md:
+    last_write_checksum: sha1:fba885e8add400d72b780c52abb91ffd8a5fe95f
+  docs/models/recommendation.md:
+    last_write_checksum: sha1:b81db234abae913cb2f60001d2b2c0311a98a6b9
+  docs/models/religion.md:
+    last_write_checksum: sha1:5759f26a6aa19140b1595347d3284cfd22fa7a27
+  docs/models/removewordlistwordsrequest.md:
+    last_write_checksum: sha1:d988db8bd18157da2ffdeadf3026a65b4900f0fa
+  docs/models/removewordlistwordsresponse.md:
+    last_write_checksum: sha1:5efef48f1d38df8e532615c71c4f05de2b0e28f8
+  docs/models/resolvequeueitemrequest.md:
+    last_write_checksum: sha1:3594c3dc472ebd170c6af8b99e52bf2c8dd99418
+  docs/models/resolvequeueitemrequestbody.md:
+    last_write_checksum: sha1:d9aa0601044346030a10359a0e1c42108aa116c7
+  docs/models/resolvequeueitemresponse.md:
+    last_write_checksum: sha1:556b1fe9662ce8aec24d6bb251a707a3f0a8cd22
+  docs/models/respectinsight.md:
+    last_write_checksum: sha1:4b28f5bb242fad6e0b615fff2c6845196b98f4f4
+  docs/models/reviewstats.md:
+    last_write_checksum: sha1:31e64b9015e09f258b913c6b3771d19f2387a60b
+  docs/models/riskevaluation.md:
+    last_write_checksum: sha1:fd518fc81e32b686c95cbd4d16d47888d3b83f04
+  docs/models/scores.md:
+    last_write_checksum: sha1:c83b10da5cf13a45af72e7fbd45ce5b1a17bb482
+  docs/models/security.md:
+    last_write_checksum: sha1:ecd84303a5deb757a5d13d9ff6b21a728d33864f
+  docs/models/selfharm.md:
+    last_write_checksum: sha1:6320028f05f531572c730808b2938dcf1cde7ebe
+  docs/models/selfpromotion.md:
+    last_write_checksum: sha1:94f78a81d2ed320750b0c2986f0df396aeecbe6c
+  docs/models/sentimentinsight.md:
+    last_write_checksum: sha1:0a570e388a6d4a35760cd0f7a773229f04c1cee3
+  docs/models/sexual.md:
+    last_write_checksum: sha1:28e303ba0e257bf1560ae49d28ca80f6368e2cc2
+  docs/models/sexualminors.md:
+    last_write_checksum: sha1:b8864fba7dba41a103f9f214378c8fbfd64064c3
+  docs/models/sexualsolicitation.md:
+    last_write_checksum: sha1:2f1982d8ef92a37a33e18531bfabf048d983fb61
+  docs/models/signalsrequest.md:
+    last_write_checksum: sha1:6f00ff737cabd9e206a803817ffd66812d9ca382
+  docs/models/signalsresponse.md:
+    last_write_checksum: sha1:328f5e9dbbfa3c89008ee8e529c0dc32988aa39f
+  docs/models/sortby.md:
+    last_write_checksum: sha1:7502f304bf2afedf61d3fff2929cd1be44f0fba4
+  docs/models/sortfield.md:
+    last_write_checksum: sha1:335359823a0169c262fbc1effe9a41872ae582e7
+  docs/models/spam.md:
+    last_write_checksum: sha1:0d895e3de8859c08e407860e45082d61a58ff734
+  docs/models/status.md:
+    last_write_checksum: sha1:109a5dc9dd757318d08f390859a924ccc86654f0
+  docs/models/submitcontentbehavior.md:
+    last_write_checksum: sha1:4b27b4fa8c4cf72cdc494a75de289db823f521ad
+  docs/models/submitcontentblock.md:
+    last_write_checksum: sha1:7f268c9317eebdff8fe339b19a08cc37366c1e3d
+  docs/models/submitcontentbrandimpersonation.md:
+    last_write_checksum: sha1:be69cae997d0a7a8ee1f603f20a89db0f29d63bd
+  docs/models/submitcontentclientaction.md:
+    last_write_checksum: sha1:d622a0faa416082a35c0b884186a80536e74dba5
+  docs/models/submitcontentlabel.md:
+    last_write_checksum: sha1:930bccdc5d42d90ff4b515549d37ff8565f67500
+  docs/models/submitcontentmatch.md:
+    last_write_checksum: sha1:0274c97db44347138a4495210be37b88c4f87bcb
+  docs/models/submitcontentmetatype.md:
+    last_write_checksum: sha1:5a92d030516d14406f717f66be7340fb80a1cbbd
+  docs/models/submitcontentobject.md:
+    last_write_checksum: sha1:e69f7ded03211f298df2ffbd5fb185c31901ad49
+  docs/models/submitcontentrecommendationaction.md:
+    last_write_checksum: sha1:06144cc93759541217b52422e5824aea219a3b79
+  docs/models/submitcontentrequest.md:
+    last_write_checksum: sha1:1ce333377608cd5dd272f90b4c88f2898fef28da
+  docs/models/submitcontentresponse.md:
+    last_write_checksum: sha1:5ee6a1d316786c81e73bef8dfbd3dc83ef0bd4e2
+  docs/models/submitcontenttrustlevel.md:
+    last_write_checksum: sha1:05eb0efa74f798971e34f40eecf67eb9bfe9e9c3
+  docs/models/textrequest.md:
+    last_write_checksum: sha1:4529f2616ee38260d041098b726352fc28bfad4f
+  docs/models/textresponse.md:
+    last_write_checksum: sha1:d4868dde320b6bc60ed18585dacab8d7ad8d2863
+  docs/models/threat.md:
+    last_write_checksum: sha1:7a7af15a688027b76b2d8afc59b58c2ccd072478
+  docs/models/tobacco.md:
+    last_write_checksum: sha1:ad150ed49039de6563644441c9afbb2a00efc6e1
+  docs/models/topaction.md:
+    last_write_checksum: sha1:88f8810aaa151cea4e4d3bbc62244c7c7d93c070
+  docs/models/topic.md:
+    last_write_checksum: sha1:eefe5aa4e12093288213aa8cbec131a61cad6eb9
+  docs/models/topreviewer.md:
+    last_write_checksum: sha1:f9e07f2a9b03bb833b0a5d28fc52a88ae8fee9e9
+  docs/models/toxicity.md:
+    last_write_checksum: sha1:57689c8564fa374c992a5785fa8d20154dbdad22
+  docs/models/transcriptionquality.md:
+    last_write_checksum: sha1:47dff7ac460bd5095b55d9376c48b6c011346e57
+  docs/models/trends.md:
+    last_write_checksum: sha1:74f38d5e4d17a22345dac8bcb0a3f52f9c4027a0
+  docs/models/trustlevel.md:
+    last_write_checksum: sha1:59c7fab1ac94b8a21cebb6f15e753672b4ac8f1f
+  docs/models/unicodespoofing.md:
+    last_write_checksum: sha1:f226ab0193558bada5d79ae06526d468409f932e
+  docs/models/unresolvequeueitemrequest.md:
+    last_write_checksum: sha1:3613c863d0130e2c32107ca84a294e1fcd4c4b1e
+  docs/models/unresolvequeueitemrequestbody.md:
+    last_write_checksum: sha1:c15925f824a99518690275583046a1a12bd8ac6f
+  docs/models/unresolvequeueitemresponse.md:
+    last_write_checksum: sha1:af305267a7668adac330d292a9e5b0eaeec431e3
+  docs/models/updateactionpositionrequest.md:
+    last_write_checksum: sha1:8e7aaf03c455f6bf0bee5ee8d21e0bdd013a31fa
+  docs/models/updateactionpositionresponse.md:
+    last_write_checksum: sha1:ea29eb26f7cf344540de9944d779be2a7bed28a2
+  docs/models/updateactionpossiblevaluerequest.md:
+    last_write_checksum: sha1:d0ec3fcfd2c3ee747480597ccac94f885c59bf8d
+  docs/models/updateactionpossiblevalueresponse.md:
+    last_write_checksum: sha1:e06918a5d4a1673d8d811193ae60b4f84ef8edef
+  docs/models/updateactionqueuebehaviourrequest.md:
+    last_write_checksum: sha1:7c63837e29e3fd26901b9fcbda52dbcfa3b309b4
+  docs/models/updateactionqueuebehaviourresponse.md:
+    last_write_checksum: sha1:205931c65c91088e37bb6149a19dda68e5707747
+  docs/models/updateactionrequest.md:
+    last_write_checksum: sha1:4d5f7d7b5a44d7836c6fabb7e47a89549df5d643
+  docs/models/updateactionrequestbody.md:
+    last_write_checksum: sha1:7e85045ea6a3b5572f4adacca145739c4162bb04
+  docs/models/updateactionresponse.md:
+    last_write_checksum: sha1:14a10e3efaa503c5b9c2984f16d50f8786f58205
+  docs/models/updateactiontyperequest.md:
+    last_write_checksum: sha1:d8c6795362df3a54d4329fdb990f5ee9495b899d
+  docs/models/updateactiontyperesponse.md:
+    last_write_checksum: sha1:fb4dae33d85ade070e29724790a85f665693ab16
+  docs/models/updateauthormetadata.md:
+    last_write_checksum: sha1:315bcc1ec596952c947cf2051dd69def9007069c
+  docs/models/updateauthorrequest.md:
+    last_write_checksum: sha1:7d8a9d5d028ec52164f74e03e0d67459a4cf75e2
+  docs/models/updateauthorrequestbody.md:
+    last_write_checksum: sha1:16944b8b257aff425b8eb79ef1e22d0832801e55
+  docs/models/updatechannelcontenttype.md:
+    last_write_checksum: sha1:d5df8d7e3a52cbeca26537120140f16f6de2a781
+  docs/models/updatechannelflaggingmode.md:
+    last_write_checksum: sha1:ddea7a5e5f89b27ea30d86216f9e462d080bce62
+  docs/models/updatechannelrequest.md:
+    last_write_checksum: sha1:144d65c5086faca93044a6558f1edeff6b9d99ee
+  docs/models/updatechannelrequestbody.md:
+    last_write_checksum: sha1:585a8c8a883776ed5754354ecbebc9eb6edd3cfb
+  docs/models/updatechanneltranscriptionquality.md:
+    last_write_checksum: sha1:0b7a22b990ca2c517d4053d1905a0f1241ece6a1
+  docs/models/updateprojectglobalflaggingmode.md:
+    last_write_checksum: sha1:f0910e3537462d37015d98f2d15000a921ee0e8f
+  docs/models/updateprojectrequest.md:
+    last_write_checksum: sha1:2763ac4f30963d67fd20e50b819e14c58d803103
+  docs/models/updateprojectrequestbody.md:
+    last_write_checksum: sha1:e80979b7c22958d3814e861592c3462beb6503a2
+  docs/models/updatewebhookeventtyperequest.md:
+    last_write_checksum: sha1:cc9b3d6c2c854021ccdea11088d096805575b7f5
+  docs/models/updatewebhookeventtyperesponse.md:
+    last_write_checksum: sha1:9a54b94a3f17baae6dd6d30679556c5790f79589
+  docs/models/updatewebhookpayloadversion.md:
+    last_write_checksum: sha1:3fb625590fd0e45de0ed945c6de287de6a411202
+  docs/models/updatewebhookrequest.md:
+    last_write_checksum: sha1:2f856f2d3c9e6e791ff44fe99a0ad3cdc5b7a76a
+  docs/models/updatewebhookrequestbody.md:
+    last_write_checksum: sha1:b7a27316af235c9c6cab03dd8424da0d42a5d95d
+  docs/models/updatewebhookresponse.md:
+    last_write_checksum: sha1:f9e9209f9c2ae24296c9349c891ef2bc2592f167
+  docs/models/updatewordlistrequest.md:
+    last_write_checksum: sha1:74d6cdcec18b85512667c324f8fe0ed950f650dc
+  docs/models/updatewordlistrequestbody.md:
+    last_write_checksum: sha1:3f7ae7eee8f69e4f566d07bee25f7a4e9700b648
+  docs/models/updatewordlistresponse.md:
+    last_write_checksum: sha1:9b0be88824c40c531fd9a28186deb81dd57a5714
+  docs/models/urlmasking.md:
+    last_write_checksum: sha1:1551b67cf8f5c707d417b0c8e81e65aef6e8a672
+  docs/models/urlrisk.md:
+    last_write_checksum: sha1:a467fd73c14b6e96363a76026e147262445a8043
+  docs/models/utils/retryconfig.md:
+    last_write_checksum: sha1:562c0f21e308ad10c27f85f75704c15592c6929d
+  docs/models/value.md:
+    last_write_checksum: sha1:6559385f850170d1c5a3d0d39e0f16ccdebbf707
+  docs/models/verdict.md:
+    last_write_checksum: sha1:cfd45be70ec09d5a0b63b1dc6e464b045cceb4a8
+  docs/models/videorequest.md:
+    last_write_checksum: sha1:d2b29e49555d9e547978deba766ff723eed0b67c
+  docs/models/videoresponse.md:
+    last_write_checksum: sha1:3cf75dcd72f529b7330c56f232011269b2dc644b
+  docs/models/violence.md:
+    last_write_checksum: sha1:0eeff10131ccfab92ffcf4a9be115d012d8cb2f4
+  docs/models/weapons.md:
+    last_write_checksum: sha1:7de86b3e6826e5e810a5048ff36db2ad4a6ad2bc
+  docs/models/withinunit.md:
+    last_write_checksum: sha1:ca17d9ca4c86ddfec9b1808b0c10228fd81ac2c3
+  docs/sdks/account/README.md:
+    last_write_checksum: sha1:db3a8dbca78efa43f42d9f23e1b1547e6c1e0a19
+  docs/sdks/actions/README.md:
+    last_write_checksum: sha1:c4460f2cc7cd099c050ae82a392a3608a785235b
+  docs/sdks/authors/README.md:
+    last_write_checksum: sha1:6ba4a26ef3b113814303e844a05405d13f04246e
+  docs/sdks/channels/README.md:
+    last_write_checksum: sha1:01c0e51bc630e4f5cb937e39faf535e894547fd3
+  docs/sdks/contentsdk/README.md:
+    last_write_checksum: sha1:f6e58b5addb3276b3713196774eebe39a5a81994
+  docs/sdks/items/README.md:
+    last_write_checksum: sha1:0e30c68ea1709057ded218b75d981f1384dcf717
+  docs/sdks/projects/README.md:
+    last_write_checksum: sha1:a256679120b221c4cabb8026f7ccceaea7ca22c7
+  docs/sdks/queuesdk/README.md:
+    last_write_checksum: sha1:46831280e88b175731c5445b59ebf979f2f19a97
+  docs/sdks/webhooks/README.md:
+    last_write_checksum: sha1:8b6a1a57557bd3ade5be000a4c86d950886c5368
+  docs/sdks/webhooksecret/README.md:
+    last_write_checksum: sha1:b725388cf13440a7c5b9c41678fcdf698f04acd5
+  docs/sdks/wordlist/README.md:
+    last_write_checksum: sha1:3c9e2a62bb98649066c4d11eb9398e6ae9d00095
+  docs/sdks/words/README.md:
+    last_write_checksum: sha1:5ed80bd0483f466dbbde1bb12fdbedd35db3fe93
+  py.typed:
+    last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
+  pylintrc:
+    last_write_checksum: sha1:cb40e5fd2885dcf20f7c572a590b2656efe282a0
+  pyproject.toml:
+    last_write_checksum: sha1:27ffe316031b4b01b46112d983d5359914d4fb29
+  scripts/prepare_readme.py:
+    last_write_checksum: sha1:7b330dc0eb57c916a1158fd90c6227f8dc517c83
+  scripts/publish.sh:
+    last_write_checksum: sha1:b290b25b36dca3d5eb1a2e66a2e1bcf2e7326cf3
+  src/moderation_api/__init__.py:
+    last_write_checksum: sha1:da077c0bdfcef64a4a5aea91a17292f72fa2b088
+  src/moderation_api/_hooks/__init__.py:
+    last_write_checksum: sha1:45a380490e968d8d95994dd97554ac60eeb6ae60
+  src/moderation_api/_hooks/sdkhooks.py:
+    last_write_checksum: sha1:5eee8c6fd5883db601d25d7cb29e251dcb436c24
+  src/moderation_api/_hooks/types.py:
+    last_write_checksum: sha1:bb2a67c388c536a910bd205bd9582065c5d2de39
+  src/moderation_api/_version.py:
+    last_write_checksum: sha1:add169876c532d6f961eb23dc56c92cb3cdc02e2
+  src/moderation_api/account.py:
+    last_write_checksum: sha1:4fbbbf7834d250353a52cb7d0a9752738c6ccea8
+  src/moderation_api/actions.py:
+    last_write_checksum: sha1:9125beb7c8ea7c0e0aa6f7b3355ad963f9ba8ef0
+  src/moderation_api/authors.py:
+    last_write_checksum: sha1:846c678bfa45f5ee6afdc79ece4fb62fe87b639d
+  src/moderation_api/basesdk.py:
+    last_write_checksum: sha1:026fbd5780e5d5c70d00c0e8503e124ce2cf9779
+  src/moderation_api/channels.py:
+    last_write_checksum: sha1:427f7ba3e717e4cdadbff8bca70a602c9a2a9c81
+  src/moderation_api/content_sdk.py:
+    last_write_checksum: sha1:146690a11ff1ecb2f3e99d3026234c84f21beb69
+  src/moderation_api/errors/__init__.py:
+    last_write_checksum: sha1:043e566785713d1aee1f2709cf3083cb51df01f6
+  src/moderation_api/errors/authenticationerror.py:
+    last_write_checksum: sha1:25027f18db3e06adcae00114d10d346e19c47914
+  src/moderation_api/errors/badrequesterror.py:
+    last_write_checksum: sha1:2956ade602678ebaaf6dd406bb40e3435f8af599
+  src/moderation_api/errors/conflicterror.py:
+    last_write_checksum: sha1:752e430486a83a8cc9b48bbf13a507dacc9607dd
+  src/moderation_api/errors/internalservererror.py:
+    last_write_checksum: sha1:a0ee3fc3c9cb5a1f5928573c28182fa941130dbd
+  src/moderation_api/errors/moderationapidefaulterror.py:
+    last_write_checksum: sha1:8791d1fd68f77ac40a27c05a6aea5dc2ccb78271
+  src/moderation_api/errors/moderationapierror.py:
+    last_write_checksum: sha1:a3ce6cfba08e226380cd903cd303eb395b70eb0a
+  src/moderation_api/errors/no_response_error.py:
+    last_write_checksum: sha1:7f326424a7d5ae1bcd5c89a0d6b3dbda9138942f
+  src/moderation_api/errors/notfounderror.py:
+    last_write_checksum: sha1:8e16b46d89276693c817e89e107c72124c42fcd2
+  src/moderation_api/errors/permissiondeniederror.py:
+    last_write_checksum: sha1:45e587a5860c39b85743a6cfaadc10418a85f11a
+  src/moderation_api/errors/ratelimiterror.py:
+    last_write_checksum: sha1:b21ea5a561809730626bedac760606e2150706bf
+  src/moderation_api/errors/responsevalidationerror.py:
+    last_write_checksum: sha1:4b7e233bbe80ffc0e929120c19ac748eb857f92f
+  src/moderation_api/httpclient.py:
+    last_write_checksum: sha1:5e55338d6ee9f01ab648cad4380201a8a3da7dd7
+  src/moderation_api/items.py:
+    last_write_checksum: sha1:7dc42580494127c2b375b29304988888151494b9
+  src/moderation_api/models/__init__.py:
+    last_write_checksum: sha1:c4fa9982b774e655159dda1956668dbf9b0e43b3
+  src/moderation_api/models/addwordlistwordsop.py:
+    last_write_checksum: sha1:c5c1894b1e51c5ce56a5d8646d45b4d3c1974095
+  src/moderation_api/models/authenticationerror.py:
+    last_write_checksum: sha1:63c299ddbc05b97c083d497836594c1619815fab
+  src/moderation_api/models/badrequesterror.py:
+    last_write_checksum: sha1:98b0f2c371d65c3a66ae33e97a68bdaaf3798d15
+  src/moderation_api/models/channel.py:
+    last_write_checksum: sha1:3f3a27e1b1c4d719244f22748c0af2b043729b27
+  src/moderation_api/models/conflicterror.py:
+    last_write_checksum: sha1:43e729d2dcf16ae6791a6c4ee1b5cab373611296
+  src/moderation_api/models/createactionop.py:
+    last_write_checksum: sha1:3fb83d6d1beba89fb37af052a71af1147ac69358
+  src/moderation_api/models/createauthorop.py:
+    last_write_checksum: sha1:e92acefb61096af66649fd37c23a2b72ef6046c9
+  src/moderation_api/models/createchannelop.py:
+    last_write_checksum: sha1:19f3857bbc2c1d66f906465518a4ae26e34ea666
+  src/moderation_api/models/createprojectop.py:
+    last_write_checksum: sha1:dc16578de2a09db059dccfe18712b42d767f1a62
+  src/moderation_api/models/createwebhookop.py:
+    last_write_checksum: sha1:199fce3d361060801ee5d5cade7ae2e1aeab5aad
+  src/moderation_api/models/deleteactionop.py:
+    last_write_checksum: sha1:e67d2d3bfe957f5fca569e2f7e525db0bc94dd34
+  src/moderation_api/models/deleteauthorop.py:
+    last_write_checksum: sha1:771ce954981d79a62afd9c8eec14eec997b0b45b
+  src/moderation_api/models/deletechannelop.py:
+    last_write_checksum: sha1:b1798fa3342ed1d046d89f40ae7f72a41c6a9e87
+  src/moderation_api/models/deleteprojectop.py:
+    last_write_checksum: sha1:2e84a7999f679a87ef393eb0c44805bd687d2e7d
+  src/moderation_api/models/deletewebhookop.py:
+    last_write_checksum: sha1:a939d8c4b658243b85a6a9c593a08df239a14ca2
+  src/moderation_api/models/duplicatechannelop.py:
+    last_write_checksum: sha1:ac62e5fe7064a3b241935390d57002ed98bcc1e1
+  src/moderation_api/models/duplicateprojectop.py:
+    last_write_checksum: sha1:6fe73d3171359ec8c6cb22a531ccf28a6bbf291f
+  src/moderation_api/models/errorissue.py:
+    last_write_checksum: sha1:12ac40f4f3533dad0cb604a67f2f70e6b07254f0
+  src/moderation_api/models/executeactionop.py:
+    last_write_checksum: sha1:923f75e923f5e10a1a0b3ff02d9bc611b63903c6
+  src/moderation_api/models/getaccountop.py:
+    last_write_checksum: sha1:a47c301c8eefb64ef6468497247da0660b5faeb3
+  src/moderation_api/models/getactionop.py:
+    last_write_checksum: sha1:dca3e65624e7408e9a0c9795e31c6dfe09974e85
+  src/moderation_api/models/getauthorop.py:
+    last_write_checksum: sha1:a84b1ba037e1ae2a831d3f959aca22c3c3b01cbb
+  src/moderation_api/models/getchannelop.py:
+    last_write_checksum: sha1:1ee37733cbe95895109c9e6c1d38b6d6bfd75b68
+  src/moderation_api/models/getprojectop.py:
+    last_write_checksum: sha1:66b15cd300d9810dbb258211e2bb77f7d08fb2bd
+  src/moderation_api/models/getqueueop.py:
+    last_write_checksum: sha1:e586fe5237231be4b08ab14f1a071f9bf9c4003b
+  src/moderation_api/models/getqueuestatsop.py:
+    last_write_checksum: sha1:32a13c31e6639df3c760e2a4e1f8257aba89ae20
+  src/moderation_api/models/getwebhookop.py:
+    last_write_checksum: sha1:cd0f09ad7fcd112799150e749d2f72fe4481ad39
+  src/moderation_api/models/getwebhooksecretop.py:
+    last_write_checksum: sha1:713a5a666cbc7cfb8066e319a043edc6958df653
+  src/moderation_api/models/getwordlistembeddingstatusop.py:
+    last_write_checksum: sha1:4545450042d151c39d73e754b2dfe7fb349176b5
+  src/moderation_api/models/getwordlistop.py:
+    last_write_checksum: sha1:74d2fcc7cb7743bc89a72067849df48de349afbd
+  src/moderation_api/models/internalservererror.py:
+    last_write_checksum: sha1:aa2999b9b9209cf1a43bdf0d065ccf890f79007b
+  src/moderation_api/models/listactionsop.py:
+    last_write_checksum: sha1:4339bba35f07346cac5fa6a11c458290f0b5c247
+  src/moderation_api/models/listauthorsop.py:
+    last_write_checksum: sha1:80b1a4e27d70205191258717c110f37c2444f73b
+  src/moderation_api/models/listchannelsop.py:
+    last_write_checksum: sha1:cf3ab07af3ad06ae35fa6e3ed6783f292d77e914
+  src/moderation_api/models/listprojectsop.py:
+    last_write_checksum: sha1:71cf5c9825f4f7e2a6aa31149946079f7a45cb08
+  src/moderation_api/models/listqueueitemsop.py:
+    last_write_checksum: sha1:dcc1020c38bf1082f0f11d81ff0fbc1e4d2a51ef
+  src/moderation_api/models/listwebhooksop.py:
+    last_write_checksum: sha1:50a7e8633bf1620d954efa3a172565ab4987e62a
+  src/moderation_api/models/listwordlistsop.py:
+    last_write_checksum: sha1:baf3d8259aace9098bb4d9f2c935f30e1cafe11f
+  src/moderation_api/models/notfounderror.py:
+    last_write_checksum: sha1:a44e99269c4be4942eb84a4d9fa364a9b17f90db
+  src/moderation_api/models/pagination.py:
+    last_write_checksum: sha1:b39970391aa653cb9cf835c0fc185bad7117d86a
+  src/moderation_api/models/permissiondeniederror.py:
+    last_write_checksum: sha1:f65ba7d760ec371c17688cf7c1de4ba9bd2c7a15
+  src/moderation_api/models/project.py:
+    last_write_checksum: sha1:8b63414b298ed52321834567de4da1f6becb40e9
+  src/moderation_api/models/projectwithkey.py:
+    last_write_checksum: sha1:6517b6324c0193f660d410d1a9d0b392e3ff6203
+  src/moderation_api/models/publicauthor.py:
+    last_write_checksum: sha1:70595f937559ff2ecd1eeca6f0839957cf92bac2
+  src/moderation_api/models/ratelimiterror.py:
+    last_write_checksum: sha1:0e2a9611cd0b938fcdcab514d2f667fb6286bfe1
+  src/moderation_api/models/removewordlistwordsop.py:
+    last_write_checksum: sha1:be5d8c7bb7363b6b5e7ce7f3735f54bdeec5abb7
+  src/moderation_api/models/resolvequeueitemop.py:
+    last_write_checksum: sha1:ae162695dadc0b0fc4eced69b05a871624bd4b55
+  src/moderation_api/models/security.py:
+    last_write_checksum: sha1:dc71db919301e2ed408358e7b2066a8cb30c581b
+  src/moderation_api/models/submitcontentop.py:
+    last_write_checksum: sha1:a6fba99be7e4e3c70d6a4e9687802de74471c7da
+  src/moderation_api/models/unresolvequeueitemop.py:
+    last_write_checksum: sha1:914c3ca13be46eaad14be65b5f46192bdd295bb9
+  src/moderation_api/models/updateactionop.py:
+    last_write_checksum: sha1:6c99e2fc62056160c68f81631c503d6a1eb5f8b0
+  src/moderation_api/models/updateauthorop.py:
+    last_write_checksum: sha1:72485f29fbcab4044a845c3151082ff0bac187e2
+  src/moderation_api/models/updatechannelop.py:
+    last_write_checksum: sha1:444b3b5c68884d846d8db28f07b031fdc4a27c76
+  src/moderation_api/models/updateprojectop.py:
+    last_write_checksum: sha1:700ccc086f59950dcbbf78d2f52796064fa63c12
+  src/moderation_api/models/updatewebhookop.py:
+    last_write_checksum: sha1:b46ec55d7634cc70bf7bc79060df40748936e190
+  src/moderation_api/models/updatewordlistop.py:
+    last_write_checksum: sha1:64915feada242e2965189c5a9715226ca5271adf
+  src/moderation_api/projects.py:
+    last_write_checksum: sha1:a4aece7aba0496936fd398d185c0de035fe4828f
+  src/moderation_api/py.typed:
+    last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
+  src/moderation_api/queue_sdk.py:
+    last_write_checksum: sha1:e7bce884630981420dc919f0e256f86e0b7e48f5
+  src/moderation_api/sdk.py:
+    last_write_checksum: sha1:580ff8ec9ef32cc4f9a4e488a4a4f319f3a0304c
+  src/moderation_api/sdkconfiguration.py:
+    last_write_checksum: sha1:86812fbbd7c1369f15f5163bf60163f933b1012e
+  src/moderation_api/types/__init__.py:
+    last_write_checksum: sha1:f9ad14217f832e74f594285960125add50324be9
+  src/moderation_api/types/base64fileinput.py:
+    last_write_checksum: sha1:1522687ae3398374c35710cad993a6e82b5ab99d
+  src/moderation_api/types/basemodel.py:
+    last_write_checksum: sha1:10d84aedeb9d35edfdadf2c3020caa1d24d8b584
+  src/moderation_api/utils/__init__.py:
+    last_write_checksum: sha1:b9cb5851a618ff388d0c56127f6a7c595aa51978
+  src/moderation_api/utils/annotations.py:
+    last_write_checksum: sha1:a4824ad65f730303e4e1e3ec1febf87b4eb46dbc
+  src/moderation_api/utils/datetimes.py:
+    last_write_checksum: sha1:8d08dfebf00458efa19e0c19455eddcc9f14b8ca
+  src/moderation_api/utils/dynamic_imports.py:
+    last_write_checksum: sha1:a1940c63feb8eddfd8026de53384baf5056d5dcc
+  src/moderation_api/utils/enums.py:
+    last_write_checksum: sha1:bc8c3c1285ae09ba8a094ee5c3d9c7f41fa1284d
+  src/moderation_api/utils/eventstreaming.py:
+    last_write_checksum: sha1:7d1dc68f8b48486ab646653aa05cc38752e1f912
+  src/moderation_api/utils/forms.py:
+    last_write_checksum: sha1:dcf527960992b8baef3b21937c7e6c4e652630c0
+  src/moderation_api/utils/headers.py:
+    last_write_checksum: sha1:7c6df233ee006332b566a8afa9ce9a245941d935
+  src/moderation_api/utils/logger.py:
+    last_write_checksum: sha1:6fd9da93e110195a66583034c4b00e92d2463e00
+  src/moderation_api/utils/metadata.py:
+    last_write_checksum: sha1:e703e5cbb5255144aacf86898d1420529afaaff8
+  src/moderation_api/utils/queryparams.py:
+    last_write_checksum: sha1:b94c3f314fd3da0d1d215afc2731f48748e2aa59
+  src/moderation_api/utils/requestbodies.py:
+    last_write_checksum: sha1:e1fef575283b7fe7fe2ad392dbbb3fb105309124
+  src/moderation_api/utils/retries.py:
+    last_write_checksum: sha1:251e4dd969bb6c06025afe1bad1b5035e94c2060
+  src/moderation_api/utils/security.py:
+    last_write_checksum: sha1:e5404e621afd5570d69de6fbfa08f1ea141a3ee5
+  src/moderation_api/utils/serializers.py:
+    last_write_checksum: sha1:2fb543339b424a0818b126e69695df5c91cd4d7b
+  src/moderation_api/utils/unions.py:
+    last_write_checksum: sha1:cf05df60e2a9578806d903f79ec6f4758f491044
+  src/moderation_api/utils/unmarshal_json_response.py:
+    last_write_checksum: sha1:094e8e49b6c9b1fd020197b6132943e9cbfa78f9
+  src/moderation_api/utils/url.py:
+    last_write_checksum: sha1:0269c7e27f701e0c72d44bc2a36ac4d44ef2108c
+  src/moderation_api/utils/values.py:
+    last_write_checksum: sha1:c0eaaf8779a4ba3ae068579a57182667efef0cb7
+  src/moderation_api/webhooks.py:
+    last_write_checksum: sha1:936385719eb90b786be4a31af8d98e71aa7bf52f
+  src/moderation_api/webhooksecret.py:
+    last_write_checksum: sha1:6081057d585229e1dc0bc9143c3803cbc65887b2
+  src/moderation_api/wordlist.py:
+    last_write_checksum: sha1:e1fcc0296b270714e3997e13a6c69e080cc3efd2
+  src/moderation_api/words.py:
+    last_write_checksum: sha1:ef2d2aba8e3067bbc9e1fb735a77bc2216d3f71f
+examples:
+  listAuthors:
+    speakeasy-default-list-authors:
+      parameters:
+        query:
+          page: 1
+          pageSize: 20
+          sortDirection: "desc"
+      responses:
+        "200":
+          application/json: {"data": [{"id": "<id>", "first_seen": 4938.47, "last_seen": 5385.02, "status": "suspended", "trust_level": {"level": 3349.53, "manual": false}, "block": null, "risk_evaluation": {}, "metrics": {"total_content": 7036.05, "flagged_content": 1522.44}, "metadata": {}}], "pagination": {"page": 669906, "pageSize": 764456, "total": 2694, "totalPages": 420848, "hasMore": true}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://terrible-order.com/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://doting-creator.name/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://ignorant-brook.net"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://fair-spirit.com/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://biodegradable-bar.net"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://warmhearted-eternity.com/"}
+  createAuthor:
+    speakeasy-default-create-author:
+      requestBody:
+        application/json: {"external_id": "<id>"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "first_seen": 4812.06, "last_seen": 5162.05, "status": "enabled", "trust_level": {"level": 9033.2, "manual": true}, "block": {}, "risk_evaluation": null, "metrics": {"total_content": 3527.05, "flagged_content": 6547.27}, "metadata": {}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://worldly-oil.info"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://glorious-runway.net/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://cluttered-vision.net"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://secret-netsuke.biz/"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://favorite-mozzarella.biz/"}
+  getAuthor:
+    speakeasy-default-get-author:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "first_seen": 6376.87, "last_seen": 9245.24, "status": "suspended", "trust_level": {"level": 7361.01, "manual": true}, "block": {}, "risk_evaluation": null, "metrics": {"total_content": 5954.29, "flagged_content": 964.41}, "metadata": {}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://thorny-grandson.net"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://tinted-caption.org"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://sorrowful-zebra.biz"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://worthless-lamp.biz/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://mindless-certification.info/"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://snappy-precedent.info/"}
+  updateAuthor:
+    speakeasy-default-update-author:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "first_seen": 4195.42, "last_seen": 5769.79, "status": "blocked", "trust_level": {"level": 3132.55, "manual": false}, "block": null, "risk_evaluation": {}, "metrics": {"total_content": 75.01, "flagged_content": 9143.95}, "metadata": {}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://edible-cycle.net/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://legal-advertisement.org/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://tough-vibraphone.info"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://appropriate-pharmacopoeia.info/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://shiny-muscat.biz"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://trivial-label.org"}
+  deleteAuthor:
+    speakeasy-default-delete-author:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"success": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://heavenly-cycle.org"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://dead-forgery.name/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://fragrant-baseboard.net"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://doting-affect.biz/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://devoted-complication.com"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://palatable-transparency.com/"}
+  getQueue:
+    speakeasy-default-get-queue:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"queue": {"id": "<id>", "name": "<value>", "description": "furiously certification tighten", "filter": {}, "unresolvedItemsCount": 1559.96, "resolvedItemsCount": 1949.18, "totalItemsCount": 1912.44}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://actual-thyme.biz/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://weary-precedent.com"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://polite-pepper.com"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://posh-exhaust.name"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://insistent-sermon.info"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://burly-markup.info"}
+  getQueueStats:
+    speakeasy-default-get-queue-stats:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          withinDays: 30
+      responses:
+        "200":
+          application/json: {"reviewStats": {"averageTimeToReview": 3713.81, "totalReviewed": 9855.4, "totalPending": 2413.77}, "actionStats": [{"actionId": "<id>", "actionName": "<value>", "count": 4507.74, "percentageOfTotal": 3785.01}], "topReviewers": [], "trends": {"dailyReviewCounts": [{"date": "2024-07-26", "count": 794.3}], "flaggedContentTrends": []}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://accomplished-councilman.com/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://married-accelerator.name"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://stingy-wheel.info"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://sudden-nudge.biz/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://incomplete-populist.name"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://quixotic-version.name/"}
+  listQueueItems:
+    speakeasy-default-list-queue-items:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          page: 1
+          pageSize: 20
+          sortDirection: "desc"
+      responses:
+        "200":
+          application/json: {"data": [{"id": "<id>", "content": "<value>", "labels": [{"label": "<value>", "score": 3108.5, "flagged": false}], "flagged": false, "status": "resolved", "timestamp": 79.16}], "pagination": {"page": 42752, "pageSize": 933228, "total": 306038, "totalPages": 947297, "hasMore": true}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://back-status.info"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://complicated-premier.info/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://nocturnal-vanadyl.info/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://hot-corporation.info/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://vast-pension.biz/"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://glorious-marten.biz/"}
+  resolveQueueItem:
+    speakeasy-default-resolve-queue-item:
+      parameters:
+        path:
+          id: "<id>"
+          itemId: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"success": true, "resolvedAt": "<value>"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://heartfelt-orchid.net/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://rotating-heartbeat.net"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://discrete-maintainer.org/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://powerful-wombat.org"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://precious-napkin.biz"}
+  unresolveQueueItem:
+    speakeasy-default-unresolve-queue-item:
+      parameters:
+        path:
+          id: "<id>"
+          itemId: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"success": false, "status": "<value>", "unresolvedAt": "<value>"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://passionate-partridge.net"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://velvety-pocket-watch.info/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://jaunty-mantua.name/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://shameless-cleaner.biz/"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://vivacious-edge.net/"}
+  listActions:
+    speakeasy-default-list-actions:
+      parameters:
+        query:
+          page: 1
+          pageSize: 20
+      responses:
+        "200":
+          application/json: {"data": [{"id": "<id>", "createdAt": "1725087768413", "name": "<value>", "builtIn": false, "queueBehaviour": "NO_CHANGE", "filterInQueueIds": ["<value 1>", "<value 2>", "<value 3>"], "position": "ALL_QUEUES", "possibleValues": [], "valueRequired": false, "freeText": false}], "pagination": {"page": 985516, "pageSize": 779890, "total": 313182, "totalPages": 263422, "hasMore": false}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://alive-dividend.org"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://energetic-coliseum.info"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://that-awareness.info/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://big-blowgun.com/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://glaring-t-shirt.org"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://sure-footed-valuable.com"}
+  createAction:
+    speakeasy-default-create-action:
+      requestBody:
+        application/json: {"name": "<value>", "builtIn": false, "queueBehaviour": "NO_CHANGE", "position": "ALL_QUEUES", "valueRequired": false, "freeText": false}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "createdAt": "1720941674984", "name": "<value>", "builtIn": false, "queueBehaviour": "NO_CHANGE", "filterInQueueIds": [], "position": "ALL_QUEUES", "possibleValues": [], "valueRequired": false, "freeText": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://tense-piglet.biz"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://ornate-earth.com/"}
+        "409":
+          application/json: {"type": "conflict_error", "code": "resource_conflict", "message": "Action with this key already exists", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://electric-injunction.info/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://far-premeditation.com/"}
+  getAction:
+    speakeasy-default-get-action:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "createdAt": "1718494238717", "name": "<value>", "builtIn": false, "queueBehaviour": "NO_CHANGE", "filterInQueueIds": ["<value 1>", "<value 2>"], "position": "ALL_QUEUES", "possibleValues": [{"value": "<value>"}], "valueRequired": false, "freeText": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://homely-bowler.net"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://bony-disappointment.org"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://reckless-disposer.biz"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://political-subsidy.name/"}
+  updateAction:
+    speakeasy-default-update-action:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"builtIn": false, "queueBehaviour": "NO_CHANGE", "position": "ALL_QUEUES", "valueRequired": false, "freeText": false}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "createdAt": "1714762506766", "name": "<value>", "builtIn": false, "queueBehaviour": "NO_CHANGE", "filterInQueueIds": [], "position": "ALL_QUEUES", "possibleValues": [], "valueRequired": false, "freeText": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://second-hand-pigsty.biz/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://accurate-morbidity.biz"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://useless-leading.biz"}
+        "409":
+          application/json: {"type": "conflict_error", "code": "resource_conflict", "message": "Action with this key already exists", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://advanced-bog.biz/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://needy-longboat.org"}
+  deleteAction:
+    speakeasy-default-delete-action:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"deleted": false, "id": "<id>"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://parallel-whack.net"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://advanced-barge.net/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://raw-offset.info"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://filthy-acquaintance.com"}
+  executeAction:
+    speakeasy-default-execute-action:
+      requestBody:
+        application/json: {"actionKey": "<value>"}
+      responses:
+        "200":
+          application/json: {"success": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://near-bog.org"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://harmful-atrium.biz/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://upright-slime.info/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://practical-slipper.net/"}
+  listWebhooks:
+    speakeasy-default-list-webhooks:
+      parameters:
+        query:
+          page: 1
+          pageSize: 20
+      responses:
+        "200":
+          application/json: {"data": [], "pagination": {"page": 110833, "pageSize": 63381, "total": 164724, "totalPages": 881973, "hasMore": false}}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://grubby-tabletop.info"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://circular-legend.biz"}
+  createWebhook:
+    speakeasy-default-create-webhook:
+      requestBody:
+        application/json: {"name": "<value>", "url": "https://experienced-sailor.biz/", "eventTypes": ["QUEUE_ITEM_ACTION"]}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "url": "https://experienced-seagull.name/", "eventTypes": ["AUTHOR_UPDATED"], "payloadVersion": "V2", "createdAt": "1722763687109"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://burly-permafrost.name"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://flickering-bonnet.name"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://exhausted-swordfish.net/"}
+  getWebhook:
+    speakeasy-default-get-webhook:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "url": "https://unknown-tray.net", "eventTypes": [], "payloadVersion": "V2", "createdAt": "1705930134329"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://low-doorpost.net/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://avaricious-overcoat.net/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://same-translation.net/"}
+  updateWebhook:
+    speakeasy-default-update-webhook:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "url": "https://nimble-affect.name", "eventTypes": [], "payloadVersion": "V1", "createdAt": "1713502971647"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://better-guacamole.biz/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://impeccable-story.info/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://brown-developmental.info"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://gigantic-jump.biz"}
+  deleteWebhook:
+    speakeasy-default-delete-webhook:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"deleted": true, "id": "<id>"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://familiar-scratch.org"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://timely-sweatshop.info/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://hospitable-sundae.com/"}
+  getWebhookSecret:
+    speakeasy-default-get-webhook-secret:
+      responses:
+        "200":
+          application/json: {"secret": "<value>"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://worse-palate.net/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://clean-spring.info"}
+  getAccount:
+    speakeasy-default-get-account:
+      responses:
+        "200":
+          application/json: {"id": "<id>", "paid_plan_name": "<value>", "text_api_quota": 1657.23, "remaining_quota": 9607.83}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://enchanted-permafrost.info"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://wasteful-digestive.net"}
+  listWordlists:
+    speakeasy-default-list-wordlists:
+      parameters:
+        query:
+          page: 1
+          pageSize: 20
+      responses:
+        "200":
+          application/json: {"data": [{"id": "<id>", "name": "<value>", "description": "unwilling urgently mantua obediently hoarse into provided vet serenade down", "createdAt": "1705747111828", "userId": "<id>"}], "pagination": {"page": 544370, "pageSize": 720052, "total": 588579, "totalPages": 529938, "hasMore": true}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://meaty-chapel.name"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://other-outrun.net"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://wise-mythology.org"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://honorable-vein.com"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://curly-gray.info"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://merry-pile.com/"}
+  getWordlist:
+    speakeasy-default-get-wordlist:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "words": [], "createdAt": "1708371957170", "organizationId": "<id>", "userId": "<id>", "strict": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://posh-harp.info"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://drab-pleasure.biz"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://acidic-hygienic.biz"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://next-blossom.net"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://livid-fuel.name"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://jagged-coordination.com"}
+  updateWordlist:
+    speakeasy-default-update-wordlist:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "words": ["<value 1>"], "createdAt": "1723114860829", "organizationId": "<id>", "userId": "<id>", "strict": false}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://triangular-republican.info"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://lanky-editor.info"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://surprised-gripper.net/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://crooked-milestone.biz"}
+  getWordlistEmbeddingStatus:
+    speakeasy-default-get-wordlist-embedding-status:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"progress": 1381.39, "totalWords": 7094.28, "remainingWords": 9583.15}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://quixotic-requirement.name"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://nimble-thread.org"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://responsible-awareness.com/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://worst-hutch.info/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://agreeable-independence.name/"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://impolite-sediment.name"}
+  addWordlistWords:
+    speakeasy-default-add-wordlist-words:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"words": []}
+      responses:
+        "200":
+          application/json: {"addedCount": 7700.73, "totalCount": 8887.39, "addedWords": []}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://noxious-fledgling.info/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://tempting-diversity.biz/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://dismal-castanet.org/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://serene-skean.com"}
+  removeWordlistWords:
+    speakeasy-default-remove-wordlist-words:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          words: ["<value 1>", "<value 2>", "<value 3>"]
+      responses:
+        "200":
+          application/json: {"removedCount": 6472.46, "totalCount": 1784.41, "removedWords": ["<value 1>"]}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://coarse-flight.com/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://unfortunate-toothbrush.com/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://key-expense.com"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://sophisticated-slime.name"}
+  submitContent:
+    speakeasy-default-submit-content:
+      requestBody:
+        application/json: {"content": {"type": "image"}}
+      responses:
+        "200":
+          application/json: {"content": {"id": "<id>", "masked": true, "unicode_cleaned": true, "modified": {"key": "<value>", "key1": "<value>"}}, "author": {"id": "<id>", "block": {}, "status": "blocked", "trust_level": {"level": 8664.71, "manual": false}}, "evaluation": {"flagged": false, "flag_probability": 8008.81, "severity_score": 348.65}, "recommendation": {"action": "allow", "reason_codes": ["rule_match"]}, "casebook": {"verdict": "reject", "similarity": 2676.55, "agreement": 7706.56, "confidence": 9365.91, "case_count": 6691.67, "topic": {"id": "<id>", "label": "<value>"}}, "policies": [], "insights": [], "meta": {"status": "partial_success", "timestamp": 5209.71, "channel_key": "<value>", "usage": 2898.59}}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://sparse-collaboration.name"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://second-hand-devastation.name/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://white-atrium.info"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://worthless-solvency.info/"}
+        "500":
+          application/json: {"type": "api_error", "code": "internal_error", "message": "Internal server error", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://enchanted-amnesty.name/"}
+  listProjects:
+    speakeasy-default-list-projects:
+      parameters:
+        query:
+          page: 1
+          pageSize: 20
+      responses:
+        "200":
+          application/json: {"data": [{"id": "<id>", "name": "<value>", "description": "scarily however out solidly reproach", "domain": "wasteful-lounge.com", "context": "<value>", "globalFlaggingMode": "ACTIVE", "enableRequestLogging": false, "casebookEnabled": false, "createdAt": "1719550777772", "updatedAt": "1735687514389"}], "pagination": {"page": 468054, "pageSize": 647138, "total": 740816, "totalPages": 925291, "hasMore": false}}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://deadly-barracks.info/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://accurate-surface.com"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://zany-archaeology.com"}
+  createProject:
+    speakeasy-default-create-project:
+      requestBody:
+        application/json: {"name": "<value>", "usedByMinors": false}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "description": "accidentally per justly inconsequential amidst", "domain": "impeccable-lashes.net", "context": "<value>", "globalFlaggingMode": "ACTIVE", "enableRequestLogging": false, "casebookEnabled": false, "createdAt": "1722120233197", "updatedAt": "1735673297432", "secretKey": "<value>"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://elastic-typeface.name"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://fake-suspension.info/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://lazy-marketplace.org/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://difficult-mentor.name"}
+  getProject:
+    speakeasy-default-get-project:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "description": "for loyally prance dutiful decriminalize noted", "domain": "well-worn-e-mail.net", "context": "<value>", "globalFlaggingMode": "ACTIVE", "enableRequestLogging": false, "casebookEnabled": true, "createdAt": "1733283153583", "updatedAt": "1735660743971"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://drab-stitcher.biz"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://unsightly-cricket.net/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://linear-ocelot.com/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://sour-avalanche.org"}
+  updateProject:
+    speakeasy-default-update-project:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "description": null, "domain": "wiggly-gown.info", "context": "<value>", "globalFlaggingMode": "DRY_RUN", "enableRequestLogging": false, "casebookEnabled": false, "createdAt": "1723019639943", "updatedAt": "1735642941794"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://enchanting-behest.name"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://scary-strategy.com"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://intelligent-adrenalin.org"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://informal-loyalty.biz/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://paltry-marketplace.com/"}
+  deleteProject:
+    speakeasy-default-delete-project:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"deleted": true, "id": "<id>"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://brown-lawmaker.com/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://specific-swing.net/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://genuine-shoulder.name/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://rewarding-quit.biz/"}
+  duplicateProject:
+    speakeasy-default-duplicate-project:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "description": "messy volunteer quash cluttered", "domain": "unkempt-bowling.name", "context": "<value>", "globalFlaggingMode": "DRY_RUN", "enableRequestLogging": true, "casebookEnabled": false, "createdAt": "1720065871635", "updatedAt": "1735618179596", "secretKey": "<value>"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://wicked-brochure.net"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://rowdy-humor.net"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://winged-developing.org/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://lazy-fund.org/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://sentimental-thread.info"}
+  listChannels:
+    speakeasy-default-list-channels:
+      parameters:
+        path:
+          projectId: "<id>"
+        query:
+          page: 1
+          pageSize: 20
+      responses:
+        "200":
+          application/json: {"data": [{"id": "<id>", "projectId": "<id>", "key": "<key>", "name": "<value>", "description": "within greedily why primary ceramics that pricey trash", "isDefault": false, "contentType": "post", "flaggingMode": "ACTIVE", "contextEnabled": true, "enableImageModeration": false, "enableVideoModeration": false, "enableAudioModeration": true, "enableVoiceModeration": true, "includeTranscriptInResponse": true, "transcriptionQuality": "SPEED", "unicodeSpoofDetectionEnabled": true, "frameCaptureInterval": 9833.48, "maxFramesPerVideo": 441460, "spreadFrames": false, "createdAt": "1725717609091", "updatedAt": "1735644620528"}], "pagination": {"page": 16950, "pageSize": 792684, "total": 944522, "totalPages": 636345, "hasMore": false}}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://authentic-dress.name/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://understated-produce.net"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://cruel-vein.info"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://primary-completion.biz/"}
+  createChannel:
+    speakeasy-default-create-channel:
+      parameters:
+        path:
+          projectId: "<id>"
+      requestBody:
+        application/json: {"name": "<value>"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "projectId": "<id>", "key": "<key>", "name": "<value>", "description": "regular ouch unlike slow fondly finally meanwhile though toaster", "isDefault": false, "contentType": "voice", "flaggingMode": "ACTIVE", "contextEnabled": false, "enableImageModeration": false, "enableVideoModeration": true, "enableAudioModeration": false, "enableVoiceModeration": true, "includeTranscriptInResponse": true, "transcriptionQuality": "BALANCED", "unicodeSpoofDetectionEnabled": true, "frameCaptureInterval": 9068.96, "maxFramesPerVideo": 217785, "spreadFrames": true, "createdAt": "1709542405374", "updatedAt": "1735665242908"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://experienced-jazz.name/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://witty-goodwill.net"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://deep-lifestyle.name"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://ill-airbus.biz"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://bad-mathematics.biz/"}
+  getChannel:
+    speakeasy-default-get-channel:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "projectId": "<id>", "key": "<key>", "name": "<value>", "description": null, "isDefault": true, "contentType": "event", "flaggingMode": "DRY_RUN", "contextEnabled": false, "enableImageModeration": false, "enableVideoModeration": false, "enableAudioModeration": false, "enableVoiceModeration": true, "includeTranscriptInResponse": true, "transcriptionQuality": "SPEED", "unicodeSpoofDetectionEnabled": false, "frameCaptureInterval": 9732.58, "maxFramesPerVideo": 449675, "spreadFrames": false, "createdAt": "1709021755362", "updatedAt": "1735658089359"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://orderly-lace.com"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://crushing-avalanche.biz/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://silky-redesign.name/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://super-crocodile.org/"}
+  updateChannel:
+    speakeasy-default-update-channel:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "projectId": "<id>", "key": "<key>", "name": "<value>", "description": "utterly taxicab rebuild amid common searchingly", "isDefault": false, "contentType": "comment", "flaggingMode": "ACTIVE", "contextEnabled": false, "enableImageModeration": true, "enableVideoModeration": false, "enableAudioModeration": true, "enableVoiceModeration": false, "includeTranscriptInResponse": true, "transcriptionQuality": "SPEED", "unicodeSpoofDetectionEnabled": false, "frameCaptureInterval": 242.32, "maxFramesPerVideo": 79933, "spreadFrames": false, "createdAt": "1714165181265", "updatedAt": "1735635444170"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://jam-packed-midwife.net"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://enchanted-executor.name/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://tinted-seagull.biz"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://bouncy-sanity.org"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://glaring-procurement.name/"}
+  deleteChannel:
+    speakeasy-default-delete-channel:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"deleted": true, "id": "<id>"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://wise-accountability.info/"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://brilliant-makeover.name"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://specific-vibration.info"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://wasteful-suv.com/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://impeccable-injunction.net"}
+  duplicateChannel:
+    speakeasy-default-duplicate-channel:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "projectId": "<id>", "key": "<key>", "name": "<value>", "description": null, "isDefault": true, "contentType": "event", "flaggingMode": "DRY_RUN", "contextEnabled": false, "enableImageModeration": true, "enableVideoModeration": true, "enableAudioModeration": true, "enableVoiceModeration": false, "includeTranscriptInResponse": true, "transcriptionQuality": "BALANCED", "unicodeSpoofDetectionEnabled": false, "frameCaptureInterval": 3446.41, "maxFramesPerVideo": 287196, "spreadFrames": false, "createdAt": "1727448237026", "updatedAt": "1735634690271"}
+        "400":
+          application/json: {"type": "invalid_request_error", "code": "invalid_request", "message": "Invalid input data", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://educated-unblinking.name"}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://uniform-statue.biz/"}
+        "403":
+          application/json: {"type": "permission_error", "code": "permission_denied", "message": "Insufficient access", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://dependent-nudge.biz/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://insecure-premium.com/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://upset-hydrant.info/"}
+examplesVersion: 1.0.2
