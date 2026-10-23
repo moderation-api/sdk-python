@@ -360,7 +360,7 @@ class Authors(BaseSDK):
         Create a new author. Typically not needed as authors are created automatically when content is moderated.
 
         :param external_id: External ID of the user, typically the ID of the author in your database.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param profile_picture: URL of the author's profile picture
         :param external_link: URL of the author's external profile
         :param name: Author name or identifier
@@ -513,7 +513,7 @@ class Authors(BaseSDK):
         Create a new author. Typically not needed as authors are created automatically when content is moderated.
 
         :param external_id: External ID of the user, typically the ID of the author in your database.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param profile_picture: URL of the author's profile picture
         :param external_link: URL of the author's external profile
         :param name: Author name or identifier
@@ -655,7 +655,7 @@ class Authors(BaseSDK):
         Get detailed information about a specific author including historical data and analysis
 
         :param id: Either external ID or the ID assigned by moderation API.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -775,7 +775,7 @@ class Authors(BaseSDK):
         Get detailed information about a specific author including historical data and analysis
 
         :param id: Either external ID or the ID assigned by moderation API.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -906,7 +906,7 @@ class Authors(BaseSDK):
         Update the details of a specific author
 
         :param id: Either external ID or the ID assigned by moderation API.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param profile_picture: URL of the author's profile picture
         :param external_link: URL of the author's external profile
         :param name: Author name or identifier
@@ -1062,7 +1062,7 @@ class Authors(BaseSDK):
         Update the details of a specific author
 
         :param id: Either external ID or the ID assigned by moderation API.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param profile_picture: URL of the author's profile picture
         :param external_link: URL of the author's external profile
         :param name: Author name or identifier
@@ -1207,7 +1207,7 @@ class Authors(BaseSDK):
         Delete a specific author. This resets the author: status, blocks, trust level, metrics and action history are removed. The author is created again with a clean record the next time content is moderated for the same ID.
 
         :param id: Either external ID or the ID assigned by moderation API.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1327,7 +1327,7 @@ class Authors(BaseSDK):
         Delete a specific author. This resets the author: status, blocks, trust level, metrics and action history are removed. The author is created again with a clean record the next time content is moderated for the same ID.
 
         :param id: Either external ID or the ID assigned by moderation API.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
