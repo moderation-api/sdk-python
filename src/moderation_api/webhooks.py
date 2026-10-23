@@ -28,7 +28,7 @@ class Webhooks(BaseSDK):
 
         :param page:
         :param page_size:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -167,7 +167,7 @@ class Webhooks(BaseSDK):
 
         :param page:
         :param page_size:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -312,7 +312,7 @@ class Webhooks(BaseSDK):
         :param name: The webhook's name, used to identify it in the dashboard
         :param url: The webhook's URL. We'll call this URL when an event occurs.
         :param event_types: Event types this webhook subscribes to. One webhook URL receives all events you list here.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param description: The webhook's description
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -435,7 +435,7 @@ class Webhooks(BaseSDK):
         :param name: The webhook's name, used to identify it in the dashboard
         :param url: The webhook's URL. We'll call this URL when an event occurs.
         :param event_types: Event types this webhook subscribes to. One webhook URL receives all events you list here.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param description: The webhook's description
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -553,7 +553,7 @@ class Webhooks(BaseSDK):
         Get a webhook by ID.
 
         :param id: The ID of the webhook to get.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -658,7 +658,7 @@ class Webhooks(BaseSDK):
         Get a webhook by ID.
 
         :param id: The ID of the webhook to get.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -767,7 +767,7 @@ class Webhooks(BaseSDK):
         Update a webhook. Legacy v1 webhooks are read-only: delete them and create a new webhook instead.
 
         :param id: The ID of the webhook to update.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param name: The webhook's name, used to identify it in the dashboard
         :param description: The webhook's description
         :param url: The webhook's URL. We'll call this URL when an event occurs.
@@ -896,7 +896,7 @@ class Webhooks(BaseSDK):
         Update a webhook. Legacy v1 webhooks are read-only: delete them and create a new webhook instead.
 
         :param id: The ID of the webhook to update.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param name: The webhook's name, used to identify it in the dashboard
         :param description: The webhook's description
         :param url: The webhook's URL. We'll call this URL when an event occurs.
@@ -1021,7 +1021,7 @@ class Webhooks(BaseSDK):
         Delete a webhook.
 
         :param id: The ID of the webhook to delete.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1126,7 +1126,7 @@ class Webhooks(BaseSDK):
         Delete a webhook.
 
         :param id: The ID of the webhook to delete.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

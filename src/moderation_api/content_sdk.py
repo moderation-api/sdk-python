@@ -42,7 +42,7 @@ class ContentSDK(BaseSDK):
         r"""Submit content
 
         :param content: The content sent for moderation
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param timestamp: Unix timestamp (in milliseconds) of when the content was created. Use if content is not submitted in real-time.
         :param channel: Provide a channel ID or key. Will use the project's default channel if not provided.
         :param content_id: The unique ID of the content in your database.
@@ -51,7 +51,7 @@ class ContentSDK(BaseSDK):
         :param conversation_id: For example the ID of a chat room or a post
         :param metadata: Any metadata you want to store with the content
         :param client_action: A recommendation from your own client-side flagging (e.g. a banned-IP list or a third-party tool). Feeds the rules engine and can escalate or override the recommended action. Does not change whether our analysis flagged the content.
-        :param do_not_store: Do not store the content. The content won't enter the review queue
+        :param do_not_store: Process the content without saving it on our servers. The item is still created and appears in the review queue, analytics and author history with its moderation results, but its content is empty, so reviewers cannot see what was submitted.
         :param policies: (Enterprise) override the channel policies for this moderation request only.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -205,7 +205,7 @@ class ContentSDK(BaseSDK):
         r"""Submit content
 
         :param content: The content sent for moderation
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param timestamp: Unix timestamp (in milliseconds) of when the content was created. Use if content is not submitted in real-time.
         :param channel: Provide a channel ID or key. Will use the project's default channel if not provided.
         :param content_id: The unique ID of the content in your database.
@@ -214,7 +214,7 @@ class ContentSDK(BaseSDK):
         :param conversation_id: For example the ID of a chat room or a post
         :param metadata: Any metadata you want to store with the content
         :param client_action: A recommendation from your own client-side flagging (e.g. a banned-IP list or a third-party tool). Feeds the rules engine and can escalate or override the recommended action. Does not change whether our analysis flagged the content.
-        :param do_not_store: Do not store the content. The content won't enter the review queue
+        :param do_not_store: Process the content without saving it on our servers. The item is still created and appears in the review queue, analytics and author history with its moderation results, but its content is empty, so reviewers cannot see what was submitted.
         :param policies: (Enterprise) override the channel policies for this moderation request only.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method

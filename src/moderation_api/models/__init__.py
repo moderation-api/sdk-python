@@ -56,6 +56,12 @@ if TYPE_CHECKING:
         CreateChannelRequestBodyTypedDict,
         CreateChannelRequestTypedDict,
     )
+    from .createprojectapikeyop import (
+        CreateProjectAPIKeyRequest,
+        CreateProjectAPIKeyRequestBody,
+        CreateProjectAPIKeyRequestBodyTypedDict,
+        CreateProjectAPIKeyRequestTypedDict,
+    )
     from .createprojectop import CreateProjectRequest, CreateProjectRequestTypedDict
     from .createwebhookop import (
         CreateWebhookEventTypeRequest,
@@ -295,6 +301,7 @@ if TYPE_CHECKING:
     from .pagination import Pagination, PaginationTypedDict
     from .permissiondeniederror import PermissionDeniedErrorCode
     from .project import Project, ProjectGlobalFlaggingMode, ProjectTypedDict
+    from .projectapikey import ProjectAPIKey, ProjectAPIKeyTypedDict
     from .projectwithkey import (
         ProjectWithKey,
         ProjectWithKeyGlobalFlaggingMode,
@@ -681,6 +688,10 @@ __all__ = [
     "CreateChannelRequestBody",
     "CreateChannelRequestBodyTypedDict",
     "CreateChannelRequestTypedDict",
+    "CreateProjectAPIKeyRequest",
+    "CreateProjectAPIKeyRequestBody",
+    "CreateProjectAPIKeyRequestBodyTypedDict",
+    "CreateProjectAPIKeyRequestTypedDict",
     "CreateProjectRequest",
     "CreateProjectRequestTypedDict",
     "CreateWebhookEventTypeRequest",
@@ -949,6 +960,8 @@ __all__ = [
     "Profanity",
     "ProfanityTypedDict",
     "Project",
+    "ProjectAPIKey",
+    "ProjectAPIKeyTypedDict",
     "ProjectGlobalFlaggingMode",
     "ProjectTypedDict",
     "ProjectWithKey",
@@ -1170,6 +1183,10 @@ _dynamic_imports: dict[str, str] = {
     "CreateChannelRequestBody": ".createchannelop",
     "CreateChannelRequestBodyTypedDict": ".createchannelop",
     "CreateChannelRequestTypedDict": ".createchannelop",
+    "CreateProjectAPIKeyRequest": ".createprojectapikeyop",
+    "CreateProjectAPIKeyRequestBody": ".createprojectapikeyop",
+    "CreateProjectAPIKeyRequestBodyTypedDict": ".createprojectapikeyop",
+    "CreateProjectAPIKeyRequestTypedDict": ".createprojectapikeyop",
     "CreateProjectRequest": ".createprojectop",
     "CreateProjectRequestTypedDict": ".createprojectop",
     "CreateWebhookEventTypeRequest": ".createwebhookop",
@@ -1371,6 +1388,8 @@ _dynamic_imports: dict[str, str] = {
     "Project": ".project",
     "ProjectGlobalFlaggingMode": ".project",
     "ProjectTypedDict": ".project",
+    "ProjectAPIKey": ".projectapikey",
+    "ProjectAPIKeyTypedDict": ".projectapikey",
     "ProjectWithKey": ".projectwithkey",
     "ProjectWithKeyGlobalFlaggingMode": ".projectwithkey",
     "ProjectWithKeyTypedDict": ".projectwithkey",

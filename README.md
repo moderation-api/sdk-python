@@ -309,9 +309,9 @@ with ModerationAPI(
 Moderation API has two kinds of API keys:
 
 - A **project key** works with one project: content, authors, review queues, actions, wordlists, webhooks and the account. Most integrations need only this key.
-- An **organization key** works with the [management API](https://docs.moderationapi.com/api-reference/management-api): projects and channels. The management API is available on Enterprise plans.
+- An **organization key** works with the [management API](https://docs.moderationapi.com/api-reference/management-api): projects and channels. It can also use any project's endpoints: name the project with `projectId`.
 
-Each key works only with its own endpoints. With the wrong key the API returns `403` with the code `project_key_required` or `organization_key_required`. If you use both, create one client for each key:
+A project key can't call the management API: the API returns `403` with the code `organization_key_required`. If you use both kinds of key, create one client for each:
 
 ```python
 import os
@@ -382,6 +382,10 @@ Create the organization client only where you manage projects and channels, for 
 * [update](docs/sdks/projects/README.md#update) - Update a project
 * [delete](docs/sdks/projects/README.md#delete) - Delete a project
 * [duplicate](docs/sdks/projects/README.md#duplicate) - Duplicate a project
+
+#### [Projects.ApiKeys](docs/sdks/apikeys/README.md)
+
+* [create](docs/sdks/apikeys/README.md#create) - Create a project API key
 
 ### [Queue](docs/sdks/queuesdk/README.md)
 
@@ -565,11 +569,11 @@ with ModerationAPI(
 
 
 **Inherit from [`ModerationAPIError`](./src/moderation_api/errors/moderationapierror.py)**:
-* [`BadRequestError`](./src/moderation_api/errors/badrequesterror.py): The request is malformed or a parameter is invalid. Status code `400`. Applicable to 32 of 42 methods.*
-* [`NotFoundError`](./src/moderation_api/errors/notfounderror.py): The resource does not exist or the key cannot see it. Status code `404`. Applicable to 31 of 42 methods.*
-* [`PermissionDeniedError`](./src/moderation_api/errors/permissiondeniederror.py): The API key cannot do this, or the plan limit for this resource is reached. Status code `403`. Applicable to 27 of 42 methods.*
-* [`InternalServerError`](./src/moderation_api/errors/internalservererror.py): Something went wrong on our side. Retry with backoff. Status code `500`. Applicable to 15 of 42 methods.*
-* [`ConflictError`](./src/moderation_api/errors/conflicterror.py): The request conflicts with the current state of a resource. Status code `409`. Applicable to 2 of 42 methods.*
+* [`BadRequestError`](./src/moderation_api/errors/badrequesterror.py): The request is malformed or a parameter is invalid. Status code `400`. Applicable to 33 of 43 methods.*
+* [`NotFoundError`](./src/moderation_api/errors/notfounderror.py): The resource does not exist or the key cannot see it. Status code `404`. Applicable to 32 of 43 methods.*
+* [`PermissionDeniedError`](./src/moderation_api/errors/permissiondeniederror.py): The API key cannot do this, or the plan limit for this resource is reached. Status code `403`. Applicable to 28 of 43 methods.*
+* [`InternalServerError`](./src/moderation_api/errors/internalservererror.py): Something went wrong on our side. Retry with backoff. Status code `500`. Applicable to 15 of 43 methods.*
+* [`ConflictError`](./src/moderation_api/errors/conflicterror.py): The request conflicts with the current state of a resource. Status code `409`. Applicable to 2 of 43 methods.*
 * [`ResponseValidationError`](./src/moderation_api/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
