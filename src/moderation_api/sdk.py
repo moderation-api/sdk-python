@@ -17,9 +17,11 @@ import weakref
 if TYPE_CHECKING:
     from moderation_api.account import Account
     from moderation_api.actions import Actions
+    from moderation_api.analytics import Analytics
     from moderation_api.authors import Authors
     from moderation_api.channels import Channels
     from moderation_api.content_sdk import ContentSDK
+    from moderation_api.feedback import Feedback
     from moderation_api.projects import Projects
     from moderation_api.queue_sdk import QueueSDK
     from moderation_api.webhooks import Webhooks
@@ -32,7 +34,9 @@ class ModerationAPI(BaseSDK):
     https://docs.moderationapi.com
     """
 
+    analytics: "Analytics"
     authors: "Authors"
+    feedback: "Feedback"
     queue: "QueueSDK"
     actions: "Actions"
     webhooks: "Webhooks"
@@ -43,7 +47,9 @@ class ModerationAPI(BaseSDK):
     projects: "Projects"
     channels: "Channels"
     _sub_sdk_map = {
+        "analytics": ("moderation_api.analytics", "Analytics"),
         "authors": ("moderation_api.authors", "Authors"),
+        "feedback": ("moderation_api.feedback", "Feedback"),
         "queue": ("moderation_api.queue_sdk", "QueueSDK"),
         "actions": ("moderation_api.actions", "Actions"),
         "webhooks": ("moderation_api.webhooks", "Webhooks"),

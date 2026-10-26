@@ -2,78 +2,41 @@
 
 from __future__ import annotations
 from moderation_api.types import BaseModel, UNSET_SENTINEL
-from moderation_api.utils import (
-    FieldMetadata,
-    HeaderMetadata,
-    PathParamMetadata,
-    RequestMetadata,
-)
+from moderation_api.utils import FieldMetadata, HeaderMetadata, PathParamMetadata
 import pydantic
 from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class ResolveQueueItemRequestBodyTypedDict(TypedDict):
-    comment: NotRequired[str]
-    r"""Optional comment"""
-
-
-class ResolveQueueItemRequestBody(BaseModel):
-    comment: Optional[str] = None
-    r"""Optional comment"""
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["comment"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
 class ResolveQueueItemRequestTypedDict(TypedDict):
     id: str
-    r"""The queue ID"""
+    r"""The queue ID."""
     item_id: str
-    r"""The item ID to resolve"""
-    body: ResolveQueueItemRequestBodyTypedDict
+    r"""The item ID to resolve."""
     project_id: NotRequired[str]
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
 
 class ResolveQueueItemRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""The queue ID"""
+    r"""The queue ID."""
 
     item_id: Annotated[
         str,
         pydantic.Field(alias="itemId"),
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ]
-    r"""The item ID to resolve"""
-
-    body: Annotated[
-        ResolveQueueItemRequestBody,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
-    ]
+    r"""The item ID to resolve."""
 
     project_id: Annotated[
         Optional[str],
         pydantic.Field(alias="Project-Id"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ] = None
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -97,9 +60,7 @@ class ResolveQueueItemResponseTypedDict(TypedDict):
 
     success: bool
     resolved_at: str
-    r"""Timestamp when the item was resolved"""
-    comment: NotRequired[str]
-    r"""Optional comment"""
+    r"""When the item was resolved (ISO 8601)."""
 
 
 class ResolveQueueItemResponse(BaseModel):
@@ -108,26 +69,7 @@ class ResolveQueueItemResponse(BaseModel):
     success: bool
 
     resolved_at: Annotated[str, pydantic.Field(alias="resolvedAt")]
-    r"""Timestamp when the item was resolved"""
-
-    comment: Optional[str] = None
-    r"""Optional comment"""
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["comment"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
+    r"""When the item was resolved (ISO 8601)."""
 
 
 try:

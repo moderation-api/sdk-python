@@ -12,7 +12,6 @@ value: SortBy = "trustLevel"
 
 - `"trustLevel"`
 - `"violationCount"`
-- `"reportCount"`
 - `"memberSince"`
 - `"lastActive"`
 - `"contentCount"`

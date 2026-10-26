@@ -1,0 +1,11 @@
+# QueueItemObject
+
+Object
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `type`                                                                      | *Literal["object"]*                                                         | :heavy_check_mark:                                                          | N/A                                                                         |
+| `data`                                                                      | Dict[str, [models.QueueItemContentLeaf](../models/queueitemcontentleaf.md)] | :heavy_check_mark:                                                          | Values in the object. Can be mixed content types.                           |

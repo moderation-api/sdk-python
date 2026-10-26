@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 from .pagination import Pagination, PaginationTypedDict
-from moderation_api.types import BaseModel, UNSET_SENTINEL, UnrecognizedStr
+from .queueitem import QueueItem, QueueItemTypedDict
+from moderation_api.types import BaseModel, UNSET_SENTINEL
 from moderation_api.utils import (
     FieldMetadata,
     HeaderMetadata,
@@ -15,44 +16,36 @@ from typing import Awaitable, Callable, List, Literal, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-SortField = Literal[
-    "createdAt",
-    "severity",
-    "reviewedAt",
+Sort = Literal[
+    "FIFO",
+    "LIFO",
+    "RANDOM",
+    "SEVERITY_DESC",
 ]
-
-
-ListQueueItemsSortDirection = Literal[
-    "asc",
-    "desc",
-]
-r"""Sort direction"""
 
 
 class ListQueueItemsRequestTypedDict(TypedDict):
     id: str
-    r"""The queue ID"""
+    r"""The queue ID."""
     page: NotRequired[int]
     page_size: NotRequired[int]
-    sort_field: NotRequired[SortField]
-    sort_direction: NotRequired[ListQueueItemsSortDirection]
-    r"""Sort direction"""
+    sort: NotRequired[Sort]
+    include_resolved: NotRequired[bool]
     conversation_ids: NotRequired[List[str]]
     labels: NotRequired[List[str]]
-    after_date: NotRequired[str]
-    before_date: NotRequired[str]
-    include_resolved: NotRequired[bool]
     author_id: NotRequired[str]
     filtered_action_ids: NotRequired[List[str]]
+    after_date: NotRequired[str]
+    before_date: NotRequired[str]
     project_id: NotRequired[str]
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
 
 class ListQueueItemsRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""The queue ID"""
+    r"""The queue ID."""
 
     page: Annotated[
         Optional[int],
@@ -65,18 +58,16 @@ class ListQueueItemsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = 20
 
-    sort_field: Annotated[
-        Optional[SortField],
-        pydantic.Field(alias="sortField"),
+    sort: Annotated[
+        Optional[Sort],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
 
-    sort_direction: Annotated[
-        Optional[ListQueueItemsSortDirection],
-        pydantic.Field(alias="sortDirection"),
+    include_resolved: Annotated[
+        Optional[bool],
+        pydantic.Field(alias="includeResolved"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = "desc"
-    r"""Sort direction"""
+    ] = None
 
     conversation_ids: Annotated[
         Optional[List[str]],
@@ -86,24 +77,6 @@ class ListQueueItemsRequest(BaseModel):
 
     labels: Annotated[
         Optional[List[str]],
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-
-    after_date: Annotated[
-        Optional[str],
-        pydantic.Field(alias="afterDate"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-
-    before_date: Annotated[
-        Optional[str],
-        pydantic.Field(alias="beforeDate"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-
-    include_resolved: Annotated[
-        Optional[bool],
-        pydantic.Field(alias="includeResolved"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
 
@@ -119,12 +92,24 @@ class ListQueueItemsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
 
+    after_date: Annotated[
+        Optional[str],
+        pydantic.Field(alias="afterDate"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+
+    before_date: Annotated[
+        Optional[str],
+        pydantic.Field(alias="beforeDate"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+
     project_id: Annotated[
         Optional[str],
         pydantic.Field(alias="Project-Id"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ] = None
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -132,171 +117,16 @@ class ListQueueItemsRequest(BaseModel):
             [
                 "page",
                 "pageSize",
-                "sortField",
-                "sortDirection",
+                "sort",
+                "includeResolved",
                 "conversationIds",
                 "labels",
-                "afterDate",
-                "beforeDate",
-                "includeResolved",
                 "authorId",
                 "filteredActionIds",
+                "afterDate",
+                "beforeDate",
                 "projectId",
             ]
-        )
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class ListQueueItemsLabelTypedDict(TypedDict):
-    label: str
-    r"""Label name"""
-    score: float
-    r"""Confidence score of the label"""
-    flagged: bool
-    r"""Whether this label caused a flag"""
-
-
-class ListQueueItemsLabel(BaseModel):
-    label: str
-    r"""Label name"""
-
-    score: float
-    r"""Confidence score of the label"""
-
-    flagged: bool
-    r"""Whether this label caused a flag"""
-
-
-class ListQueueItemsActionTypedDict(TypedDict):
-    id: str
-    r"""Action ID"""
-    name: str
-    r"""Action name"""
-    timestamp: float
-    r"""Unix timestamp of when the action was taken"""
-    comment: NotRequired[str]
-    r"""Action comment"""
-    reviewer: NotRequired[str]
-    r"""Moderator userID"""
-
-
-class ListQueueItemsAction(BaseModel):
-    id: str
-    r"""Action ID"""
-
-    name: str
-    r"""Action name"""
-
-    timestamp: float
-    r"""Unix timestamp of when the action was taken"""
-
-    comment: Optional[str] = None
-    r"""Action comment"""
-
-    reviewer: Optional[str] = None
-    r"""Moderator userID"""
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["comment", "reviewer"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k, serialized.get(n))
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-ListQueueItemsStatus = Union[
-    Literal[
-        "pending",
-        "resolved",
-    ],
-    UnrecognizedStr,
-]
-r"""Status of the item"""
-
-
-class ListQueueItemsDataTypedDict(TypedDict):
-    id: str
-    r"""Content ID"""
-    content: str
-    r"""The content to be moderated"""
-    labels: List[ListQueueItemsLabelTypedDict]
-    flagged: bool
-    r"""Whether the item is flagged by any label"""
-    status: ListQueueItemsStatus
-    r"""Status of the item"""
-    timestamp: float
-    r"""Unix timestamp of when the item was created"""
-    language: NotRequired[str]
-    r"""Content language"""
-    conversation_id: NotRequired[str]
-    r"""Conversation ID"""
-    author_id: NotRequired[str]
-    r"""Author ID"""
-    actions: NotRequired[List[ListQueueItemsActionTypedDict]]
-    r"""Action IDs taken on this item"""
-    content_type: NotRequired[str]
-    r"""Type of the content object"""
-
-
-class ListQueueItemsData(BaseModel):
-    id: str
-    r"""Content ID"""
-
-    content: str
-    r"""The content to be moderated"""
-
-    labels: List[ListQueueItemsLabel]
-
-    flagged: bool
-    r"""Whether the item is flagged by any label"""
-
-    status: ListQueueItemsStatus
-    r"""Status of the item"""
-
-    timestamp: float
-    r"""Unix timestamp of when the item was created"""
-
-    language: Optional[str] = None
-    r"""Content language"""
-
-    conversation_id: Annotated[
-        Optional[str], pydantic.Field(alias="conversationId")
-    ] = None
-    r"""Conversation ID"""
-
-    author_id: Annotated[Optional[str], pydantic.Field(alias="authorId")] = None
-    r"""Author ID"""
-
-    actions: Optional[List[ListQueueItemsAction]] = None
-    r"""Action IDs taken on this item"""
-
-    content_type: Annotated[Optional[str], pydantic.Field(alias="contentType")] = None
-    r"""Type of the content object"""
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(
-            ["language", "conversationId", "authorId", "actions", "contentType"]
         )
         serialized = handler(self)
         m = {}
@@ -315,7 +145,7 @@ class ListQueueItemsData(BaseModel):
 class ListQueueItemsResponseBodyTypedDict(TypedDict):
     r"""Successful response"""
 
-    data: List[ListQueueItemsDataTypedDict]
+    data: List[QueueItemTypedDict]
     r"""The items on this page."""
     pagination: PaginationTypedDict
     r"""Where this page is in the full list."""
@@ -324,7 +154,7 @@ class ListQueueItemsResponseBodyTypedDict(TypedDict):
 class ListQueueItemsResponseBody(BaseModel):
     r"""Successful response"""
 
-    data: List[ListQueueItemsData]
+    data: List[QueueItem]
     r"""The items on this page."""
 
     pagination: Pagination
@@ -342,9 +172,3 @@ class ListQueueItemsResponse(BaseModel):
     ]
 
     result: ListQueueItemsResponseBody
-
-
-try:
-    ListQueueItemsData.model_rebuild()
-except NameError:
-    pass

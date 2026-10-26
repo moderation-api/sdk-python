@@ -30,7 +30,7 @@ class Actions(BaseSDK):
         :param queue_id:
         :param page:
         :param page_size:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -191,7 +191,7 @@ class Actions(BaseSDK):
         :param queue_id:
         :param page:
         :param page_size:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -368,7 +368,7 @@ class Actions(BaseSDK):
         Create an action.
 
         :param name: The name of the action.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param key: User defined key of the action.
         :param description: The description of the action.
         :param type: The type of the action.
@@ -525,7 +525,7 @@ class Actions(BaseSDK):
         Create an action.
 
         :param name: The name of the action.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param key: User defined key of the action.
         :param description: The description of the action.
         :param type: The type of the action.
@@ -665,7 +665,7 @@ class Actions(BaseSDK):
         Get an action by ID.
 
         :param id: The ID of the action to get.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -775,7 +775,7 @@ class Actions(BaseSDK):
         Get an action by ID.
 
         :param id: The ID of the action to get.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -903,7 +903,7 @@ class Actions(BaseSDK):
         Update an action.
 
         :param id: The ID of the action to update.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param key: User defined key of the action.
         :param name: The name of the action.
         :param description: The description of the action.
@@ -1066,7 +1066,7 @@ class Actions(BaseSDK):
         Update an action.
 
         :param id: The ID of the action to update.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param key: User defined key of the action.
         :param name: The name of the action.
         :param description: The description of the action.
@@ -1211,7 +1211,7 @@ class Actions(BaseSDK):
         Delete an action and all of its webhooks.
 
         :param id: The ID of the action to delete.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1321,7 +1321,7 @@ class Actions(BaseSDK):
         Delete an action and all of its webhooks.
 
         :param id: The ID of the action to delete.
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1436,7 +1436,7 @@ class Actions(BaseSDK):
         Execute a moderation action on one or more content items.
 
         :param action_key: ID or key of the action to execute
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param content_ids: IDs of the content items to apply the action to. Provide this or authorIds.
         :param author_ids: IDs of the authors to apply the action to. Provide this or contentIds.
         :param value: Optional value to provide with the action
@@ -1566,7 +1566,7 @@ class Actions(BaseSDK):
         Execute a moderation action on one or more content items.
 
         :param action_key: ID or key of the action to execute
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param content_ids: IDs of the content items to apply the action to. Provide this or authorIds.
         :param author_ids: IDs of the authors to apply the action to. Provide this or contentIds.
         :param value: Optional value to provide with the action

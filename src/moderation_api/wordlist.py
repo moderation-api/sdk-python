@@ -42,7 +42,7 @@ class Wordlist(BaseSDK):
 
         :param page:
         :param page_size:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -199,7 +199,7 @@ class Wordlist(BaseSDK):
 
         :param page:
         :param page_size:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -342,6 +342,248 @@ class Wordlist(BaseSDK):
 
         raise errors.ModerationAPIDefaultError("Unexpected response received", http_res)
 
+    def create(
+        self,
+        *,
+        name: str,
+        project_id: Optional[str] = None,
+        key: Optional[str] = None,
+        description: Optional[str] = None,
+        words: Optional[Iterable[str]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.CreateWordlistResponse:
+        r"""Create wordlist
+
+        Create a wordlist in the organization. You can add words now or later. Each word is embedded in the background for similarity matching. Use the embedding status endpoint to follow the progress. To use the wordlist in moderation, add it to a policy.
+
+        :param name: Name of the wordlist
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
+        :param key: Key of the wordlist. Default: made from the name. If the key is already in use, a suffix is added.
+        :param description: Description of the wordlist
+        :param words: Words to add to the wordlist. Words are converted to lowercase. Duplicate and empty words are ignored. Maximum 5000 words.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.CreateWordlistRequest(
+            project_id=project_id,
+            body=models.CreateWordlistRequestBody(
+                name=name,
+                key=key,
+                description=description,
+                words=utils.unmarshal(words, Optional[List[str]]),
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/wordlist",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.CreateWordlistRequestBody
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="createWordlist",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["Wordlists"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.CreateWordlistResponse, http_res)
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.BadRequestErrorData, http_res
+            )
+            raise errors.BadRequestError(response_data, http_res)
+        if utils.match_response(http_res, "401", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.AuthenticationErrorData, http_res
+            )
+            raise errors.AuthenticationError(response_data, http_res)
+        if utils.match_response(http_res, "429", "application/json"):
+            response_data = unmarshal_json_response(errors.RateLimitErrorData, http_res)
+            raise errors.RateLimitError(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ModerationAPIDefaultError("Unexpected response received", http_res)
+
+    async def create_async(
+        self,
+        *,
+        name: str,
+        project_id: Optional[str] = None,
+        key: Optional[str] = None,
+        description: Optional[str] = None,
+        words: Optional[Iterable[str]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.CreateWordlistResponse:
+        r"""Create wordlist
+
+        Create a wordlist in the organization. You can add words now or later. Each word is embedded in the background for similarity matching. Use the embedding status endpoint to follow the progress. To use the wordlist in moderation, add it to a policy.
+
+        :param name: Name of the wordlist
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
+        :param key: Key of the wordlist. Default: made from the name. If the key is already in use, a suffix is added.
+        :param description: Description of the wordlist
+        :param words: Words to add to the wordlist. Words are converted to lowercase. Duplicate and empty words are ignored. Maximum 5000 words.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.CreateWordlistRequest(
+            project_id=project_id,
+            body=models.CreateWordlistRequestBody(
+                name=name,
+                key=key,
+                description=description,
+                words=utils.unmarshal(words, Optional[List[str]]),
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/wordlist",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.CreateWordlistRequestBody
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="createWordlist",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["Wordlists"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.CreateWordlistResponse, http_res)
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.BadRequestErrorData, http_res
+            )
+            raise errors.BadRequestError(response_data, http_res)
+        if utils.match_response(http_res, "401", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.AuthenticationErrorData, http_res
+            )
+            raise errors.AuthenticationError(response_data, http_res)
+        if utils.match_response(http_res, "429", "application/json"):
+            response_data = unmarshal_json_response(errors.RateLimitErrorData, http_res)
+            raise errors.RateLimitError(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ModerationAPIDefaultError("Unexpected response received", http_res)
+
     def retrieve(
         self,
         *,
@@ -357,7 +599,7 @@ class Wordlist(BaseSDK):
         Get a specific wordlist by ID
 
         :param id: ID of the wordlist to get
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -477,7 +719,7 @@ class Wordlist(BaseSDK):
         Get a specific wordlist by ID
 
         :param id: ID of the wordlist to get
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -599,14 +841,14 @@ class Wordlist(BaseSDK):
     ) -> models.UpdateWordlistResponse:
         r"""Update wordlist
 
-        Update a wordlist
+        Update a wordlist. Fields that you do not send stay the same. If you send words, they replace all existing words, and the embeddings are updated in the background.
 
         :param id: ID of the wordlist to update
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param name: New name for the wordlist
         :param key: New key for the wordlist
         :param description: New description for the wordlist
-        :param words: New words for the wordlist. Replace the existing words with these new ones. Duplicate words will be ignored.
+        :param words: New words for the wordlist. Replace the existing words with these new ones. Words are converted to lowercase. Duplicate and empty words are ignored. Maximum 5000 words.
         :param strict: Deprecated. Now using threshold in project settings.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -729,14 +971,14 @@ class Wordlist(BaseSDK):
     ) -> models.UpdateWordlistResponse:
         r"""Update wordlist
 
-        Update a wordlist
+        Update a wordlist. Fields that you do not send stay the same. If you send words, they replace all existing words, and the embeddings are updated in the background.
 
         :param id: ID of the wordlist to update
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param name: New name for the wordlist
         :param key: New key for the wordlist
         :param description: New description for the wordlist
-        :param words: New words for the wordlist. Replace the existing words with these new ones. Duplicate words will be ignored.
+        :param words: New words for the wordlist. Replace the existing words with these new ones. Words are converted to lowercase. Duplicate and empty words are ignored. Maximum 5000 words.
         :param strict: Deprecated. Now using threshold in project settings.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -857,7 +1099,7 @@ class Wordlist(BaseSDK):
         Get the current embedding progress status for a wordlist
 
         :param id: ID of the wordlist to check embedding status for
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -979,7 +1221,7 @@ class Wordlist(BaseSDK):
         Get the current embedding progress status for a wordlist
 
         :param id: ID of the wordlist to check embedding status for
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

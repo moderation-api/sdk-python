@@ -1,0 +1,12 @@
+# GetAnalyticsChannelsChannel
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `id`                                                                         | *str*                                                                        | :heavy_check_mark:                                                           | The channel ID.                                                              |
+| `name`                                                                       | *str*                                                                        | :heavy_check_mark:                                                           | The channel name.                                                            |
+| `requests`                                                                   | *int*                                                                        | :heavy_check_mark:                                                           | Requests received in this channel.                                           |
+| `flagged`                                                                    | *int*                                                                        | :heavy_check_mark:                                                           | Requests flagged in this channel.                                            |
+| `flag_rate`                                                                  | *float*                                                                      | :heavy_check_mark:                                                           | The share of requests in this channel that were flagged: flagged / requests. |
