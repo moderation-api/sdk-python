@@ -17,38 +17,36 @@ class Items(BaseSDK):
         id: str,
         page: Optional[int] = 1,
         page_size: Optional[int] = 20,
-        sort_field: Optional[models.SortField] = None,
-        sort_direction: Optional[models.ListQueueItemsSortDirection] = "desc",
+        sort: Optional[models.Sort] = None,
+        include_resolved: Optional[bool] = None,
         conversation_ids: Optional[Iterable[str]] = None,
         labels: Optional[Iterable[str]] = None,
-        after_date: Optional[str] = None,
-        before_date: Optional[str] = None,
-        include_resolved: Optional[bool] = None,
         author_id: Optional[str] = None,
         filtered_action_ids: Optional[Iterable[str]] = None,
+        after_date: Optional[str] = None,
+        before_date: Optional[str] = None,
         project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> Optional[models.ListQueueItemsResponse]:
-        r"""Get queue items
+        r"""List queue items
 
-        Get paginated list of items in a moderation queue with filtering options
+        List the items of a review queue, with the filters and the date window of the queue applied. By default only pending items. The list is paginated. Use the item `id` to resolve or unresolve an item.
 
-        :param id: The queue ID
+        :param id: The queue ID.
         :param page:
         :param page_size:
-        :param sort_field:
-        :param sort_direction: Sort direction
+        :param sort:
+        :param include_resolved:
         :param conversation_ids:
         :param labels:
-        :param after_date:
-        :param before_date:
-        :param include_resolved:
         :param author_id:
         :param filtered_action_ids:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param after_date:
+        :param before_date:
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -68,17 +66,16 @@ class Items(BaseSDK):
             id=id,
             page=page,
             page_size=page_size,
-            sort_field=sort_field,
-            sort_direction=sort_direction,
+            sort=sort,
+            include_resolved=include_resolved,
             conversation_ids=utils.unmarshal(conversation_ids, Optional[List[str]]),
             labels=utils.unmarshal(labels, Optional[List[str]]),
-            after_date=after_date,
-            before_date=before_date,
-            include_resolved=include_resolved,
             author_id=author_id,
             filtered_action_ids=utils.unmarshal(
                 filtered_action_ids, Optional[List[str]]
             ),
+            after_date=after_date,
+            before_date=before_date,
             project_id=project_id,
         )
 
@@ -147,15 +144,14 @@ class Items(BaseSDK):
                 id=id,
                 page=next_page,
                 page_size=page_size,
-                sort_field=sort_field,
-                sort_direction=sort_direction,
+                sort=sort,
+                include_resolved=include_resolved,
                 conversation_ids=conversation_ids,
                 labels=labels,
-                after_date=after_date,
-                before_date=before_date,
-                include_resolved=include_resolved,
                 author_id=author_id,
                 filtered_action_ids=filtered_action_ids,
+                after_date=after_date,
+                before_date=before_date,
                 project_id=project_id,
                 retries=retries,
                 server_url=server_url,
@@ -216,38 +212,36 @@ class Items(BaseSDK):
         id: str,
         page: Optional[int] = 1,
         page_size: Optional[int] = 20,
-        sort_field: Optional[models.SortField] = None,
-        sort_direction: Optional[models.ListQueueItemsSortDirection] = "desc",
+        sort: Optional[models.Sort] = None,
+        include_resolved: Optional[bool] = None,
         conversation_ids: Optional[Iterable[str]] = None,
         labels: Optional[Iterable[str]] = None,
-        after_date: Optional[str] = None,
-        before_date: Optional[str] = None,
-        include_resolved: Optional[bool] = None,
         author_id: Optional[str] = None,
         filtered_action_ids: Optional[Iterable[str]] = None,
+        after_date: Optional[str] = None,
+        before_date: Optional[str] = None,
         project_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> Optional[models.ListQueueItemsResponse]:
-        r"""Get queue items
+        r"""List queue items
 
-        Get paginated list of items in a moderation queue with filtering options
+        List the items of a review queue, with the filters and the date window of the queue applied. By default only pending items. The list is paginated. Use the item `id` to resolve or unresolve an item.
 
-        :param id: The queue ID
+        :param id: The queue ID.
         :param page:
         :param page_size:
-        :param sort_field:
-        :param sort_direction: Sort direction
+        :param sort:
+        :param include_resolved:
         :param conversation_ids:
         :param labels:
-        :param after_date:
-        :param before_date:
-        :param include_resolved:
         :param author_id:
         :param filtered_action_ids:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param after_date:
+        :param before_date:
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -267,17 +261,16 @@ class Items(BaseSDK):
             id=id,
             page=page,
             page_size=page_size,
-            sort_field=sort_field,
-            sort_direction=sort_direction,
+            sort=sort,
+            include_resolved=include_resolved,
             conversation_ids=utils.unmarshal(conversation_ids, Optional[List[str]]),
             labels=utils.unmarshal(labels, Optional[List[str]]),
-            after_date=after_date,
-            before_date=before_date,
-            include_resolved=include_resolved,
             author_id=author_id,
             filtered_action_ids=utils.unmarshal(
                 filtered_action_ids, Optional[List[str]]
             ),
+            after_date=after_date,
+            before_date=before_date,
             project_id=project_id,
         )
 
@@ -349,15 +342,14 @@ class Items(BaseSDK):
                 id=id,
                 page=next_page,
                 page_size=page_size,
-                sort_field=sort_field,
-                sort_direction=sort_direction,
+                sort=sort,
+                include_resolved=include_resolved,
                 conversation_ids=conversation_ids,
                 labels=labels,
-                after_date=after_date,
-                before_date=before_date,
-                include_resolved=include_resolved,
                 author_id=author_id,
                 filtered_action_ids=filtered_action_ids,
+                after_date=after_date,
+                before_date=before_date,
                 project_id=project_id,
                 retries=retries,
                 server_url=server_url,
@@ -418,7 +410,6 @@ class Items(BaseSDK):
         id: str,
         item_id: str,
         project_id: Optional[str] = None,
-        comment: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -426,12 +417,11 @@ class Items(BaseSDK):
     ) -> models.ResolveQueueItemResponse:
         r"""Resolve a queue item
 
-        Mark a queue item as resolved with a specific moderation action
+        Mark an item of a queue as resolved. It is the same as a check-off in the dashboard: the item leaves the pending list and a QUEUE_ITEM_COMPLETED webhook is sent. To also take a moderation action, use `POST /actions/execute`.
 
-        :param id: The queue ID
-        :param item_id: The item ID to resolve
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
-        :param comment: Optional comment
+        :param id: The queue ID.
+        :param item_id: The item ID to resolve.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -451,9 +441,6 @@ class Items(BaseSDK):
             id=id,
             item_id=item_id,
             project_id=project_id,
-            body=models.ResolveQueueItemRequestBody(
-                comment=comment,
-            ),
         )
 
         req = self._build_request(
@@ -462,16 +449,13 @@ class Items(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.ResolveQueueItemRequestBody
-            ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
@@ -546,7 +530,6 @@ class Items(BaseSDK):
         id: str,
         item_id: str,
         project_id: Optional[str] = None,
-        comment: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -554,12 +537,11 @@ class Items(BaseSDK):
     ) -> models.ResolveQueueItemResponse:
         r"""Resolve a queue item
 
-        Mark a queue item as resolved with a specific moderation action
+        Mark an item of a queue as resolved. It is the same as a check-off in the dashboard: the item leaves the pending list and a QUEUE_ITEM_COMPLETED webhook is sent. To also take a moderation action, use `POST /actions/execute`.
 
-        :param id: The queue ID
-        :param item_id: The item ID to resolve
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
-        :param comment: Optional comment
+        :param id: The queue ID.
+        :param item_id: The item ID to resolve.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -579,9 +561,6 @@ class Items(BaseSDK):
             id=id,
             item_id=item_id,
             project_id=project_id,
-            body=models.ResolveQueueItemRequestBody(
-                comment=comment,
-            ),
         )
 
         req = self._build_request_async(
@@ -590,16 +569,13 @@ class Items(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.ResolveQueueItemRequestBody
-            ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
@@ -668,13 +644,262 @@ class Items(BaseSDK):
 
         raise errors.ModerationAPIDefaultError("Unexpected response received", http_res)
 
+    def resolve_many(
+        self,
+        *,
+        id: str,
+        item_ids: Iterable[str],
+        project_id: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ResolveQueueItemsResponse:
+        r"""Resolve queue items
+
+        Mark up to 100 items of a queue as resolved in one request. Each item is resolved the same as with `POST /queue/{id}/items/{itemId}/resolve`. IDs that do not exist in the project are skipped and returned in `notFoundIds`.
+
+        :param id: The queue ID.
+        :param item_ids: The item IDs to resolve. Up to 100.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ResolveQueueItemsRequest(
+            id=id,
+            project_id=project_id,
+            body=models.ResolveQueueItemsRequestBody(
+                item_ids=utils.unmarshal(item_ids, List[str]),
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/queue/{id}/items/resolve",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.ResolveQueueItemsRequestBody
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="resolveQueueItems",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["Review queues"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ResolveQueueItemsResponse, http_res)
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.BadRequestErrorData, http_res
+            )
+            raise errors.BadRequestError(response_data, http_res)
+        if utils.match_response(http_res, "401", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.AuthenticationErrorData, http_res
+            )
+            raise errors.AuthenticationError(response_data, http_res)
+        if utils.match_response(http_res, "403", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.PermissionDeniedErrorData, http_res
+            )
+            raise errors.PermissionDeniedError(response_data, http_res)
+        if utils.match_response(http_res, "429", "application/json"):
+            response_data = unmarshal_json_response(errors.RateLimitErrorData, http_res)
+            raise errors.RateLimitError(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.InternalServerErrorData, http_res
+            )
+            raise errors.InternalServerError(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ModerationAPIDefaultError("Unexpected response received", http_res)
+
+    async def resolve_many_async(
+        self,
+        *,
+        id: str,
+        item_ids: Iterable[str],
+        project_id: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ResolveQueueItemsResponse:
+        r"""Resolve queue items
+
+        Mark up to 100 items of a queue as resolved in one request. Each item is resolved the same as with `POST /queue/{id}/items/{itemId}/resolve`. IDs that do not exist in the project are skipped and returned in `notFoundIds`.
+
+        :param id: The queue ID.
+        :param item_ids: The item IDs to resolve. Up to 100.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ResolveQueueItemsRequest(
+            id=id,
+            project_id=project_id,
+            body=models.ResolveQueueItemsRequestBody(
+                item_ids=utils.unmarshal(item_ids, List[str]),
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/queue/{id}/items/resolve",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.ResolveQueueItemsRequestBody
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="resolveQueueItems",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["Review queues"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ResolveQueueItemsResponse, http_res)
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.BadRequestErrorData, http_res
+            )
+            raise errors.BadRequestError(response_data, http_res)
+        if utils.match_response(http_res, "401", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.AuthenticationErrorData, http_res
+            )
+            raise errors.AuthenticationError(response_data, http_res)
+        if utils.match_response(http_res, "403", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.PermissionDeniedErrorData, http_res
+            )
+            raise errors.PermissionDeniedError(response_data, http_res)
+        if utils.match_response(http_res, "429", "application/json"):
+            response_data = unmarshal_json_response(errors.RateLimitErrorData, http_res)
+            raise errors.RateLimitError(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.InternalServerErrorData, http_res
+            )
+            raise errors.InternalServerError(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ModerationAPIDefaultError("Unexpected response received", http_res)
+
     def unresolve(
         self,
         *,
         id: str,
         item_id: str,
         project_id: Optional[str] = None,
-        comment: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -682,12 +907,11 @@ class Items(BaseSDK):
     ) -> models.UnresolveQueueItemResponse:
         r"""Unresolve a queue item
 
-        Mark a previously resolved queue item as unresolved/pending
+        Mark a resolved item of a queue as pending again. It is the same as removing a check-off in the dashboard: the item comes back in the pending list.
 
-        :param id: The queue ID
-        :param item_id: The item ID to unresolve
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
-        :param comment: Optional reason for unresolving the item
+        :param id: The queue ID.
+        :param item_id: The item ID to unresolve.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -707,9 +931,6 @@ class Items(BaseSDK):
             id=id,
             item_id=item_id,
             project_id=project_id,
-            body=models.UnresolveQueueItemRequestBody(
-                comment=comment,
-            ),
         )
 
         req = self._build_request(
@@ -718,16 +939,13 @@ class Items(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.UnresolveQueueItemRequestBody
-            ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
@@ -802,7 +1020,6 @@ class Items(BaseSDK):
         id: str,
         item_id: str,
         project_id: Optional[str] = None,
-        comment: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -810,12 +1027,11 @@ class Items(BaseSDK):
     ) -> models.UnresolveQueueItemResponse:
         r"""Unresolve a queue item
 
-        Mark a previously resolved queue item as unresolved/pending
+        Mark a resolved item of a queue as pending again. It is the same as removing a check-off in the dashboard: the item comes back in the pending list.
 
-        :param id: The queue ID
-        :param item_id: The item ID to unresolve
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
-        :param comment: Optional reason for unresolving the item
+        :param id: The queue ID.
+        :param item_id: The item ID to unresolve.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -835,9 +1051,6 @@ class Items(BaseSDK):
             id=id,
             item_id=item_id,
             project_id=project_id,
-            body=models.UnresolveQueueItemRequestBody(
-                comment=comment,
-            ),
         )
 
         req = self._build_request_async(
@@ -846,16 +1059,13 @@ class Items(BaseSDK):
             base_url=base_url,
             url_variables=url_variables,
             request=request,
-            request_body_required=True,
+            request_body_required=False,
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.UnresolveQueueItemRequestBody
-            ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
         )

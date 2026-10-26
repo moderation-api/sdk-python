@@ -22,7 +22,7 @@ class UpdateWordlistRequestBodyTypedDict(TypedDict):
     description: NotRequired[str]
     r"""New description for the wordlist"""
     words: NotRequired[List[str]]
-    r"""New words for the wordlist. Replace the existing words with these new ones. Duplicate words will be ignored."""
+    r"""New words for the wordlist. Replace the existing words with these new ones. Words are converted to lowercase. Duplicate and empty words are ignored. Maximum 5000 words."""
     strict: NotRequired[bool]
     r"""Deprecated. Now using threshold in project settings."""
 
@@ -38,7 +38,7 @@ class UpdateWordlistRequestBody(BaseModel):
     r"""New description for the wordlist"""
 
     words: Optional[List[str]] = None
-    r"""New words for the wordlist. Replace the existing words with these new ones. Duplicate words will be ignored."""
+    r"""New words for the wordlist. Replace the existing words with these new ones. Words are converted to lowercase. Duplicate and empty words are ignored. Maximum 5000 words."""
 
     strict: Optional[bool] = None
     r"""Deprecated. Now using threshold in project settings."""
@@ -65,7 +65,7 @@ class UpdateWordlistRequestTypedDict(TypedDict):
     r"""ID of the wordlist to update"""
     body: UpdateWordlistRequestBodyTypedDict
     project_id: NotRequired[str]
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
 
 class UpdateWordlistRequest(BaseModel):
@@ -84,7 +84,7 @@ class UpdateWordlistRequest(BaseModel):
         pydantic.Field(alias="Project-Id"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ] = None
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

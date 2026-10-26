@@ -20,7 +20,7 @@ class RemoveWordlistWordsRequestTypedDict(TypedDict):
     words: List[str]
     r"""Array of words to remove from the wordlist"""
     project_id: NotRequired[str]
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
 
 class RemoveWordlistWordsRequest(BaseModel):
@@ -39,7 +39,7 @@ class RemoveWordlistWordsRequest(BaseModel):
         pydantic.Field(alias="Project-Id"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ] = None
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

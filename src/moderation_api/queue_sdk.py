@@ -2,13 +2,14 @@
 
 from .basesdk import BaseSDK
 from .sdkconfiguration import SDKConfiguration
+from jsonpath import JSONPath
 from moderation_api import errors, models, utils
 from moderation_api._hooks import HookContext
 from moderation_api.items import Items
 from moderation_api.types import OptionalNullable, UNSET
 from moderation_api.utils import get_security_from_env
 from moderation_api.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Mapping, Optional
+from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
 
 
 class QueueSDK(BaseSDK):
@@ -24,6 +25,319 @@ class QueueSDK(BaseSDK):
     def _init_sdks(self):
         self.items = Items(self.sdk_configuration, parent_ref=self.parent_ref)
 
+    def list(
+        self,
+        *,
+        page: Optional[int] = 1,
+        page_size: Optional[int] = 20,
+        project_id: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> Optional[models.ListQueuesResponse]:
+        r"""List queues
+
+        List the review queues of the project. The default queue comes first. The list is paginated. To get the item counts of a queue, use `GET /queue/{id}`.
+
+        :param page:
+        :param page_size:
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListQueuesRequest(
+            page=page,
+            page_size=page_size,
+            project_id=project_id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/queue",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listQueues",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["Review queues"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        def next_func() -> Optional[models.ListQueuesResponse]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            page = request.page if isinstance(request.page, int) else 1
+            next_page = page + 1
+
+            num_pages = JSONPath("$.pagination.totalPages").parse(body)
+            if len(num_pages) == 0 or num_pages[0] <= page:
+                return None
+
+            if not http_res.text:
+                return None
+            results = JSONPath("$.data").parse(body)
+            if len(results) == 0 or len(results[0]) == 0:
+                return None
+            limit_ = request.page_size if isinstance(request.page_size, int) else 20
+            if len(results[0]) < limit_:
+                return None
+
+            return self.list(
+                page=next_page,
+                page_size=page_size,
+                project_id=project_id,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.ListQueuesResponse(
+                result=unmarshal_json_response(models.ListQueuesResponseBody, http_res),
+                next=next_func,
+            )
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.BadRequestErrorData, http_res
+            )
+            raise errors.BadRequestError(response_data, http_res)
+        if utils.match_response(http_res, "401", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.AuthenticationErrorData, http_res
+            )
+            raise errors.AuthenticationError(response_data, http_res)
+        if utils.match_response(http_res, "403", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.PermissionDeniedErrorData, http_res
+            )
+            raise errors.PermissionDeniedError(response_data, http_res)
+        if utils.match_response(http_res, "404", "application/json"):
+            response_data = unmarshal_json_response(errors.NotFoundErrorData, http_res)
+            raise errors.NotFoundError(response_data, http_res)
+        if utils.match_response(http_res, "429", "application/json"):
+            response_data = unmarshal_json_response(errors.RateLimitErrorData, http_res)
+            raise errors.RateLimitError(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.InternalServerErrorData, http_res
+            )
+            raise errors.InternalServerError(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ModerationAPIDefaultError("Unexpected response received", http_res)
+
+    async def list_async(
+        self,
+        *,
+        page: Optional[int] = 1,
+        page_size: Optional[int] = 20,
+        project_id: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> Optional[models.ListQueuesResponse]:
+        r"""List queues
+
+        List the review queues of the project. The default queue comes first. The list is paginated. To get the item counts of a queue, use `GET /queue/{id}`.
+
+        :param page:
+        :param page_size:
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListQueuesRequest(
+            page=page,
+            page_size=page_size,
+            project_id=project_id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/queue",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listQueues",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["Review queues"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        def next_func() -> Awaitable[Optional[models.ListQueuesResponse]]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            async def empty_result():
+                return None
+
+            page = request.page if isinstance(request.page, int) else 1
+            next_page = page + 1
+
+            num_pages = JSONPath("$.pagination.totalPages").parse(body)
+            if len(num_pages) == 0 or num_pages[0] <= page:
+                return empty_result()
+
+            if not http_res.text:
+                return empty_result()
+            results = JSONPath("$.data").parse(body)
+            if len(results) == 0 or len(results[0]) == 0:
+                return empty_result()
+            limit_ = request.page_size if isinstance(request.page_size, int) else 20
+            if len(results[0]) < limit_:
+                return empty_result()
+
+            return self.list_async(
+                page=next_page,
+                page_size=page_size,
+                project_id=project_id,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.ListQueuesResponse(
+                result=unmarshal_json_response(models.ListQueuesResponseBody, http_res),
+                next=next_func,
+            )
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.BadRequestErrorData, http_res
+            )
+            raise errors.BadRequestError(response_data, http_res)
+        if utils.match_response(http_res, "401", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.AuthenticationErrorData, http_res
+            )
+            raise errors.AuthenticationError(response_data, http_res)
+        if utils.match_response(http_res, "403", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.PermissionDeniedErrorData, http_res
+            )
+            raise errors.PermissionDeniedError(response_data, http_res)
+        if utils.match_response(http_res, "404", "application/json"):
+            response_data = unmarshal_json_response(errors.NotFoundErrorData, http_res)
+            raise errors.NotFoundError(response_data, http_res)
+        if utils.match_response(http_res, "429", "application/json"):
+            response_data = unmarshal_json_response(errors.RateLimitErrorData, http_res)
+            raise errors.RateLimitError(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                errors.InternalServerErrorData, http_res
+            )
+            raise errors.InternalServerError(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ModerationAPIDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ModerationAPIDefaultError("Unexpected response received", http_res)
+
     def retrieve(
         self,
         *,
@@ -36,10 +350,10 @@ class QueueSDK(BaseSDK):
     ) -> models.GetQueueResponse:
         r"""Get a queue
 
-        Get a queue
+        Get a review queue with its item counts. The counts use the filters and the date window of the queue, the same as the dashboard.
 
-        :param id: The queue ID
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param id: The queue ID.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -156,10 +470,10 @@ class QueueSDK(BaseSDK):
     ) -> models.GetQueueResponse:
         r"""Get a queue
 
-        Get a queue
+        Get a review queue with its item counts. The counts use the filters and the date window of the queue, the same as the dashboard.
 
-        :param id: The queue ID
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param id: The queue ID.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -277,11 +591,11 @@ class QueueSDK(BaseSDK):
     ) -> models.GetQueueStatsResponse:
         r"""Get queue statistics
 
-        Get detailed statistics about a moderation queue including review times, action counts, and trends
+        Get review statistics of a queue for a period: resolved and pending items, the top reviewers and the resolved items per day.
 
-        :param id: The queue ID
+        :param id: The queue ID.
         :param within_days:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -400,11 +714,11 @@ class QueueSDK(BaseSDK):
     ) -> models.GetQueueStatsResponse:
         r"""Get queue statistics
 
-        Get detailed statistics about a moderation queue including review times, action counts, and trends
+        Get review statistics of a queue for a period: resolved and pending items, the top reviewers and the resolved items per day.
 
-        :param id: The queue ID
+        :param id: The queue ID.
         :param within_days:
-        :param project_id: The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error.
+        :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

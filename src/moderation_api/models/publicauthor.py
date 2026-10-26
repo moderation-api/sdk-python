@@ -15,7 +15,7 @@ from typing import Any, Dict, Literal, Union
 from typing_extensions import NotRequired, TypedDict
 
 
-Status = Union[
+PublicAuthorStatus = Union[
     Literal[
         "enabled",
         "suspended",
@@ -252,7 +252,7 @@ class PublicAuthorTypedDict(TypedDict):
     r"""Timestamp when author first appeared"""
     last_seen: float
     r"""Timestamp of last activity"""
-    status: Status
+    status: PublicAuthorStatus
     r"""Current author status"""
     trust_level: TrustLevelTypedDict
     block: Nullable[BlockTypedDict]
@@ -288,7 +288,7 @@ class PublicAuthor(BaseModel):
     last_seen: float
     r"""Timestamp of last activity"""
 
-    status: Status
+    status: PublicAuthorStatus
     r"""Current author status"""
 
     trust_level: TrustLevel

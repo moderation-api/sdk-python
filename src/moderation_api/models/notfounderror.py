@@ -11,6 +11,7 @@ NotFoundErrorCode = Union[
         "action_not_found",
         "author_not_found",
         "queue_not_found",
+        "queue_item_not_found",
         "wordlist_not_found",
         "webhook_not_found",
         "project_not_found",
@@ -24,6 +25,7 @@ r"""Exactly what went wrong. Stable; safe to branch on. New codes may be added.
 - `action_not_found`: The action does not exist.
 - `author_not_found`: The author does not exist.
 - `queue_not_found`: The review queue does not exist.
+- `queue_item_not_found`: The queue item does not exist in the project.
 - `wordlist_not_found`: The wordlist does not exist.
 - `webhook_not_found`: The webhook does not exist.
 - `project_not_found`: The project does not exist.

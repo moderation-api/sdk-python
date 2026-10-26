@@ -1972,7 +1972,7 @@ class SubmitContentRequestBodyTypedDict(TypedDict):
     client_action: NotRequired[SubmitContentClientActionTypedDict]
     r"""A recommendation from your own client-side flagging (e.g. a banned-IP list or a third-party tool). Feeds the rules engine and can escalate or override the recommended action. Does not change whether our analysis flagged the content."""
     do_not_store: NotRequired[bool]
-    r"""Do not store the content. The content won't enter the review queue"""
+    r"""Process the content without saving it on our servers. The item is still created and appears in the review queue, analytics and author history with its moderation results, but its content is empty, so reviewers cannot see what was submitted."""
     policies: NotRequired[List[PolicyRequestTypedDict]]
     r"""(Enterprise) override the channel policies for this moderation request only."""
 
@@ -2012,7 +2012,7 @@ class SubmitContentRequestBody(BaseModel):
     r"""A recommendation from your own client-side flagging (e.g. a banned-IP list or a third-party tool). Feeds the rules engine and can escalate or override the recommended action. Does not change whether our analysis flagged the content."""
 
     do_not_store: Annotated[Optional[bool], pydantic.Field(alias="doNotStore")] = None
-    r"""Do not store the content. The content won't enter the review queue"""
+    r"""Process the content without saving it on our servers. The item is still created and appears in the review queue, analytics and author history with its moderation results, but its content is empty, so reviewers cannot see what was submitted."""
 
     policies: Optional[List[PolicyRequest]] = None
     r"""(Enterprise) override the channel policies for this moderation request only."""
@@ -2050,7 +2050,7 @@ class SubmitContentRequestBody(BaseModel):
 class SubmitContentRequestTypedDict(TypedDict):
     body: SubmitContentRequestBodyTypedDict
     project_id: NotRequired[str]
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
 
 class SubmitContentRequest(BaseModel):
@@ -2064,7 +2064,7 @@ class SubmitContentRequest(BaseModel):
         pydantic.Field(alias="Project-Id"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ] = None
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -2369,7 +2369,7 @@ class SubmitContentTrustLevel(BaseModel):
     r"""True if the trust level was set manually by a moderator"""
 
 
-class AuthorTypedDict(TypedDict):
+class SubmitContentAuthorTypedDict(TypedDict):
     id: str
     r"""Author ID in Moderation API"""
     block: Nullable[SubmitContentBlockTypedDict]
@@ -2381,7 +2381,7 @@ class AuthorTypedDict(TypedDict):
     r"""The author's ID from your system"""
 
 
-class Author(BaseModel):
+class SubmitContentAuthor(BaseModel):
     id: str
     r"""Author ID in Moderation API"""
 
@@ -2472,7 +2472,7 @@ class Evaluation(BaseModel):
         return m
 
 
-SubmitContentRecommendationAction = Union[
+ActionResponse = Union[
     Literal[
         "review",
         "allow",
@@ -2521,7 +2521,7 @@ class MatchedRule(BaseModel):
 class RecommendationTypedDict(TypedDict):
     r"""The recommendation for the content based on the evaluation."""
 
-    action: SubmitContentRecommendationAction
+    action: ActionResponse
     r"""The action to take based on the recommendation"""
     reason_codes: List[ReasonCodeTypedDict]
     r"""Reason codes for the recommendation. Standard codes plus a `rule:<key>` code identifying the rule that produced the action. Can be used to display a reason to the user."""
@@ -2532,7 +2532,7 @@ class RecommendationTypedDict(TypedDict):
 class Recommendation(BaseModel):
     r"""The recommendation for the content based on the evaluation."""
 
-    action: SubmitContentRecommendationAction
+    action: ActionResponse
     r"""The action to take based on the recommendation"""
 
     reason_codes: List[ReasonCode]
@@ -2881,15 +2881,15 @@ class ClassifierOutput(BaseModel):
         return m
 
 
-PolicyResponseTypedDict = TypeAliasType(
-    "PolicyResponseTypedDict",
+SubmitContentPolicyResponseTypedDict = TypeAliasType(
+    "SubmitContentPolicyResponseTypedDict",
     Union[EntityMatcherOutputTypedDict, ClassifierOutputTypedDict],
 )
 r"""Policy output schema."""
 
 
-class UnknownPolicyResponse(BaseModel):
-    r"""A PolicyResponse variant the SDK doesn't recognize. Preserves the raw payload."""
+class UnknownSubmitContentPolicyResponse(BaseModel):
+    r"""A SubmitContentPolicyResponse variant the SDK doesn't recognize. Preserves the raw payload."""
 
     type: Literal["UNKNOWN"] = "UNKNOWN"
     raw: Any
@@ -2898,21 +2898,21 @@ class UnknownPolicyResponse(BaseModel):
     model_config = ConfigDict(frozen=True)
 
 
-_POLICY_RESPONSE_VARIANTS: dict[str, Any] = {
+_SUBMIT_CONTENT_POLICY_RESPONSE_VARIANTS: dict[str, Any] = {
     "classifier": ClassifierOutput,
     "entity_matcher": EntityMatcherOutput,
 }
 
 
-PolicyResponse = Annotated[
-    Union[ClassifierOutput, EntityMatcherOutput, UnknownPolicyResponse],
+SubmitContentPolicyResponse = Annotated[
+    Union[ClassifierOutput, EntityMatcherOutput, UnknownSubmitContentPolicyResponse],
     BeforeValidator(
         partial(
             parse_open_union,
             disc_key="type",
-            variants=_POLICY_RESPONSE_VARIANTS,
-            unknown_cls=UnknownPolicyResponse,
-            union_name="PolicyResponse",
+            variants=_SUBMIT_CONTENT_POLICY_RESPONSE_VARIANTS,
+            unknown_cls=UnknownSubmitContentPolicyResponse,
+            union_name="SubmitContentPolicyResponse",
         )
     ),
 ]
@@ -3342,7 +3342,7 @@ class SubmitContentResponseTypedDict(TypedDict):
 
     content: ContentResponseTypedDict
     r"""Potentially modified content."""
-    author: Nullable[AuthorTypedDict]
+    author: Nullable[SubmitContentAuthorTypedDict]
     r"""The author of the content if your account has authors enabled. Requires you to send authorId when submitting content."""
     evaluation: EvaluationTypedDict
     r"""The evaluation of the content after running the channel policies."""
@@ -3350,7 +3350,7 @@ class SubmitContentResponseTypedDict(TypedDict):
     r"""The recommendation for the content based on the evaluation."""
     casebook: Nullable[CasebookTypedDict]
     r"""What your casebook — the record of your past moderation decisions — found for this content, or null when it had nothing close enough to say, when the matching cases disagreed, or when casebook lookups are not switched on for this channel. Reports what the casebook found; whether it decided the outcome is shown in `recommendation`, where a higher-priority rule may have settled the item first."""
-    policies: List[PolicyResponseTypedDict]
+    policies: List[SubmitContentPolicyResponseTypedDict]
     r"""Results of all policies in the channel. Sorted by highest probability."""
     insights: List[InsightTypedDict]
     r"""Results of all insights enabled in the channel."""
@@ -3366,7 +3366,7 @@ class SubmitContentResponse(BaseModel):
     content: ContentResponse
     r"""Potentially modified content."""
 
-    author: Nullable[Author]
+    author: Nullable[SubmitContentAuthor]
     r"""The author of the content if your account has authors enabled. Requires you to send authorId when submitting content."""
 
     evaluation: Evaluation
@@ -3378,7 +3378,7 @@ class SubmitContentResponse(BaseModel):
     casebook: Nullable[Casebook]
     r"""What your casebook — the record of your past moderation decisions — found for this content, or null when it had nothing close enough to say, when the matching cases disagreed, or when casebook lookups are not switched on for this channel. Reports what the casebook found; whether it decided the outcome is shown in `recommendation`, where a higher-priority rule may have settled the item first."""
 
-    policies: List[PolicyResponse]
+    policies: List[SubmitContentPolicyResponse]
     r"""Results of all policies in the channel. Sorted by highest probability."""
 
     insights: List[Insight]

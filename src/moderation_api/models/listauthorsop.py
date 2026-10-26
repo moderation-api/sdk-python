@@ -14,7 +14,6 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 SortBy = Literal[
     "trustLevel",
     "violationCount",
-    "reportCount",
     "memberSince",
     "lastActive",
     "contentCount",
@@ -23,7 +22,7 @@ SortBy = Literal[
 ]
 
 
-ListAuthorsSortDirection = Literal[
+SortDirection = Literal[
     "asc",
     "desc",
 ]
@@ -34,13 +33,12 @@ class ListAuthorsRequestTypedDict(TypedDict):
     page: NotRequired[int]
     page_size: NotRequired[int]
     sort_by: NotRequired[SortBy]
-    sort_direction: NotRequired[ListAuthorsSortDirection]
+    sort_direction: NotRequired[SortDirection]
     r"""Sort direction"""
     member_since_date: NotRequired[str]
     last_active_date: NotRequired[str]
-    content_types: NotRequired[List[str]]
     project_id: NotRequired[str]
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
 
 class ListAuthorsRequest(BaseModel):
@@ -62,7 +60,7 @@ class ListAuthorsRequest(BaseModel):
     ] = None
 
     sort_direction: Annotated[
-        Optional[ListAuthorsSortDirection],
+        Optional[SortDirection],
         pydantic.Field(alias="sortDirection"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = "desc"
@@ -80,18 +78,12 @@ class ListAuthorsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
 
-    content_types: Annotated[
-        Optional[List[str]],
-        pydantic.Field(alias="contentTypes"),
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = None
-
     project_id: Annotated[
         Optional[str],
         pydantic.Field(alias="Project-Id"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ] = None
-    r"""The project to act on, when you call with an organization key. Optional when the organization has one project. A project key acts on its own project: naming another one is an error."""
+    r"""The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -103,7 +95,6 @@ class ListAuthorsRequest(BaseModel):
                 "sortDirection",
                 "memberSinceDate",
                 "lastActiveDate",
-                "contentTypes",
                 "projectId",
             ]
         )

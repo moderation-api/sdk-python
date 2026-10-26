@@ -1,0 +1,16 @@
+# QueueItemMatch
+
+
+## Fields
+
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `match`                                                            | *str*                                                              | :heavy_check_mark:                                                 | The matched substring                                              |
+| `probability`                                                      | *float*                                                            | :heavy_check_mark:                                                 | Match confidence between 0 and 1                                   |
+| `span`                                                             | List[*float*]                                                      | :heavy_check_mark:                                                 | [start, end] character offsets in the source text                  |
+| `mask`                                                             | *OptionalNullable[str]*                                            | :heavy_minus_sign:                                                 | N/A                                                                |
+| `reasons`                                                          | List[*str*]                                                        | :heavy_minus_sign:                                                 | N/A                                                                |
+| `signals`                                                          | [Optional[models.QueueItemSignals]](../models/queueitemsignals.md) | :heavy_minus_sign:                                                 | N/A                                                                |
+| `entity_type`                                                      | *Optional[str]*                                                    | :heavy_minus_sign:                                                 | N/A                                                                |
+| `scripts`                                                          | List[*str*]                                                        | :heavy_minus_sign:                                                 | N/A                                                                |
+| `skeleton`                                                         | *Optional[str]*                                                    | :heavy_minus_sign:                                                 | N/A                                                                |
