@@ -24,6 +24,10 @@ class ExecuteActionRequestBodyTypedDict(TypedDict):
     r"""Optional queue ID if the action is queue-specific"""
     duration: NotRequired[float]
     r"""Optional duration in milliseconds for actions with timeouts"""
+    moderator: NotRequired[str]
+    r"""The user ID or email of the organization member who made the decision. The action is recorded as theirs."""
+    create_casebook_case: NotRequired[bool]
+    r"""Record an allow or reject decision as a casebook case. Defaults to true when `moderator` is set, else false. Without `moderator`, the case is recorded as System."""
 
 
 class ExecuteActionRequestBody(BaseModel):
@@ -49,10 +53,26 @@ class ExecuteActionRequestBody(BaseModel):
     duration: Optional[float] = None
     r"""Optional duration in milliseconds for actions with timeouts"""
 
+    moderator: Optional[str] = None
+    r"""The user ID or email of the organization member who made the decision. The action is recorded as theirs."""
+
+    create_casebook_case: Annotated[
+        Optional[bool], pydantic.Field(alias="createCasebookCase")
+    ] = None
+    r"""Record an allow or reject decision as a casebook case. Defaults to true when `moderator` is set, else false. Without `moderator`, the case is recorded as System."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["contentIds", "authorIds", "value", "queueId", "duration"]
+            [
+                "contentIds",
+                "authorIds",
+                "value",
+                "queueId",
+                "duration",
+                "moderator",
+                "createCasebookCase",
+            ]
         )
         serialized = handler(self)
         m = {}

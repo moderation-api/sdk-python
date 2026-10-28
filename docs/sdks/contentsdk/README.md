@@ -4,7 +4,107 @@
 
 ### Available Operations
 
+* [reject](#reject) - Reject content
+* [allow](#allow) - Allow content
 * [submit](#submit) - Submit content
+
+## reject
+
+Reject a content item with the built-in reject action, and resolve it in the review queue.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="rejectContent" method="post" path="/content/{id}/reject" -->
+```python
+from moderation_api import ModerationAPI
+import os
+
+
+with ModerationAPI(
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.content.reject(id="<id>", reason="Spam")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                         | *str*                                                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                           | The content ID you sent when you submitted the content, or the ID Moderation API assigned.                                                                                                                                                   |
+| `project_id`                                                                                                                                                                                                                                 | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error. |
+| `reason`                                                                                                                                                                                                                                     | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | Why the action was taken. Saved with the action and sent in the webhook event.                                                                                                                                                               |
+| `queue_id`                                                                                                                                                                                                                                   | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | The queue the content is reviewed in. Defaults to the project's default queue.                                                                                                                                                               |
+| `moderator`                                                                                                                                                                                                                                  | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | The user ID or email of the organization member who made the decision. The action is recorded as theirs.                                                                                                                                     |
+| `create_casebook_case`                                                                                                                                                                                                                       | *Optional[bool]*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                           | Record an allow or reject decision as a casebook case. Defaults to true when `moderator` is set, else false. Without `moderator`, the case is recorded as System.                                                                            |
+| `retries`                                                                                                                                                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                           | Configuration to override the default retry behavior of the client.                                                                                                                                                                          |
+
+### Response
+
+**[models.RejectContentResponse](../../models/rejectcontentresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| errors.BadRequestError           | 400                              | application/json                 |
+| errors.AuthenticationError       | 401                              | application/json                 |
+| errors.NotFoundError             | 404                              | application/json                 |
+| errors.RateLimitError            | 429                              | application/json                 |
+| errors.ModerationAPIDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## allow
+
+Allow a content item with the built-in allow action, and resolve it in the review queue.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="allowContent" method="post" path="/content/{id}/allow" -->
+```python
+from moderation_api import ModerationAPI
+import os
+
+
+with ModerationAPI(
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.content.allow(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                         | *str*                                                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                           | The content ID you sent when you submitted the content, or the ID Moderation API assigned.                                                                                                                                                   |
+| `project_id`                                                                                                                                                                                                                                 | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error. |
+| `reason`                                                                                                                                                                                                                                     | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | Why the action was taken. Saved with the action and sent in the webhook event.                                                                                                                                                               |
+| `queue_id`                                                                                                                                                                                                                                   | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | The queue the content is reviewed in. Defaults to the project's default queue.                                                                                                                                                               |
+| `moderator`                                                                                                                                                                                                                                  | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | The user ID or email of the organization member who made the decision. The action is recorded as theirs.                                                                                                                                     |
+| `create_casebook_case`                                                                                                                                                                                                                       | *Optional[bool]*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                           | Record an allow or reject decision as a casebook case. Defaults to true when `moderator` is set, else false. Without `moderator`, the case is recorded as System.                                                                            |
+| `retries`                                                                                                                                                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                           | Configuration to override the default retry behavior of the client.                                                                                                                                                                          |
+
+### Response
+
+**[models.AllowContentResponse](../../models/allowcontentresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| errors.BadRequestError           | 400                              | application/json                 |
+| errors.AuthenticationError       | 401                              | application/json                 |
+| errors.NotFoundError             | 404                              | application/json                 |
+| errors.RateLimitError            | 429                              | application/json                 |
+| errors.ModerationAPIDefaultError | 4XX, 5XX                         | \*/\*                            |
 
 ## submit
 

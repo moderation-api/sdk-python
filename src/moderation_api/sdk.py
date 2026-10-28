@@ -39,11 +39,11 @@ class ModerationAPI(BaseSDK):
     feedback: "Feedback"
     queue: "QueueSDK"
     actions: "Actions"
+    content: "ContentSDK"
     webhooks: "Webhooks"
     webhook_secret: "WebhookSecret"
     account: "Account"
     wordlist: "Wordlist"
-    content: "ContentSDK"
     projects: "Projects"
     channels: "Channels"
     _sub_sdk_map = {
@@ -52,11 +52,11 @@ class ModerationAPI(BaseSDK):
         "feedback": ("moderation_api.feedback", "Feedback"),
         "queue": ("moderation_api.queue_sdk", "QueueSDK"),
         "actions": ("moderation_api.actions", "Actions"),
+        "content": ("moderation_api.content_sdk", "ContentSDK"),
         "webhooks": ("moderation_api.webhooks", "Webhooks"),
         "webhook_secret": ("moderation_api.webhooksecret", "WebhookSecret"),
         "account": ("moderation_api.account", "Account"),
         "wordlist": ("moderation_api.wordlist", "Wordlist"),
-        "content": ("moderation_api.content_sdk", "ContentSDK"),
         "projects": ("moderation_api.projects", "Projects"),
         "channels": ("moderation_api.channels", "Channels"),
     }
