@@ -1426,6 +1426,8 @@ class Actions(BaseSDK):
         value: Optional[str] = None,
         queue_id: Optional[str] = None,
         duration: Optional[float] = None,
+        moderator: Optional[str] = None,
+        create_casebook_case: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1442,6 +1444,8 @@ class Actions(BaseSDK):
         :param value: Optional value to provide with the action
         :param queue_id: Optional queue ID if the action is queue-specific
         :param duration: Optional duration in milliseconds for actions with timeouts
+        :param moderator: The user ID or email of the organization member who made the decision. The action is recorded as theirs.
+        :param create_casebook_case: Record an allow or reject decision as a casebook case. Defaults to true when `moderator` is set, else false. Without `moderator`, the case is recorded as System.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1466,6 +1470,8 @@ class Actions(BaseSDK):
                 value=value,
                 queue_id=queue_id,
                 duration=duration,
+                moderator=moderator,
+                create_casebook_case=create_casebook_case,
             ),
         )
 
@@ -1556,6 +1562,8 @@ class Actions(BaseSDK):
         value: Optional[str] = None,
         queue_id: Optional[str] = None,
         duration: Optional[float] = None,
+        moderator: Optional[str] = None,
+        create_casebook_case: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1572,6 +1580,8 @@ class Actions(BaseSDK):
         :param value: Optional value to provide with the action
         :param queue_id: Optional queue ID if the action is queue-specific
         :param duration: Optional duration in milliseconds for actions with timeouts
+        :param moderator: The user ID or email of the organization member who made the decision. The action is recorded as theirs.
+        :param create_casebook_case: Record an allow or reject decision as a casebook case. Defaults to true when `moderator` is set, else false. Without `moderator`, the case is recorded as System.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1596,6 +1606,8 @@ class Actions(BaseSDK):
                 value=value,
                 queue_id=queue_id,
                 duration=duration,
+                moderator=moderator,
+                create_casebook_case=create_casebook_case,
             ),
         )
 

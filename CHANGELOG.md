@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.3.0 (2026-10-28)
+
+Full Changelog: [v2.2.0...v2.3.0](https://github.com/moderation-api/sdk-python/compare/v2.2.0...v2.3.0)
+
+### API changes
+
+- `POST /actions/execute`: added the new optional request property `createCasebookCase`
+- `POST /actions/execute`: added the new optional request property `moderator`
+- `POST /authors/{id}/block`: endpoint added
+- `POST /authors/{id}/suspend`: endpoint added
+- `POST /authors/{id}/unblock`: endpoint added
+- `POST /content/{id}/allow`: endpoint added
+- `POST /content/{id}/reject`: endpoint added
+
 ## 2.2.0 (2026-10-26)
 
 Full Changelog: [v2.1.1...v2.2.0](https://github.com/moderation-api/sdk-python/compare/v2.1.1...v2.2.0)

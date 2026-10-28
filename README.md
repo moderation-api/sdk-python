@@ -367,6 +367,9 @@ Create the organization client only where you manage projects and channels, for 
 * [retrieve](docs/sdks/authors/README.md#retrieve) - Get author details
 * [update](docs/sdks/authors/README.md#update) - Update author details
 * [delete](docs/sdks/authors/README.md#delete) - Delete an author
+* [block](docs/sdks/authors/README.md#block) - Block author
+* [suspend](docs/sdks/authors/README.md#suspend) - Suspend author
+* [unblock](docs/sdks/authors/README.md#unblock) - Unblock author
 
 ### [Channels](docs/sdks/channels/README.md)
 
@@ -379,6 +382,8 @@ Create the organization client only where you manage projects and channels, for 
 
 ### [Content](docs/sdks/contentsdk/README.md)
 
+* [reject](docs/sdks/contentsdk/README.md#reject) - Reject content
+* [allow](docs/sdks/contentsdk/README.md#allow) - Allow content
 * [submit](docs/sdks/contentsdk/README.md#submit) - Submit content
 
 ### [Feedback](docs/sdks/feedback/README.md)
@@ -578,10 +583,10 @@ with ModerationAPI(
 
 
 **Inherit from [`ModerationAPIError`](./src/moderation_api/errors/moderationapierror.py)**:
-* [`NotFoundError`](./src/moderation_api/errors/notfounderror.py): The resource does not exist or the key cannot see it. Status code `404`. Applicable to 39 of 53 methods.*
-* [`PermissionDeniedError`](./src/moderation_api/errors/permissiondeniederror.py): The API key cannot do this, or the plan limit for this resource is reached. Status code `403`. Applicable to 36 of 53 methods.*
-* [`InternalServerError`](./src/moderation_api/errors/internalservererror.py): Something went wrong on our side. Retry with backoff. Status code `500`. Applicable to 23 of 53 methods.*
-* [`ConflictError`](./src/moderation_api/errors/conflicterror.py): The request conflicts with the current state of a resource. Status code `409`. Applicable to 2 of 53 methods.*
+* [`NotFoundError`](./src/moderation_api/errors/notfounderror.py): The resource does not exist or the key cannot see it. Status code `404`. Applicable to 44 of 58 methods.*
+* [`PermissionDeniedError`](./src/moderation_api/errors/permissiondeniederror.py): The API key cannot do this, or the plan limit for this resource is reached. Status code `403`. Applicable to 36 of 58 methods.*
+* [`InternalServerError`](./src/moderation_api/errors/internalservererror.py): Something went wrong on our side. Retry with backoff. Status code `500`. Applicable to 23 of 58 methods.*
+* [`ConflictError`](./src/moderation_api/errors/conflicterror.py): The request conflicts with the current state of a resource. Status code `409`. Applicable to 2 of 58 methods.*
 * [`ResponseValidationError`](./src/moderation_api/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
