@@ -612,7 +612,7 @@ class UnicodeSpoofingTypedDict(TypedDict):
     threshold: NotRequired[float]
     id: Literal["unicode_spoofing"]
     signals: NotRequired[Dict[str, SignalsRequestTypedDict]]
-    r"""Per-signal flag toggles. Omitted spoofing signals are enabled; encoding_damage defaults to off because decode damage (U+FFFD) marks a broken pipeline, not an attack. A disabled signal is still detected and reported as a label, but does not by itself flag the policy."""
+    r"""Per-signal flag toggles. Omitted spoofing signals are enabled; encoding_damage defaults to off because decode damage (U+FFFD) marks a broken pipeline, not an attack, and hidden_lookalike and leetspeak default to off because they are opt-in. A disabled signal is still detected and reported as a label, but does not by itself flag the policy. Lookalike words are only spelled out in the cleaned text when their signal is enabled."""
 
 
 class UnicodeSpoofing(BaseModel):
@@ -629,7 +629,7 @@ class UnicodeSpoofing(BaseModel):
     ] = "unicode_spoofing"
 
     signals: Optional[Dict[str, SignalsRequest]] = None
-    r"""Per-signal flag toggles. Omitted spoofing signals are enabled; encoding_damage defaults to off because decode damage (U+FFFD) marks a broken pipeline, not an attack. A disabled signal is still detected and reported as a label, but does not by itself flag the policy."""
+    r"""Per-signal flag toggles. Omitted spoofing signals are enabled; encoding_damage defaults to off because decode damage (U+FFFD) marks a broken pipeline, not an attack, and hidden_lookalike and leetspeak default to off because they are opt-in. A disabled signal is still detected and reported as a label, but does not by itself flag the policy. Lookalike words are only spelled out in the cleaned text when their signal is enabled."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

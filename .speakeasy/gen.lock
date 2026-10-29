@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 9620bfba-8df9-4d0e-8796-8423b39f97f0
 management:
-  docChecksum: d6bce8a263f0ec11d54bdf026957ba2f
+  docChecksum: 29c7bb10b9655dcfe925eacf9d5f4758
   docVersion: 1.1.0
   speakeasyVersion: internal
   generationVersion: internal
-  releaseVersion: 2.3.0
-  configChecksum: 7d03dc7ad5513ecf24cd3879ea525e09
+  releaseVersion: 2.4.0
+  configChecksum: 3462f55ea591db361a8205c351e76575
   repoURL: https://github.com/moderation-api/sdk-python
   installationURL: https://github.com/moderation-api/sdk-python.git
   published: true
@@ -228,6 +228,10 @@ trackedFiles:
     last_write_checksum: sha1:f72533a66e9b9c50ee17bcde04ac8db58bb129d0
   docs/models/deletewebhookresponse.md:
     last_write_checksum: sha1:9c274b660824d02e9fc18bab98ef18fd9027add1
+  docs/models/deletewordlistrequest.md:
+    last_write_checksum: sha1:5939fbe361ccab24967ebd946e6f74e2749bf8a0
+  docs/models/deletewordlistresponse.md:
+    last_write_checksum: sha1:3be4a556de9f7d3a0e60bd82593d0d9a60782d4f
   docs/models/drugs.md:
     last_write_checksum: sha1:7161f3ce2338c523d90d1556437b4fab5eb5ac8d
   docs/models/duplicatechannelrequest.md:
@@ -523,7 +527,7 @@ trackedFiles:
   docs/models/queue.md:
     last_write_checksum: sha1:55d14bf277d370f30ebd0fca8e465c6cd63f21f8
   docs/models/queueitem.md:
-    last_write_checksum: sha1:2b379154f8a8ce0497a58f0e6dc8eb9dcb7e9c85
+    last_write_checksum: sha1:13b79624d38569780e2bc7e2567b594d3a06e580
   docs/models/queueitemaudio.md:
     last_write_checksum: sha1:d531cb71cc9e6685f094a6934e80bf4043ac0c15
   docs/models/queueitembrandimpersonation.md:
@@ -577,15 +581,15 @@ trackedFiles:
   docs/models/removewordlistwordsresponse.md:
     last_write_checksum: sha1:5efef48f1d38df8e532615c71c4f05de2b0e28f8
   docs/models/resolvequeueitemrequest.md:
-    last_write_checksum: sha1:ce5e4b9191848cac928a7e065d9389323916a892
+    last_write_checksum: sha1:e5504f751485db76e8e67f06bcd7e3fddb2edb2a
   docs/models/resolvequeueitemresponse.md:
     last_write_checksum: sha1:6be4465672552b7deda68e1b60d4b503b1a90007
   docs/models/resolvequeueitemsrequest.md:
     last_write_checksum: sha1:1ba6d46c01600c16c455ac44b0ee7912ae441f31
   docs/models/resolvequeueitemsrequestbody.md:
-    last_write_checksum: sha1:d155b6e58e2a94d1239e4a3e3eb04eaa7b6c40eb
+    last_write_checksum: sha1:b12366427a2b048d338b57f9b910f91004c30f33
   docs/models/resolvequeueitemsresponse.md:
-    last_write_checksum: sha1:90cc162d906a0f5f7f55f312fbf81adb1ecf16a1
+    last_write_checksum: sha1:5985374f7ad21e774539d2b8b3e665c43e10e37d
   docs/models/respectinsight.md:
     last_write_checksum: sha1:4b28f5bb242fad6e0b615fff2c6845196b98f4f4
   docs/models/reviewstats.md:
@@ -687,9 +691,9 @@ trackedFiles:
   docs/models/unblockauthorresponse.md:
     last_write_checksum: sha1:d011cfdf60105b021cc8a5a07656c0f1b228d502
   docs/models/unicodespoofing.md:
-    last_write_checksum: sha1:f226ab0193558bada5d79ae06526d468409f932e
+    last_write_checksum: sha1:ef143184ba5b0cf1c8f609407311ec114b139e99
   docs/models/unresolvequeueitemrequest.md:
-    last_write_checksum: sha1:5806a111bde03f05d3868c104526e91118ecaa94
+    last_write_checksum: sha1:3e740363d93566e4236402f44185200ecb57208d
   docs/models/unresolvequeueitemresponse.md:
     last_write_checksum: sha1:25712953fa620825ff2de945f02f73563e5d2389
   docs/models/unresolvequeueitemstatus.md:
@@ -793,7 +797,7 @@ trackedFiles:
   docs/sdks/feedback/README.md:
     last_write_checksum: sha1:ccbebb9f1e1102d390b4dbf114a5a4f783ef0abd
   docs/sdks/items/README.md:
-    last_write_checksum: sha1:ed06203e06e4abd51a3bbcb84865b67a11a9fde8
+    last_write_checksum: sha1:4c64e26ecadb73cd169f85c1714c61ea4438658c
   docs/sdks/projects/README.md:
     last_write_checksum: sha1:a256679120b221c4cabb8026f7ccceaea7ca22c7
   docs/sdks/queuesdk/README.md:
@@ -803,7 +807,7 @@ trackedFiles:
   docs/sdks/webhooksecret/README.md:
     last_write_checksum: sha1:4d0b1dc7b8d78b321e15d45ec039a0786ae44c45
   docs/sdks/wordlist/README.md:
-    last_write_checksum: sha1:785bdffde5f78c333a022a2fd3835c7a01481da7
+    last_write_checksum: sha1:47d395924883d235164268fcd1e6f3cb6000d76e
   docs/sdks/words/README.md:
     last_write_checksum: sha1:6c81772f1cc8e8a8e09289b29f2bd7b5f1eeba9e
   py.typed:
@@ -811,7 +815,7 @@ trackedFiles:
   pylintrc:
     last_write_checksum: sha1:cb40e5fd2885dcf20f7c572a590b2656efe282a0
   pyproject.toml:
-    last_write_checksum: sha1:1e60e4220ba83b27bcc713c1decc4f8afa66a682
+    last_write_checksum: sha1:fadd5a8ac4381f7750f27230154d98f05c882d0b
   scripts/prepare_readme.py:
     last_write_checksum: sha1:7b330dc0eb57c916a1158fd90c6227f8dc517c83
   scripts/publish.sh:
@@ -825,7 +829,7 @@ trackedFiles:
   src/moderation_api/_hooks/types.py:
     last_write_checksum: sha1:bb2a67c388c536a910bd205bd9582065c5d2de39
   src/moderation_api/_version.py:
-    last_write_checksum: sha1:d6a55674cb763ada777bc63efed80be0caf384d9
+    last_write_checksum: sha1:b90deef1c7258cbc0990026770e32d80dcfafa55
   src/moderation_api/account.py:
     last_write_checksum: sha1:184d7da98d57398f23b83a572d3105e361ba430f
   src/moderation_api/actions.py:
@@ -871,9 +875,9 @@ trackedFiles:
   src/moderation_api/httpclient.py:
     last_write_checksum: sha1:5e55338d6ee9f01ab648cad4380201a8a3da7dd7
   src/moderation_api/items.py:
-    last_write_checksum: sha1:ea935d11d6bb0b939b051752b76a99101eae16d0
+    last_write_checksum: sha1:97feeb2f9ecb3986e6bd01e5ebc2268b2c91e677
   src/moderation_api/models/__init__.py:
-    last_write_checksum: sha1:ff7e6ce34a5955018fba5e858e24bca2d04891bb
+    last_write_checksum: sha1:d2459bf75c877925e2d6f31a5b6e30c60ea053c0
   src/moderation_api/models/addwordlistwordsop.py:
     last_write_checksum: sha1:45d3dd92a286fa5b17f4eb79b5ed12062d019f4d
   src/moderation_api/models/allowcontentop.py:
@@ -914,6 +918,8 @@ trackedFiles:
     last_write_checksum: sha1:2e84a7999f679a87ef393eb0c44805bd687d2e7d
   src/moderation_api/models/deletewebhookop.py:
     last_write_checksum: sha1:97c6f00957de3ac31a7a50533faa3040771622d6
+  src/moderation_api/models/deletewordlistop.py:
+    last_write_checksum: sha1:93bceacf8a4f2ec0ba69d124a375fa2088e8adc4
   src/moderation_api/models/duplicatechannelop.py:
     last_write_checksum: sha1:ac62e5fe7064a3b241935390d57002ed98bcc1e1
   src/moderation_api/models/duplicateprojectop.py:
@@ -991,7 +997,7 @@ trackedFiles:
   src/moderation_api/models/queue.py:
     last_write_checksum: sha1:bc6130277305f518ab00caa5fa59f70249ea344d
   src/moderation_api/models/queueitem.py:
-    last_write_checksum: sha1:2754d0a11bbf3966f987760232f03501b8c0a73b
+    last_write_checksum: sha1:eb43fa6a3c18c93c999b5f28ad4a6e6ba9bc1cba
   src/moderation_api/models/queuewithcounts.py:
     last_write_checksum: sha1:f0499600ece3ef0b74a2d4a73d20b665a32793b7
   src/moderation_api/models/ratelimiterror.py:
@@ -1001,19 +1007,19 @@ trackedFiles:
   src/moderation_api/models/removewordlistwordsop.py:
     last_write_checksum: sha1:7cb9e8a08223096df7ffece80ff363b0208a56fe
   src/moderation_api/models/resolvequeueitemop.py:
-    last_write_checksum: sha1:e5d5b47b99d1b32db9b1adffd09a7caa948dcea5
+    last_write_checksum: sha1:ef4f85116a2e3b178a95f4c3fbac0d95b058dd60
   src/moderation_api/models/resolvequeueitemsop.py:
-    last_write_checksum: sha1:10da89b43bc99f17c90f3873727079dee625d2d2
+    last_write_checksum: sha1:28f5173ceedc97611d0a064f01e80c48721b2801
   src/moderation_api/models/security.py:
     last_write_checksum: sha1:dc71db919301e2ed408358e7b2066a8cb30c581b
   src/moderation_api/models/submitcontentop.py:
-    last_write_checksum: sha1:c5ab5a0c1f431ef17bba685a3b70ce1a3434bb77
+    last_write_checksum: sha1:5dca4a2b8914f97b98a97fc3094cc421b76ed7ca
   src/moderation_api/models/suspendauthorop.py:
     last_write_checksum: sha1:16ac1063324d990bb67359ec71ef772f5673db2c
   src/moderation_api/models/unblockauthorop.py:
     last_write_checksum: sha1:06364d4cb648bb8729583e07a789ace9b16af7fa
   src/moderation_api/models/unresolvequeueitemop.py:
-    last_write_checksum: sha1:90f2dd46899295dc1849fb3a31039b76cebc0c2c
+    last_write_checksum: sha1:05e3636521d1c4b22976d7e9ae7c124d621a81a0
   src/moderation_api/models/updateactionop.py:
     last_write_checksum: sha1:bfd702ef0dbf1544fdd8aaeadca0887aaa108200
   src/moderation_api/models/updateauthorop.py:
@@ -1085,7 +1091,7 @@ trackedFiles:
   src/moderation_api/webhooksecret.py:
     last_write_checksum: sha1:df2b346a770a6c777b2fbab21d4c189c2c196d2f
   src/moderation_api/wordlist.py:
-    last_write_checksum: sha1:d4a0f12a41e2c00d0dfc69366ae4a6334fcdb62e
+    last_write_checksum: sha1:7213b67a709d2db6385fccd613e41979d4b3ffc2
   src/moderation_api/words.py:
     last_write_checksum: sha1:27f34da4c40657bedee24f2b1d885811b4db0b58
 examples:
@@ -2137,4 +2143,18 @@ examples:
           application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://confused-bell.org"}
         "429":
           application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://nervous-partridge.org/"}
+  deleteWordlist:
+    speakeasy-default-delete-wordlist:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "deleted": true, "detachedChannelIds": ["<value 1>", "<value 2>", "<value 3>"]}
+        "401":
+          application/json: {"type": "authentication_error", "code": "unauthorized", "message": "Authorization not provided", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://rotating-exterior.biz/"}
+        "404":
+          application/json: {"type": "not_found_error", "code": "resource_not_found", "message": "Not found", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://flickering-airmail.org/"}
+        "429":
+          application/json: {"type": "rate_limit_error", "code": "rate_limit_exceeded", "message": "Rate limit exceeded", "request_id": "h8fkz6kkzoa446ffve37atys", "doc_url": "https://decent-millet.biz"}
 examplesVersion: 1.0.2
