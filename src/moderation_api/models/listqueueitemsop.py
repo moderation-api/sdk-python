@@ -21,6 +21,7 @@ Sort = Literal[
     "LIFO",
     "RANDOM",
     "SEVERITY_DESC",
+    "ROBOCALL_DESC",
 ]
 
 

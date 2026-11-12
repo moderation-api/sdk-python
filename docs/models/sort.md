@@ -14,3 +14,4 @@ value: Sort = "FIFO"
 - `"LIFO"`
 - `"RANDOM"`
 - `"SEVERITY_DESC"`
+- `"ROBOCALL_DESC"`

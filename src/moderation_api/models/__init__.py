@@ -138,6 +138,12 @@ if TYPE_CHECKING:
         DeleteWebhookResponse,
         DeleteWebhookResponseTypedDict,
     )
+    from .deletewordlistop import (
+        DeleteWordlistRequest,
+        DeleteWordlistRequestTypedDict,
+        DeleteWordlistResponse,
+        DeleteWordlistResponseTypedDict,
+    )
     from .duplicatechannelop import (
         DuplicateChannelRequest,
         DuplicateChannelRequestBody,
@@ -903,6 +909,10 @@ __all__ = [
     "DeleteWebhookRequestTypedDict",
     "DeleteWebhookResponse",
     "DeleteWebhookResponseTypedDict",
+    "DeleteWordlistRequest",
+    "DeleteWordlistRequestTypedDict",
+    "DeleteWordlistResponse",
+    "DeleteWordlistResponseTypedDict",
     "Drugs",
     "DrugsTypedDict",
     "DuplicateChannelRequest",
@@ -1502,6 +1512,10 @@ _dynamic_imports: dict[str, str] = {
     "DeleteWebhookRequestTypedDict": ".deletewebhookop",
     "DeleteWebhookResponse": ".deletewebhookop",
     "DeleteWebhookResponseTypedDict": ".deletewebhookop",
+    "DeleteWordlistRequest": ".deletewordlistop",
+    "DeleteWordlistRequestTypedDict": ".deletewordlistop",
+    "DeleteWordlistResponse": ".deletewordlistop",
+    "DeleteWordlistResponseTypedDict": ".deletewordlistop",
     "DuplicateChannelRequest": ".duplicatechannelop",
     "DuplicateChannelRequestBody": ".duplicatechannelop",
     "DuplicateChannelRequestBodyTypedDict": ".duplicatechannelop",

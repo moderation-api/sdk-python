@@ -525,9 +525,9 @@ r"""`pending` waits for review. `resolved` is reviewed."""
 
 class QueueItemTypedDict(TypedDict):
     id: str
-    r"""The item ID. Use it to resolve or unresolve the item in this queue."""
+    r"""The item ID: the ID of this submission. Use it, or `contentId`, to resolve or unresolve the item in this queue."""
     content_id: str
-    r"""Your content ID, as you sent it to `POST /moderate`."""
+    r"""Your content ID, as you sent it to `POST /moderate`. Webhooks send it as `item.id`. The resolve endpoints accept it in place of `id`."""
     content: Nullable[QueueItemContentTypedDict]
     r"""The submitted content."""
     labels: List[LabelTypedDict]
@@ -552,10 +552,10 @@ class QueueItemTypedDict(TypedDict):
 
 class QueueItem(BaseModel):
     id: str
-    r"""The item ID. Use it to resolve or unresolve the item in this queue."""
+    r"""The item ID: the ID of this submission. Use it, or `contentId`, to resolve or unresolve the item in this queue."""
 
     content_id: Annotated[str, pydantic.Field(alias="contentId")]
-    r"""Your content ID, as you sent it to `POST /moderate`."""
+    r"""Your content ID, as you sent it to `POST /moderate`. Webhooks send it as `item.id`. The resolve endpoints accept it in place of `id`."""
 
     content: Nullable[QueueItemContent]
     r"""The submitted content."""

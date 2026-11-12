@@ -3,10 +3,10 @@
 import importlib.metadata
 
 __title__: str = "moderation_api"
-__version__: str = "2.3.0"
+__version__: str = "2.4.0"
 __openapi_doc_version__: str = "1.1.0"
 __gen_version__: str = "internal"
-__user_agent__: str = "speakeasy-sdk/python 2.3.0 internal 1.1.0 moderation_api"
+__user_agent__: str = "speakeasy-sdk/python 2.4.0 internal 1.1.0 moderation_api"
 
 try:
     if __package__ is not None:
