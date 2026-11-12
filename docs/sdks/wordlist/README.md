@@ -8,6 +8,7 @@
 * [create](#create) - Create wordlist
 * [retrieve](#retrieve) - Get wordlist
 * [update](#update) - Update wordlist
+* [delete](#delete) - Delete wordlist
 * [get_embedding_status](#get_embedding_status) - Get embedding status
 
 ## list
@@ -199,6 +200,50 @@ with ModerationAPI(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | errors.BadRequestError           | 400                              | application/json                 |
+| errors.AuthenticationError       | 401                              | application/json                 |
+| errors.NotFoundError             | 404                              | application/json                 |
+| errors.RateLimitError            | 429                              | application/json                 |
+| errors.ModerationAPIDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## delete
+
+Delete a wordlist and its words. Channels that use the wordlist do not block the delete: the wordlist is removed from their policies. `detachedChannelIds` lists those channels. This cannot be undone.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="deleteWordlist" method="delete" path="/wordlist/{id}" -->
+```python
+from moderation_api import ModerationAPI
+import os
+
+
+with ModerationAPI(
+    secret_key=os.getenv("MODAPI_SECRET_KEY", ""),
+) as ma_client:
+
+    res = ma_client.wordlist.delete(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                         | *str*                                                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                           | ID of the wordlist to delete                                                                                                                                                                                                                 |
+| `project_id`                                                                                                                                                                                                                                 | *Optional[str]*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                           | The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error. |
+| `retries`                                                                                                                                                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                           | Configuration to override the default retry behavior of the client.                                                                                                                                                                          |
+
+### Response
+
+**[models.DeleteWordlistResponse](../../models/deletewordlistresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
 | errors.AuthenticationError       | 401                              | application/json                 |
 | errors.NotFoundError             | 404                              | application/json                 |
 | errors.RateLimitError            | 429                              | application/json                 |

@@ -16,12 +16,12 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class ResolveQueueItemsRequestBodyTypedDict(TypedDict):
     item_ids: List[str]
-    r"""The item IDs to resolve. Up to 100."""
+    r"""The items to resolve, up to 100. Each is the item `id` from `GET /queue/{id}/items`, or the `contentId` you sent to `POST /moderate` (webhooks send it as `item.id`). For a content ID, the newest submission with that content ID is used, as the queue shows it."""
 
 
 class ResolveQueueItemsRequestBody(BaseModel):
     item_ids: Annotated[List[str], pydantic.Field(alias="itemIds")]
-    r"""The item IDs to resolve. Up to 100."""
+    r"""The items to resolve, up to 100. Each is the item `id` from `GET /queue/{id}/items`, or the `contentId` you sent to `POST /moderate` (webhooks send it as `item.id`). For a content ID, the newest submission with that content ID is used, as the queue shows it."""
 
 
 class ResolveQueueItemsRequestTypedDict(TypedDict):
@@ -73,7 +73,7 @@ class ResolveQueueItemsResponseTypedDict(TypedDict):
     resolved: int
     r"""Number of items resolved."""
     not_found_ids: List[str]
-    r"""Item IDs that do not exist in the project."""
+    r"""IDs from `itemIds` that match no item or content ID in the project."""
 
 
 class ResolveQueueItemsResponse(BaseModel):
@@ -83,7 +83,7 @@ class ResolveQueueItemsResponse(BaseModel):
     r"""Number of items resolved."""
 
     not_found_ids: Annotated[List[str], pydantic.Field(alias="notFoundIds")]
-    r"""Item IDs that do not exist in the project."""
+    r"""IDs from `itemIds` that match no item or content ID in the project."""
 
 
 try:

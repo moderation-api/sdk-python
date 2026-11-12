@@ -549,6 +549,8 @@ class ContentSDK(BaseSDK):
     ) -> models.SubmitContentResponse:
         r"""Submit content
 
+        Moderate one piece of content: text, an image, a video, audio or an object with several fields. The project checks it against the policies of its channel and returns the result. Act on `recommendation.action` (allow, review or reject). The content is stored in the project unless `doNotStore` is set, and items to review go to the review queue. The project can send the result to its webhook endpoints.
+
         :param content: The content sent for moderation
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
         :param timestamp: Unix timestamp (in milliseconds) of when the content was created. Use if content is not submitted in real-time.
@@ -711,6 +713,8 @@ class ContentSDK(BaseSDK):
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> models.SubmitContentResponse:
         r"""Submit content
+
+        Moderate one piece of content: text, an image, a video, audio or an object with several fields. The project checks it against the policies of its channel and returns the result. Act on `recommendation.action` (allow, review or reject). The content is stored in the project unless `doNotStore` is set, and items to review go to the review queue. The project can send the result to its webhook endpoints.
 
         :param content: The content sent for moderation
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.

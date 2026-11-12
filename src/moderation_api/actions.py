@@ -25,7 +25,7 @@ class Actions(BaseSDK):
     ) -> Optional[models.ListActionsResponse]:
         r"""List moderation actions
 
-        List the moderation actions of the project. The list is paginated.
+        List the moderation actions of the project, with their webhooks. An action is a decision that a reviewer or a rule can take on content or an author. Built-in actions (for example reject an item or block an author) change the item or author in Moderation API. Custom actions record the decision and send it to the webhooks of the action, where the customer platform acts on it. The list is paginated.
 
         :param queue_id:
         :param page:
@@ -186,7 +186,7 @@ class Actions(BaseSDK):
     ) -> Optional[models.ListActionsResponse]:
         r"""List moderation actions
 
-        List the moderation actions of the project. The list is paginated.
+        List the moderation actions of the project, with their webhooks. An action is a decision that a reviewer or a rule can take on content or an author. Built-in actions (for example reject an item or block an author) change the item or author in Moderation API. Custom actions record the decision and send it to the webhooks of the action, where the customer platform acts on it. The list is paginated.
 
         :param queue_id:
         :param page:
@@ -365,7 +365,7 @@ class Actions(BaseSDK):
     ) -> models.CreateActionResponse:
         r"""Create an action
 
-        Create an action.
+        Create an action that reviewers and rules can take. `type` sets what it does: a built-in type changes the item or author in Moderation API, and a custom type (`ITEM_CUSTOM`, `AUTHOR_CUSTOM`) only records the decision for the webhooks to deliver. Creating an action does not execute it.
 
         :param name: The name of the action.
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
@@ -522,7 +522,7 @@ class Actions(BaseSDK):
     ) -> models.CreateActionResponse:
         r"""Create an action
 
-        Create an action.
+        Create an action that reviewers and rules can take. `type` sets what it does: a built-in type changes the item or author in Moderation API, and a custom type (`ITEM_CUSTOM`, `AUTHOR_CUSTOM`) only records the decision for the webhooks to deliver. Creating an action does not execute it.
 
         :param name: The name of the action.
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
@@ -662,7 +662,7 @@ class Actions(BaseSDK):
     ) -> models.GetActionResponse:
         r"""Get an action
 
-        Get an action by ID.
+        Get an action by ID: its type, where it shows in the review queues, the values it takes and its webhooks.
 
         :param id: The ID of the action to get.
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
@@ -772,7 +772,7 @@ class Actions(BaseSDK):
     ) -> models.GetActionResponse:
         r"""Get an action
 
-        Get an action by ID.
+        Get an action by ID: its type, where it shows in the review queues, the values it takes and its webhooks.
 
         :param id: The ID of the action to get.
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
@@ -900,7 +900,7 @@ class Actions(BaseSDK):
     ) -> models.UpdateActionResponse:
         r"""Update an action
 
-        Update an action.
+        Update the settings of an action: its name, type, queues and values. The new settings apply the next time the action is executed. Updating an action does not execute it.
 
         :param id: The ID of the action to update.
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
@@ -1063,7 +1063,7 @@ class Actions(BaseSDK):
     ) -> models.UpdateActionResponse:
         r"""Update an action
 
-        Update an action.
+        Update the settings of an action: its name, type, queues and values. The new settings apply the next time the action is executed. Updating an action does not execute it.
 
         :param id: The ID of the action to update.
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
@@ -1435,7 +1435,7 @@ class Actions(BaseSDK):
     ) -> models.ExecuteActionResponse:
         r"""Execute moderation action
 
-        Execute a moderation action on one or more content items.
+        Execute one action of the project, by ID or key, on content items or authors. A built-in action changes them in Moderation API (for example rejects the items or blocks the authors). Every executed action is recorded, and the project sends it to the webhooks of the action and to its other webhook endpoints, where the customer platform can act on it. List the actions first to see what each one does.
 
         :param action_key: ID or key of the action to execute
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.
@@ -1571,7 +1571,7 @@ class Actions(BaseSDK):
     ) -> models.ExecuteActionResponse:
         r"""Execute moderation action
 
-        Execute a moderation action on one or more content items.
+        Execute one action of the project, by ID or key, on content items or authors. A built-in action changes them in Moderation API (for example rejects the items or blocks the authors). Every executed action is recorded, and the project sends it to the webhooks of the action and to its other webhook endpoints, where the customer platform can act on it. List the actions first to see what each one does.
 
         :param action_key: ID or key of the action to execute
         :param project_id: The project to act on, by ID or name. Required with an organization key unless the key reaches only one project; list projects with GET /projects. A project key acts on its own project and needs no value: naming another one is an error.

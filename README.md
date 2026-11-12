@@ -434,6 +434,7 @@ Create the organization client only where you manage projects and channels, for 
 * [create](docs/sdks/wordlist/README.md#create) - Create wordlist
 * [retrieve](docs/sdks/wordlist/README.md#retrieve) - Get wordlist
 * [update](docs/sdks/wordlist/README.md#update) - Update wordlist
+* [delete](docs/sdks/wordlist/README.md#delete) - Delete wordlist
 * [get_embedding_status](docs/sdks/wordlist/README.md#get_embedding_status) - Get embedding status
 
 #### [Wordlist.Words](docs/sdks/words/README.md)
@@ -583,10 +584,10 @@ with ModerationAPI(
 
 
 **Inherit from [`ModerationAPIError`](./src/moderation_api/errors/moderationapierror.py)**:
-* [`NotFoundError`](./src/moderation_api/errors/notfounderror.py): The resource does not exist or the key cannot see it. Status code `404`. Applicable to 44 of 58 methods.*
-* [`PermissionDeniedError`](./src/moderation_api/errors/permissiondeniederror.py): The API key cannot do this, or the plan limit for this resource is reached. Status code `403`. Applicable to 36 of 58 methods.*
-* [`InternalServerError`](./src/moderation_api/errors/internalservererror.py): Something went wrong on our side. Retry with backoff. Status code `500`. Applicable to 23 of 58 methods.*
-* [`ConflictError`](./src/moderation_api/errors/conflicterror.py): The request conflicts with the current state of a resource. Status code `409`. Applicable to 2 of 58 methods.*
+* [`NotFoundError`](./src/moderation_api/errors/notfounderror.py): The resource does not exist or the key cannot see it. Status code `404`. Applicable to 45 of 59 methods.*
+* [`PermissionDeniedError`](./src/moderation_api/errors/permissiondeniederror.py): The API key cannot do this, or the plan limit for this resource is reached. Status code `403`. Applicable to 36 of 59 methods.*
+* [`InternalServerError`](./src/moderation_api/errors/internalservererror.py): Something went wrong on our side. Retry with backoff. Status code `500`. Applicable to 23 of 59 methods.*
+* [`ConflictError`](./src/moderation_api/errors/conflicterror.py): The request conflicts with the current state of a resource. Status code `409`. Applicable to 2 of 59 methods.*
 * [`ResponseValidationError`](./src/moderation_api/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
